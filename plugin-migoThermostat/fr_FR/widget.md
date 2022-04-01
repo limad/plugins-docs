@@ -2,8 +2,8 @@
 
 ## Voici le **Widget standard** pour un thermostat :
 
-![widget1](https://raw.githubusercontent.com/limad/plugin-test/master/images/migoThermostat_screenshot1.PNG)
-![widget2](https://raw.githubusercontent.com/limad/plugin-test/master/images/migoThermostat_screenshot2.PNG)
+![widget1](https://limad.github.io/plugins-docs/plugins-docs/plugin-test/images/migoThermostat_screenshot1.PNG)
+![widget2](https://limad.github.io/plugins-docs/plugins-docs/plugin-test/images/migoThermostat_screenshot2.PNG)
 
 **Widget mobile** :
 migoScreen8

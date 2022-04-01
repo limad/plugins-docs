@@ -28,10 +28,10 @@ Pour plus de détails, veuillez consulter le forum.
 ## Aperçu du plugin
 
 ### Page du plugin
-![screenshot1](https://raw.githubusercontent.com/limad/plugin-test/master/images/migoThermostat_screenshot1.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-test/images/migoThermostat_screenshot1.PNG)
 
 ### Installation d'un plugin
-![screenshot1](https://raw.githubusercontent.com/limad/plugin-test/master/images/migoThermostat_screenshot12.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-test/images/migoThermostat_screenshot12.PNG)
 
 ### Configuration
-![screenshot1](https://raw.githubusercontent.com/limad/plugin-test/master/images/migoThermostat_screenshot11.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-test/images/migoThermostat_screenshot11.PNG)

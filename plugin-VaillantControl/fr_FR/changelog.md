@@ -7,7 +7,7 @@
 
 ---
 
-* Installation du plugin [VaillantControl.](https://limad.github.io/plugin-VaillantControl/fr_FR/#tocAnchor-1-3)
+* Installation du plugin [VaillantControl.](https://limad.github.io/plugins-docs/plugin-VaillantControl/fr_FR/#tocAnchor-1-3)
 * Topic dedié au plugin [Topic community.](https://community.jeedom.com/t/plugin-tiers-VaillantControl/38002/)
 * [Documentation du plugin.](https://community.jeedom.com/t/re-plugin-tiers-VaillantControl/38002/).
 

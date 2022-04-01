@@ -8,7 +8,7 @@ Préalable: Vous avez déja renseiger les parametres d'autentification et synchr
 
 La configuration des équipements Netatmo Energie est accessible à partir du menu Plugin => Confort => naEnergie:
 
-![configuration3](https://raw.githubusercontent.com/limad/plugin-naEnergie/master/images/naEnergie_screenshot4.PNG)
+![configuration3](https://limad.github.io/plugins-docs/plugins-docs/plugin-naEnergie/images/naEnergie_screenshot4.PNG)
 
 
 
@@ -29,7 +29,7 @@ Vous retrouvez ici toute la configuration de votre équipement :
 
 **Type** : type de votre équipement (Thermostat pour les pièce comportant un thermostat / Valve si uniquement des vannes)
 
-![configuration3](https://raw.githubusercontent.com/limad/plugin-naEnergie/master/images/naEnergie_doc4.PNG)
+![configuration3](https://limad.github.io/plugins-docs/plugins-docs/plugin-naEnergie/images/naEnergie_doc4.PNG)
 
 
 
@@ -39,7 +39,7 @@ Vous retrouvez ici toute la configuration de votre équipement :
 Les Commandes disponibles pour votre équipement sont accéssibles depuis **l'onglet Commandes**
 Elles sont classées par type ; infos ou actions
 
-![configuration3](https://raw.githubusercontent.com/limad/plugin-naEnergie/master/images/naEnergie_doc3.PNG
+![configuration3](https://limad.github.io/plugins-docs/plugins-docs/plugin-naEnergie/images/naEnergie_doc3.PNG
 
 
 **Afficher** : permet d'afficher la commande selectionnée( uniquement pour tuiles 'core'**)

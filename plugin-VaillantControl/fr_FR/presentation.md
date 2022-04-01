@@ -26,10 +26,10 @@ Ce plugin vous donnera la possibilité de *(1):
 ## Aperçu du plugin
 
 ### Page du plugin
-![screenshot1](https://raw.githubusercontent.com/limad/plugin-VaillantControl/master/images/VaillantControl_screenshot4.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_screenshot4.PNG)
 
 ### Installation d'un plugin
-![screenshot1](https://raw.githubusercontent.com/limad/plugin-VaillantControl/master/images/VaillantControl_doc1.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_doc1.PNG)
 
 ### Configuration
-![screenshot1](https://raw.githubusercontent.com/limad/plugin-VaillantControl/master/images/VaillantControl_doc2.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_doc2.PNG)

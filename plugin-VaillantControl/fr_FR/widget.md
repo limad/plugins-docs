@@ -2,9 +2,9 @@
 
 ## Voici le **widget standard** pour un thermostat :
 
-![widget1](https://raw.githubusercontent.com/limad/plugin-VaillantControl/master/images/VaillantControl_screenshot1.PNG)
-![widget2](https://raw.githubusercontent.com/limad/plugin-VaillantControl/master/images/VaillantControl_screenshot2.PNG)
-![widget3](https://raw.githubusercontent.com/limad/plugin-VaillantControl/master/images/VaillantControl_screenshot3.PNG)
+![widget1](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_screenshot1.PNG)
+![widget2](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_screenshot2.PNG)
+![widget3](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_screenshot3.PNG)
 **Widget mobile** :
 
 

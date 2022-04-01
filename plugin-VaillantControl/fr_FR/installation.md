@@ -1,7 +1,7 @@
 # Comment installer ce plugin ?
 
 1. Rendez vous sur la page du market Jeedom et télecharger la dérniere virsion du plugin
-![install1](https://raw.githubusercontent.com/limad/plugin-VaillantControl/master/images/VaillantControl_doc1.PNG)
+![install1](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_doc1.PNG)
 
 2. Une fois le plugin installé, il vous faut renseigner vos informations de connexion Vaillant :
 
@@ -16,4 +16,4 @@ Objets par défaut : le cas écheant, choisir l'objet Jeedom auquel seront assoc
 
 **Cliquer le boutton "Synchroniser" **: Celà permet de synchroniser le plugin avec votre compte Vaillant pour découvrir automatiquement vos équipements !! 
   
-![install3](https://raw.githubusercontent.com/limad/plugin-VaillantControl/master/images/VaillantControl_doc2.PNG)
+![install3](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_doc2.PNG)

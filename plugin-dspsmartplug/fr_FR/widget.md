@@ -5,13 +5,13 @@
 
 **Widget dashboard** :
 
-![widget dashboard](https://raw.githubusercontent.com/limad/plugin-dspsmartplug/master/images/dspsmartplug_screenshot6.PNG)
+![widget dashboard](https://limad.github.io/plugins-docs/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot6.PNG)
 
 
 
 **Widget mobile** :
 
-![widget dashboard](https://raw.githubusercontent.com/limad/plugin-dspsmartplug/master/images/dspsmartplug_screenshot7.PNG)
+![widget dashboard](https://limad.github.io/plugins-docs/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot7.PNG)
 
 
 
