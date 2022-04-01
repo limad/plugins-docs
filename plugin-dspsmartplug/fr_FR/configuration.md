@@ -9,7 +9,7 @@ La configuration des équipements dspsmartplug est accessible à partir du menu 
 
 - Cliquer sur l'icone de l'équipement
 
-![configuration3](https://limad.github.io/plugins-docs/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot1.PNG)
+![configuration3](https://limad.github.io/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot1.PNG)
 
 
 Une fois que vous cliquez sur un équipement vous obtenez :
@@ -40,7 +40,7 @@ Toujours dans la page de l'équipement, il faut renseigner les informations de c
 
   
 5. Penser à choisir un cron( 5 ou 1min) et sauvegarder
-![install3](https://limad.github.io/plugins-docs/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot3.PNG)
+![install3](https://limad.github.io/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot3.PNG)
 
 
 
@@ -50,7 +50,7 @@ Toujours dans la page de l'équipement, il faut renseigner les informations de c
 Les Commandes disponibles pour votre équipement sont accéssibles depuis **l'onglet Commandes**
 Elles sont classées par type ; infos ou actions
 
-![configuration3](https://limad.github.io/plugins-docs/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot5.PNG)
+![configuration3](https://limad.github.io/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot5.PNG)
 
 
 **historiser** : permet d’historiser la donnée de la commande "Info" selectionnée

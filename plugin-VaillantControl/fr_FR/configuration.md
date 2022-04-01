@@ -8,7 +8,7 @@ Préalable: Vous avez déja renseiger les parametres d'autentification et synchr
 
 La configuration des équipements Vaillant Energie est accessible à partir du menu Plugin => Confort => VaillantControl:
 
-![configuration3](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_screenshot4.PNG)
+![configuration3](https://limad.github.io/plugins-docs/plugin-VaillantControl/images/VaillantControl_screenshot4.PNG)
 
 
 
@@ -29,7 +29,7 @@ Vous retrouvez ici toute la configuration de votre équipement :
 
 **Type** : type de votre équipement (Home/Thermostat/Dhw)
 
-![configuration3](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_doc4.PNG)
+![configuration3](https://limad.github.io/plugins-docs/plugin-VaillantControl/images/VaillantControl_doc4.PNG)
 
 
 
@@ -39,8 +39,7 @@ Vous retrouvez ici toute la configuration de votre équipement :
 Les Commandes disponibles pour votre équipement sont accéssibles depuis **l'onglet Commandes**
 Elles sont classées par type ; infos ou actions
 
-![configuration3](https://limad.github.io/plugins-docs/plugins-docs/plugin-VaillantControl/images/VaillantControl_doc3.PNG
-https://limad.github.io/plugins-docs/plugin-naEnergie/images/naEnergie_doc4.PNG
+![configuration3](https://limad.github.io/plugins-docs/plugin-VaillantControl/images/VaillantControl_doc3.PNG
 
 **Afficher** : permet d'afficher la commande selectionnée( uniquement pour tuiles 'core'**)
 **Historiser** : permet d’historiser la donnée de la commande "Info" selectionnée

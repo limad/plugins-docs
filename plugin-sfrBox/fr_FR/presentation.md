@@ -33,10 +33,10 @@ Ce plugin vous donnera la possibilité de *(1):
 ## Aperçu du plugin
 
 ### Page du plugin
-![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-sfrBox/images/sfrBox_screenshot1.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugin-sfrBox/images/sfrBox_screenshot1.PNG)
              
 ### Installation d'un plugin
-![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-sfrBox/images/sfrBox_screenshot8.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugin-sfrBox/images/sfrBox_screenshot8.PNG)
 
 ### Configuration
-![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-sfrBox/images/sfrBox_screenshot6.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugin-sfrBox/images/sfrBox_screenshot6.PNG)

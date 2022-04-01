@@ -18,9 +18,9 @@ Ce plugin vous donnera la possibilité de :
 ## Aperçu du plugin
 
 ### Page du plugin:
-![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot1.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot1.PNG)
              
 ### Tuile:
-![screenshot1](https://limad.github.io/plugins-docs/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot6.PNG)
+![screenshot1](https://limad.github.io/plugins-docs/plugin-dspsmartplug/images/dspsmartplug_screenshot6.PNG)
 
 ### lien du plugin:<a href="https://www.jeedom.com/market/index.php?v=d&p=market&type=plugin&plugin_id=3442">DSP-W215</a>

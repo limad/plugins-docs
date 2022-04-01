@@ -1,7 +1,7 @@
 # Comment installer ce plugin ?
 
 1. Rendez vous sur la page du market Jeedom et télecharger la dérniere virsion du plugin
-![install1](https://limad.github.io/plugins-docs/plugins-docs/plugin-test/images/migoThermostat_screenshot12.PNG)
+![install1](https://limad.github.io/plugins-docs/plugin-test/images/migoThermostat_screenshot12.PNG)
 
 2. Une fois le plugin installé, il vous faut renseigner vos informations de connexion Migo :
 
@@ -16,4 +16,4 @@ Type du Thermostat : Choisir le type tu thermostat installé
 !! A faire après avoir sauvegardé les paramètres précedent.
 
   
-![install3](https://limad.github.io/plugins-docs/plugins-docs/plugin-test/images/migoThermostat_screenshot11.PNG)
+![install3](https://limad.github.io/plugins-docs/plugin-test/images/migoThermostat_screenshot11.PNG)
