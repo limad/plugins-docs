@@ -8,7 +8,7 @@ Préalable: Vous avez déja renseiger les parametres d'autentification et synchr
 
 La configuration des équipements Vaillant Energie est accessible à partir du menu Plugin => Confort => VaillantControl:
 
-![configuration3](https://limad.github.io/plugins-docs/plugin-VaillantControl/images/VaillantControl_screenshot4.PNG)
+![configuration3](https://limad.github.io/plugins-docs/plugin-VaillantControl/images/VaillantControl_doc3.PNG)
 
 
 
