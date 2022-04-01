@@ -17,11 +17,11 @@ exclude:
 - vendor
 plugins:
 - jekyll-seo-tag
-title: "Documentation Plugins-VaillantControl"
-description: "Ceci est la documentation du plugin Jeedom VaillantControl"
+title: "Documentation Jeedom-Plugins-Extra"
+description: "Ceci est la documentation du plugin dspsmartplug pour Jeedom"
 author: "Limad44"
 image: https://avatars1.githubusercontent.com/u/36200380?s=200&v=4
 social:
-  name: Plugins-VaillantControl
+  name: Jeedom-plugin dspsmartplug
   links:
-    -https://limad.github.io/plugin-VaillantControl
+    - https://github.com/limad/plugin-dspsmartplug

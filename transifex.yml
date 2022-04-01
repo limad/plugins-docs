@@ -3,113 +3,47 @@ filters:
     file_format: GITHUBMARKDOWN
     source_file_extension: md
     source_language: fr
-    source_file_dir: arlo/fr_FR/
-    translation_files_expression: 'arlo/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: designImgSwitch/fr_FR/
-    translation_files_expression: 'designImgSwitch/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: fullup/fr_FR/
-    translation_files_expression: 'fullup/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: gardena/fr_FR/
-    translation_files_expression: 'gardena/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: gotify/fr_FR/
-    translation_files_expression: 'gotify/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: hydrao/fr_FR/
-    translation_files_expression: 'hydrao/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
     source_file_dir: index/fr_FR/
     translation_files_expression: 'index/<lang>/'
   - filter_type: dir
     file_format: GITHUBMARKDOWN
     source_file_extension: md
     source_language: fr
-    source_file_dir: influxdb/fr_FR/
-    translation_files_expression: 'influxdb/<lang>/'
+    source_file_dir: plugin-naEnergie/fr_FR/
+    translation_files_expression: 'plugin-naEnergie/<lang>/'
   - filter_type: dir
     file_format: GITHUBMARKDOWN
     source_file_extension: md
     source_language: fr
-    source_file_dir: logmanager/fr_FR/
-    translation_files_expression: 'logmanager/<lang>/'
+    source_file_dir: plugin-migoThermostat/fr_FR/
+    translation_files_expression: 'plugin-migoThermostat/<lang>/'
   - filter_type: dir
     file_format: GITHUBMARKDOWN
     source_file_extension: md
     source_language: fr
-    source_file_dir: miele/fr_FR/
-    translation_files_expression: 'miele/<lang>/'
+    source_file_dir: plugin-sfrBox/fr_FR/
+    translation_files_expression: 'plugin-sfrBox/<lang>/'
+   - filter_type: dir
+    file_format: GITHUBMARKDOWN
+    source_file_extension: md
+    source_language: fr
+    source_file_dir: plugin-dspsmartplug/fr_FR/
+    translation_files_expression: 'plugin-dspsmartplug/<lang>/'
   - filter_type: dir
     file_format: GITHUBMARKDOWN
     source_file_extension: md
     source_language: fr
-    source_file_dir: myaudi/fr_FR/
-    translation_files_expression: 'myaudi/<lang>/'
+    source_file_dir: plugin-VaillantControl/fr_FR/
+    translation_files_expression: 'plugin-VaillantControl/<lang>/'
   - filter_type: dir
     file_format: GITHUBMARKDOWN
     source_file_extension: md
     source_language: fr
-    source_file_dir: notificationqueue/fr_FR/
-    translation_files_expression: 'notificationqueue/<lang>/'
-  - filter_type: dir
+    source_file_dir: plugin-proteo/fr_FR/
+    translation_files_expression: 'plugin-proteo/<lang>/'
+ - filter_type: dir
     file_format: GITHUBMARKDOWN
     source_file_extension: md
     source_language: fr
-    source_file_dir: onduleursolaredge/fr_FR/
-    translation_files_expression: 'onduleursolaredge/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: portainer/fr_FR/
-    translation_files_expression: 'portainer/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: proxmox/fr_FR/
-    translation_files_expression: 'proxmox/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: rocketchat/fr_FR/
-    translation_files_expression: 'rocketchat/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: stockexchange/fr_FR/
-    translation_files_expression: 'stockexchange/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: vaillantmultimatic/fr_FR/
-    translation_files_expression: 'vaillantmultimatic/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: vmczehnder/fr_FR/
-    translation_files_expression: 'vmczehnder/<lang>/'
+    source_file_dir: plugin-dchmotion/fr_FR/
+    translation_files_expression: 'plugin-dchmotion/<lang>/'
