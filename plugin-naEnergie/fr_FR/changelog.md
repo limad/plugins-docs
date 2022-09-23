@@ -13,6 +13,13 @@
 
 ### Liste des évolutions majeures de la version courante :
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
+
+### Version 23/09/2022
+* Amélioration du protocole AuthFlow pour une meilleure interactivité
+
+### Version 17/09/2022
+* Prise en charge du protocole AuthFlow pour l'authentification (nécessite d'obtenir une autorisation depuis le site Netatmo)
+ 
 ### Version 20/10/2021 (Beta)
 * !!!! Mise à jour Majeure !!!!
 * Intégration des thermostats intelligents (Netatmo OpenTherm) y compris gestion ECS
