@@ -14,6 +14,13 @@
 ### Liste des évolutions majeures de la version courante :
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 
+### Version 07/11/2022
+* Conformité de la présentation des commandes pour Jeedom v4.3(Affichage des valeurs...)
+* Optimisations globales du traitement des données Api
+* Plusieurs améliorations du code du plugin
+* La commande set_zone_cons est supprimée
+* La commande set_quick_veto a changée de nom :'Activer Consigne QV'
+
 ### Version 29/03/2022
   * Version Beta
   
