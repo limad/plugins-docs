@@ -15,6 +15,11 @@
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
 ### Version 23/10/2022
+* Bug-Fix Perte Auto-Adapt.
+* Bug-Fix Dispartion des tuiles Custom suite à une mise à jour.
+* ...
+
+### Version 23/10/2022
 * Amélioration du protocole AuthFlow pour pallier aux manquements des utilisateurs
 * Conformité de la présentation des commandes pour Jeedom v4.3(Affichage des valeurs)
 
