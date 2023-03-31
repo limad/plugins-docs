@@ -54,36 +54,6 @@ Plugin pour intégrer les thermostats Vaillant(gamme senso). Le plugin permet l'
 - [Changelog]({{site.baseurl}}/plugin-VaillantControl/{{page.lang}}/changelog)
 - <a href="{{site.market}}/index.php?v=d&plugin_id=4299" target="_blank">Market</a>
 
-# Proteo(plugin-proteo)
-
-[<img width="77" src="{{site.market}}/filestore/market/plugin/images/proteo_icon.png">]({{site.baseurl}}/plugin-proteo/{{page.lang}})
-
-Plugin permettant d'intégrer la centrale de filtration Comap(Proteo/Komeo).
-
-- [Documentation]({{site.baseurl}}/plugin-proteo/{{page.lang}})
-- [Changelog]({{site.baseurl}}/plugin-proteo/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
-
-# DCH Motion(plugin-dchmotion)
-
-[<img width="77" src="{{site.market}}/filestore/market/plugin/images/dchmotion_icon.png">]({{site.baseurl}}/plugin-dchmotion/{{page.lang}})
-
-Plugin pour controller les détecteurs dlink DCH-S150 "Motion Sensor". 
-
-- [Documentation]({{site.baseurl}}/plugin-dchmotion/{{page.lang}})
-- [Changelog]({{site.baseurl}}/plugin-dchmotion/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
-
-# plugin-jeebusd
-
-[<img width="77" src="{{site.market}}/filestore/market/plugin/images/jeebusd_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
-
-Plugin ebus jeebusd.
-
-- [Documentation]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
-- [Changelog]({{site.baseurl}}/plugin-jeebusd/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
-
 # plugin-grdfConnect
 
 [<img width="77" src="{{site.market}}/filestore/market/plugin/images/grdfConnect_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
@@ -112,4 +82,34 @@ Plugin ebus ModbusMonitor.
 
 - [Documentation]({{site.baseurl}}/plugin-ModbusMonitor/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-ModbusMonitor/{{page.lang}}/changelog)
+- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
+
+# Proteo(plugin-proteo)
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/proteo_icon.png">]({{site.baseurl}}/plugin-proteo/{{page.lang}})
+
+Plugin permettant d'intégrer la centrale de filtration Comap(Proteo/Komeo).
+
+- [Documentation]({{site.baseurl}}/plugin-proteo/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-proteo/{{page.lang}}/changelog)
+- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
+
+# DCH Motion(plugin-dchmotion)
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/dchmotion_icon.png">]({{site.baseurl}}/plugin-dchmotion/{{page.lang}})
+
+Plugin pour controller les détecteurs dlink DCH-S150 "Motion Sensor". 
+
+- [Documentation]({{site.baseurl}}/plugin-dchmotion/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-dchmotion/{{page.lang}}/changelog)
+- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
+
+# plugin-jeebusd
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/jeebusd_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
+
+Plugin ebus jeebusd.
+
+- [Documentation]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-jeebusd/{{page.lang}}/changelog)
 - <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
