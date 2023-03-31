@@ -83,3 +83,33 @@ Plugin ebus jeebusd.
 - [Documentation]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-jeebusd/{{page.lang}}/changelog)
 - <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
+
+# plugin-grdfConnect
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/grdfConnect_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
+
+Plugin ebus grdfConnect.
+
+- [Documentation]({{site.baseurl}}/plugin-grdfConnect/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-grdfConnect/{{page.lang}}/changelog)
+- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
+
+# plugin-hellowatt
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/hellowatt_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
+
+Plugin ebus hellowatt.
+
+- [Documentation]({{site.baseurl}}/plugin-hellowatt/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-hellowatt/{{page.lang}}/changelog)
+- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
+
+# plugin-ModbusMonitor
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/ModbusMonitor_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
+
+Plugin ebus ModbusMonitor.
+
+- [Documentation]({{site.baseurl}}/plugin-ModbusMonitor/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-ModbusMonitor/{{page.lang}}/changelog)
+- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
