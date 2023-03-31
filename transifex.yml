@@ -47,3 +47,21 @@ filters:
     source_language: fr
     source_file_dir: plugin-dchmotion/fr_FR/
     translation_files_expression: 'plugin-dchmotion/<lang>/'
+ - filter_type: dir
+    file_format: GITHUBMARKDOWN
+    source_file_extension: md
+    source_language: fr
+    source_file_dir: plugin-grdfConnect/fr_FR/
+    translation_files_expression: 'plugin-grdfConnect/<lang>/'
+ - filter_type: dir
+    file_format: GITHUBMARKDOWN
+    source_file_extension: md
+    source_language: fr
+    source_file_dir: plugin-helloWatt/fr_FR/
+    translation_files_expression: 'plugin-helloWatt/<lang>/'   
+ - filter_type: dir
+    file_format: GITHUBMARKDOWN
+    source_file_extension: md
+    source_language: fr
+    source_file_dir: plugin-ModbusMonitor/fr_FR/
+    translation_files_expression: 'plugin-ModbusMonitor/<lang>/'    
