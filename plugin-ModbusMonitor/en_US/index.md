@@ -7,7 +7,7 @@ pluginId: ModbusMonitor
 
 # Description
 
-Plugin transforming your Jeedom into a Modbus Monitor server
+Plugin to interact Modbus Tcp connection into Jeedom.
 
 # Installation
 

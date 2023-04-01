@@ -5,7 +5,7 @@ lang: en_US
 pluginId: ModbusMonitor
 ---
 
-# 2022-08-xx
+# 2023-03-xx
 
 - First version
 

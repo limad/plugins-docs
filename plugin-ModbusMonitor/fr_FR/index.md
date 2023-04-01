@@ -7,7 +7,7 @@ pluginId: ModbusMonitor
 
 # Description
 
-Plugin transformant votre Jeedom en seveur Modbus Monitor
+Plugin ModbusMonitor, Permet de lire du modbus via TCP-IP, et de faire quelques test sur les registres
 
 # Installation
 
@@ -17,7 +17,7 @@ Afin d’utiliser le plugin, vous devez le télécharger, l’installer et l’a
 
 Dans la page de configuration du plugin, vous pouvez modifier les options suivantes:
 
-- Le port d'écoute du démon du plugin. Ne modifiez cette valeur que si vous comprenez le fonctionnement et uniquement si vous avez un conflit avec un autre plugin.
+- Le port d'écoute du démon du plugin.
 
 # Configuration des équipements
 
