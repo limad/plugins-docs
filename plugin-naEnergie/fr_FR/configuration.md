@@ -1,3 +1,4 @@
+
 # Configuration
 
 ## **Configuration des équipements**

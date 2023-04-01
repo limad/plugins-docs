@@ -1,3 +1,9 @@
+---
+layout: default
+title: helloWatt changelog
+lang: fr_FR
+pluginId: helloWatt
+---
 # Changelog
 
 >**IMPORTANT**

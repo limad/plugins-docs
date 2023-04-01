@@ -35,18 +35,6 @@ filters:
     source_language: fr
     source_file_dir: plugin-VaillantControl/fr_FR/
     translation_files_expression: 'plugin-VaillantControl/<lang>/'
-  - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: plugin-proteo/fr_FR/
-    translation_files_expression: 'plugin-proteo/<lang>/'
- - filter_type: dir
-    file_format: GITHUBMARKDOWN
-    source_file_extension: md
-    source_language: fr
-    source_file_dir: plugin-dchmotion/fr_FR/
-    translation_files_expression: 'plugin-dchmotion/<lang>/'
  - filter_type: dir
     file_format: GITHUBMARKDOWN
     source_file_extension: md
@@ -65,3 +53,15 @@ filters:
     source_language: fr
     source_file_dir: plugin-ModbusMonitor/fr_FR/
     translation_files_expression: 'plugin-ModbusMonitor/<lang>/'    
+- filter_type: dir
+    file_format: GITHUBMARKDOWN
+    source_file_extension: md
+    source_language: fr
+    source_file_dir: plugin-proteo/fr_FR/
+    translation_files_expression: 'plugin-proteo/<lang>/'
+ - filter_type: dir
+    file_format: GITHUBMARKDOWN
+    source_file_extension: md
+    source_language: fr
+    source_file_dir: plugin-dchmotion/fr_FR/
+    translation_files_expression: 'plugin-dchmotion/<lang>/'

@@ -1,3 +1,9 @@
+---
+layout: default
+title: naEnergie documentation
+lang: fr_FR
+pluginId: naEnergie
+---
 {% include_relative presentation.md %}
 {% include_relative installation.md %}
 {% include_relative configuration.md %}

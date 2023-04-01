@@ -1,6 +1,12 @@
-# helloWatt Gazpar
+---
+layout: default
+title: helloWatt changelog
+lang: fr_FR
+pluginId: helloWatt
+---
+# helloWatt 
 
-Plugin allowing the recovery of consumption of the communicating meter *Gazpar* by querying the customer account *helloWatt*. As the data is not made available in real time, the plugin retrieves the gaz consumption data from the day before each day.
+Plugin allowing the recovery of consumption of the communicating meter ** by querying the customer account *helloWatt*. As the data is not made available in real time, the plugin retrieves the gaz consumption data from the day before each day.
 
 2 types of consumption data are accessible :
 - the **daily consumption** *(in kWh and m3)*.
@@ -13,7 +19,7 @@ Plugin allowing the recovery of consumption of the communicating meter *Gazpar* 
 
 ## Plugin configuration
 
-The plugin **helloWatt Gazpar** does not require any specific configuration and should only be activated after installation.
+The plugin **helloWatt** does not require any specific configuration and should only be activated after installation.
 
 Two options are available in the plugin's configuration to manage behavior when a captcha is detected at connection time:
 - Add an entry in the message center (checked by default)
@@ -28,10 +34,10 @@ The data is checked every hour between 4 a.m. and 10 p.m. and updated only if no
 
 ## Equipment configuration
 
-To access the different equipment **helloWatt Gazpar**, go to the menu **Plugins → Energy → helloWatt Gazpar**.
+To access the different equipment **helloWatt**, go to the menu **Plugins → Energy → helloWatt **.
 
 > **To know**    
-> The button **+ Add** allows you to add a new account **helloWatt Gazpar**.
+> The button **+ Add** allows you to add a new account **helloWatt **.
 
 On the equipment page, fill in the'**Login** as well as the **Password** of your customer account *helloWatt* then click on the button **Save**.
 

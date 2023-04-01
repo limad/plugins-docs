@@ -1,3 +1,10 @@
+---
+layout: default
+title: grdfConnect documentation
+lang: fr_FR
+pluginId: grdfConnect
+--
+
 # Plugin Grdf-Connect
 
 Plugin permettant la récupération des consommations du compteur communicant *Gazpar* par l'interrogation du compte-client *GRDF*. Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation de gaz de la veille. 
