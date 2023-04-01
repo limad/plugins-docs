@@ -1,15 +1,15 @@
 ---
 layout: default
-title: MigoThermostat changelog
+title: migoThermostat changelog
 lang: fr_FR
-pluginId: MigoThermostat
+pluginId: migoThermostat
 ---
 <img align="right" src="../images/migoThermostat_icon.png" width="100">
 
-# MigoThermostat - Plugin pour Jeedom
+# Migo Thermostat - Plugin pour Jeedom
 
-* Installation du thermostat [MigoThermostat.](https://limad.github.io/plugin-migoThermostat/fr_FR/#tocAnchor-1-3)
-* Topic dedié du thermostat [MigoThermostat.](https://www.jeedom.com/forum/viewtopic.php?p=764669#p764669)
+* Installation du thermostat [Migo Thermostat.](https://limad.github.io/plugin-migoThermostat/fr_FR/#tocAnchor-1-3)
+* Topic dedié du thermostat [Migo Thermostat.](https://www.jeedom.com/forum/viewtopic.php?p=764669#p764669)
 * [Documentation](index.md).
 
 ## Changelog

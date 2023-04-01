@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Changelog modbusMonitor
+title: Changelog naEnergie
 lang: fr_FR
-pluginId: modbusMonitor
+pluginId: naEnergie
 ---
 
 # Changelog

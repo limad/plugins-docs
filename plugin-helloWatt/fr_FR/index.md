@@ -3,7 +3,7 @@ layout: default
 title: helloWatt documentation
 lang: fr_FR
 pluginId: helloWatt
---
+---
 ![logo](https://limad.github.io/plugins-docs/plugin-helloWatt/images/logo.PNG)
 # Plugin helloWatt
 
