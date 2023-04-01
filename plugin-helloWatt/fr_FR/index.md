@@ -4,7 +4,7 @@ title: helloWatt documentation
 lang: fr_FR
 pluginId: helloWatt
 --
-![logo](https://limad.github.io/plugins-docs/plugin-hellowatt/images/logo.PNG)
+![logo](https://limad.github.io/plugins-docs/plugin-helloWatt/images/logo.PNG)
 # Plugin helloWatt
 
 Plugin permettant la récupération des consommations(Gaz/Elec) par l'interrogation du compte-client *helloWatt*. Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les dernieres données de consommations disponibles. 
@@ -23,10 +23,10 @@ Si vous disposer d'un abonnement TEMPO
 - la **couleur du jour**
 - la **couleur du lendemain**
 Et d'autres...
-![Commandes](https://limad.github.io/plugins-docs/plugin-hellowatt/images/helloWatt_screenshot2.png)
+![Commandes](https://limad.github.io/plugins-docs/plugin-helloWatt/images/helloWatt_screenshot2.png)
 
 >**Important**      
->Il est nécessaire d'être en possession d'un compte-client helloWatt. Le plugin récupère les informations à partir de la partie *mes-donnees* <a href="https://www.hellowatt.fr/mon-compte/ma-consommation/mes-donnees" target="_blank">du site helloWatt</a>, il faut donc vérifier que vous y avez bien accès avec vos identifiants habituels (email/mot de passe) et que les données y sont visibles. Dans le cas contraire, le plugin ne fonctionnera pas.
+>Il est nécessaire d'être en possession d'un compte-client helloWatt. Le plugin récupère les informations à partir de la partie *mes-donnees* <a href="https://www.helloWatt.fr/mon-compte/ma-consommation/mes-donnees" target="_blank">du site helloWatt</a>, il faut donc vérifier que vous y avez bien accès avec vos identifiants habituels (email/mot de passe) et que les données y sont visibles. Dans le cas contraire, le plugin ne fonctionnera pas.
 
 # Configuration
 
@@ -34,7 +34,7 @@ Et d'autres...
 
 Sur la page de configuration du plugin, renseignez l'**identifiant** ainsi que le **mot de passe** de votre compte-client *helloWatt* puis cliquez sur le bouton **Sauvegarder**.
 
-![Configuration](https://limad.github.io/plugins-docs/plugin-hellowatt/images/helloWatt_Eqconfig.png)
+![Configuration](https://limad.github.io/plugins-docs/plugin-helloWatt/images/helloWatt_Eqconfig.png)
 
 ## Configuration des équipements
 
@@ -44,7 +44,7 @@ Pour accéder aux différents équipements **helloWatt**, dirigez-vous vers le m
 
 Le plugin va alors vérifier la bonne connexion au site *helloWatt* créer les équipements, récupérer et insérer les informations dans l'historique Jeedom.
 
-![Eq_Configuration](https://limad.github.io/plugins-docs/plugin-hellowatt/images/helloWatt_config.png)
+![Eq_Configuration](https://limad.github.io/plugins-docs/plugin-helloWatt/images/helloWatt_config.png)
 
 # Affichage des informations
 Deux tuiles sont disponibles : 
@@ -61,7 +61,7 @@ Deux tuiles sont disponibles :
 # En cas de dysfonctionnements importants
 commencer par vérifier vos identifiants (email, mdp)
 que votre compte sur le site helloWatt est accessibles en vous connectant dessus.
-que votre mdp est conforme aux exigences récentes de hellowatt (12 caractères, caractères spéciaux…)
+que votre mdp est conforme aux exigences récentes de helloWatt (12 caractères, caractères spéciaux…)
 que votre version Jeedom est en adéquation avec la version minimale requise par le plugin.
 
 Si des erreurs persistent :

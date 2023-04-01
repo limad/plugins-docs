@@ -1,6 +1,8 @@
 ---
-title: Jeedom | Plugin dspsmartplug
-description: Monitoring des équipement dspsmartplug w215.
+layout: default
+title: dspsmartplug changelog
+lang: fr_FR
+pluginId: dspsmartplug
 ---
 
 ## Changelog

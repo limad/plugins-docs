@@ -1,3 +1,10 @@
+---
+layout: default
+title: Changelog modbusMonitor
+lang: fr_FR
+pluginId: modbusMonitor
+---
+
 # Changelog
 ---
 

@@ -1,3 +1,9 @@
+---
+layout: default
+title: Changelog VaillantControl
+lang: fr_FR
+pluginId: VaillantControl
+---
 # Changelog
 ---
 

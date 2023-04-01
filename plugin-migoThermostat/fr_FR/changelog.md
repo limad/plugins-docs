@@ -1,8 +1,9 @@
 ---
-title: Jeedom | Plugin MigoThermostat
-description: Intégration des thermostats Migo/Erelax/Vsmart.
+layout: default
+title: MigoThermostat changelog
+lang: fr_FR
+pluginId: MigoThermostat
 ---
-
 <img align="right" src="../images/migoThermostat_icon.png" width="100">
 
 # MigoThermostat - Plugin pour Jeedom

@@ -1,4 +1,10 @@
 ---
+layout: default
+title: Changelog sfrBox
+lang: fr_FR
+pluginId: sfrBox
+---
+---
 title: Jeedom | Plugin sfrBox
 description: Monitoring des équipement connéctés à aux boxs sfr compatibles.
 ---
