@@ -64,14 +64,14 @@ Plugin ebus grdfConnect.
 - [Changelog]({{site.baseurl}}/plugin-grdfConnect/{{page.lang}}/changelog)
 - <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
 
-# plugin-hellowatt
+# plugin-helloWatt
 
-[<img width="77" src="{{site.market}}/filestore/market/plugin/images/hellowatt_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/helloWatt_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
 
-Plugin ebus hellowatt.
+Plugin ebus helloWatt.
 
-- [Documentation]({{site.baseurl}}/plugin-hellowatt/{{page.lang}})
-- [Changelog]({{site.baseurl}}/plugin-hellowatt/{{page.lang}}/changelog)
+- [Documentation]({{site.baseurl}}/plugin-helloWatt/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-helloWatt/{{page.lang}}/changelog)
 - <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
 
 # plugin-ModbusMonitor
