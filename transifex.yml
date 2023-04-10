@@ -39,6 +39,12 @@ filters:
     file_format: GITHUBMARKDOWN
     source_file_extension: md
     source_language: fr
+    source_file_dir: plugin-MyVaillant/fr_FR/
+    translation_files_expression: 'plugin-MyVaillant/<lang>/'
+ - filter_type: dir
+    file_format: GITHUBMARKDOWN
+    source_file_extension: md
+    source_language: fr
     source_file_dir: plugin-grdfConnect/fr_FR/
     translation_files_expression: 'plugin-grdfConnect/<lang>/'
  - filter_type: dir

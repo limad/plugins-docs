@@ -54,6 +54,17 @@ Plugin pour intégrer les thermostats Vaillant(gamme senso). Le plugin permet l'
 - [Changelog]({{site.baseurl}}/VaillantControl/{{page.lang}}/changelog)
 - <a href="{{site.market}}/index.php?v=d&plugin_id=4299" target="_blank">Market</a>
 
+# MyVaillant(MyVaillant)
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/MyVaillant_icon.png">]({{site.baseurl}}/VaillantControl/{{page.lang}})
+
+Plugin pour intégrer les thermostats Vaillant(gamme senso). Le plugin permet l'acquisition des informations de votre installation et d'exécuter la majorité des actions disponibles(Consigne, Plannings...). L'actualisation se fait via API .
+
+- [Documentation]({{site.baseurl}}/MyVaillant/{{page.lang}})
+- [Changelog]({{site.baseurl}}/MyVaillant/{{page.lang}}/changelog)
+- <a href="{{site.market}}/index.php?v=d&plugin_id=4404" target="_blank">Market</a>
+
+
 # Proteo(plugin-proteo)
 
 [<img width="77" src="{{site.market}}/filestore/market/plugin/images/proteo_icon.png">]({{site.baseurl}}/proteo/{{page.lang}})
