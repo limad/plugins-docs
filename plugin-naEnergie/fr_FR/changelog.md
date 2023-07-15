@@ -21,7 +21,12 @@ pluginId: naEnergie
 ### Liste des évolutions majeures de la version courante :
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
-### Version 23/10/2022
+### Version 15/07/2023  (Beta)
+* Mise à jour Majeure.
+* Prise en charge des nouveaux modules « Commande Intelligente de Climatiseur ».
+* ...
+
+### Version 23/12/2022
 * Bug-Fix Perte Auto-Adapt.
 * Bug-Fix Dispartion des tuiles Custom suite à une mise à jour.
 * ...
