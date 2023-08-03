@@ -21,9 +21,15 @@ pluginId: naEnergie
 ### Liste des évolutions majeures de la version courante :
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
+### Version 03/08/2023  (Beta)
+* Bug-Fix modules « Commande Intelligente de Climatiseur ».
+* Widgets personnalisés et personnalisables (isoTile, isoLine) pour les équipements Météo
+* ...
+
 ### Version 15/07/2023  (Beta)
 * Mise à jour Majeure.
 * Prise en charge des nouveaux modules « Commande Intelligente de Climatiseur ».
+* Prise en charge des modules « Netatmo-Météo ».
 * ...
 
 ### Version 23/12/2022
