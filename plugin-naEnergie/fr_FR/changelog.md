@@ -21,6 +21,14 @@ pluginId: naEnergie
 ### Liste des évolutions majeures de la version courante :
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
+
+### Version 21/08/2023  (Beta/Stable)
+* Ameliorations des widgets Météo
+* Ameliorations de la gestion/déclaration des erreurs liées aux équipements Météo
+* Ameliorations des alertes (Batterie) liées aux équipements
+* Bug-Fix Divers.
+* ...
+
 ### Version 14/08/2023  (Beta/Stable)
 * Intégration Prévisions météo "partie Météo"
 * Bug-Fix Divers.
