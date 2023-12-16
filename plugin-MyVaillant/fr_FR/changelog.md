@@ -12,7 +12,6 @@ pluginId: MyVaillant
 ## MyVaillant - Plugin pour Jeedom (Intégration des thermostats et vannes Vaillant).
 
 ---
-
 * Installation du plugin [MyVaillant.](https://limad.github.io/plugins-docs/plugin-MyVaillant/fr_FR/#tocAnchor-1-3)
 * Topic dedié au plugin [Topic community.](https://community.jeedom.com/search?q=MyVaillant&order=latest)
 * [Documentation du plugin.](https://limad.github.io/plugins-docs/plugin-MyVaillant/).
