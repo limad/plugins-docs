@@ -20,6 +20,12 @@ pluginId: MyVaillant
 ### Liste des évolutions majeures de la version courante :
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 
+### Version 16/12/2023
+	* Bug-Fix Commandes "action".
+	* Bug-Fix Commandes "info" consommations.
+	* optimisations diverses (errors, logs,...)
+	* ...
+  
 ### Version 09/04/2023
-  * Version Beta
+	* Version Beta
   
