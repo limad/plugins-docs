@@ -14,6 +14,16 @@ Plugin pour intégrer les équipements Netatmo Energie( Thermostat, Vannes, Ther
 - [Changelog]({{site.baseurl}}/plugin-naEnergie/{{page.lang}}/changelog)
 - <a href="{{site.market}}/index.php?v=d&plugin_id=3958" target="_blank">Market</a>
 
+# Netatmo Securiténa(netatmoSecurity)
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/netatmoSecurity_icon.png">]({{site.baseurl}}/plugin-netatmoSecurity/{{page.lang}})
+
+Plugin to manage Netatmo Security equipments and particularly cameras. Without unwanted emails,<br> Connection throuth API and/or locally (if possible)
+
+- [Documentation]({{site.baseurl}}/plugin-netatmoSecurity/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-netatmoSecurity/{{page.lang}}/changelog)
+- <a href="{{site.market}}/index.php?v=d&plugin_id=4472" target="_blank">Market</a>
+
 # Migo Thermostat(migoThermostat)
 
 [<img width="77" src="{{site.market}}/filestore/market/plugin/images/migoThermostat_icon.png">]({{site.baseurl}}/plugin-migoThermostat/{{page.lang}})
