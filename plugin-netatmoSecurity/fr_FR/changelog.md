@@ -15,8 +15,8 @@ pluginId: netatmoSecurity
 ---
 
 * Installation du plugin [Netatmo-Sécurité.](https://limad.github.io/plugin-netatmoSecurity/fr_FR/#tocAnchor-1-3)
-* Topic dedié au plugin [Topic community.](https://community.jeedom.com/t/re-plugin-tiers-netatmoSecurity/38002/)
-* [Documentation du plugin.](https://community.jeedom.com/t/re-plugin-tiers-netatmoSecurity/38002/).
+* Topic dedié au plugin [Topic community.](https://community.jeedom.com/tag/plugin-netatmosecurity)
+* [Documentation du plugin.](https://limad.github.ioplugins-docs/plugin-netatmoSecurity).
 
 ### Liste des évolutions majeures de la version courante :
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
