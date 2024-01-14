@@ -10,7 +10,7 @@ pluginId: netatmoSecurity
 
 <img align="right" src="../images/netatmoSecurity_icon.png" width="100">
 
-## Netatmo-Sécurité - Plugin pour Jeedom (Intégration des thermostats et vannes NETATMO).
+## Netatmo-Sécurité - Plugin pour Jeedom (Intégration des équipements NETATMO Sécurité).
 
 ---
 
