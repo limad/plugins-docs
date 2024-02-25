@@ -22,6 +22,11 @@ pluginId: naEnergie
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
 
+### Version 25/02/2024 (Beta)
+* Ajout des thermostats (Smarther with Netatmo)
+* Ameliorations de la page de configuration des équipements
+* ...
+
 ### Version 21/08/2023  (Beta/Stable)
 * Ameliorations des widgets Météo
 * Ameliorations de la gestion/déclaration des erreurs liées aux équipements Météo
