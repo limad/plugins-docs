@@ -10,6 +10,9 @@ pluginId: grdfConnect
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne prbablement la mise à jour de documentation, de bugs mineur ou alors j'ai pas le temps !!!.
 
+# 11-03-2023
+- Mise à jour du calcul DJU et les commandes qui en découlent.
+- Optimisations diverses.
 # 11/10/2023
 - Mise à jour du code d'authentification.
 # 25/02/2023
