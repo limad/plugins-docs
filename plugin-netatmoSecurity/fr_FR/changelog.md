@@ -22,10 +22,15 @@ pluginId: netatmoSecurity
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
 
+### Version 15/11/2024
+  * Amélioration de la compatibilité PHP8
+  * Ajout de commandes Projecteur(On-Off-Auto) de type bouton pour une meilleure interopérabilité.
+  * Liaison de la commande 'sensibilité Projecteur' à une nouvelle commande info 'Intensité'.
+  * Diverses améliorations ...
 
-### Version Beta 03/01/2024
-* correction et amelioration mineurs des tuiles(dashboard, mobile)
+### Version 03/01/2024
+  * correction et améliorations des tuiles(dashboard, mobile)
   
-### Version Beta 20/12/2023
+### Version 20/12/2023
   * Installation de plugins
   * Mise à jour de plugins
