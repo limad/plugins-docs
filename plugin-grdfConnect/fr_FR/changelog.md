@@ -10,9 +10,13 @@ pluginId: grdfConnect
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne prbablement la mise à jour de documentation, de bugs mineur ou alors j'ai pas le temps !!!.
 
-# 11-03-2024
-- Mise à jour du calcul DJU et les commandes qui en découlent.
+# 15-11-2024
+- Remplacement de la class guzzle par une class interne
+- Améliration de la compatibilité PHP8
+- Rétablissement des commandes comparaisons
+- Rétablissement des commandes seuils
 - Optimisations diverses.
+
 # 11/10/2023
 - Mise à jour du code d'authentification.
 # 25/02/2023
