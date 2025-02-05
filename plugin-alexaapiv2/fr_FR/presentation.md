@@ -55,7 +55,7 @@
 <table style="width: 100%;" class="">
 <tbody class="wp-dark-mode-bg-image">
 <tr class="wp-dark-mode-bg-image">
-<td style="width: 180px;" class="wp-dark-mode-bg-image"><img decoding="async" class="size-full wp-image-182 wp-dark-mode-bg-image" src="/../images/alexaapiv2.png" alt="alexaapiv2 icon" width="150" height="170"></td>
+<td style="width: 180px;" class="wp-dark-mode-bg-image"><img decoding="async" class="size-full wp-image-182 wp-dark-mode-bg-image" src="https://market.jeedom.com/filestore/market/plugin/images/alexaapiv2.png" alt="alexaapiv2 icon" width="150" height="170"></td>
 <td class="wp-dark-mode-bg-image">
 <ul class="wp-dark-mode-bg-image">
 <li class="wp-dark-mode-bg-image"><span style="background-color: rgb(255, 255, 153); --wp-dark-mode-inline-bgcolor: #5a5913;" data-wp-dark-mode-inline-bgcolor="" class="">Présentation</span></li>
