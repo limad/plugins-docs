@@ -133,3 +133,13 @@ Plugin ebus jeebusd.
 - [Documentation]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-jeebusd/{{page.lang}}/changelog)
 - <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
+
+# Alexa Premium(alexaapiv2)
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/alexaapiv2_icon.png">]({{site.baseurl}}/plugin-alexaapiv2/{{page.lang}})
+
+Plugin Alexa Premium
+
+- [Documentation]({{site.baseurl}}/plugin-alexaapiv2/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-alexaapiv2/{{page.lang}}/changelog)
+- <a href="{{site.market}}/index.php?v=d&plugin_id=4498" target="_blank">Market</a>
