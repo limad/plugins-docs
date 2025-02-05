@@ -59,8 +59,8 @@
 <td class="wp-dark-mode-bg-image">
 <ul class="wp-dark-mode-bg-image">
 <li class="wp-dark-mode-bg-image"><span style="background-color: rgb(255, 255, 153); --wp-dark-mode-inline-bgcolor: #5a5913;" data-wp-dark-mode-inline-bgcolor="" class="">Présentation</span></li>
-<li class="wp-dark-mode-bg-image"><a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/alexa-api-documentation" class="wp-dark-mode-bg-image">Documentation</a></li>
-<li class="wp-dark-mode-bg-image"><a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/alexa-api-changelog" class="wp-dark-mode-bg-image">Todo-List / Changelog</a></li>
+<li class="wp-dark-mode-bg-image"><a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/documentation" class="wp-dark-mode-bg-image">Documentation</a></li>
+<li class="wp-dark-mode-bg-image"><a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/changelog" class="wp-dark-mode-bg-image">Todo-List / Changelog</a></li>
 <li class="wp-dark-mode-bg-image"><a href="https://community.jeedom.com/tags/plugin-alexaapiv2" class="wp-dark-mode-bg-image">Forum dédié</a></li>
 </ul>
 </td>
