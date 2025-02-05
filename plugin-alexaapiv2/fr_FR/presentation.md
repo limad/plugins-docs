@@ -3,27 +3,28 @@
 										
 												
 							<article id="post-264" class="post-264 post type-post status-publish format-standard hentry category-domotique category-jeedom-2 wp-dark-mode-bg-image">
-        <a href="" class="post-thumbnail wp-dark-mode-bg-image"></a>
-	    <footer class="entry-footer">
-        <span class="byline wp-dark-mode-bg-image">
-            <span class="author vcard wp-dark-mode-bg-image">
-				<a class="url fn n wp-dark-mode-bg-image" href="https://www.sigalou-domotique.fr/author/sigalou"><i class="fa fa-user wp-dark-mode-bg-image"></i>  Sigalou</a>
-            </span>
-        </span>
+		<a href="" class="post-thumbnail wp-dark-mode-bg-image"></a>
+		<footer class="entry-footer">
+		<span class="byline wp-dark-mode-bg-image">
+			<span class="author vcard wp-dark-mode-bg-image">
+				<a class="url fn n wp-dark-mode-bg-image" href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/author/sigalou"><i class="fa fa-user wp-dark-mode-bg-image"></i>  Sigalou</a>
+			</span>
+		</span>
 
-                <span class="cat-links wp-dark-mode-bg-image">
-            <a href="" class="wp-dark-mode-bg-image"><i class="fa fa-folder-open wp-dark-mode-bg-image"></i>  </a><a href="https://www.sigalou-domotique.fr/category/domotique" rel="category tag" class="wp-dark-mode-bg-image">Domotique</a>, <a href="https://www.sigalou-domotique.fr/category/domotique/jeedom-2" rel="category tag" class="wp-dark-mode-bg-image">Jeedom</a>
-        </span>
-        
-        
-    </footer><!-- .entry-footer -->
+				<span class="cat-links wp-dark-mode-bg-image">
+			<a href="" class="wp-dark-mode-bg-image"><i class="fa fa-folder-open wp-dark-mode-bg-image"></i>  </a><a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/category/domotique" rel="category tag" class="wp-dark-mode-bg-image">Domotique</a>, <a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/category/domotique/jeedom-2" rel="category tag" class="wp-dark-mode-bg-image">Jeedom</a>
+		</span>
 
-    <header class="entry-header wp-dark-mode-bg-image">
-        <h2 class="entry-title wp-dark-mode-bg-image">Présentation Plugin Alexa Premium pour Jeedom</h2> 
-    </header><!-- .entry-header -->
 
-    <div class="entry-content wp-dark-mode-bg-image">
-       <p class="wp-dark-mode-bg-image"><img fetchpriority="high" decoding="async" class="size-full wp-image-263 wp-dark-mode-bg-image" src="http://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/10/Pr%C3%A9sentationAlexaAPI.jpg" alt="PrésentationAlexaAPI" width="1200" height="355"></p>
+	</footer><!-- .entry-footer -->
+
+	<header class="entry-header wp-dark-mode-bg-image">
+		<h2 class="entry-title wp-dark-mode-bg-image">Présentation Plugin Alexa Premium pour Jeedom</h2>
+	</header><!-- .entry-header -->
+
+	<div class="entry-content wp-dark-mode-bg-image">
+	   <p class="wp-dark-mode-bg-image"><img fetchpriority="high" decoding="async" class="size-full wp-image-263 wp-dark-mode-bg-image" src="/../imagesPr%C3%A9sentationAlexaAPI.jpg" alt="PrésentationAlexaAPI" width="1200" height="355"></p>
+
 <p class="wp-dark-mode-bg-image"><span id="more-264" class="wp-dark-mode-bg-image"></span></p>
 <p class="wp-dark-mode-bg-image">Pour que Jeedom puisse intéragir avec les Amazon Alexa, le plugin Alexa Premium est structuré en plusieurs widgets par équipements.</p>
 <p class="wp-dark-mode-bg-image">Important : Ce plugin ne commande <strong class="wp-dark-mode-bg-image">pas</strong> Jeedom depuis Alexa (contrairement au plugin Alexa) mais <strong class="wp-dark-mode-bg-image">commande Alexa depuis Jeedom</strong>, il peut toutefois intéragir avec Alexa.</p>
@@ -54,20 +55,19 @@
 <table style="width: 100%;" class="">
 <tbody class="wp-dark-mode-bg-image">
 <tr class="wp-dark-mode-bg-image">
-<td style="width: 180px;" class="wp-dark-mode-bg-image"><img decoding="async" class="size-full wp-image-182 wp-dark-mode-bg-image" src="http://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/02/alexaapiv2.png" alt="alexaapiv2 icon" width="150" height="170"></td>
+<td style="width: 180px;" class="wp-dark-mode-bg-image"><img decoding="async" class="size-full wp-image-182 wp-dark-mode-bg-image" src="/../images/alexaapiv2.png" alt="alexaapiv2 icon" width="150" height="170"></td>
 <td class="wp-dark-mode-bg-image">
 <ul class="wp-dark-mode-bg-image">
 <li class="wp-dark-mode-bg-image"><span style="background-color: rgb(255, 255, 153); --wp-dark-mode-inline-bgcolor: #5a5913;" data-wp-dark-mode-inline-bgcolor="" class="">Présentation</span></li>
-<li class="wp-dark-mode-bg-image"><a href="https://www.sigalou-domotique.fr/alexa-api-documentation" class="wp-dark-mode-bg-image">Documentation</a></li>
-<li class="wp-dark-mode-bg-image"><a href="https://www.sigalou-domotique.fr/alexa-api-changelog" class="wp-dark-mode-bg-image">Todo-List / Changelog</a></li>
+<li class="wp-dark-mode-bg-image"><a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/alexa-api-documentation" class="wp-dark-mode-bg-image">Documentation</a></li>
+<li class="wp-dark-mode-bg-image"><a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/alexa-api-changelog" class="wp-dark-mode-bg-image">Todo-List / Changelog</a></li>
 <li class="wp-dark-mode-bg-image"><a href="https://community.jeedom.com/tags/plugin-alexaapiv2" class="wp-dark-mode-bg-image">Forum dédié</a></li>
-<li class="wp-dark-mode-bg-image"><a href="http://alexaapiv2.slack.com" class="wp-dark-mode-bg-image">Chat beta-testeurs</a></li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-    </div><!-- .entry-content -->
+	</div><!-- .entry-content -->
 
 </article>
 					
@@ -75,7 +75,6 @@
 						
 <div id="comments" class="comments-area wp-dark-mode-bg-image">
 
-	
 </div><!-- #comments -->
 						
 								

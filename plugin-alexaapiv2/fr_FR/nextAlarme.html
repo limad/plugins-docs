@@ -1,0 +1,86 @@
+<article id="post-338"
+	class="post-338 post type-post status-publish format-standard hentry category-domotique wp-dark-mode-bg-image">
+	<a href="" class="post-thumbnail wp-dark-mode-bg-image"></a>
+
+	<header class="entry-header wp-dark-mode-bg-image">
+		<h2 class="entry-title wp-dark-mode-bg-image">Récupérer la prochaine alarme Alexa au format HHmm</h2>
+	</header><!-- .entry-header -->
+
+	<div class="entry-content wp-dark-mode-bg-image">
+		<p class="wp-dark-mode-bg-image"><img fetchpriority="high" decoding="async"
+				class="size-full wp-image-333 wp-dark-mode-bg-image" src="/../images/alexaformathorloge.png"
+				alt="alexaformathorloge" width="500" height="150"
+				srcset="/../images/alexaformathorloge.png 500w, /../images/alexaformathorloge-300x90.png 300w"
+				sizes="(max-width: 500px) 100vw, 500px"></p>
+		<p class="wp-dark-mode-bg-image"> <span id="more-338" class="wp-dark-mode-bg-image"></span> </p>
+		<p class="wp-dark-mode-bg-image">Ce mini-tuto va vous permettre de récupérer l’alarme (ou l’alarme musicale, ou
+			le minuteur ou le rappel) au format <strong class="wp-dark-mode-bg-image">HHmm</strong>.</p>
+		<p class="wp-dark-mode-bg-image">Le plugin renvoie toujours l’information au format CRON qui correspond à :
+			<strong class="wp-dark-mode-bg-image"><span class="displayError wp-dark-mode-bg-image">2020-02-29
+					10:55:00</span></strong>
+		</p>
+		<p class="wp-dark-mode-bg-image">En fonction de l’utilisation que l’on souhaite faire de cette information, il
+			faut parfois changer le format.</p>
+		<p class="wp-dark-mode-bg-image">HHmm serait <strong class="wp-dark-mode-bg-image">1055</strong> dans notre
+			exemple.Cela pourrait être adapté pour d’autres formats.</p>
+		<p class="wp-dark-mode-bg-image">Dans cet exemple, on va&nbsp; créer une nouvelle Commande Info qui va se nommer
+			<em class="wp-dark-mode-bg-image"><strong class="wp-dark-mode-bg-image">Prochaine Alarme HHmm</strong></em>,
+			elle va donner l’heure de la prochaine Alarme de mon device <em class="wp-dark-mode-bg-image"><strong
+					class="wp-dark-mode-bg-image">Chambre</strong></em>
+		</p>
+		<p class="wp-dark-mode-bg-image">Pour cela, créer un nouveau virtuel (grace au plugin Virtuel) qui s’appelle <em
+				class="wp-dark-mode-bg-image"><strong class="wp-dark-mode-bg-image">Chambre HHmm</strong></em></p>
+		<p class="wp-dark-mode-bg-image">&nbsp;</p>
+		<p class="wp-dark-mode-bg-image"><img decoding="async" class="size-full wp-image-334 wp-dark-mode-bg-image"
+				src="/../images/Screenshot_2020-02-29_Virtual_-_Jeedom.png" alt="Screenshot 2020 02 29 Virtual Jeedom"
+				width="525" height="148"
+				srcset="/../images/Screenshot_2020-02-29_Virtual_-_Jeedom.png 525w, /../images/Screenshot_2020-02-29_Virtual_-_Jeedom-300x85.png 300w"
+				sizes="(max-width: 525px) 100vw, 525px"></p>
+		<ul class="wp-dark-mode-bg-image">
+			<li class="wp-dark-mode-bg-image">Aller dans l’onglet Commandes</li>
+			<li class="wp-dark-mode-bg-image">Ajouter une info virtuelle</li>
+		</ul>
+		<p class="wp-dark-mode-bg-image"><img decoding="async" class="size-full wp-image-335 wp-dark-mode-bg-image"
+				src="/../images/Screenshot_2020-02-29_Virtual_-_Jeedom1.png" alt="Screenshot 2020 02 29 Virtual Jeedom1"
+				width="145" height="25"></p>
+		<ul class="wp-dark-mode-bg-image">
+			<li class="wp-dark-mode-bg-image">Dans nom, mettre <strong class="wp-dark-mode-bg-image">Prochaine Alarme
+					HHmm</strong><em class="wp-dark-mode-bg-image"></em></li>
+			<li class="wp-dark-mode-bg-image">Dans sous-type, mettre <strong
+					class="wp-dark-mode-bg-image">Autre</strong></li>
+		</ul>
+		<p class="wp-dark-mode-bg-image">Pour mon exemple, je vais utiliser <strong
+				class="wp-dark-mode-bg-image">Prochaine Alarme</strong> qui se trouve dans mon équipement <strong
+				class="wp-dark-mode-bg-image">La chambre</strong> qui se trouve dans l’objet <strong
+				class="wp-dark-mode-bg-image">Etage</strong></p>
+		<p class="wp-dark-mode-bg-image"><img loading="lazy" decoding="async"
+				class="size-full wp-image-336 wp-dark-mode-bg-image"
+				src="/../images/Screenshot_2020-02-29_Virtual_-_Jeedom2.png" alt="Screenshot 2020 02 29 Virtual Jeedom2"
+				width="707" height="113"
+				srcset="/../images/Screenshot_2020-02-29_Virtual_-_Jeedom2.png 707w, /../images/Screenshot_2020-02-29_Virtual_-_Jeedom2-300x48.png 300w"
+				sizes="auto, (max-width: 707px) 100vw, 707px"></p>
+		<ul class="wp-dark-mode-bg-image">
+			<li class="wp-dark-mode-bg-image">Dans Valeur, mettre <strong
+					class="wp-dark-mode-bg-image">sprintf(«&nbsp;%02d&nbsp;»,trim(substr(#[Etage][La chambre][Prochaine
+					Alarme]#, 11, 2)))sprintf(«&nbsp;%02d&nbsp;»,trim(substr(#[Etage][La chambre][Prochaine Alarme]#,14,
+					2)))</strong> en remplaçant <em class="wp-dark-mode-bg-image"><strong
+						class="wp-dark-mode-bg-image">#[Etage][La chambre][Prochaine Alarme]#</strong></em> par votre
+				commande.</li>
+			<li class="wp-dark-mode-bg-image">Cliquer sur <strong class="wp-dark-mode-bg-image">Sauvegarder</strong>
+			</li>
+		</ul>
+		<p class="wp-dark-mode-bg-image">&nbsp;Pour vérifier que cela fonctionne, cliquer sur le bouton <strong
+				class="wp-dark-mode-bg-image">Tester</strong>, si tout se passe bien, vous aurez votre prochaine alarme
+			au format <strong class="wp-dark-mode-bg-image">HHmm</strong></p>
+		<p class="wp-dark-mode-bg-image"><img loading="lazy" decoding="async"
+				class="size-full wp-image-337 wp-dark-mode-bg-image"
+				src="/../images/Screenshot_2020-02-29_Virtual_-_Jeedom3.png" alt="Screenshot 2020 02 29 Virtual Jeedom3"
+				width="638" height="157"
+				srcset="/../images/Screenshot_2020-02-29_Virtual_-_Jeedom3.png 638w, /../images/Screenshot_2020-02-29_Virtual_-_Jeedom3-300x74.png 300w"
+				sizes="auto, (max-width: 638px) 100vw, 638px"></p>
+		<p class="wp-dark-mode-bg-image">Utiliser donc cette nouvelle commande <strong
+				class="wp-dark-mode-bg-image">Prochaine Alarme HHmm</strong> à la place de la commande<strong
+				class="wp-dark-mode-bg-image"> Prochaine Alarme</strong> de votre device.</p>
+	</div><!-- .entry-content -->
+
+</article>
