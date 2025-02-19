@@ -702,7 +702,8 @@ Le Skill doit être appelé par le plugin Alexa Premium pour qu’il fonctionne 
 
 
 
-#### Dev et collaborateurs
+Dev et collaborateurs
+------------------------------------
 Toutes les bonnes volontées sont les bienvenues, travail collectif sur ce plugin.
 Que vous soyez programmeur, développeur, utilisateur ou plein de bonne voloonté, il y a des choses à faire.
 
