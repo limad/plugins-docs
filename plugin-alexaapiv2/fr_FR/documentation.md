@@ -10,7 +10,7 @@
 [Limad44 Jeedom](https://limad.github.io/plugins-docs)
 
 Alexa Premium Documentation
----------------------------------------------
+==========
 Toggle 
 *   [Installation du Plugin Alexa Premium](#Installation_du_Plugin_Alexa Premium "Installation du Plugin Alexa Premium")  
     *   [Installer le Plugin depuis le Market](#Installer_le_Plugin_depuis_le_Market "Installer le Plugin depuis le Market")  
@@ -648,7 +648,7 @@ Alexa Premium (et AmazonMusic/Deezer/Spotify/FireTv/Todo-List) Changelog
 [![alexaamazonmusic icon](https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation) [![alexaspotify icon](https://market.jeedom.com/filestore/market/plugin/images/alexaspotify_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-spotify-documentation) [![alexadeezer icon](https://market.jeedom.com/filestore/market/plugin/images/alexadeezer_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation)
 
 Créer un skill Amazon
-==========
+---------------------
 
 
 Créer un compte développeur sur Amazon : [https://developer.amazon.com/](https://developer.amazon.com/)

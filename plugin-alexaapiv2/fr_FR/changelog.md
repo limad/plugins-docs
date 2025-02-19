@@ -380,7 +380,7 @@ Elle permet à ce stade de :
 *   **Ajout automatique des équipements** Amazon Echo
 *   Détection du **type de chaque équipement** ainsi que de sa Présence
 
- Todo List
+Todo List
 ---------------------
 
 #### Bugs
