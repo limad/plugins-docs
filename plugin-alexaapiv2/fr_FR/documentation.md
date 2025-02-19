@@ -1,90 +1,133 @@
-[Sigalou](https://www.sigalou-domotique.fr/author/sigalou) [Domotique](https://www.sigalou-domotique.fr/category/domotique), [Jeedom](https://www.sigalou-domotique.fr/category/domotique/jeedom-2)
+Alexa Premium Documentation
+---------------------------
 
-Alexa-API Documentation
------------------------
+![alexaapiv2 icon](	https://market.jeedom.com/filestore/market/plugin/images/alexaapiv2_icon.png)
 
-![alexaapi icon](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/02/alexaapi.png)
-
-*   [Présentation](https://www.sigalou-domotique.fr/presentation-plugin-alexa-api-pour-jeedom)
+*   [Présentation](https://limad.github.io/plugins-docs/plugin-alexaapiv2#presentation)
 *   Documentation
-*   [Todo-List / Changelog](https://www.sigalou-domotique.fr/alexa-api-changelog)
-*   [Forum dédié](https://community.jeedom.com/tags/plugin-alexaapi)
-*   [Chat beta-testeurs](https://alexaapi.slack.com)
+*   [Changelog](https://limad.github.io/plugins-docs/plugin-alexaapiv2#changelog)
+*   [Forum dédié](https://community.jeedom.com/tags/plugin-alexaapiv2)
 
-Toggle
+[![alexaamazonmusic icon](https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation) [![alexaspotify icon](https://market.jeedom.com/filestore/market/plugin/images/alexaspotify_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-spotify-documentation) [![alexadeezer icon](https://market.jeedom.com/filestore/market/plugin/images/alexadeezer_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation)
 
-*   [Installation du Plugin Alexa-API](#Installation_du_Plugin_Alexa-API "Installation du Plugin Alexa-API")
-    *   [Installer le Plugin depuis le Market](#Installer_le_Plugin_depuis_le_Market "Installer le Plugin depuis le Market")
-    *   [Activer le Plugin](#Activer_le_Plugin "Activer le Plugin")
-    *   [Recharger les dépendances](#Recharger_les_dependances "Recharger les dépendances")
-    *   [Générer manuellement le cookie Amazon](#Generer_manuellement_le_cookie_Amazon "Générer manuellement le cookie Amazon")
-    *   [S’identifier sur la pop-up d’Amazon](#Sidentifier_sur_la_pop-up_dAmazon "S’identifier sur la pop-up d’Amazon")
-    *   [Lancer le Daemon s’il ne se lance pas tout seul](#Lancer_le_Daemon_sil_ne_se_lance_pas_tout_seul "Lancer le Daemon s’il ne se lance pas tout seul")
-    *    [](#i " ")
-    *   [Lancer le SCAN](#Lancer_le_SCAN "Lancer le SCAN")
+Toggle 
+
+*   [Installation du Plugin Alexa Premium](#Installation_du_Plugin_Alexa Premium "Installation du Plugin Alexa Premium")  
+    *   [Installer le Plugin depuis le Market](#Installer_le_Plugin_depuis_le_Market "Installer le Plugin depuis le Market")  
+        
+    *   [Activer le Plugin](#Activer_le_Plugin "Activer le Plugin")  
+        
+    *   [Recharger les dépendances](#Recharger_les_dependances "Recharger les dépendances")  
+        
+    *   [Générer manuellement le cookie Amazon](#Generer_manuellement_le_cookie_Amazon "Générer manuellement le cookie Amazon")  
+        
+    *   [S’identifier sur la pop-up d’Amazon](#Sidentifier_sur_la_pop-up_dAmazon "S’identifier sur la pop-up d’Amazon")  
+        
+    *   [Lancer le Daemon s’il ne se lance pas tout seul](#Lancer_le_Daemon_sil_ne_se_lance_pas_tout_seul "Lancer le Daemon s’il ne se lance pas tout seul")  
+        
+    *    [](#i " ")  
+        
+    *   [Lancer le SCAN](#Lancer_le_SCAN "Lancer le SCAN")  
+        
 *   [Mise à jour ou Changement de version](#Mise_a_jour_ou_Changement_de_version "Mise à jour ou Changement de version")
-    *   [Solution 1 : Supprimer tous les équipements et leurs commandes et les recréer](#Solution_1_Supprimer_tous_les_equipements_et_leurs_commandes_et_les_recreer "Solution 1 : Supprimer tous les équipements et leurs commandes et les recréer")
-    *   [Solution 2 : Forcer la mise à jour de toutes les commandes](#Solution_2_Forcer_la_mise_a_jour_de_toutes_les_commandes "Solution 2 : Forcer la mise à jour de toutes les commandes")
+    *   [Solution 1 : Supprimer tous les équipements et leurs commandes et les recréer](#Solution_1_Supprimer_tous_les_equipements_et_leurs_commandes_et_les_recreer "Solution 1 : Supprimer tous les équipements et leurs commandes et les recréer")  
+        
+    *   [Solution 2 : Forcer la mise à jour de toutes les commandes](#Solution_2_Forcer_la_mise_a_jour_de_toutes_les_commandes "Solution 2 : Forcer la mise à jour de toutes les commandes")  
+        
     *   [Solution 3 : Le SCAN](#Solution_3_Le_SCAN "Solution 3 : Le SCAN")
 *   [Les écrans de gestion](#Les_ecrans_de_gestion "Les écrans de gestion")
-    *   [Scan](#Scan "Scan")
-    *   [Configuration](#Configuration "Configuration")
-    *   [Santé](#Sante "Santé")
-    *   [Routines](#Routines "Routines")
-    *   [Rappels/Alarmes](#RappelsAlarmes "Rappels/Alarmes")
-    *   [Historique](#Historique "Historique")
-    *   [Requêteur Info](#Requeteur_Info "Requêteur Info")
-    *   [Requêteur Action](#Requeteur_Action "Requêteur Action")
+    *   [Scan](#Scan "Scan")  
+        
+    *   [Configuration](#Configuration "Configuration")  
+        
+    *   [Santé](#Sante "Santé")  
+        
+    *   [Routines](#Routines "Routines")  
+        
+    *   [Rappels/Alarmes](#RappelsAlarmes "Rappels/Alarmes")  
+        
+    *   [Historique](#Historique "Historique")  
+        
+    *   [Requêteur Info](#Requeteur_Info "Requêteur Info")  
+        
+    *   [Requêteur Action](#Requeteur_Action "Requêteur Action")  
+        
 *   [Les tuiles](#Les_tuiles "Les tuiles")
-    *   [La tuile de l’équipement principal](#La_tuile_de_lequipement_principal "La tuile de l’équipement principal")
-    *   [La tuile du player multimédia](#La_tuile_du_player_multimedia "La tuile du player multimédia")
+    *   [La tuile de l’équipement principal](#La_tuile_de_lequipement_principal "La tuile de l’équipement principal")  
+        
+    *   [La tuile du player multimédia](#La_tuile_du_player_multimedia "La tuile du player multimédia")  
+        
     *   [La tuile de la playlist en cours](#La_tuile_de_la_playlist_en_cours "La tuile de la playlist en cours")
 *   [Commandes simples](#Commandes_simples "Commandes simples")
-    *   [Principe](#Principe "Principe")
-    *   [Prochaine Alarme](#Prochaine_Alarme "Prochaine Alarme")
-    *   [Prochaine Alarme Musicale](#Prochaine_Alarme_Musicale "Prochaine Alarme Musicale")
-    *   [Prochain Minuteur](#Prochain_Minuteur "Prochain Minuteur")
-    *   [Prochain Rappel](#Prochain_Rappel "Prochain Rappel")
-    *   [Faire parler Alexa en SSML](#Faire_parler_Alexa_en_SSML "Faire parler Alexa en SSML")
-    *   [Lancer une annonce (donc sur tous les appareils)](#Lancer_une_annonce_donc_sur_tous_les_appareils "Lancer une annonce (donc sur tous les appareils)")
+    *   [Principe](#Principe "Principe")  
+        
+    *   [Prochaine Alarme](#Prochaine_Alarme "Prochaine Alarme")  
+        
+    *   [Prochaine Alarme Musicale](#Prochaine_Alarme_Musicale "Prochaine Alarme Musicale")  
+        
+    *   [Prochain Minuteur](#Prochain_Minuteur "Prochain Minuteur")  
+        
+    *   [Prochain Rappel](#Prochain_Rappel "Prochain Rappel")  
+        
+    *   [Faire parler Alexa en SSML](#Faire_parler_Alexa_en_SSML "Faire parler Alexa en SSML")  
+        
+    *   [Lancer une annonce (donc sur tous les appareils)](#Lancer_une_annonce_donc_sur_tous_les_appareils "Lancer une annonce (donc sur tous les appareils)")  
+        
 *   [Commandes complexes](#Commandes_complexes "Commandes complexes")
-    *   [Principe](#Principe-2 "Principe")
+    *   [Principe](#Principe-2 "Principe")  
+        
     *   [alarm?when=#when#&recurring=#recurring#&sound=#sound#](#alarmwhenwhen_recurringrecurring_soundsound "alarm?when=#when#&recurring=#recurring#&sound=#sound#")
     *   [reminder?text=#message#&when=#when](#remindertextmessage_whenwhen "reminder?text=#message#&when=#when")
     *   [whennextalarm?position=1&status=ON&format=hour](#whennextalarmposition1_statusON_formathour "whennextalarm?position=1&status=ON&format=hour")
     *   [Création de la commande INFO qui affichera le résultat de la commande whenNextAlarm](#Creation_de_la_commande_INFO_qui_affichera_le_resultat_de_la_commande_whenNextAlarm "Création de la commande INFO qui affichera le résultat de la commande whenNextAlarm")
-    *   [Explication de l’interaction entre la commande ACTION et la commande INFO](#Explication_de_linteraction_entre_la_commande_ACTION_et_la_commande_INFO "Explication de l’interaction entre la commande ACTION et la commande INFO")
+    *   [Explication de l’interaction entre la commande ACTION et la commande INFO](#Explication_de_linteraction_entre_la_commande_ACTION_et_la_commande_INFO "Explication de l’interaction entre la commande ACTION et la commande INFO")  
+        
     *   [whennextmusicalalarm?position=1&status=ON&format=hour](#whennextmusicalalarmposition1_statusON_formathour "whennextmusicalalarm?position=1&status=ON&format=hour")
     *   [musicalalarmmusicentity?position=1&status=ON](#musicalalarmmusicentityposition1_statusON "musicalalarmmusicentity?position=1&status=ON")
     *   [whennextreminder?position=1&status=ON](#whennextreminderposition1_statusON "whennextreminder?position=1&status=ON")
     *   [deleteallalarms?type=alarm&status=all](#deleteallalarmstypealarm_statusall "deleteallalarms?type=alarm&status=all")
-    *   [history?maxRecordSize=50&recordType = ‘VOICE\_HISTORY’](#historymaxRecordSize50_recordType_%E2%80%98VOICE_HISTORY "history?maxRecordSize=50&recordType = ‘VOICE_HISTORY’")
-    *   [command?command=#command#](#commandcommandcommand "command?command=#command#")
-    *   [radio?station=#select#](#radiostationselect "radio?station=#select#")
-    *   [routine?routine=#select#](#routineroutineselect "routine?routine=#select#")
-    *   [Pour trouver l’ID Routine :](#Pour_trouver_lID_Routine "Pour trouver l’ID Routine :")
-    *   [playmusictrack?trackId=#select#](#playmusictracktrackIdselect "playmusictrack?trackId=#select#")
+    *   [history?maxRecordSize=50&recordType = ‘VOICE\_HISTORY’](#historymaxRecordSize50_recordType_%E2%80%98VOICE_HISTORY "history?maxRecordSize=50&recordType = ‘VOICE_HISTORY’")  
+        
+    *   [command?command=#command#](#commandcommandcommand "command?command=#command#")  
+        
+    *   [radio?station=#select#](#radiostationselect "radio?station=#select#")  
+        
+    *   [routine?routine=#select#](#routineroutineselect "routine?routine=#select#")  
+        
+    *   [Pour trouver l’ID Routine :](#Pour_trouver_lID_Routine "Pour trouver l’ID Routine :")  
+        
+    *   [playmusictrack?trackId=#select#](#playmusictracktrackIdselect "playmusictrack?trackId=#select#")  
+        
 *   [Autres fonctionnalités](#Autres_fonctionnalites "Autres fonctionnalités")
-    *   [Modifier l’icone des players](#Modifier_licone_des_players "Modifier l’icone des players")
+    *   [Modifier l’icone des players](#Modifier_licone_des_players "Modifier l’icone des players")  
+        
 *   [Utilisation de balises pour les interjections et les sons](#Utilisation_de_balises_pour_les_interjections_et_les_sons "Utilisation de balises pour les interjections et les sons")
-    *   [Les sons de la bibliothèque Amazon](#Les_sons_de_la_bibliotheque_Amazon "Les sons de la bibliothèque Amazon")
-    *   [Les interjections](#Les_interjections "Les interjections")
-    *   [Enchaînement texte et interjection](#Enchainement_texte_et_interjection "Enchaînement texte et interjection")
+    *   [Les sons de la bibliothèque Amazon](#Les_sons_de_la_bibliotheque_Amazon "Les sons de la bibliothèque Amazon")  
+        
+    *   [Les interjections](#Les_interjections "Les interjections")  
+        
+    *   [Enchaînement texte et interjection](#Enchainement_texte_et_interjection "Enchaînement texte et interjection")  
+        
 *   [Slider du Volume](#Slider_du_Volume "Slider du Volume")
-    *   [Personnaliser le widget](#Personnaliser_le_widget "Personnaliser le widget")
-    *   [Revenir au précédent Widget](#Revenir_au_precedent_Widget "Revenir au précédent Widget")
-    *   [Amélioration de la disposition du widget](#Amelioration_de_la_disposition_du_widget "Amélioration de la disposition du widget")
-    *   [Supprimer le logo haut-parleur](#Supprimer_le_logo_haut-parleur "Supprimer le logo haut-parleur")
-*   [Information Mute](#Information_Mute "Information Mute")
+    *   [Personnaliser le widget](#Personnaliser_le_widget "Personnaliser le widget")  
+        
+    *   [Revenir au précédent Widget](#Revenir_au_precedent_Widget "Revenir au précédent Widget")  
+        
+    *   [Amélioration de la disposition du widget](#Amelioration_de_la_disposition_du_widget "Amélioration de la disposition du widget")  
+        
+    *   [Supprimer le logo haut-parleur](#Supprimer_le_logo_haut-parleur "Supprimer le logo haut-parleur")  
+        
+*   [Information Mute](#Information_Mute "Information Mute")  
+    
 
-Installation du Plugin Alexa-API
---------------------------------
+Installation du Plugin Alexa Premium
+------------------------------------
 
 ### Installer le Plugin depuis le Market
 
-![installationalexaapi1](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/installationalexaapi1-300x129.png)
+![installationalexaapi1](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/installationalexaapi1.png)
 
-![installationalexaapi3](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/installationalexaapi3.png)
+![installationalexaapi3](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/installationalexaapi3.png)
 
 **Note sur les versions :**
 
@@ -98,33 +141,33 @@ Nota  Vous n’avez pas besoin d’installer Jeedom en Beta (c’est plutôt d�
 
 Vous pouvez assez facilement passer d’une version Beta à une version Stable et réciproquement, il suffit de réinstaller par dessus l’autre version.
 
-![installationalexaapi4](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/installationalexaapi4.png)
+![installationalexaapi4](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/installationalexaapi4.png)
 
 ### Activer le Plugin
 
-![installationalexaapi5](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/installationalexaapi5.png)
+![installationalexaapi5](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/installationalexaapi5.png)
 
 ### Recharger les dépendances
 
-![installationalexaapi6](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/installationalexaapi6.png)
+![installationalexaapi6](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/installationalexaapi6.png)
 
 ### Générer manuellement le cookie Amazon
 
-![installationalexaapi7](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/installationalexaapi7.png)
+![installationalexaapi7](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/installationalexaapi7.png)
 
 ### S’identifier sur la pop-up d’Amazon
 
-![installationalexaapi8](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/installationalexaapi8.png)
+![installationalexaapi8](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/installationalexaapi8.png)
 
 Fermer la fenêtre dès que le Cookie Amazon est créé.
 
 ### Lancer le Daemon s’il ne se lance pas tout seul
 
-![installationalexaapi9](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/installationalexaapi9.png)
+![installationalexaapi9](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/installationalexaapi9.png)
 
 ### Lancer le SCAN
 
-![installationalexaapi10](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/installationalexaapi10.png)
+![installationalexaapi10](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/installationalexaapi10.png)
 
 Les devices apparaissent, aller dans un device et dans **Commandes** lancer un **Speak** pour tester
 
@@ -143,14 +186,14 @@ Le plugin et son API étant vivants (Amazon n’ayant pas documenté l’API se 
 *   **Forcer la mise à jour de toutes les commandes**
 *   **Lancer un SCAN qui détecte les nouveaux équipements ou les nouvelles commandes**
 
-**Le choix entre ces trois solutions dépend du nombre de scénarios que vous avez développés grâce au Plugin Alexa-API. En effet, la première solution supprime tous les devices et toutes les commandes, elle supprimera donc celles-ci dans vos scénarios. La seconde solution est plus respectueuse de vos scénarios car elle mettra à jour vos commandes sans les supprimer et donc vos scénarios seront intacts mais si elle ne fonctionne pas, vous devrez utiliser la solution 1.  
+**Le choix entre ces trois solutions dépend du nombre de scénarios que vous avez développés grâce au Plugin Alexa Premium. En effet, la première solution supprime tous les devices et toutes les commandes, elle supprimera donc celles-ci dans vos scénarios. La seconde solution est plus respectueuse de vos scénarios car elle mettra à jour vos commandes sans les supprimer et donc vos scénarios seront intacts mais si elle ne fonctionne pas, vous devrez utiliser la solution 1.  
 **
 
 ### Solution 1 : Supprimer tous les équipements et leurs commandes et les recréer
 
 C’est le mode le plus **propre** et le plus **optimisé** puisque vous repartez avec une installation comme neuve des devices et de leurs commandes.
 
-Pour se faire, il faut utiliser le bouton ![boutonalexaapi1](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/boutonalexaapi1.png)
+Pour se faire, il faut utiliser le bouton ![boutonalexaapiv21](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/boutonalexaapi1.png)
 
 **Attention**, cette fonction supprime tous les équipements et leurs commandes, vous perdez donc tous les liens dans vos scénarios.
 
@@ -158,22 +201,22 @@ Pour se faire, il faut utiliser le bouton ![boutonalexaapi1](https://jeedom.siga
 
 C’est le mode le plus **simple** et **sans risque** puisque vos équipements et leurs commandes ne sont pas supprimés. Ce forçage n’impacte donc pas vos scénarios.
 
-Pour se faire, il faut utiliser le bouton ![boutonalexaapi2](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/boutonalexaapi2.png)
+Pour se faire, il faut utiliser le bouton ![boutonalexaapiv22](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/boutonalexaapi2.png)
 
 Si vous ne souhaitez pas lancer le forçage de mise à jour sur **toutes** les commandes de **tous** les équipements, vous pouvez le lancer sur un seul équipement (et donc sur toutes ses commandes). Pour cela, rendez vous sur l’équipement concerné et cliquez sur :
 
-![boutonalexaapi3](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/boutonalexaapi3.png)
+![boutonalexaapiv23](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/boutonalexaapi3.png)
 
 ### Solution 3 : Le SCAN
 
-![boutonalexaapi4](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/boutonalexaapi4.png)
+![boutonalexaapiv24](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/boutonalexaapi4.png)
 
 Notez enfin que le scan peut être lancé à tout moment, il n’impacte pas les équipements déjà détectés ni les commandes existantes, par contre, il recrée tous les **nouveaux** devices ou les devices **supprimés**. Il recrée également toutes les **nouvelles** commandes ou les **commandes** supprimées.
 
 Les écrans de gestion
 ---------------------
 
-![Screenshot 2019 10 27 Alexaapi Jeedom](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/Screenshot_2019-10-27_Alexaapi_-_Jeedom.png)
+![Screenshot 2019 10 27 Alexaapi Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-10-27_Alexaapi_-_Jeedom.png)
 
 ### Scan
 
@@ -218,7 +261,7 @@ A ce jour, chaque équipement peut générer 3 tuiles.
 
 ### La tuile de l’équipement principal
 
-![widgetprincipal](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetprincipal.jpg)
+![widgetprincipal](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetprincipal.jpg)
 
 **A** : C’est la dernière intéraction avec vous, notez que vous pouvez récupérer cette information et l’utiliser dans un scénario.
 
@@ -232,11 +275,11 @@ A ce jour, chaque équipement peut générer 3 tuiles.
 
 ### La tuile du player multimédia
 
-![widgetplayer](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetplayer.jpg)
+![widgetplayer](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetplayer.jpg)
 
 ### La tuile de la playlist en cours
 
-![widgetplaylist](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetplaylist.jpg)
+![widgetplaylist](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetplaylist.jpg)
 
 Commandes simples
 -----------------
@@ -265,7 +308,7 @@ Elles sont mises à jour automatiquement par le plugin (par MQTT et par CRON)
 
 Le résultat est donné au format suivant : **2019-12-02 21:10:00**
 
-Si vous le voulez dans un autre format **2110** par exemple, [un tuto explique comment faire.](https://jeedom.sigalou-domotique.fr/recuperer-la-prochaine-alarme-alexa-au-format-hhmm)
+Si vous le voulez dans un autre format **2110** par exemple, [un tuto explique comment faire.](nextHtml.html)
 
 ### Faire parler Alexa en SSML
 
@@ -297,10 +340,14 @@ ou encore
 
 #### Quelques liens intéressants :
 
-*   [La référence W3C sur le SSML](https://www.w3.org/TR/speech-synthesis11/)
-*   [La documentation d’Amazon sur le SSML (en anglais)](https://developer.amazon.com/fr-FR/docs/alexa/custom-skills/speech-synthesis-markup-language-ssml-reference.html)
-*   [La documentation de Google sur le SSML (en français)](https://cloud.google.com/text-to-speech/docs/ssml)
-*   [Les **interjections** françaises programmées sur les devices Amazon (intéressant !!!)](https://developer.amazon.com/fr-FR/docs/alexa/custom-skills/speechcon-reference-interjections-french.html)
+*   [La référence W3C sur le SSML](https://www.w3.org/TR/speech-synthesis11/)  
+    
+*   [La documentation d’Amazon sur le SSML (en anglais)](https://developer.amazon.com/fr-FR/docs/alexa/custom-skills/speech-synthesis-markup-language-ssml-reference.html)  
+    
+*   [La documentation de Google sur le SSML (en français)](https://cloud.google.com/text-to-speech/docs/ssml)  
+    
+*   [Les **interjections** françaises programmées sur les devices Amazon (intéressant !!!)](https://developer.amazon.com/fr-FR/docs/alexa/custom-skills/speechcon-reference-interjections-french.html)  
+    
 
 ### Lancer une annonce (donc sur tous les appareils)
 
@@ -311,7 +358,7 @@ Ainsi, pour faire une annonce « Le facteur est passé, il faut faire (dans un 
 *   Commande **Parler à Alexa**
 *   Mettre le **message** dans Message **Alexa annonce le facteur est passé**
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/FireShot-Capture-068-Boite-aux-lettres-Cote-Facteur-Jeedom-192.168.1.100.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/FireShot-Capture-068-Boite-aux-lettres-Cote-Facteur-Jeedom-192.168.1.100.png)
 
 Commandes complexes
 -------------------
@@ -326,13 +373,13 @@ Notez que les commandes simples peuvent être personnalisées. Elles deviendront
 
 Pour cela, utilisez le bouton (sous le tableau des commandes) :
 
-![boutonajoutercommandeaction](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/boutonajoutercommandeaction.png)
+![boutonajoutercommandeaction](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/boutonajoutercommandeaction.png)
 
 Vous pouvez vous aider des commandes préinstallées pour en copier la syntaxe et utilisez la documentation ci dessous pour connaitre toutes les options possibles. Si vous souhaitez une autre fonction, un autre format ou que vous ne trouvez pas votre bonheur, contacter l’équipe de création du plugin, il y aura toujours une solution pour vous.
 
 **Nota** : Pour que la commande « **Ajouter une commande action** » soit active, il faut cocher cette case dans la configuration du plugin :
 
-![Screenshot 2019 12 14 Alexa API Jeedom](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/Screenshot_2019-12-14_Alexa_-_API_-_Jeedom.png)
+![Screenshot 2019 12 14 Alexa API Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-12-14_Alexa_-_API_-_Jeedom.png)
 
 ### alarm?when=#when#&recurring=#recurring#&sound=#sound#
 
@@ -518,7 +565,7 @@ Pour une meilleure utilisation en Dashboard, cette commande a été simplifiée.
 
 Ainsi, il faut dans un premier temps « configurer » ses stations de radio dans la partie commandes du player qui va la lire.
 
-![Screenshot 2019 11 08 Alexaapi Jeedom](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/Screenshot_2019-11-08_Alexaapi_-_Jeedom.png)
+![Screenshot 2019 11 08 Alexaapi Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-08_Alexaapi_-_Jeedom.png)
 
 Par défaut, sont configurés : s2960|Nostalgie;s6617|RTL;s6566|Europe1
 
@@ -526,7 +573,7 @@ Il suffit de respecter le format idStation1|Nomstation1;idStation2|Nomstation2
 
 Une fois vos stations configurées, vous pourrez les choisir sur le widget de la radio :
 
-![radios](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/radios.jpg)
+![radios](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/radios.jpg)
 
 #### Les stations :
 
@@ -540,13 +587,13 @@ Vous choisissez votre radio, et pour avoir l’id, cliquez sur partager, vous ve
 
 Pour utiliser une commande radio dans un scénario, il faut être un utilisateur expérimenté (dans la config) et savoir créer une nouvelle commande (dans le device player) :
 
-![Screenshot 2019 11 08 Alexa API Jeedom](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/Screenshot_2019-11-08_Alexa_-_API_-_Jeedom.png)
+![Screenshot 2019 11 08 Alexa API Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-08_Alexa_-_API_-_Jeedom.png)
 
-![Screenshot 2019 11 08 Alexa API Jeedom1](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/Screenshot_2019-11-08_Alexa_-_API_-_Jeedom1.png)
+![Screenshot 2019 11 08 Alexa API Jeedom1](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-08_Alexa_-_API_-_Jeedom1.png)
 
 Sur cette nouvelle commande, on configure de manière très simple en figeant l’id de la station (ou en utilisant une variable), par exemple :
 
-![Screenshot 2019 11 08 Alexaapi Jeedom1](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/Screenshot_2019-11-08_Alexaapi_-_Jeedom1.png)
+![Screenshot 2019 11 08 Alexaapi Jeedom1](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-08_Alexaapi_-_Jeedom1.png)
 
 ### routine?routine=#select#
 
@@ -578,24 +625,24 @@ _53bfa26d-f24c-4b13-97a8-8c3debdf06f0|Piste1;7b12ee4f-5a69-4390-ad07-00618f32f11
 
 Vous pouvez donc modifier vos pistes et leurs noms.
 
-![Screenshot 2019 11 03 Alexaapi Jeedom](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/Screenshot_2019-11-03_Alexaapi_-_Jeedom.png)
+![Screenshot 2019 11 03 Alexaapi Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-03_Alexaapi_-_Jeedom.png)
 
 Une fois la commande configurée, vous n’aurez plus qu’à utiliser la liste déroulante qui sera proposée, autant sur le Dashboard que dans les scénarios
 
 #### Comment trouver le trackID d’une piste Amazon-Music ?
 
-Le plugine Alexa-API est capable de vous donner le trackID de la piste qui est en cours de lecture.
+Le plugine Alexa Premium est capable de vous donner le trackID de la piste qui est en cours de lecture.
 
 Pour cela, suivez ces étapes :
 
 *   Allez dans les commandes de l’équipement que vous utilisez et cochez la case **Afficher** de la commande **Amazon Music Id**
 
-![amazonmusicidtrack](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/amazonmusicidtrack.png)
+![amazonmusicidtrack](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/amazonmusicidtrack.png)
 
 *   Une note de musique va apparaitre sur le Dashboard, sur la tuile de votre équipement, c’est ici qu’apparaitra l’ID
 *   Lancez la musique et relevez l’information ainsi affichée
 
-![amazonmusicidtrack2](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/amazonmusicidtrack2.png)
+![amazonmusicidtrack2](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/amazonmusicidtrack2.png)
 
 *   Vous gardez ou pas l’information sur votre dashboard, pour la supprimer, décochez **Afficher** de la commande **Amazon Music ID**
 
@@ -612,11 +659,11 @@ Les images des tuiles des players sont les images envoyées par les serveurs des
 
 Ces images sont des liens **temporaires** et donc vous pouvez vous retrouver avec des images vides. Cela donne cela :
 
-![tuile](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/tuile.png)
+![tuile](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/tuile.png)
 
 Pour éviter cela, les players ont été modifiés et en cas d’absence d’image, la miniature du lecteur est affichée, cela donne :
 
-![tuile2](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/tuile2.png)
+![tuile2](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/tuile2.png)
 
 Si vous souhaitez modifier l’image, il suffit de remplacer le fichier **logourl.png** qui se trouve dans :
 
@@ -625,14 +672,14 @@ Si vous souhaitez modifier l’image, il suffit de remplacer le fichier **logour
 Utilisation de balises pour les interjections et les sons
 ---------------------------------------------------------
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/FaireParlerAlexa.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/FaireParlerAlexa.png)
 
 Pour la fonctionnalité « Faire parler Alexa » mais cela fonctionne également pour les autres méthodes pour faire parler Alexa, il est mis en place deux nouveautés. Les interjections et les sons de la bibliothèque.
 
 *   Les interjections FR sont décrites **[ici](https://developer.amazon.com/en-US/docs/alexa/custom-skills/speechcon-reference-interjections-french.html)**, les autres pays ont aussi leur page.
 *   Les sons de la bibliothèque sont décrits **[ici](https://developer.amazon.com/en-US/docs/alexa/custom-skills/ask-soundlibrary.html)**
 
-Pour faciliter l’envoi de commandes, il a été imaginé dans Alexa-API un système de balises.
+Pour faciliter l’envoi de commandes, il a été imaginé dans Alexa Premium un système de balises.
 
 ### Les sons de la bibliothèque Amazon
 
@@ -644,7 +691,7 @@ on peut tout simplement ajouter
 
 > #animals/amzn\_sfx\_lion\_roar\_01#
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/FaireParlerAlexa2.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/FaireParlerAlexa2.png)
 
 Lancera le rugissement d’un lion.
 
@@ -656,17 +703,17 @@ Sur un principe similaire aux sons de la bibliothèque, les interjections sont �
 
 Exemple :
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/FaireParlerAlexa3.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/FaireParlerAlexa3.png)
 
 ### Enchaînement texte et interjection
 
 Attention, contrairement aux sons qui peuvent être noyés dans les phrases, les interjections doivent être dans des phrases séparées, ainsi cet exemple ne fonctionnera pas :
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/FaireParlerAlexa4.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/FaireParlerAlexa4.png)
 
 Pour que l’interjection soit prise en compte, il faut la mettre dans une phrase séparée, donc ajouter un point :
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/FaireParlerAlexa5.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/FaireParlerAlexa5.png)
 
 Slider du Volume
 ----------------
@@ -677,13 +724,13 @@ Le widget de _Noodom_ (un très grand merci à lui) a été refondu et intégré
 
 Le widget ressemblait à :
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetvolume1.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume1.png)
 
 (Utilisez _Alexaapi/Volume\_legacy_ maintenant pour avoir ce widget)
 
 et il devient :
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetvolume2.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume2.png)
 
 _(Correspond maintenant à Alexaapi/Volume)_
 
@@ -706,29 +753,29 @@ Par défaut, les paramètres envoyés sont :
 
 Pour personnaliser votre widget, vous pouvez ajouter le paramètre en _Paramètres optionnels widget_ de la commande action « Volume », par exemple :
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetvolume3.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume3.png)
 
 ### Revenir au précédent Widget
 
 Dans l’hypothèse où vous souhaitiez conserver l’ancien widget, pas de panique, il est toujours dans le plugin. Sélectionner Volume\_legacy 😉
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetvolume4.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume4.png)
 
 ### Amélioration de la disposition du widget
 
 Un paramètre top est disponible pour caler l’**espacement haut du widget**, il suffit de le spécifier ainsi :
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetvolume7.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume7.png)
 
 ### Supprimer le logo haut-parleur
 
 Si le petit logo du haut-parleur qui indique le son, hérité de la version précédente du plugin vous gène :
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetvolume5.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume5.png)
 
 Pas de panique, il est tout simple de le supprimer, allez sur votre équipement, puis dans commandes, cliquez sur ce petit logo en question tout à gauche, il va disparaitre et sauvegardez. Il n’est plus là. (si « Volume » apparait, décocher « Afficher le nom » dans les options du Widget)
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetvolume6.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume6.png)
 
 Information Mute
 ----------------
@@ -737,8 +784,15 @@ Une nouvelle information arrive sur le widget des équipements Alexa.
 
 C’est l’information **Mute** qui apparait quand on dit à Alexa : _Alexa coupe le son_.
 
-![](https://jeedom.sigalou-domotique.fr/wp-content/uploads/2019/03/widgetmute.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetmute.png)
 
-### Laisser un commentaire [Annuler la réponse](/alexa-api-documentation#respond)
+Dev et collaborateurs
+=====================
 
-Vous devez [vous connecter](https://www.sigalou-domotique.fr/sigalou?redirect_to=https%3A%2F%2Fwww.sigalou-domotique.fr%2Falexa-api-documentation) pour publier un commentaire.
+Toutes les bonnes volontées sont les bienvenues, travail collectif sur ce plugin.
+
+Que vous soyez programmeur, développeur, utilisateur ou plein de bonne voloonté, il y a des choses à faire.
+
+**Nous aurions besoin de traducteurs pour rendre international ce plugin.**
+
+La documentation est à réaliser, des tutos probablement utiles …

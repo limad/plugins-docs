@@ -5,7 +5,7 @@ Alexa Premium (et AmazonMusic/Deezer/Spotify/FireTv/Todo-List) Changelog
 
 ![alexaapiv2 icon](https://market.jeedom.com/filestore/market/plugin/images/alexaapiv2_icon.png)
 
-*   Présentation
+*   [Présentation](https://limad.github.io/plugins-docs/plugin-alexaapiv2#presentation)
 *   [Documentation](https://limad.github.io/plugins-docs/plugin-alexaapiv2#documentation)
 *   Changelog
 *   [Forum dédié](https://community.jeedom.com/tags/plugin-alexaapiv2)
