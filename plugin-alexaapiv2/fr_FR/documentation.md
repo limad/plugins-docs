@@ -633,19 +633,6 @@ Une nouvelle information arrive sur le widget des équipements Alexa.
 C’est l’information **Mute** qui apparait quand on dit à Alexa : _Alexa coupe le son_.
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetmute.png)
 
-[Limad44 Domotique Jeedom](https://limad.github.io/plugins-docs)
-
-Alexa Premium (et AmazonMusic/Deezer/Spotify/FireTv/Todo-List) Changelog
-------------------------------------------------------------------------
-
-![alexaapiv2 icon](https://market.jeedom.com/filestore/market/plugin/images/alexaapiv2_icon.png)
-
-*   [Présentation](https://limad.github.io/plugins-docs/plugin-alexaapiv2#presentation)
-*   [Documentation](https://limad.github.io/plugins-docs/plugin-alexaapiv2#documentation)
-*   Changelog
-*   [Forum dédié](https://community.jeedom.com/tags/plugin-alexaapiv2)
-
-[![alexaamazonmusic icon](https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation) [![alexaspotify icon](https://market.jeedom.com/filestore/market/plugin/images/alexaspotify_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-spotify-documentation) [![alexadeezer icon](https://market.jeedom.com/filestore/market/plugin/images/alexadeezer_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation)
 
 Créer un skill Amazon
 ---------------------
