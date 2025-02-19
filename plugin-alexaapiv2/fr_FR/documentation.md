@@ -616,15 +616,11 @@ Dans l’hypothèse où vous souhaitiez conserver l’ancien widget, pas de pani
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume4.png)
 
 ### Amélioration de la disposition du widget
-
 Un paramètre top est disponible pour caler l’**espacement haut du widget**, il suffit de le spécifier ainsi :
-
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume7.png)
 
 ### Supprimer le logo haut-parleur
-
 Si le petit logo du haut-parleur qui indique le son, hérité de la version précédente du plugin vous gène :
-
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume5.png)
 
 Pas de panique, il est tout simple de le supprimer, allez sur votre équipement, puis dans commandes, cliquez sur ce petit logo en question tout à gauche, il va disparaitre et sauvegardez. Il n’est plus là. (si « Volume » apparait, décocher « Afficher le nom » dans les options du Widget)
@@ -640,13 +636,9 @@ C’est l’information **Mute** qui apparait quand on dit à Alexa : _Alexa cou
 
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetmute.png)
 
-Dev et collaborateurs
-=====================
-
+#### Dev et collaborateurs
 Toutes les bonnes volontées sont les bienvenues, travail collectif sur ce plugin.
-
 Que vous soyez programmeur, développeur, utilisateur ou plein de bonne voloonté, il y a des choses à faire.
 
 **Nous aurions besoin de traducteurs pour rendre international ce plugin.**
-
 La documentation est à réaliser, des tutos probablement utiles …
