@@ -9,7 +9,7 @@
 [![alexaspotify icon](https://market.jeedom.com/filestore/market/plugin/images/alexaspotify_icon.png ) =130x](http://jeedom.sigalou-domotique.fr/alexa-spotify-documentation) 
 [![alexadeezer icon](https://market.jeedom.com/filestore/market/plugin/images/alexadeezer_icon.png ) 130x](http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation)
 [![alexatodolist icon](https://market.jeedom.com/filestore/market/plugin/images/alexatodolist_icon.png) width="130x"](https://community.jeedom.com/tags/plugin-alexaapiv2)
-[![alexafiretv icon](src="https://market.jeedom.com/filestore/market/plugin/images/alexafiretv_icon.png" width="130px")](https://community.jeedom.com/tags/plugin-alexaapiv2)
+[![alexafiretv icon](<img src="https://market.jeedom.com/filestore/market/plugin/images/alexafiretv_icon.png" width="130px>")](https://community.jeedom.com/tags/plugin-alexaapiv2)
 
 
 [Limad44 Jeedom](https://limad.github.io/plugins-docs)
