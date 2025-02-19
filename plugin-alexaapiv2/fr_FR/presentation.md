@@ -7,7 +7,7 @@
 		<footer class="entry-footer">
 		<span class="byline wp-dark-mode-bg-image">
 			<span class="author vcard wp-dark-mode-bg-image">
-				<a class="url fn n wp-dark-mode-bg-image" href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/author/sigalou"><i class="fa fa-user wp-dark-mode-bg-image"></i>  Sigalou</a>
+				<a class="url fn n wp-dark-mode-bg-image" href="https://limad.github.io/plugins-docs"><i class="fa fa-user wp-dark-mode-bg-image"></i>  Limad44</a>
 			</span>
 		</span>
 
