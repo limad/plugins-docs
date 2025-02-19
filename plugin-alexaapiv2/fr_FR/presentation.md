@@ -11,19 +11,20 @@
 			</span>
 		</span>
 
-				<span class="cat-links wp-dark-mode-bg-image">
-			<a href="" class="wp-dark-mode-bg-image"><i class="fa fa-folder-open wp-dark-mode-bg-image"></i>  </a><a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/category/domotique" rel="category tag" class="wp-dark-mode-bg-image">Domotique</a>, <a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/category/domotique/jeedom-2" rel="category tag" class="wp-dark-mode-bg-image">Jeedom</a>
-		</span>
+    			<span class="cat-links wp-dark-mode-bg-image">
+    		<a href="" class="wp-dark-mode-bg-image"><i class="fa fa-folder-open wp-dark-mode-bg-image"></i>  </a><a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/category/domotique" rel="category tag" class="wp-dark-mode-bg-image">Domotique</a>, <a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2/category/domotique/jeedom-2" rel="category tag" class="wp-dark-mode-bg-image">Jeedom</a>
+    	</span>
 
 
-	</footer><!-- .entry-footer -->
+    </footer><!-- .entry-footer -->
 
-	<header class="entry-header wp-dark-mode-bg-image">
-		<h2 class="entry-title wp-dark-mode-bg-image">Présentation Plugin Alexa Premium pour Jeedom</h2>
-	</header><!-- .entry-header -->
+    <header class="entry-header wp-dark-mode-bg-image">
+    	<h2 class="entry-title wp-dark-mode-bg-image">Présentation Plugin Alexa Premium pour Jeedom</h2>
+    </header><!-- .entry-header -->
 
-	<div class="entry-content wp-dark-mode-bg-image">
-	   <p class="wp-dark-mode-bg-image"><img fetchpriority="high" decoding="async" class="size-full wp-image-263 wp-dark-mode-bg-image" src="/../imagesPr%C3%A9sentationAlexaAPI.jpg" alt="PrésentationAlexaAPI" width="1200" height="355"></p>
+    <div class="entry-content wp-dark-mode-bg-image">
+<p class="wp-dark-mode-bg-image"><img fetchpriority="high" decoding="async" class="size-full wp-image-263 wp-dark-mode-bg-image" src="/../plugin-alexaapiv2/images/Pr%C3%A9sentationAlexaAPI.jpg" alt="PrésentationAlexaAPI" width="1200" height="355"></p>
+<p class="wp-dark-mode-bg-image"><img fetchpriority="high" decoding="async" class="size-full wp-image-263 wp-dark-mode-bg-image" src="https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Pr%C3%A9sentationAlexaAPI.jpg" alt="PrésentationAlexaAPI" width="1200" height="355"></p>
 
 <p class="wp-dark-mode-bg-image"><span id="more-264" class="wp-dark-mode-bg-image"></span></p>
 <p class="wp-dark-mode-bg-image">Pour que Jeedom puisse intéragir avec les Amazon Alexa, le plugin Alexa Premium est structuré en plusieurs widgets par équipements.</p>
