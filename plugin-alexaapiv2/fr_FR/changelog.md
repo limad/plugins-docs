@@ -381,7 +381,7 @@ Elle permet à ce stade de :
 *   Détection du **type de chaque équipement** ainsi que de sa Présence
 
  Todo List
-==========
+---------------------
 
 #### Bugs
 
