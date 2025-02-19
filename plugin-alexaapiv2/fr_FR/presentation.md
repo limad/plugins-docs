@@ -23,8 +23,7 @@
     </header><!-- .entry-header -->
 
     <div class="entry-content wp-dark-mode-bg-image">
-<p class="wp-dark-mode-bg-image"><img fetchpriority="high" decoding="async" class="size-full wp-image-263 wp-dark-mode-bg-image" src="/../plugin-alexaapiv2/images/Pr%C3%A9sentationAlexaAPI.jpg" alt="PrésentationAlexaAPI" width="1200" height="355"></p>
-<p class="wp-dark-mode-bg-image"><img fetchpriority="high" decoding="async" class="size-full wp-image-263 wp-dark-mode-bg-image" src="https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Pr%C3%A9sentationAlexaAPI.jpg" alt="PrésentationAlexaAPI22" width="1200" height="355"></p>
+<p class="wp-dark-mode-bg-image"><img fetchpriority="high" decoding="async" class="size-full wp-image-263 wp-dark-mode-bg-image" src="https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Pr%C3%A9sentationAlexaAPI.jpg" alt="PrésentationAlexaAPI" width="1200" height="355"></p>
 
 <p class="wp-dark-mode-bg-image"><span id="more-264" class="wp-dark-mode-bg-image"></span></p>
 <p class="wp-dark-mode-bg-image">Pour que Jeedom puisse intéragir avec les Amazon Alexa, le plugin Alexa Premium est structuré en plusieurs widgets par équipements.</p>
