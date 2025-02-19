@@ -8,3 +8,4 @@ pluginId: alexaapiv2
 {% include_relative changelog.html %}
 {% include_relative documentation.html %}
 {% include_relative nextAlarme.html %}
+{% include_relative skill_ask.html %}
