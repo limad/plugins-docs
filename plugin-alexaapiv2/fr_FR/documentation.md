@@ -165,7 +165,7 @@ Notez enfin que le scan peut être lancé à tout moment, il n’impacte pas les
 
 Les écrans de gestion
 ---------------------
-![Screenshot 2019 10 27 Alexaapi Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-10-27_Alexaapi_-_Jeedom.png)
+![Screenshot 2019 10 27 Alexaapi Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_Alexaapi1.png)
 
 ### Scan
 Permet de lancer automatiquement la détection de tous vos devices, vous pouvez le lancer quand vous le souhaitez, il ne supprime jamais de device ou de commande, pas de risque.
@@ -297,7 +297,7 @@ Pour cela, utilisez le bouton (sous le tableau des commandes) :
 Vous pouvez vous aider des commandes préinstallées pour en copier la syntaxe et utilisez la documentation ci dessous pour connaitre toutes les options possibles. Si vous souhaitez une autre fonction, un autre format ou que vous ne trouvez pas votre bonheur, contacter l’équipe de création du plugin, il y aura toujours une solution pour vous.
 
 **Nota** : Pour que la commande « **Ajouter une commande action** » soit active, il faut cocher cette case dans la configuration du plugin :
-![Screenshot 2019 12 14 Alexa API Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-12-14_Alexa_-_API_-_Jeedom.png)
+![Screenshot 2019 12 14 Alexa API Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_Alexaapi2.png)
 
 ### alarm?when=#when#&recurring=#recurring#&sound=#sound#
 Cette commande permet d’ajouter une alarme au device dans lequel est créée la commande.
@@ -369,20 +369,20 @@ Attention, cette commande est une commande **ACTION**, elle doit être reliée �
 *   **2** pour la suivante
 *   et ainsi de suite
 
-_Par défaut, position=1 si non spécifié_
+Par défaut, position=1 si non spécifié_
+
 #### status=x
 
 *   Mettre **ON** pour prendre en compte uniquement  les alarmes actives
 *   Mettre **OFF** pour prendre en compte uniquement les alarmes inactives
 *   Mettre **ALL** pour prendre en compte toutes les alarmes
-
-_Par défaut, status=ON si non spécifié_
+Par défaut, status=ON si non spécifié_
 
 #### format=x
 *   Mettre **hour** pour avoir un résultat au format **HH:MM** _(Attention, cet affichage est dangereux dans le cas où vous programmez des alarmes au dela de 24h, cela est possible avec les répétitions)_
 *   Mettre **hhmm** pour avoir un résultat au format **HHMM**
 *   Mettre **full** pour avoir un affichage détaillé **yyyy-MM-dd’T’HH:mm:ss.SSS**
-_Par défaut, format=hhmm si non spécifié_
+Par défaut, format=hhmm si non spécifié_
 Nota : Si vous avez besoin d’un autre format, n’hésitez pas à me le demander, je l’ajouterai dans la prochaine version.
 
 ### Création de la commande **INFO** qui affichera le résultat de la commande **whenNextAlarm**
@@ -398,11 +398,11 @@ Nota : S’il n’y aura pas d’alarme prochaine, le serveur répond « none 
 
 ### whennextmusicalalarm?position=1&status=ON&format=hour
 
-_**Fonctionne comme whennextalarm mais pour les alarmes musicales.**_
+**Fonctionne comme whennextalarm mais pour les alarmes musicales.**_
 
 ### musicalalarmmusicentity?position=1&status=ON
 
-_****Fonctionne comme whennextmusicalalarm mais fournit l’information** MusicEntity **qui correspond à ce qui va être joué à l’heure de l’alarme.****_
+***Fonctionne comme whennextmusicalalarm mais fournit l’information** MusicEntity **qui correspond à ce qui va être joué à l’heure de l’alarme.****_
 
 ### whennextreminder?position=1&status=ON
 
@@ -421,14 +421,14 @@ Cette commande supprime tous les rappels et/ou alarmes du device dans lequel est
 *   Mettre **reminder** pour ne supprimer que les rappels
 *   Mettre **all** pour supprimer les alarmes et les rappels
 
-_Par défaut, type=alarm si non spécifié_
+Par défaut, type=alarm si non spécifié_
 
 #### status=x
 *   Mettre **ON** pour ne supprimer que les alarmes et/ou rappels actifs
 *   Mettre **OFF** pour ne supprimer que les alarmes et/ou rappels inactifs
 *   Mettre **ALL** pour supprimer toutes les alarmes et/ou rappels
 
-_Par défaut, status=ON si non spécifié_
+Par défaut, status=ON si non spécifié_
 
 **Nota** : Pour que la suppression fonctionne, il faut que l’Alexa soit connecté !!
 
@@ -452,12 +452,13 @@ Vous utiliserez ainsi la syntaxe suivante : **command?command=play** pour lancer
 
 _Nota_ : STOP n’existe pas chez Amazon, il faut utiliser PAUSE
 
+
 ### radio?station=#select#
 Cette commande lance une station de radio sur le device dans lequel est créée la commande.
 
 Pour une meilleure utilisation en Dashboard, cette commande a été simplifiée. On peut maintenant sélectionner la radio souhaitée plutôt que de connaitre par cœur le code (s0000) de la radio.
 Ainsi, il faut dans un premier temps « configurer » ses stations de radio dans la partie commandes du player qui va la lire.
-![Screenshot 2019 11 08 Alexaapi Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-08_Alexaapi_-_Jeedom.png)
+![Screenshot 2019 11 08 Alexaapi Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_Alexaapi3.png)
 Par défaut, sont configurés : s2960|Nostalgie;s6617|RTL;s6566|Europe1
 Il suffit de respecter le format idStation1|Nomstation1;idStation2|Nomstation2
 Une fois vos stations configurées, vous pourrez les choisir sur le widget de la radio :
@@ -471,10 +472,10 @@ Vous choisissez votre radio, et pour avoir l’id, cliquez sur partager, vous ve
 #### Utilisation d’une commande radio dans un scénario
 Pour utiliser une commande radio dans un scénario, il faut être un utilisateur expérimenté (dans la config) et savoir créer une nouvelle commande (dans le device player) :
 
-![Screenshot 2019 11 08 Alexa API Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-08_Alexa_-_API_-_Jeedom.png)
-![Screenshot 2019 11 08 Alexa API Jeedom1](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-08_Alexa_-_API_-_Jeedom1.png)
+![Screenshot 2019 11 08 Alexa API Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/imagesScreenshot_Alexaapi4.png)
+![Screenshot 2019 11 08 Alexa API Jeedom1](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_Alexaapi5.png)
 Sur cette nouvelle commande, on configure de manière très simple en figeant l’id de la station (ou en utilisant une variable), par exemple :
-![Screenshot 2019 11 08 Alexaapi Jeedom1](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-08_Alexaapi_-_Jeedom1.png)
+![Screenshot 2019 11 08 Alexaapi Jeedom1](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_Alexaapi6.png)
 
 ### routine?routine=#select#
 Cette commande lance la routine spécifiée.
@@ -497,7 +498,7 @@ Les trackID se configurent dans la commande action **Ecouter une piste musicale*
 _53bfa26d-f24c-4b13-97a8-8c3debdf06f0|Piste1;7b12ee4f-5a69-4390-ad07-00618f32f110|Piste2_
 Vous pouvez donc modifier vos pistes et leurs noms.
 
-![Screenshot 2019 11 03 Alexaapi Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_2019-11-03_Alexaapi_-_Jeedom.png)
+![Screenshot 2019 11 03 Alexaapi Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Screenshot_Alexaapi7.png)
 Une fois la commande configurée, vous n’aurez plus qu’à utiliser la liste déroulante qui sera proposée, autant sur le Dashboard que dans les scénarios
 
 #### Comment trouver le trackID d’une piste Amazon-Music ?
