@@ -1,7 +1,7 @@
 [Limad44 Domotique Jeedom](https://limad.github.io/plugins-docs)
 
-Alexa Premium (et AmazonMusic/Deezer/Spotify/FireTv/Todo-List) Changelog
-==========
+Changelog Alexa-Premium 
+=======================
 
 ![alexaapiv2 icon](https://market.jeedom.com/filestore/market/plugin/images/alexaapiv2_icon.png)
 
@@ -12,8 +12,8 @@ Alexa Premium (et AmazonMusic/Deezer/Spotify/FireTv/Todo-List) Changelog
 
 [![alexaamazonmusic icon](https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation)
 
-Change Log
-------------------------------------------------------------------------
+Changelog (et AmazonMusic/Deezer/Spotify/FireTv) 
+---------------------
 
 **Version en cours de dev**
 

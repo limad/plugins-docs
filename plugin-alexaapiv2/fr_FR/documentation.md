@@ -627,10 +627,10 @@ Pas de panique, il est tout simple de le supprimer, allez sur votre équipement,
 
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetvolume6.png)
 
-Information Mute
-----------------
+### Information Mute
 Une nouvelle information arrive sur le widget des équipements Alexa.
 C’est l’information **Mute** qui apparait quand on dit à Alexa : _Alexa coupe le son_.
+
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetmute.png)
 
 
