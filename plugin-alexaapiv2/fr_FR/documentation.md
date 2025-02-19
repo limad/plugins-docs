@@ -635,8 +635,7 @@ C’est l’information **Mute** qui apparait quand on dit à Alexa : _Alexa cou
 
 
 Créer un skill Amazon
----------------------
-
+------------------------------------
 
 Créer un compte développeur sur Amazon : [https://developer.amazon.com/](https://developer.amazon.com/)
 Une fois connecté, cliquez sur « Alexa »
