@@ -1,14 +1,17 @@
-Alexa Premium Documentation
----------------------------
-
 ![alexaapiv2 icon](	https://market.jeedom.com/filestore/market/plugin/images/alexaapiv2_icon.png)
 
 *   [Présentation](https://limad.github.io/plugins-docs/plugin-alexaapiv2#presentation)
 *   Documentation
-*   [Changelog](https://limad.github.io/plugins-docs/plugin-alexaapiv2#changelog)
+*   [Todo-List / Changelog](https://limad.github.io/plugins-docs/plugin-alexaapiv2#changelog)
 *   [Forum dédié](https://community.jeedom.com/tags/plugin-alexaapiv2)
 
 [![alexaamazonmusic icon](https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation) [![alexaspotify icon](https://market.jeedom.com/filestore/market/plugin/images/alexaspotify_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-spotify-documentation) [![alexadeezer icon](https://market.jeedom.com/filestore/market/plugin/images/alexadeezer_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation)
+
+[Limad44 Jeedom](https://limad.github.io/plugins-docs)
+
+Alexa Premium Documentation
+---------------------------------------------
+
 
 Toggle 
 

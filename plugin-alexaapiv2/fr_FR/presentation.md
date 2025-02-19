@@ -7,7 +7,7 @@
 
 [![alexaamazonmusic icon](https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation) [![alexaspotify icon](https://market.jeedom.com/filestore/market/plugin/images/alexaspotify_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-spotify-documentation) [![alexadeezer icon](https://market.jeedom.com/filestore/market/plugin/images/alexadeezer_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation)
 
-[Limad44](https://limad.github.io/plugins-docs) [Domotique](https://limad.github.io/plugins-docs/plugin-alexaapiv2), [Jeedom](https://limad.github.io/plugins-docs/plugin-alexaapiv2)
+[Limad44 Jeedom](https://limad.github.io/plugins-docs)
 
 Présentation Plugin Alexa Premium pour Jeedom
 ---------------------------------------------
