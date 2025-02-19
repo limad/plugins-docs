@@ -5,6 +5,7 @@
 *   [Todo-List / Changelog](https://limad.github.io/plugins-docs/plugin-alexaapiv2#changelog)
 *   [Forum dédié](https://community.jeedom.com/tags/plugin-alexaapiv2)
 
+## Plugins annexes
 <a href="http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png" alt="alexaamazonmusic icon" width="100px"></a>
 <a href="http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexaspotify_icon.png" alt="alexa-deezer icon" width="100px"></a>
 <a href="http://jeedom.sigalou-domotique.fr/alexafiretv-documentation"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexafiretv_icon.png" alt="alexafiretv icon" width="100px"></a>

@@ -5,7 +5,11 @@
 *   [Todo-List / Changelog](https://limad.github.io/plugins-docs/plugin-alexaapiv2#changelog)
 *   [Forum dédié](https://community.jeedom.com/tags/plugin-alexaapiv2)
 
-[![alexaamazonmusic icon](https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation) [![alexaspotify icon](https://market.jeedom.com/filestore/market/plugin/images/alexaspotify_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-spotify-documentation) [![alexadeezer icon](https://market.jeedom.com/filestore/market/plugin/images/alexadeezer_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation)
+## Plugins annexes
+<a href="http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png" alt="alexaamazonmusic icon" width="100px"></a>
+<a href="http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexaspotify_icon.png" alt="alexa-deezer icon" width="100px"></a>
+<a href="http://jeedom.sigalou-domotique.fr/alexafiretv-documentation"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexafiretv_icon.png" alt="alexafiretv icon" width="100px"></a>
+<a href="http://jeedom.sigalou-domotique.fr/alexatodolist-documentation"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexatodolist_icon.png" alt="alexatodolist icon" width="100px"></a>
 
 [Limad44 Jeedom](https://limad.github.io/plugins-docs)
 
