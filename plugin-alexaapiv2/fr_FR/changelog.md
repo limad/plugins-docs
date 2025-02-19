@@ -12,7 +12,7 @@ Changelog Alexa-Premium
 
 [![alexaamazonmusic icon](https://market.jeedom.com/filestore/market/plugin/images/alexaamazonmusic_icon.png)](http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation)
 
-Changelog (et AmazonMusic/Deezer/Spotify/FireTv) 
+Changelog Alexa-Premium (et AmazonMusic/Deezer/Spotify/FireTv) 
 ---------------------
 
 **Version en cours de dev**

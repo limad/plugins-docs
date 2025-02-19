@@ -10,7 +10,7 @@
 [Limad44 Jeedom](https://limad.github.io/plugins-docs)
 
 Présentation Plugin Alexa Premium pour Jeedom
----------------------------------------------
+==========
 
 ![PrésentationAlexaAPI](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/Pr%C3%A9sentationAlexaAPI.jpg)
 
