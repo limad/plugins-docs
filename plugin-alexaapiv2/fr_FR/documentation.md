@@ -639,7 +639,6 @@ Créer un skill Amazon
 
 
 Créer un compte développeur sur Amazon : [https://developer.amazon.com/](https://developer.amazon.com/)
----------------------
 Une fois connecté, cliquez sur « Alexa »
 
 [![](https://youdom.net/wp-content/uploads/2024/04/image-1.png)](https://youdom.net/wp-content/uploads/2024/04/image-1.png)
