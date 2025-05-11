@@ -640,71 +640,60 @@ C’est l’information **Mute** qui apparait quand on dit à Alexa : _Alexa cou
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetmute.png)
 
 
-Créer un skill Amazon
+Créer un skill (AsK) Amazon
+Bien que la procedure parait compliquée aux premiers abords, il n'en est rien; il suffit de suivre les etapes suivantes attentivement
+------------------------------------
+### Étapes à suivre :
+
+** Résumé des étapes à suivre : **
+
+*   Télécharger le fichier ZIP du skill ici : ([https://github.com/limad/alexaPremium_Skill_Ask/archive/refs/tags/alexaPremium_Skill_Ask.zip](alexaPremium_Skill_Ask.zip)) 
+*   Créer un compte développeur sur Amazon.
+*   Créer/Ajouter un skill.
+*   Renseigner les informations de votre futur skill.
+*   Importer le code Python depuis GitHub.
+    - Renseigner les informations nécessaires (urlJeedom, apiKey) dans le code.
+*   Renseigner l'ID du skill créé dans la configuration du plugin Alexa Premium.
+
 ------------------------------------
 
-Créer un compte développeur sur Amazon : [https://developer.amazon.com/](https://developer.amazon.com/)
-Une fois connecté, cliquez sur « Alexa »
+### Details des étapes :
+1. Créer un compte développeur sur Amazon : 
+Rendez-vous sur [https://developer.amazon.com/](https://developer.amazon.com/)
+2. Une fois connecté, Aller sur [https://developer.amazon.com/alexa/console/ask](https://developer.amazon.com/alexa/console/ask)
 
-[![](https://youdom.net/wp-content/uploads/2024/04/image-1.png)](https://youdom.net/wp-content/uploads/2024/04/image-1.png)
-
-Cliquez sur « Ajouter des Skills à Alexa »
-[![](https://youdom.net/wp-content/uploads/2024/04/image-2.png)](https://youdom.net/wp-content/uploads/2024/04/image-2.png)
-
-Cliquez sur « Développez votre Skill »
-[![](https://youdom.net/wp-content/uploads/2024/04/image-3.png)](https://youdom.net/wp-content/uploads/2024/04/image-3.png)
-
-Cliquez sur « Créer un Skill »
-[![](https://youdom.net/wp-content/uploads/2024/04/image.png)](https://youdom.net/wp-content/uploads/2024/04/image.png)
-
+3. Cliquez sur « Créer un Skill »
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/3.png)
 Définissez un nom (ex: ask Jeedom) et la langue FR, puis cliquez sur « Next » en haut à droite de votre écran
-[![](https://youdom.net/wp-content/uploads/2024/04/image-4.png)](https://youdom.net/wp-content/uploads/2024/04/image-4.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/4.png)
 
-Cliquez sur « Other », Custom et cliquez sur « Sync Locales », puis sur Next en haut à gauche de votre écran.
-[![](https://youdom.net/wp-content/uploads/2024/04/image-5.png)](https://youdom.net/wp-content/uploads/2024/04/image-5.png)
+    Cliquez sur « Other », Custom et cliquez sur « Sync Locales », 
+    1. Choose a type of experience => « Other »,
+    2. Choose a model => « Custom »,
+        2-1. Activer « Sync Locales »
+    3. Hosting services  => « Alexa-hosted (Python) »,
+        3-1 Hosting region  => « Eu (Ireland) »,
+    Puis cliquez sur Next en haut à gauche de votre écran.
 
-Cliquez sur « Start from Scratch » puis sur « Next » en haut à gauche de votre écran
-[![](https://youdom.net/wp-content/uploads/2024/04/image-8.png)](https://youdom.net/wp-content/uploads/2024/04/image-8.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/5.png)
+4. Cliquez sur « Start from Scratch » puis cliquer sur « Import kill » en haut à droite de votre écran
+Dans le formulaire qui s'ouvre renseigner l'url <https://github.com/limad/alexaPremium_Skill_Ask.git> et valider.
 
-Cliquez sur « Create Skill »
-[![](https://youdom.net/wp-content/uploads/2024/04/image-10.png)](https://youdom.net/wp-content/uploads/2024/04/image-10.png)
+5. Patientez pendant la génération du skill (cela peut prendre plusieurs minutes).
+6. Une fois le skill généré, aller sur l'onglet "Code" et renseignez les deux champs (fichier "lambda_function.py") avec vos informations :
 
-Cliquez sur « Next », puis à nouveau sur « Next » et pour finir sur « Done »
-[![](https://youdom.net/wp-content/uploads/2024/04/image-11.png)](https://youdom.net/wp-content/uploads/2024/04/image-11.png)
-
-Cliquez sur « 1. Invocation Name > »
-[![](https://youdom.net/wp-content/uploads/2024/04/image-13.png)](https://youdom.net/wp-content/uploads/2024/04/image-13.png)
-
-Renseignez « pose question » dans le champ Skill Invocation Name (phrase de déclenchement pour les tests), puis sur « Enregistrer »
-[![](https://youdom.net/wp-content/uploads/2024/04/image-14.png)](https://youdom.net/wp-content/uploads/2024/04/image-14.png)
-
-Cliquez sur code, puis sur « Importer Code » (télécharger le fichier zip du Skill)
-[![](https://youdom.net/wp-content/uploads/2024/04/image-15.png)](https://youdom.net/wp-content/uploads/2024/04/image-15.png)
-
-Importer le fichier zip télécharger précédemment et cliquez sur « Next ».
-[![](https://youdom.net/wp-content/uploads/2024/04/image-17.png)](https://youdom.net/wp-content/uploads/2024/04/image-17.png)
-
-Cochez les cases comme ci-dessous, puis sur « Next » et pour finir sur « Import » dans la fenêtre suivante.
-[![](https://youdom.net/wp-content/uploads/2024/04/image-16.png)](https://youdom.net/wp-content/uploads/2024/04/image-16.png)
-
-Renseignez les 3 champs avec vos informations (urlJeedom, apiKey et lang), cliquez sur « Save », puis sur « Build » dans le menu du haut
-[![](https://youdom.net/wp-content/uploads/2024/04/image-18.png)](https://youdom.net/wp-content/uploads/2024/04/image-18.png)
-
-Cliquez sur « Interaction model » puis sur « JSON Editor »
-[![](https://youdom.net/wp-content/uploads/2024/04/image-20.png)](https://youdom.net/wp-content/uploads/2024/04/image-20.png)
-
-Uploadez le fichier « skill.json » qui se trouve le fichier zip que vous avez téléchargé précédemment
-[![](https://youdom.net/wp-content/uploads/2024/04/image-21.png)](https://youdom.net/wp-content/uploads/2024/04/image-21.png)
-
-Une fois vote fichier uploadé, cliquez sur « Enregistrer », puis sur « Développez vos compétences »
-[![](https://youdom.net/wp-content/uploads/2024/04/image-22.png)](https://youdom.net/wp-content/uploads/2024/04/image-22.png)
+    JEEDOM_URL : l'URL externe de votre Jeedom (ne pas oublier '/' à la fin).
+    APIKEY : la clé API du plugin Alexa-Premium.
+Cliquez sur « Save », puis sur « Deploy » dans le menu en haut de l'écran.
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.png)
 
 Félicitations, vous venez de créer votre Skill Ask pour Alexa Premium sur Jeedom !!!
 
-Vous pouvez afficher les logs des scripts en cliquant sur « Code » dans le menu du haut puis sur « CloudWatch Logs »
-[![](https://youdom.net/wp-content/uploads/2024/04/image-23.png)](https://youdom.net/wp-content/uploads/2024/04/image-23.png)
-
-Le Skill doit être appelé par le plugin Alexa Premium pour qu’il fonctionne correctement. Voir documentation Alexa API Premium
+Le Skill doit être appelé par le plugin Alexa Premium pour qu’il fonctionne correctement. Vous devez renseigner l'id du skill dans la configuration du plugin.
+Vous pouvez trouver l'id du skill crée soit 
+1. depuis cette page https://developer.amazon.com/alexa/console/ask, et cliquer sur < Copier l'identifiant de la Skill >
+2. Ou directement dans l'URL lorsque vous êtes sur la page du code du skill.
+L'ID ressemble à ceci : "amzn1.ask.skill.bc3a7990-6bc7-4ff2-a07c-k678facb7b88"
 
 
 
