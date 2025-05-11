@@ -688,8 +688,8 @@ Dans le formulaire qui s'ouvre renseigner l'url <https://github.com/limad/alexaP
 
 6. Une fois le skill généré, aller sur l'onglet "Code" et renseignez les deux champs (fichier "lambda_function.py") avec vos informations :
 
-    JEEDOM_URL : l'URL externe de votre Jeedom (ne pas oublier '/' à la fin).
-    APIKEY : la clé API du plugin Alexa-Premium.
+    * JEEDOM_URL : l'URL externe de votre Jeedom (ne pas oublier '/' à la fin).
+    * APIKEY : la clé API du plugin Alexa-Premium.
 Cliquez sur « Save », puis sur « Deploy » dans le menu en haut de l'écran.
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.2.png)
 
