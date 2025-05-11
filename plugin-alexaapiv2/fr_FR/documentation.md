@@ -641,11 +641,13 @@ C’est l’information **Mute** qui apparait quand on dit à Alexa : _Alexa cou
 
 
 Créer un skill (AsK) Amazon
-Bien que la procedure parait compliquée aux premiers abords, il n'en est rien; il suffit de suivre les etapes suivantes attentivement
-------------------------------------
-### Étapes à suivre :
+----------------
 
-** Résumé des étapes à suivre : **
+Bien que la procedure parait compliquée aux premiers abords, il n'en est rien; il suffit de suivre les étapes suivantes attentivement
+------------------------------------
+### Résumé des étapes à suivre :
+
+
 
 *   Télécharger le fichier ZIP du skill ici : ([https://github.com/limad/alexaPremium_Skill_Ask/archive/refs/tags/alexaPremium_Skill_Ask.zip](alexaPremium_Skill_Ask.zip)) 
 *   Créer un compte développeur sur Amazon.
@@ -695,8 +697,8 @@ Cliquez sur « Save », puis sur « Deploy » dans le menu en haut de l'écran.
 
 Félicitations, vous venez de créer votre Skill Ask pour Alexa Premium sur Jeedom !!!
 
-Le Skill doit être appelé par le plugin Alexa Premium pour qu’il fonctionne correctement. Vous devez renseigner l'id du skill dans la configuration du plugin.
-Vous pouvez trouver l'id du skill crée soit 
+** Le Skill doit être appelé par le plugin Alexa Premium pour qu’il fonctionne correctement. Vous devez renseigner l'id du skill dans la configuration du plugin. **
+Vous pouvez trouver l'id du skill crée soit :
 1. depuis cette page https://developer.amazon.com/alexa/console/ask, et cliquer sur < Copier l'identifiant de la Skill >
 2. Ou directement dans l'URL lorsque vous êtes sur la page du code du skill.
 L'ID ressemble à ceci : "amzn1.ask.skill.bc3a7990-6bc7-4ff2-a07c-k678facb7b88"
