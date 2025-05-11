@@ -639,15 +639,12 @@ C’est l’information **Mute** qui apparait quand on dit à Alexa : _Alexa cou
 
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetmute.png)
 
-
 Créer un skill (AsK) Amazon
 ----------------
 
 Bien que la procedure parait compliquée aux premiers abords, il n'en est rien; il suffit de suivre les étapes suivantes attentivement
 ------------------------------------
 ### Résumé des étapes à suivre :
-
-
 
 *   Télécharger le fichier ZIP du skill ici : ([https://github.com/limad/alexaPremium_Skill_Ask/archive/refs/tags/alexaPremium_Skill_Ask.zip](alexaPremium_Skill_Ask.zip)) 
 *   Créer un compte développeur sur Amazon.
@@ -669,19 +666,22 @@ Rendez-vous sur [https://developer.amazon.com/](https://developer.amazon.com/)
 
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/2.png)
 
-![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/3.png)
 Définissez un nom (ex: ask Jeedom) et la langue FR, puis cliquez sur « Next » en haut à droite de votre écran
+
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/3.png)
+
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/4.png)
 
-    Cliquez sur « Other », Custom et cliquez sur « Sync Locales », 
-    1. Choose a type of experience => « Other »,
-    2. Choose a model => « Custom »,
-        2-1. Activer « Sync Locales »
-    3. Hosting services  => « Alexa-hosted (Python) »,
-        3-1 Hosting region  => « Eu (Ireland) »,
+Cliquez sur « Other », Custom et cliquez sur « Sync Locales », 
+1. Choose a type of experience => « Other »,
+2. Choose a model => « Custom »,
+    2-1. Activer « Sync Locales »
+3. Hosting services  => « Alexa-hosted (Python) »,
+    3-1 Hosting region  => « Eu (Ireland) »,
     Puis cliquez sur Next en haut à gauche de votre écran.
 
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/5.png)
+
 4. Cliquez sur « Start from Scratch » puis cliquer sur « Import kill » en haut à droite de votre écran
 Dans le formulaire qui s'ouvre renseigner l'url <https://github.com/limad/alexaPremium_Skill_Ask.git> et valider.
 
@@ -692,6 +692,7 @@ Dans le formulaire qui s'ouvre renseigner l'url <https://github.com/limad/alexaP
 
     * JEEDOM_URL : l'URL externe de votre Jeedom (ne pas oublier '/' à la fin).
     * APIKEY : la clé API du plugin Alexa-Premium.
+
 Cliquez sur « Save », puis sur « Deploy » dans le menu en haut de l'écran.
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.2.png)
 
