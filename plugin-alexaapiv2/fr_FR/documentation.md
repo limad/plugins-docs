@@ -700,7 +700,8 @@ Cliquez sur « Save », puis sur « Deploy » dans le menu en haut de l'écran.
 
 Félicitations, vous venez de créer votre Skill Ask pour Alexa Premium sur Jeedom !!!
 
-** Le Skill doit être appelé par le plugin Alexa Premium pour qu’il fonctionne correctement. Vous devez renseigner l'id du skill dans la configuration du plugin. **
+** Le Skill doit être appelé par le plugin Alexa Premium pour qu’il fonctionne correctement. **
+Vous devez renseigner l'id du skill dans la configuration du plugin. 
 Vous pouvez trouver l'id du skill crée soit :
 1. depuis cette page https://developer.amazon.com/alexa/console/ask, et cliquer sur < Copier l'identifiant de la Skill >
 2. Ou directement dans l'URL lorsque vous êtes sur la page du code du skill.
