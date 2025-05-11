@@ -694,6 +694,8 @@ Dans le formulaire qui s'ouvre renseigner l'url <https://github.com/limad/alexaP
 
     * JEEDOM_URL : l'URL externe de votre Jeedom (ne pas oublier '/' à la fin).
     * APIKEY : la clé API du plugin Alexa-Premium.
+Pour connaitre ces parametres, aller dans la configuration du plugin et cliquer sur le bouton Params:
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.1.png)
 
 Cliquez sur « Save », puis sur « Deploy » dans le menu en haut de l'écran.
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.2.png)
@@ -707,7 +709,9 @@ Vous pouvez trouver l'id du skill crée soit :
 2. Ou directement dans l'URL lorsque vous êtes sur la page du code du skill.
 L'ID ressemble à ceci : "amzn1.ask.skill.bc3a7990-6bc7-4ff2-a07c-k678facb7b88"
 
-
+**Exemples d'utilisation** 
+- Au lieu d'avoir un scénario Jeedom qui allume automatiquement la lumière à une heure précise, avec Ask, Alexa peut vous demander : "Voulez-vous allumer la lumière ?"
+Cela permet de conditionner une action à une réponse vocale.
 
 Dev et collaborateurs
 ------------------------------------
