@@ -640,10 +640,10 @@ C’est l’information **Mute** qui apparait quand on dit à Alexa : _Alexa cou
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/widgetmute.png)
 
 Créer un skill (AsK) Amazon
-----------------
+---------------------------
 
 Bien que la procedure parait compliquée aux premiers abords, il n'en est rien; il suffit de suivre les étapes suivantes attentivement
-------------------------------------
+
 ### Résumé des étapes à suivre :
 
 *   Télécharger le fichier ZIP du skill ici : ([https://github.com/limad/alexaPremium_Skill_Ask/archive/refs/tags/alexaPremium_Skill_Ask.zip](alexaPremium_Skill_Ask.zip)) 
