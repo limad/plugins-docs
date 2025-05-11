@@ -662,7 +662,11 @@ Bien que la procedure parait compliquée aux premiers abords, il n'en est rien; 
 Rendez-vous sur [https://developer.amazon.com/](https://developer.amazon.com/)
 2. Une fois connecté, Aller sur [https://developer.amazon.com/alexa/console/ask](https://developer.amazon.com/alexa/console/ask)
 
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/1.png)
 3. Cliquez sur « Créer un Skill »
+
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/2.png)
+
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/3.png)
 Définissez un nom (ex: ask Jeedom) et la langue FR, puis cliquez sur « Next » en haut à droite de votre écran
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/4.png)
@@ -680,12 +684,14 @@ Définissez un nom (ex: ask Jeedom) et la langue FR, puis cliquez sur « Next 
 Dans le formulaire qui s'ouvre renseigner l'url <https://github.com/limad/alexaPremium_Skill_Ask.git> et valider.
 
 5. Patientez pendant la génération du skill (cela peut prendre plusieurs minutes).
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.png)
+
 6. Une fois le skill généré, aller sur l'onglet "Code" et renseignez les deux champs (fichier "lambda_function.py") avec vos informations :
 
     JEEDOM_URL : l'URL externe de votre Jeedom (ne pas oublier '/' à la fin).
     APIKEY : la clé API du plugin Alexa-Premium.
 Cliquez sur « Save », puis sur « Deploy » dans le menu en haut de l'écran.
-![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.2.png)
 
 Félicitations, vous venez de créer votre Skill Ask pour Alexa Premium sur Jeedom !!!
 
