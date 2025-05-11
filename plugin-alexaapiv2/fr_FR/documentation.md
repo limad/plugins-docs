@@ -661,12 +661,14 @@ Bien que la procedure parait compliquée aux premiers abords, il n'en est rien; 
 Rendez-vous sur [https://developer.amazon.com/](https://developer.amazon.com/)
 2. Une fois connecté, Aller sur [https://developer.amazon.com/alexa/console/ask](https://developer.amazon.com/alexa/console/ask)
 
-![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/1.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/0.png)
 3. Cliquez sur « Créer un Skill »
 
-![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/2.png)
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/1.png)
 
 Définissez un nom (ex: ask Jeedom) et la langue FR, puis cliquez sur « Next » en haut à droite de votre écran
+
+![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/2.png)
 
 ![](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/3.png)
 
