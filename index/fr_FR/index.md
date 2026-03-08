@@ -12,17 +12,17 @@ Plugin pour intégrer les équipements Netatmo Energie( Thermostat, Vannes, Ther
 
 - [Documentation]({{site.baseurl}}/plugin-naEnergie/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-naEnergie/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=3958" target="_blank">Market</a>
+- [Market]({{site.market}}/index.php?v=d&plugin_id=3958)
 
 # Netatmo Sécurité(netatmoSecurity)
 
 [<img width="77" src="{{site.market}}/filestore/market/plugin/images/netatmoSecurity_icon.png">]({{site.baseurl}}/plugin-netatmoSecurity/{{page.lang}})
 
-Plugin pour gérer les équipements Netatmo-Sécurité et particulièrement les cameras. Sans emails itempestifs,<br> Connextion via API et/ou en local (si possible)
+Plugin pour gérer les équipements Netatmo-Sécurité et particulièrement les caméras. Sans emails intempestifs. Connexion via API et/ou en local (si possible)
 
 - [Documentation]({{site.baseurl}}/plugin-netatmoSecurity/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-netatmoSecurity/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=4472" target="_blank">Market</a>
+- [Market]({{site.market}}/index.php?v=d&plugin_id=4472)
 
 # Migo Thermostat(migoThermostat)
 
@@ -32,7 +32,7 @@ Plugin pour contrôler le thermostat MiGo/eRelax.
 
 - [Documentation]({{site.baseurl}}/plugin-migoThermostat/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-migoThermostat/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=3447" target="_blank">Market</a>
+- [Market]({{site.market}}/index.php?v=d&plugin_id=3447)
 
 # sfrBox(sfrBox)
 
@@ -42,7 +42,7 @@ Plugin pour contrôler sfr/neuf box.
 
 - [Documentation]({{site.baseurl}}/plugin-sfrBox/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-sfrBox/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=3752" target="_blank">Market</a>
+- [Market]({{site.market}}/index.php?v=d&plugin_id=3752)
 
 # DSP-W215 Smartplug(dspsmartplug)
 
@@ -52,57 +52,54 @@ Plugin pour controller les prises dlink DSP-W215 . Le plugin permet l’accès �
 
 - [Documentation]({{site.baseurl}}/plugin-dspsmartplug/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-dspsmartplug/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=3442" target="_blank">Market</a>
+- [Market]({{site.market}}/index.php?v=d&plugin_id=3442)
 
 # VaillantControl(VaillantControl)
 
 [<img width="77" src="{{site.market}}/filestore/market/plugin/images/VaillantControl_icon.png">]({{site.baseurl}}/plugin-VaillantControl/{{page.lang}})
 
-Plugin pour intégrer les thermostats Vaillant/Saunier-Duval(gamme senso/MiSet,MiPro Sense) associés à une passerelle VR92x ou MiLink V3. Ce sont géneralement les équipements qui fonctionnent avec l'app sensoApp ou MiControl. Le plugin permet l'acquisition des informations de votre installation et d'exécuter la majorité des actions disponibles(Consigne, Plannings...). L'actualisation se fait via API .
+Plugin pour intégrer les thermostats Vaillant/Saunier-Duval(gamme senso/MiSet,MiPro Sense) associés à une passerelle VR92x ou MiLink V3. Ce sont généralement les équipements qui fonctionnent avec l'app sensoApp ou MiControl. Le plugin permet l'acquisition des informations de votre installation et d'exécuter la majorité des actions disponibles(Consigne, Plannings...). L'actualisation se fait via API.
 
 - [Documentation]({{site.baseurl}}/plugin-VaillantControl/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-VaillantControl/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=4299" target="_blank">Market</a>
+- [Market]({{site.market}}/index.php?v=d&plugin_id=4299)
 
 # MyVaillant(MyVaillant)
 
-[<img width="77" src="{{site.market}}/filestore/market/plugin/images/MyVaillant_icon.png">]({{site.baseurl}}/VaillantControl/{{page.lang}})
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/MyVaillant_icon.png">]({{site.baseurl}}/plugin-MyVaillant/{{page.lang}})
 
-Plugin pour intégrer les thermostats Vaillant/Saunier-Duval(gamme senso/MiSet,MiPro Sense) associés à une passerelle VR92x ou MiLink V3. Ce sont géneralement les équipements qui fonctionnent avec l'app sensoApp ou MiControl. Le plugin permet l'acquisition des informations de votre installation et d'exécuter la majorité des actions disponibles(Consigne, Plannings...). L'actualisation se fait via API.
+Plugin pour intégrer les thermostats Vaillant/Saunier-Duval(gamme senso/MiSet,MiPro Sense) associés à une passerelle VR92x ou MiLink V3. Ce sont généralement les équipements qui fonctionnent avec l'app sensoApp ou MiControl. Le plugin permet l'acquisition des informations de votre installation et d'exécuter la majorité des actions disponibles(Consigne, Plannings...). L'actualisation se fait via API.
 
 - [Documentation]({{site.baseurl}}/plugin-MyVaillant/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-MyVaillant/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=4404" target="_blank">Market</a>
+- [Market]({{site.market}}/index.php?v=d&plugin_id=4404)
 
 # plugin-grdfConnect
 
-[<img width="77" src="{{site.market}}/filestore/market/plugin/images/grdfConnect_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/grdfConnect_icon.png">]({{site.baseurl}}/plugin-grdfConnect/{{page.lang}})
 
 Plugin ebus grdfConnect.
 
 - [Documentation]({{site.baseurl}}/plugin-grdfConnect/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-grdfConnect/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
 
 # plugin-helloWatt
 
-[<img width="77" src="{{site.market}}/filestore/market/plugin/images/helloWatt_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/helloWatt_icon.png">]({{site.baseurl}}/plugin-helloWatt/{{page.lang}})
 
 Plugin ebus helloWatt.
 
 - [Documentation]({{site.baseurl}}/plugin-helloWatt/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-helloWatt/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
 
 # plugin-ModbusMonitor
 
-[<img width="77" src="{{site.market}}/filestore/market/plugin/images/ModbusMonitor_icon.png">]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/ModbusMonitor_icon.png">]({{site.baseurl}}/plugin-ModbusMonitor/{{page.lang}})
 
 Plugin ebus ModbusMonitor.
 
 - [Documentation]({{site.baseurl}}/plugin-ModbusMonitor/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-ModbusMonitor/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
 
 # Proteo(plugin-proteo)
 
@@ -112,7 +109,6 @@ Plugin permettant d'intégrer la centrale de filtration Comap(Proteo/Komeo).
 
 - [Documentation]({{site.baseurl}}/plugin-proteo/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-proteo/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
 
 # DCH Motion(plugin-dchmotion)
 
@@ -122,7 +118,6 @@ Plugin pour controller les détecteurs dlink DCH-S150 "Motion Sensor".
 
 - [Documentation]({{site.baseurl}}/plugin-dchmotion/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-dchmotion/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
 
 # plugin-jeebusd
 
@@ -132,7 +127,6 @@ Plugin ebus jeebusd.
 
 - [Documentation]({{site.baseurl}}/plugin-jeebusd/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-jeebusd/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=" target="_blank">Market</a>
 
 # Alexa Premium(alexaapiv2)
 
@@ -142,4 +136,4 @@ Plugin Alexa Premium
 
 - [Documentation]({{site.baseurl}}/plugin-alexaapiv2/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-alexaapiv2/{{page.lang}}/changelog)
-- <a href="{{site.market}}/index.php?v=d&plugin_id=4498" target="_blank">Market</a>
+- [Market]({{site.market}}/index.php?v=d&plugin_id=4498)
