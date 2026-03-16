@@ -2,13 +2,14 @@
 layout: default
 title: MCP Server — Plugin MCP pour Jeedom
 lang: fr_FR
+pluginId: mcp_jeedom
 ---
 
-# mcp_jeedom — Pilotez votre domotique avec l'IA
+# Jeedom MCP Server  — Pilotez votre domotique avec l'IA
 
 ## Présentation
 
-Le plugin `mcp_jeedom` transforme votre installation Jeedom en serveur **MCP (Model Context Protocol)**, le standard ouvert d'Anthropic pour connecter les intelligences artificielles à des systèmes externes.
+Le plugin MCP Server(`mcp_jeedom`) transforme votre installation Jeedom en serveur **MCP (Model Context Protocol)**, le standard ouvert d'Anthropic pour connecter les intelligences artificielles à des systèmes externes.
 
 Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout client MCP compatible — peuvent désormais interagir directement et en temps réel avec votre maison connectée.
 
