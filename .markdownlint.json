@@ -1,6 +1,31 @@
 {
-    "default": true,
-    "MD013": false,
-    "MD025": false,
-    "MD033": { "allowed_elements": ["a", "img"] }
+  "default": true,
+  "MD013": false,
+  "MD025": false,
+  "MD033": {
+    "allowed_elements": [
+      "a",
+      "img",
+      "div",
+      "article",
+      "section",
+      "aside",
+      "main",
+      "nav",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "p",
+      "span",
+      "strong",
+      "em",
+      "small",
+      "ul",
+      "ol",
+      "li",
+      "br",
+      "hr"
+    ]
+  }
 }
