@@ -3,63 +3,49 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Documentation Jeedom | {{page.title}}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Documentation Jeedom | {{page.title}}</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/materialize.css">
 	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/styles.css">
 </head>
 
 <body>
-	<div class="navbar-fixed hide-on-print">
+	<div class="navbar-fixed">
 		<nav>
-			<div class="nav-wrapper container"> <a id="logo-container" href="{{site.baseurl}}"
-					class="brand-logo center">
+			<div class="nav-wrapper container">
+				<a href="{{site.baseurl}}" class="brand-logo center">
 					<img src="{{site.market}}/filestore/market/plugin/images/{{page.pluginId}}_icon.png"
-						class="nav-logo" alt="Icon" style="height:50px; margin-top:5px;" />
+						style="height:50px; margin-top:5px;" alt="Logo" />
 				</a>
-
 				<ul class="left hide-on-med-and-down">
 					<li><a href="{{site.baseurl}}">Limad44</a></li>
-					<li class="jeedomcolor">> {{page.title}}</li>
+					<li>> {{page.title}}</li>
 				</ul>
-
 				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-
 				<ul class="right hide-on-med-and-down">
-					<li><a href="{{site.www}}">Site</a></li>
-					<li><a href="{{site.forum}}">Community</a></li>
 					<li class="active"><a href="{{site.doc}}">Doc</a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
 
+	<ul class="side-nav" id="nav-mobile">
+		<li><a href="{{site.baseurl}}">Accueil</a></li>
+	</ul>
+
 	<div id="div_main">
-		<div id="side-nav-doc" class="hide-on-print">
-			<div style="padding: 20px 10px;">
-				<select class="sel_lang browser-default">
-					{% for lang in site.langs %}
-					<option value="{{ lang }}" {% if page.lang==lang %}selected{% endif %}>
-						{{ lang | upcase }}
-					</option>
-					{% endfor %}
-				</select>
-			</div>
+		<aside id="side-nav-doc">
+			<div class="toc-title">{{page.title}}</div>
 			<div id="div_summary"></div>
-		</div>
+		</aside>
 
-		<div id="div_content_wrapper">
-			<i class="material-icons hide-on-print btn-scroll-up" id="bt_up">keyboard_arrow_up</i>
-
-			<div class="hide-on-large-only container" id="div_menuMobile">
-				<div id="div_summary2"></div>
-			</div>
-
+		<main id="div_content_wrapper">
 			<div id="div_content">
 				{{content}}
 			</div>
-		</div>
+			<i class="material-icons btn-scroll-up" id="bt_up">keyboard_arrow_up</i>
+		</main>
 	</div>
 
 	<script src="{{site.baseurl}}/assets/js/jquery-2.1.1.min.js"></script>
@@ -69,24 +55,13 @@
 		$(document).ready(function () {
 			$(".button-collapse").sideNav();
 
-			function init() {
-				var titlePlugin = '{{page.title}}';
-				var target = (window.innerWidth < 992) ? "#div_summary2" : "#div_summary";
+			// Génération du sommaire
+			$('#div_content').toc({
+				renderIn: "#div_summary",
+				selectors: 'h1,h2'
+			});
 
-				$(target).empty().toc({
-					renderIn: target,
-					selectors: 'h1,h2'
-				});
-
-				// Titre du sommaire
-				$(target).prepend('<div class="toc-title">' + titlePlugin + '</div>');
-			}
-
-			init();
-			$(window).resize(init);
-
-			// Gestion scroll-up
-			$('#bt_up').click(function () { $('html, body').animate({ scrollTop: 0 }, 800); });
+			$('#bt_up').click(function () { $('html, body').animate({ scrollTop: 0 }, 400); });
 		});
 	</script>
 </body>
