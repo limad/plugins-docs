@@ -117,8 +117,14 @@ nav ul a,
 nav {
 	color: var(--jeedom-dark);
 	background-color: #fff;
+	line-height: 46px!important;
+	
 }
-
+nav {
+	color: var(--jeedom-dark);
+	background-color: #fff;
+	line-height: 46px!important;
+}
 /* ── Couleurs brand ──────────────────────────────────────────────────────── */
 .jeedomcolorbg {
 	background-color: var(--jeedom-green);
