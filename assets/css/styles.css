@@ -166,7 +166,7 @@ img {
 .nav-breadcrumb .cur {
 	color: var(--text-muted);
 	font-weight: 500;
-	max-width: 220px;
+	max-width: 522px;;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
