@@ -1,84 +1,94 @@
 <!DOCTYPE html>
 <html lang="{{page.lang}}">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Documentation Jeedom | {{page.title}}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/materialize.css">
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/styles.css">
+	<meta charset="UTF-8">
+	<title>Documentation Jeedom | {{page.title}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/materialize.min.css">
+	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/styles.css">
 </head>
+
 <body>
-    <div class="navbar-fixed hide-on-print">
-        <nav>
-            <div class="nav-wrapper container">
-                <a href="{{site.baseurl}}" class="brand-logo center">
-                    <img src="{{site.market}}/filestore/market/plugin/images/{{page.pluginId}}_icon.png" alt="Icon" />
-                </a>
-                <ul class="left hide-on-med-and-down">
-                    <li><a href="{{site.baseurl}}">Limad44</a></li>
-                    <li style="color:var(--jeedom-green)">> {{page.title}}</li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons" style="color:#444">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{site.forum}}">Community</a></li>
-                    <li class="active"><a href="{{site.doc}}">Doc</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+	<div class="navbar-fixed hide-on-print">
+		<nav>
+			<div class="nav-wrapper container">
+				<a href="{{site.baseurl}}" class="brand-logo center">
+					<img src="{{site.market}}/filestore/market/plugin/images/{{page.pluginId}}_icon.png" alt="Icon" />
+				</a>
+				<ul class="left hide-on-med-and-down">
+					<li><a href="{{site.baseurl}}">Limad44</a></li>
+					<li style="color:var(--jeedom-green)">> {{page.title}}</li>
+				</ul>
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons"
+						style="color:#444">menu</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="{{site.forum}}">Community</a></li>
+					<li class="active"><a href="{{site.doc}}">Doc</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
 
-    <ul class="side-nav" id="nav-mobile">
-        <li><a href="{{site.baseurl}}">Accueil</a></li>
-        <li><a href="{{site.forum}}">Community</a></li>
-    </ul>
+	<ul class="side-nav" id="nav-mobile">
+		<li><a href="{{site.baseurl}}">Accueil</a></li>
+		<li><a href="{{site.forum}}">Community</a></li>
+	</ul>
 
-    <div id="div_main">
-        <aside id="side-nav-doc" class="hide-on-print">
-            <div style="padding: 15px;">
-                <select class="sel_lang browser-default">
-                    {% for lang in site.langs %}
-                    <option value="{{ lang }}" {% if page.lang == lang %}selected{% endif %}>{{ lang }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div id="div_summary"></div>
-        </aside>
+	<div id="div_main">
+		<aside id="side-nav-doc" class="hide-on-print">
+			<div style="padding: 15px;">
+				<select class="sel_lang browser-default">
+					{% for lang in site.langs %}
+					<option value="{{ lang }}" {% if page.lang==lang %}selected{% endif %}>{{ lang }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div id="div_summary"></div>
+		</aside>
 
-        <main id="div_content_wrapper">
-            <i class="material-icons btn-scroll-up hide-on-print" id="bt_up">keyboard_arrow_up</i>
-            
-            <div id="div_menuMobile" class="hide-on-large-only container">
-                <div id="div_summary2"></div>
-            </div>
+		<main id="div_content_wrapper">
+			<i class="material-icons btn-scroll-up hide-on-print" id="bt_up">keyboard_arrow_up</i>
 
-            <article id="div_content">
-                {{content}}
-            </article>
-        </main>
-    </div>
+			<div id="div_menuMobile" class="hide-on-large-only container">
+				<div id="div_summary2"></div>
+			</div>
 
-    <script src="{{site.baseurl}}/assets/js/jquery-2.1.1.min.js"></script>
-    <script src="{{site.baseurl}}/assets/js/materialize.min.js"></script>
-    <script src="{{site.baseurl}}/assets/js/jquery.toc.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".button-collapse").sideNav();
-            
-            function buildTOC() {
-                var container = (window.innerWidth < 992) ? "#div_summary2" : "#div_summary";
-                $(container).empty().toc({
-                    renderIn: container,
-                    selectors: 'h1,h2'
-                });
-                $(container).prepend('<h2 class="toc-title">{{page.title}}</h2>');
-            }
+			<article id="div_content">
+				{{content}}
+			</article>
+		</main>
+	</div>
 
-            buildTOC();
-            $(window).resize(buildTOC);
+	<script src="{{site.baseurl}}/assets/js/jquery-2.1.1.min.js" defer></script>
+	<script src="{{site.baseurl}}/assets/js/materialize.min.js" defer></script>
+	<script src="{{site.baseurl}}/assets/js/jquery.toc.js" defer></script>
+	<script>
+		$(function () {
+			$(".button-collapse").sideNav();
 
-            $('#bt_up').click(function(){ $('html, body').animate({scrollTop : 0}, 400); });
-        });
-    </script>
+			var resizeTimer;
+			function buildTOC() {
+				var container = (window.innerWidth < 992) ? "#div_summary2" : "#div_summary";
+				$(container).empty().toc({
+					renderIn: container,
+					selectors: 'h1,h2'
+				});
+				$(container).prepend('<h2 class="toc-title">{{page.title}}</h2>');
+			}
+
+			buildTOC();
+			$(window).resize(function () {
+				clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(buildTOC, 150);
+			});
+
+			$('#bt_up').on('click', function () {
+				$('html, body').animate({ scrollTop: 0 }, 400);
+			});
+		});
+	</script>
 </body>
+
 </html>

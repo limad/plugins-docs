@@ -13,7 +13,7 @@
 // Reset
 @import "components/normalize";
 
-// components
+// components (only include components used by the docs site)
 @import "components/global";
 @import "components/icons-material-design";
 @import "components/grid";
@@ -21,22 +21,22 @@
 @import "components/roboto";
 @import "components/typography";
 @import "components/cards";
-@import "components/toast";
-@import "components/tabs";
-@import "components/tooltip";
+// @import "components/toast";        // disabled: not currently used in docs
+// @import "components/tabs";         // disabled: not currently used in docs
+// @import "components/tooltip";      // disabled: not currently used in docs
 @import "components/buttons";
 @import "components/dropdown";
 @import "components/waves";
-@import "components/modal";
-@import "components/collapsible";
-@import "components/chips";
-@import "components/materialbox";
+// @import "components/modal";        // disabled: not currently used in docs
+// @import "components/collapsible";  // disabled: not currently used in docs
+// @import "components/chips";        // disabled: not currently used in docs
+// @import "components/materialbox";  // disabled: not currently used in docs
 @import "components/forms/forms";
 @import "components/table_of_contents";
 @import "components/sideNav";
-@import "components/preloader";
-@import "components/slider";
-@import "components/carousel";
-@import "components/date_picker/default";
-@import "components/date_picker/default.date";
-@import "components/date_picker/default.time";
+// @import "components/preloader";    // disabled: not currently used in docs
+// @import "components/slider";       // disabled: not currently used in docs
+// @import "components/carousel";     // disabled: not currently used in docs
+// @import "components/date_picker/default";      // disabled: not currently used in docs
+// @import "components/date_picker/default.date"; // disabled: not currently used in docs
+// @import "components/date_picker/default.time"; // disabled: not currently used in docs
