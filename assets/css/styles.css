@@ -2,12 +2,13 @@
 	--jeedom-green: #95C12B;
 	--light-gray: #F3F3F3;
 	--sidebar-width: 350px;
-	--content-padding: 400px;
 }
 
+/* Global box model */
 html,
 body {
 	box-sizing: border-box;
+	margin: 0;
 }
 
 *,
@@ -17,6 +18,7 @@ body {
 }
 
 /* Headings */
+
 h1 {
 	font-size: 2.5rem;
 }
@@ -38,6 +40,7 @@ h5 {
 }
 
 /* Shadows */
+
 .z-depth-1,
 nav,
 .card-panel,
@@ -52,10 +55,45 @@ nav,
 	box-shadow: 0 2px 5px 0 rgba(149, 193, 43, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-/* Content Layout */
-#div_content {
-	padding-left: var(--content-padding);
+/* Navbar */
+
+nav {
+	background-color: #fff;
+	padding-left: var(--sidebar-width);
 }
+
+nav ul a {
+	color: #444;
+}
+
+/* Layout principal */
+
+#div_main {
+	display: flex;
+}
+
+/* Sidebar */
+
+#side-nav {
+	background-color: var(--light-gray);
+	position: fixed;
+	top: 64px;
+	left: 0;
+	width: var(--sidebar-width);
+	height: calc(100vh - 64px);
+	overflow-y: auto;
+	z-index: 2;
+}
+
+/* Contenu */
+
+#div_content {
+	padding: 20px;
+	margin-left: var(--sidebar-width);
+	width: 100%;
+}
+
+/* Listes */
 
 #div_content ul {
 	list-style-type: initial;
@@ -67,19 +105,8 @@ nav,
 	margin-left: 20px;
 }
 
-/* Sidebar */
-#side-nav {
-	background-color: var(--light-gray);
-	z-index: 2;
-	top: 60px;
-	width: var(--sidebar-width);
-}
+/* Typographie navigation */
 
-#div_menuMobile {
-	background-color: var(--light-gray);
-}
-
-/* Typography & Navigation */
 .toctext {
 	color: #000;
 	font-size: 0.85rem;
@@ -89,24 +116,12 @@ nav,
 	color: var(--jeedom-green);
 }
 
-nav ul a,
-nav {
-	color: #444;
-	background-color: #fff;
-}
-
 #side-nav a {
 	line-height: 24px;
 }
 
-.toclevel-1 {
-	vertical-align: middle;
-}
-
 .toclevel-1 a {
 	padding-left: 10px;
-	height: 100%;
-	vertical-align: middle;
 }
 
 .toclevel-2 {
@@ -117,7 +132,8 @@ nav {
 	font-weight: bold;
 }
 
-/* Theme Colors */
+/* Couleurs thème */
+
 .jeedomcolorbg {
 	background-color: var(--jeedom-green);
 }
@@ -130,8 +146,8 @@ nav {
 	color: #85a835;
 }
 
-.dropdown-content li > a,
-.dropdown-content li > span {
+.dropdown-content li>a,
+.dropdown-content li>span {
 	color: var(--jeedom-green);
 }
 
@@ -139,7 +155,8 @@ nav {
 	background-color: rgba(149, 193, 43, 0.65);
 }
 
-/* Scroll to Top Button */
+/* Scroll button */
+
 .btn-scroll-up {
 	position: fixed;
 	bottom: 10px;
@@ -148,44 +165,64 @@ nav {
 	font-size: 3rem;
 }
 
-/* Language Icon */
+/* Language icon */
+
 .lang-icon {
 	position: relative;
 	top: 15px;
 }
 
-/* Table of Contents Title */
-.toc-title {
-	padding-left: 5px;
-}
+/* Sidebar summary */
 
-/* Sidebar Summary */
 .summary-sidebar {
 	margin-top: -45px;
 	padding-bottom: 45px;
 }
 
-/* Navigation Logo */
+/* Navigation logo */
+
 .nav-logo {
 	height: 50px;
 	margin-top: 5px;
 }
 
-/* Media Queries */
+/* Mobile */
+
 @media only screen and (max-width: 992px) {
-	#div_content {
+
+	nav {
 		padding-left: 0;
 	}
+
+	#side-nav {
+		position: relative;
+		width: 100%;
+		height: auto;
+		top: 0;
+	}
+
+	#div_content {
+		margin-left: 0;
+		padding: 15px;
+	}
+
+	#div_main {
+		display: block;
+	}
 }
+
+/* Container Materialize */
 
 @media only screen and (min-width: 993px) {
 	.container {
-		width: 85%;
+		width: 90%;
 	}
 }
 
-/* Print Styles */
+/* Print */
+
 @media print {
+
 	.hide-on-print {
 		height: 0;
 		visibility: hidden;
@@ -196,6 +233,7 @@ nav {
 	}
 
 	#div_content {
-		padding-left: 0;
+		margin-left: 0;
+		padding: 0;
 	}
 }
