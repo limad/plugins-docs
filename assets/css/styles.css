@@ -1,187 +1,94 @@
-/* ==========================================================================
-   1. VARIABLES & RESET
-   ========================================================================== */
 :root {
-	--jeedom-green: #95C12B;
-	--light-gray: #F3F3F3;
-	--sidebar-width: 300px;
-	--nav-height: 64px;
+    --jeedom-green: #95C12B;
+    --light-gray: #F3F3F3;
+    --sidebar-width: 300px;
 }
 
-/* Modèle de boîte global pour éviter les débordements */
-html,
-body {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	font-family: "Roboto", sans-serif;
+/* Base */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+*, *:before, *:after { box-sizing: inherit; }
 
-*,
-*::before,
-*::after {
-	box-sizing: inherit;
-}
-
-/* ==========================================================================
-   2. NAVIGATION (NAVBAR)
-   ========================================================================== */
+/* Navbar */
 nav {
-	background-color: #fff !important;
-	height: var(--nav-height);
-	line-height: var(--nav-height);
-	z-index: 1000;
-	border-bottom: 1px solid #e0e0e0;
+    background-color: #fff !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
 }
 
-/* Aligne les éléments de la nav avec la zone de texte sur grand écran */
+/* Alignement du contenu de la nav sur Desktop */
 @media only screen and (min-width: 993px) {
-	nav .nav-wrapper {
-		padding-left: var(--sidebar-width);
-	}
+    nav .nav-wrapper {
+        padding-left: var(--sidebar-width);
+    }
 }
 
-nav ul a {
-	color: #444 !important;
-}
+nav ul a { color: #444 !important; }
 
-.nav-logo {
-	height: 50px;
-	margin-top: 7px;
-}
-
-/* ==========================================================================
-   3. STRUCTURE DU LAYOUT (FLEXBOX)
-   ========================================================================== */
+/* Layout Principal */
 #div_main {
-	display: flex;
-	padding-top: var(--nav-height);
-	/* Empêche le contenu d'être caché par la nav fixe */
-	min-height: 100vh;
+    display: flex;
+    padding-top: 64px; /* Hauteur de la nav */
+    min-height: 100vh;
 }
 
-/* Sidebar de navigation (Sommaire) */
+/* Sidebar de Documentation (Renommée pour éviter conflit Materialize) */
 #side-nav-doc {
-	background-color: var(--light-gray);
-	position: fixed;
-	top: var(--nav-height);
-	left: 0;
-	width: var(--sidebar-width);
-	height: calc(100vh - var(--nav-height));
-	overflow-y: auto;
-	z-index: 10;
-	border-right: 1px solid #ddd;
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    background-color: var(--light-gray);
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    z-index: 10;
 }
 
 /* Zone de contenu principale */
 #div_content_wrapper {
-	flex: 1;
-	margin-left: var(--sidebar-width);
-	/* Laisse la place pour la sidebar fixe */
-	min-width: 0;
-	/* Important pour le responsive flex */
-	background-color: #fff;
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    padding: 20px 40px;
+    min-width: 0;
 }
 
-#div_content {
-	padding: 30px 50px;
-	max-width: 1100px;
-	margin: 0 auto;
-}
-
-/* ==========================================================================
-   4. SOMMAIRE GÉNÉRÉ (TOC)
-   ========================================================================== */
+/* Style du Sommaire (TOC) */
 .toc-title {
-	font-size: 1.2rem;
-	color: var(--jeedom-green);
-	padding: 20px;
-	font-weight: bold;
-	border-bottom: 1px solid #ddd;
-	margin: 0;
-	text-transform: uppercase;
+    font-size: 1.2rem;
+    padding: 20px;
+    color: var(--jeedom-green);
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
 }
 
-#div_summary ul {
-	padding: 0;
-	margin: 0;
-}
-
-#div_summary li {
-	list-style: none;
-}
-
+#div_summary ul { margin: 0; padding: 0; }
+#div_summary li { list-style: none; }
 #div_summary a {
-	display: block;
-	padding: 10px 20px;
-	color: #555;
-	font-size: 0.9rem;
-	text-decoration: none;
-	border-left: 4px solid transparent;
-	transition: all 0.2s;
-}
-
-#div_summary a:hover {
-	background-color: #eee;
+    display: block;
+    padding: 10px 20px;
+    color: #555;
+    border-left: 4px solid transparent;
+    text-decoration: none;
 }
 
 #div_summary a.active {
-	background-color: #fff;
-	color: var(--jeedom-green);
-	border-left-color: var(--jeedom-green);
-	font-weight: bold;
+    background-color: #fff;
+    color: var(--jeedom-green);
+    border-left-color: var(--jeedom-green);
+    font-weight: bold;
 }
 
-/* ==========================================================================
-   5. ÉLÉMENTS SPÉCIFIQUES & RESPONSIVE
-   ========================================================================== */
-.jeedomcolor {
-	color: var(--jeedom-green);
-}
-
-.jeedomcolorbg {
-	background-color: var(--jeedom-green) !important;
-}
-
-/* Bouton Scroll Up */
-.btn-scroll-up {
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
-	cursor: pointer;
-	font-size: 3rem;
-	color: var(--jeedom-green);
-	z-index: 100;
-}
-
-/* Tableaux */
-#div_content table {
-	width: 100%;
-	margin: 20px 0;
-}
-
-/* Mobile (Tablettes et Téléphones) */
+/* Mobile */
 @media only screen and (max-width: 992px) {
-	#div_main {
-		display: block;
-		/* Empilement vertical */
-	}
-
-	#side-nav-doc {
-		display: none;
-		/* Cache la sidebar fixe */
-	}
-
-	#div_content_wrapper {
-		margin-left: 0;
-	}
-
-	nav .nav-wrapper {
-		padding-left: 0;
-	}
-
-	#div_menuMobile {
-		padding: 15px;
-		background: var(--light-gray);
-	}
+    #div_main { display: block; padding-top: 56px; }
+    #side-nav-doc { display: none; }
+    #div_content_wrapper { margin-left: 0; padding: 20px; }
+    nav .nav-wrapper { padding-left: 0; }
 }

@@ -22,17 +22,14 @@
 					<li><a href="{{site.baseurl}}">Limad44</a></li>
 					<li>> {{page.title}}</li>
 				</ul>
-				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons"
+						style="color:#444">menu</i></a>
 				<ul class="right hide-on-med-and-down">
 					<li class="active"><a href="{{site.doc}}">Doc</a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
-
-	<ul class="side-nav" id="nav-mobile">
-		<li><a href="{{site.baseurl}}">Accueil</a></li>
-	</ul>
 
 	<div id="div_main">
 		<aside id="side-nav-doc">
@@ -44,7 +41,6 @@
 			<div id="div_content">
 				{{content}}
 			</div>
-			<i class="material-icons btn-scroll-up" id="bt_up">keyboard_arrow_up</i>
 		</main>
 	</div>
 
@@ -55,13 +51,11 @@
 		$(document).ready(function () {
 			$(".button-collapse").sideNav();
 
-			// Génération du sommaire
+			// Génération automatique du sommaire
 			$('#div_content').toc({
 				renderIn: "#div_summary",
 				selectors: 'h1,h2'
 			});
-
-			$('#bt_up').click(function () { $('html, body').animate({ scrollTop: 0 }, 400); });
 		});
 	</script>
 </body>
