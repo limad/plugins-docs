@@ -3,90 +3,159 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Documentation Jeedom | {{page.title}}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Documentation {{ page.title }} — Limad44 Jeedom plugins">
+	<title>{{ page.title }} — Limad44 Documentation</title>
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Materialize -->
 	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/materialize.min.css">
+
+	<!-- Custom theme -->
 	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/styles.css">
 </head>
 
 <body>
+
+	<!-- ── Navbar ── -->
 	<div class="navbar-fixed hide-on-print">
 		<nav>
 			<div class="nav-wrapper container">
 				<a href="{{site.baseurl}}" class="brand-logo center">
-					<img src="{{site.market}}/filestore/market/plugin/images/{{page.pluginId}}_icon.png" alt="Icon" />
+					<img src="{{site.market}}/filestore/market/plugin/images/{{page.pluginId}}_icon.png"
+						alt="{{ page.pluginId }}" class="responsive-img" />
 				</a>
+
 				<ul class="left hide-on-med-and-down">
 					<li><a href="{{site.baseurl}}">Limad44</a></li>
-					<li style="color:var(--jeedom-green)">> {{page.title}}</li>
+					<li style="color:var(--text-dim);padding:0 .4rem;">/</li>
+					<li style="color:var(--text-muted);font-weight:500;">{{ page.title }}</li>
 				</ul>
+
 				<ul class="right hide-on-med-and-down">
 					<li><a href="{{site.forum}}">Community</a></li>
-					<li class="active"><a href="{{site.doc}}">Doc</a></li>
+					<li class="active"><a href="{{site.doc}}" style="color:var(--green)!important;">Doc</a></li>
 				</ul>
+
+				<a href="#" data-activates="nav-mobile"
+					class="button-collapse btn-floating btn-large waves-effect waves-light jeedomcolorbg">
+					<i class="material-icons">menu</i>
+				</a>
 			</div>
 		</nav>
 	</div>
 
+	<!-- Mobile side-nav -->
 	<ul class="side-nav" id="nav-mobile">
 		<li><a href="{{site.baseurl}}">Accueil</a></li>
 		<li><a href="{{site.forum}}">Community</a></li>
+		<li><a href="{{site.doc}}">Doc</a></li>
 	</ul>
 
+	<!-- ── Main layout ── -->
 	<div id="div_main">
-		<aside id="side-nav-doc" class="hide-on-print">
-			<div style="padding: 15px;">
-				<select class="sel_lang browser-default">
-					{% for lang in site.langs %}
-					<option value="{{ lang }}" {% if page.lang==lang %}selected{% endif %}>{{ lang }}</option>
-					{% endfor %}
-				</select>
+
+		<!-- Sidebar -->
+		<aside id="side-nav-doc" class="side-nav fixed hide-on-print" id="side-nav">
+
+			<!-- Language selector -->
+			<div style="padding:.9rem 1rem .6rem;">
+				<div style="display:flex;align-items:center;gap:.5rem;">
+					<i class="material-icons" style="color:var(--text-dim);font-size:1.1rem;">language</i>
+					<select class="sel_lang browser-default" style="flex:1;">
+						{% for lang in site.langs %}
+						<option value="{{ lang }}" {% if page.lang==lang %}selected{% endif %}>
+							{% if lang == "fr_FR" %}Français
+							{% elsif lang == "en_US" %}English
+							{% elsif lang == "ru_RU" %}Русский
+							{% elsif lang == "de_DE" %}Deutsch
+							{% elsif lang == "es_ES" %}Español
+							{% elsif lang == "it_IT" %}Italiano
+							{% elsif lang == "id_ID" %}Indonesia
+							{% else %}{{ lang }}{% endif %}
+						</option>
+						{% endfor %}
+					</select>
+				</div>
 			</div>
+
+			<!-- TOC -->
 			<div id="div_summary"></div>
 		</aside>
 
+		<!-- Content -->
 		<main id="div_content_wrapper">
-			<i class="material-icons btn-scroll-up hide-on-print" id="bt_up">keyboard_arrow_up</i>
 
+			<!-- Back to top -->
+			<i class="material-icons hide-on-print" id="bt_up">keyboard_arrow_up</i>
+
+			<!-- Mobile TOC -->
 			<div id="div_menuMobile" class="hide-on-large-only container">
 				<div id="div_summary2"></div>
 			</div>
 
+			<!-- Page content -->
 			<article id="div_content">
 				{{content}}
 			</article>
+
 		</main>
 	</div>
 
+	<!-- Scripts -->
 	<script src="{{site.baseurl}}/assets/js/jquery-2.1.1.min.js" defer></script>
 	<script src="{{site.baseurl}}/assets/js/materialize.min.js" defer></script>
 	<script src="{{site.baseurl}}/assets/js/jquery.toc.js" defer></script>
+
 	<script>
 		$(function () {
 			$(".button-collapse").sideNav();
 
-			var resizeTimer;
+			var title = '{{page.title}}';
+			document.title = title + ' — Limad44 Documentation';
+
 			function buildTOC() {
-				var container = (window.innerWidth < 992) ? "#div_summary2" : "#div_summary";
-				$(container).empty().toc({
-					renderIn: container,
-					selectors: 'h1,h2'
-				});
-				$(container).prepend('<h2 class="toc-title">{{page.title}}</h2>');
+				var container = (window.innerWidth < 992) ? '#div_summary2' : '#div_summary';
+				$(container).empty();
+				$('#div_content').toc({ renderIn: container, selectors: 'h1,h2' });
+
+				var titlePlugin = title.charAt(0).toUpperCase() + title.slice(1);
+				$(container).prepend(
+					'<div style="padding:.9rem 1.1rem .3rem;font-size:.68rem;font-weight:700;' +
+					'text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);' +
+					'border-bottom:1px solid var(--border-muted);margin-bottom:.3rem;">' +
+					titlePlugin + '</div>'
+				);
 			}
 
 			buildTOC();
-			$(window).resize(function () {
+
+			var resizeTimer;
+			$(window).on('resize orientationchange', function () {
 				clearTimeout(resizeTimer);
 				resizeTimer = setTimeout(buildTOC, 150);
 			});
 
+			// Language switch
+			$('.sel_lang').on('change', function () {
+				var match = /\/([a-z]{2}_[A-Z]{2})\//.exec(window.location.href);
+				if (match) {
+					var url = window.location.href.replace(match[1], $(this).val());
+					window.location.href = url;
+				}
+			});
+
+			// Back to top
 			$('#bt_up').on('click', function () {
-				$('html, body').animate({ scrollTop: 0 }, 400);
+				$('html, body').animate({ scrollTop: 0 }, 350);
 			});
 		});
 	</script>
+
 </body>
 
 </html>

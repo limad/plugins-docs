@@ -5,15 +5,13 @@ lang: fr_FR
 pluginId: mcp_jeedom
 ---
 
-# Jeedom MCP Server  — Pilotez votre domotique avec l'IA
-
-## Présentation
+# Présentation
 
 Le plugin MCP Server(`mcp_jeedom`) transforme votre installation Jeedom en serveur **MCP (Model Context Protocol)**, le standard ouvert d'Anthropic pour connecter les intelligences artificielles à des systèmes externes.
 
 Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout client MCP compatible — peuvent désormais interagir directement et en temps réel avec votre maison connectée.
 
-### Ce que l'IA peut faire dans votre maison
+## Ce que l'IA peut faire dans votre maison
 
 - Consulter l'état complet de la maison en un seul appel
 - Contrôler lumières, volets, thermostats, serrures et scénarios
@@ -23,7 +21,7 @@ Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout c
 - Envoyer des notifications via vos plugins (Telegram, Mail…)
 - Comprendre et déboguer vos scénarios d'automatisation
 
-### Fonctionnalités
+## Fonctionnalités
 
 - 🤖 Transport **Streamable HTTP** (standard MCP 2025) et SSE legacy
 - 🏠 Plus de **35 outils** couvrant l'ensemble de l'API Jeedom
@@ -35,7 +33,7 @@ Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout c
 - 🗂️ Ressources contextuelles MCP : carte des IDs, profil maison, guide opérationnel
 - 🌐 Accès local (LAN) ou externe sécurisé (Cloudflare Tunnel, reverse proxy)
 
-### Exemples d'utilisation
+## Exemples d'utilisation
 
 > *« Quel est l'état de la maison ? »* — résumé complet en quelques secondes.
 
@@ -47,7 +45,7 @@ Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout c
 
 > *« Explique-moi le scénario Alarme nuit et dis-moi s'il fonctionne bien. »* — lecture et diagnostic du code.
 
-### Sécurité et contrôle
+## Sécurité et contrôle
 
 Vous définissez précisément ce que l'IA peut voir et faire. Le plugin ne fait jamais rien sans que vous ayez explicitement activé la permission correspondante. Chaque action est tracée dans le journal d'audit.
 
@@ -55,33 +53,15 @@ Vous définissez précisément ce que l'IA peut voir et faire. Le plugin ne fait
 
 ---
 
-## Documentation
+# 1. Qu'est-ce que MCP ?
 
-> Documentation technique et guide d'utilisation
-
----
-
-## Table des matières
-
-1. [Qu'est-ce que MCP ?](#1-quest-ce-que-mcp-)
-2. [Rôle du plugin mcp_jeedom](#2-rôle-du-plugin-mcp_jeedom)
-3. [Capacités disponibles](#3-capacités-disponibles)
-4. [Installation et configuration](#4-installation-et-configuration)
-5. [Tutoriel d'utilisation](#5-tutoriel-dutilisation)
-6. [Exemples d'utilisation](#6-exemples-dutilisation)
-7. [Sécurité](#7-sécurité)
-
----
-
-## 1. Qu'est-ce que MCP ?
-
-### 1.1 Définition
+## 1.1 Définition
 
 **MCP (Model Context Protocol)** est un protocole ouvert standardisé, publié par Anthropic en 2024, qui définit comment un modèle de langage (LLM) communique avec des outils et des sources de données externes.
 
 Avant MCP, chaque intégration LLM ↔ outil était développée sur-mesure, rendant l'écosystème fragmenté et difficile à maintenir. MCP introduit un contrat commun : n'importe quel client MCP (Claude Desktop, Cursor, Continue…) peut se connecter à n'importe quel serveur MCP sans code spécifique de chaque côté.
 
-### 1.2 Architecture
+## 1.2 Architecture
 
 MCP repose sur trois composants :
 
@@ -94,7 +74,7 @@ MCP repose sur trois composants :
 > Le serveur MCP est simplement un pont entre le LLM et l'API Jeedom.  
 > Toutes les décisions intelligentes restent côté LLM ; le serveur n'est qu'un exécuteur.
 
-### 1.3 Protocole de communication
+## 1.3 Protocole de communication
 
 La communication suit **JSON-RPC 2.0** sur le transport choisi. Un échange typique :
 
@@ -105,9 +85,9 @@ La communication suit **JSON-RPC 2.0** sur le transport choisi. Un échange typi
 
 ---
 
-## 2. Rôle du plugin mcp_jeedom
+# 2. Rôle du plugin mcp_jeedom
 
-### 2.1 Vue d'ensemble
+## 2.1 Vue d'ensemble
 
 `mcp_jeedom` est un plugin Jeedom qui démarre un **serveur MCP en arrière-plan** (daemon Python). Ce serveur traduit les appels MCP en requêtes vers l'API JSON-RPC interne de Jeedom, permettant à un LLM de :
 
@@ -118,7 +98,7 @@ La communication suit **JSON-RPC 2.0** sur le transport choisi. Un échange typi
 - Détecter les changements récents et l'état des batteries
 - Accéder aux logs et fichiers du serveur *(optionnel, sécurisé)*
 
-### 2.2 Stack technique
+## 2.2 Stack technique
 
 | Composant | Technologie |
 |---|---|
@@ -131,13 +111,13 @@ La communication suit **JSON-RPC 2.0** sur le transport choisi. Un échange typi
 
 ---
 
-## 3. Capacités disponibles
+# 3. Capacités disponibles
 
-### 3.1 Outils (Tools)
+## 3.1 Outils (Tools)
 
 Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 
-#### Vue d'ensemble optimisée *(nouveaux outils recommandés en premier)*
+### Vue d'ensemble optimisée *(nouveaux outils recommandés en premier)*
 
 | Outil | Description |
 |---|---|
@@ -151,7 +131,7 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 
 > 💡 **Conseil** : commencer par `get_full_state` pour une vue complète, puis utiliser `find_command` pour cibler une commande précise avant d'agir.
 
-#### Informations système
+### Informations système
 
 | Outil | Description |
 |---|---|
@@ -164,7 +144,7 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 | `get_timeline` | Événements récents de la timeline Jeedom |
 | `invalidate_cache` | Vide le cache interne du serveur MCP |
 
-#### Équipements et pièces
+### Équipements et pièces
 
 | Outil | Description |
 |---|---|
@@ -179,7 +159,7 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 | `get_dead_devices` | Équipements injoignables ou en erreur |
 | `get_command_history` | Historique des valeurs d'une commande sur une période |
 
-#### Scénarios
+### Scénarios
 
 | Outil | Description |
 |---|---|
@@ -190,7 +170,7 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 | `get_scenario_code` | **Lit le code et la logique complète d'un scénario** (pour comprendre/déboguer) |
 | `get_scenario_log` | Log d'exécution d'un scénario *(optionnel — voir §3.1 accès fichiers)* |
 
-#### Variables et interaction
+### Variables et interaction
 
 | Outil | Description |
 |---|---|
@@ -199,7 +179,7 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 | `set_variable` | Définit la valeur d'une variable globale |
 | `ask_jeedom` | Commande en langage naturel via l'API interact Jeedom |
 
-#### Accès fichiers *(optionnels, sécurisés)*
+### Accès fichiers *(optionnels, sécurisés)*
 
 > ⚠️ Ces outils sont **désactivés par défaut**. Chaque option doit être activée explicitement dans la page de configuration du plugin.
 
@@ -213,7 +193,7 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 | `restart_jeedom` | Redémarrage Jeedom *(risque élevé)* | Redémarre le service Jeedom |
 | `execute_local` | Exécution locale *(risque élevé)* | Exécute une commande shell sur le serveur (avec garde-fous) |
 
-#### Caméras *(optionnel)*
+### Caméras *(optionnel)*
 
 > Nécessite le **plugin Camera** installé et configuré dans Jeedom.
 
@@ -222,7 +202,7 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 | `list_cameras` | Liste les caméras disponibles avec leurs IDs |
 | `get_camera_snapshot` | Capture un snapshot et le retourne comme image analysable directement par Claude (présence, scène, objet…) |
 
-#### Notifications sortantes *(optionnel)*
+### Notifications sortantes *(optionnel)*
 
 | Outil | Description |
 |---|---|
@@ -231,11 +211,11 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 
 ---
 
-### 3.2 Ressources (Resources)
+## 3.2 Ressources (Resources)
 
 Les ressources MCP sont des URI lisibles directement par le client, sans appel d'outil explicite. Certains clients les affichent dans un panneau latéral ou les injectent automatiquement dans le contexte.
 
-#### Ressources de contexte IA *(nouvelles)*
+### Ressources de contexte IA *(nouvelles)*
 
 | URI | Contenu | Usage recommandé |
 |---|---|---|
@@ -245,7 +225,7 @@ Les ressources MCP sont des URI lisibles directement par le client, sans appel d
 | `jeedom://full_map` | Carte pièces→équipements→commandes avec IDs et generic_type | Index complet pour trouver tout cmd_id sans appel supplémentaire |
 | `jeedom://generic_types` | Index des commandes groupées par LIGHT_ON / TEMPERATURE / POWER… | Trouver instantanément tous les capteurs d'un type |
 
-#### Ressources état maison
+### Ressources état maison
 
 | URI | Contenu |
 |---|---|
@@ -260,7 +240,7 @@ Les ressources MCP sont des URI lisibles directement par le client, sans appel d
 
 ---
 
-### 3.3 Generic types — intelligence sémantique
+## 3.3 Generic types — intelligence sémantique
 
 Chaque commande Jeedom dispose d'un `generic_type` qui décrit son rôle fonctionnel indépendamment de son nom. Le plugin expose ce champ partout, permettant à l'IA de raisonner sémantiquement.
 
@@ -278,7 +258,7 @@ Exemple d'utilisation : `find_command(generic_type="LIGHT_ON", room_name="salon"
 
 ---
 
-### 3.4 Comparaison avec d'autres serveurs MCP domotique
+## 3.4 Comparaison avec d'autres serveurs MCP domotique
 
 | Capacité | **mcp_jeedom** | HA officiel | HA communauté | Gladys |
 |---|:---:|:---:|:---:|:---:|
@@ -306,22 +286,22 @@ Exemple d'utilisation : `find_command(generic_type="LIGHT_ON", room_name="salon"
 
 ---
 
-## 4. Installation et configuration
+# 4. Installation et configuration
 
-### 4.1 Installation
+## 4.1 Installation
 
 1. Dans Jeedom, aller dans **Plugins → Gestion des plugins → Installer depuis GitHub**.
 2. **Installer les dépendances** depuis la page du plugin (Python venv + librairies MCP).
 3. Démarrer le daemon depuis la page de configuration.
 4. Vérifier que le statut affiche **✓ Actif**.
 
-### 4.2 Prérequis côté client
+## 4.2 Prérequis côté client
 
 - Le port **8765** (ou celui configuré) doit être accessible depuis le poste client.
 - Pour le transport **Streamable HTTP** (défaut) : aucun outil supplémentaire requis — connexion directe.
 - Pour le transport **SSE** (legacy) : `uvx` ou `npx` pour lancer `mcp-proxy`.
 
-### 4.3 Configuration Claude Desktop
+## 4.3 Configuration Claude Desktop
 
 Éditez le fichier `claude_desktop_config.json` :
 
@@ -333,7 +313,7 @@ Exemple d'utilisation : `find_command(generic_type="LIGHT_ON", room_name="salon"
 
 ---
 
-#### Méthode 1 — Accès local LAN (Streamable HTTP — recommandé)
+### Méthode 1 — Accès local LAN (Streamable HTTP — recommandé)
 
 Connexion directe sans outil intermédiaire. Nécessite que le poste client soit sur le même réseau que Jeedom.
 
@@ -355,7 +335,7 @@ Connexion directe sans outil intermédiaire. Nécessite que le poste client soit
 
 ---
 
-#### Méthode 2 — Accès local LAN (SSE legacy)
+### Méthode 2 — Accès local LAN (SSE legacy)
 
 Si vous utilisez encore le transport SSE (non recommandé pour les nouveaux déploiements) :
 
@@ -375,7 +355,7 @@ Si vous utilisez encore le transport SSE (non recommandé pour les nouveaux dép
 
 ---
 
-#### Méthode 3 — Accès externe via `jeemcp_proxy.php` + token Bearer
+### Méthode 3 — Accès externe via `jeemcp_proxy.php` + token Bearer
 
 Le proxy PHP intégré au plugin gère l'authentification par token et supporte les deux transports. C'est la méthode recommandée pour tout accès depuis l'extérieur du réseau local.
 
@@ -421,7 +401,7 @@ Le proxy PHP intégré au plugin gère l'authentification par token et supporte 
 
 ---
 
-#### Méthode 4 — Accès externe via Cloudflare Tunnel *(sans ouverture de port)*
+### Méthode 4 — Accès externe via Cloudflare Tunnel *(sans ouverture de port)*
 
 Cloudflare Tunnel crée un tunnel chiffré entre votre serveur Jeedom et les serveurs Cloudflare, sans ouvrir aucun port entrant sur votre box/routeur.
 
@@ -433,7 +413,7 @@ Une fois le tunnel configuré, utilisez la Méthode 3 avec l'URL Cloudflare Tunn
 
 ---
 
-#### Méthode 5 — Accès externe via reverse proxy nginx/Apache
+### Méthode 5 — Accès externe via reverse proxy nginx/Apache
 
 Si vous gérez déjà un serveur web sur votre réseau (nginx, Apache, Caddy), vous pouvez proxifier directement le daemon MCP :
 
@@ -454,7 +434,7 @@ Voir §7.3 pour la configuration complète.
 
 ---
 
-#### Récapitulatif des méthodes
+### Récapitulatif des méthodes
 
 | Méthode | Réseau requis | Auth | Complexité | Recommandé |
 |---|---|---|---|---|
@@ -464,7 +444,7 @@ Voir §7.3 pour la configuration complète.
 | 4 — Cloudflare Tunnel | Internet | Bearer token | ⭐⭐ | ✅ Sans ouverture de port |
 | 5 — Reverse proxy nginx | Internet | Basic Auth | ⭐⭐⭐ | Infra existante |
 
-### 4.4 Options de sécurité et permissions
+## 4.4 Options de sécurité et permissions
 
 Dans la page de configuration du plugin :
 
@@ -484,7 +464,7 @@ Dans la page de configuration du plugin :
 
 > ℹ️ Après toute modification des options, **redémarrez le daemon** pour appliquer les changements.
 
-### 4.5 Profil maison
+## 4.5 Profil maison
 
 Le profil maison est un fichier JSON (`resources/data/home_profile.json`) lu à chaque session par l'IA pour personnaliser ses réponses : noms des habitants, animaux, horaires habituels, canal de notification par défaut…
 
@@ -501,7 +481,7 @@ Exemple :
 
 L'IA accède à ce profil via la ressource `jeedom://home_profile`.
 
-### 4.6 Whitelist des équipements
+## 4.6 Whitelist des équipements
 
 La whitelist permet de limiter les équipements et commandes accessibles par l'IA. Elle s'édite via **Plugins → mcp_jeedom → Whitelist**.
 
@@ -512,9 +492,9 @@ La whitelist permet de limiter les équipements et commandes accessibles par l'I
 
 ---
 
-## 5. Tutoriel d'utilisation
+# 5. Tutoriel d'utilisation
 
-### 5.1 Première connexion
+## 5.1 Première connexion
 
 Après avoir configuré `claude_desktop_config.json` et redémarré Claude Desktop :
 
@@ -525,7 +505,7 @@ Après avoir configuré `claude_desktop_config.json` et redémarré Claude Deskt
 
 > 💡 Pour de meilleures réponses personnalisées, complétez le **profil maison** dans la page de configuration du plugin (*Plugins → mcp_jeedom → Profil maison*) — Claude connaîtra les prénoms des habitants, les habitudes et le canal de notification préféré.
 
-### 5.2 Découvrir votre installation
+## 5.2 Découvrir votre installation
 
 Ces premières questions permettent à Claude de construire une carte mentale de votre maison :
 
@@ -536,7 +516,7 @@ Montre-moi tous mes scénarios actifs.
 Quels équipements ont une batterie faible ?
 ```
 
-### 5.3 Contrôler des équipements
+## 5.3 Contrôler des équipements
 
 Le workflow recommandé grâce aux generic_types :
 
@@ -552,7 +532,7 @@ Ferme les volets de la chambre.
 Ouvre la serrure du portail.
 ```
 
-### 5.4 Analyser des données
+## 5.4 Analyser des données
 
 ```
 Quelle est la température moyenne du salon cette semaine ?
@@ -560,7 +540,7 @@ Montre-moi la consommation électrique des 24 dernières heures.
 Y a-t-il eu des présences détectées cette nuit ?
 ```
 
-### 5.5 Comprendre et déboguer un scénario
+## 5.5 Comprendre et déboguer un scénario
 
 ```
 Explique-moi la logique du scénario "Alarme nuit".
@@ -568,7 +548,7 @@ Le scénario "Arrivée maison" s'est-il bien exécuté aujourd'hui ?
 Pourquoi le scénario de chauffage ne se déclenche-t-il pas ?
 ```
 
-### 5.6 Cameras et notifications
+## 5.6 Cameras et notifications
 
 ```
 Montre-moi ce qu'il se passe dans le salon (caméra 3).
@@ -577,7 +557,7 @@ Envoie-moi un message Telegram : "Les volets sont fermés."
 Préviens-moi sur Slack si la température du cave descend sous 5°C.
 ```
 
-### 5.7 Diagnostiquer des problèmes
+## 5.7 Diagnostiquer des problèmes
 
 ```
 Y a-t-il des équipements en erreur ou injoignables ?
@@ -589,9 +569,9 @@ Montre-moi les 50 dernières lignes du log zigbee.
 
 ---
 
-## 6. Exemples d'utilisation
+# 6. Exemples d'utilisation
 
-### 6.1 Routine du matin
+## 6.1 Routine du matin
 
 **Demande :** *« Prépare la maison pour le matin : allume les lumières de la cuisine et du couloir, monte les volets du salon, mets le thermostat à 21°C et dis-moi la météo du jour. »*
 
@@ -601,7 +581,7 @@ Claude va :
 - Régler le thermostat via `find_command(generic_type="THERMOSTAT_SET_SETPOINT")` + `execute_action`
 - Compléter avec une recherche météo web
 
-### 6.2 Audit énergétique
+## 6.2 Audit énergétique
 
 **Demande :** *« Analyse ma consommation électrique de la semaine dernière. Quels équipements consomment le plus ? »*
 
@@ -611,7 +591,7 @@ Claude va :
 - Comparer les moyennes, identifier les pics et anomalies
 - Produire un rapport avec recommandations
 
-### 6.3 Mode vacances
+## 6.3 Mode vacances
 
 **Demande :** *« Je pars en vacances du 15 au 28 juillet. Configure la maison en mode absence. »*
 
@@ -621,7 +601,7 @@ Claude peut :
 - Créer une variable `mode_maison = 'vacances'` via `set_variable`
 - Vous demander confirmation avant chaque action critique
 
-### 6.4 Diagnostic réseau domotique
+## 6.4 Diagnostic réseau domotique
 
 **Demande :** *« Mon réseau Zigbee a des problèmes depuis ce matin. Aide-moi à diagnostiquer. »*
 
@@ -631,7 +611,7 @@ Claude va :
 - Lire le log zigbee via `read_log` avec les 200 dernières lignes
 - Analyser les erreurs et suggérer des actions correctives
 
-### 6.5 Comprendre un scénario
+## 6.5 Comprendre un scénario
 
 **Demande :** *« Quand je rentre le soir, qu'est-ce qui se passe exactement dans le scénario Arrivée maison ? Est-ce qu'il fonctionne bien ? »*
 
@@ -640,7 +620,7 @@ Claude va :
 - Lire son log d'exécution via `get_scenario_log`
 - Décrire le déroulé en langage naturel et signaler d'éventuelles anomalies
 
-### 6.6 Tableau de bord complet
+## 6.6 Tableau de bord complet
 
 **Demande :** *« Fais-moi un résumé complet de la maison : température de chaque pièce, état des lumières, fenêtres ouvertes, et consommation du moment. »*
 
@@ -649,7 +629,7 @@ Claude va :
 - Filtrer par generic_type : `TEMPERATURE`, `LIGHT_STATE`, `DOOR_STATE`, `POWER`
 - Présenter un résumé structuré et lisible
 
-### 6.7 Maintenance préventive
+## 6.7 Maintenance préventive
 
 **Demande :** *« Donne-moi un bilan de santé complet de mon installation. »*
 
@@ -659,7 +639,7 @@ Claude va :
 - Consulter `get_system_messages` pour les alertes
 - Présenter une synthèse avec les actions prioritaires
 
-### 6.8 Surveillance et alertes
+## 6.8 Surveillance et alertes
 
 **Demande :** *« Vérifie toutes les caméras et envoie-moi un résumé par Telegram. »*
 
@@ -669,13 +649,17 @@ Claude va :
 - Appeler `list_notification_commands` pour trouver le canal Telegram
 - Envoyer le résumé via `send_notification`
 
-### 6.9 Accès consultation pour un tiers
+## 6.9 Accès consultation pour un tiers
 
 **Situation :** vous voulez qu'une autre personne puisse consulter l'état de la maison sans risque d'action accidentelle.
 
 Activez le **mode lecture seule** dans la configuration — toutes les actions sont bloquées, la consultation reste complète.
 
-### 7.1 Modèle de sécurité
+---
+
+# 7. Sécurité
+
+## 7.1 Modèle de sécurité
 
 Le serveur MCP s'exécute en local sur votre serveur Jeedom avec les droits de l'utilisateur `www-data`. Les mesures de sécurité en place :
 
@@ -689,7 +673,7 @@ Le serveur MCP s'exécute en local sur votre serveur Jeedom avec les droits de l
 - **Audit log** — traçabilité complète de chaque action IA avec arguments et résultat. Arguments sensibles masqués automatiquement.
 - **Garde-fous exécution locale** — blocklist permanente de commandes dangereuses (rm -rf, mkfs, fork bomb, reverse shell…) + options configurables.
 
-### 7.2 Recommandations
+## 7.2 Recommandations
 
 > ⚠️ **Bonnes pratiques**
 > - N'activez jamais l'écriture de fichiers sauf besoin explicite et temporaire.
@@ -700,7 +684,7 @@ Le serveur MCP s'exécute en local sur votre serveur Jeedom avec les droits de l
 > - Utilisez HTTPS pour tout accès externe (Cloudflare Tunnel, reverse proxy, DNS avec TLS).
 > - Révoquez et régénérez le token externe si vous suspectez une compromission.
 
-### 7.3 Accès externe sécurisé (nginx)
+## 7.3 Accès externe sécurisé (nginx)
 
 Pour proxifier directement le daemon depuis l'extérieur via nginx :
 

@@ -2,35 +2,60 @@
 <html lang="{{page.lang}}">
 
 <head>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/materialize.css">
-	<link rel="icon" type="image/png" href="{{site.baseurl}}/favicon.ico">
-	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/styles.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Content-Language" content="{{ page.lang }}">
+	<meta name="description" content="Documentation du plugin {{ page.title }} pour Jeedom">
+	<title>{{ page.title }} — Limad44 Documentation</title>
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Materialize -->
+	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/materialize.css">
+
+	<!-- Custom theme -->
+	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/styles.css">
+
+	<link rel="icon" type="image/png" href="{{site.baseurl}}/favicon.ico">
 </head>
 
 <body>
+	<!-- ── Navbar ── -->
 	<div class="navbar-fixed hide-on-print">
 		<nav>
 			<div class="nav-wrapper container">
-				<a id="logo-container" href="" class="brand-logo center"><img
-						src="{{site.market}}/filestore/market/plugin/images/{{page.pluginId}}_icon.png"
-						style="height:50px;margin-top:5px" class="responsive-img" /></a>
+				<!-- Plugin icon -->
+				<a id="logo-container" href="{{site.baseurl}}" class="brand-logo center">
+					<img src="{{site.market}}/filestore/market/plugin/images/{{page.pluginId}}_icon.png"
+						alt="{{ page.pluginId }}" class="responsive-img" />
+				</a>
+
+				<!-- Breadcrumb (desktop) -->
 				<ul class="left hide-on-med-and-down">
-					<li><a href="{{site.baseurl}}">Limad44 Documentation</a></li>
-					<li>> {{page.title}}</li>
+					<li><a href="{{site.baseurl}}">Limad44</a></li>
+					<li style="color:var(--text-dim);padding:0 .4rem;">/</li>
+					<li style="color:var(--text-muted);font-weight:500;">{{ page.title }}</li>
 				</ul>
-				<a href="{{site.doc}}" data-activates="nav-mobile"
-					class="button-collapse btn-floating btn-large waves-effect waves-light jeedomcolorbg"><i
-						class="material-icons">menu</i></a>
+
+				<!-- Nav links (desktop) -->
 				<ul class="right hide-on-med-and-down">
 					<li><a href="{{site.www}}">Site</a></li>
 					<li><a href="{{site.blog}}">Blog</a></li>
 					<li><a href="{{site.forum}}">Community</a></li>
 					<li><a href="{{site.market}}">Market</a></li>
-					<li class="active"><a href="{{site.doc}}">Doc</a></li>
+					<li class="active"><a href="{{site.doc}}" style="color:var(--green)!important;">Doc</a></li>
 				</ul>
+
+				<!-- Mobile menu button -->
+				<a href="{{site.doc}}" data-activates="nav-mobile"
+					class="button-collapse btn-floating btn-large waves-effect waves-light jeedomcolorbg">
+					<i class="material-icons">menu</i>
+				</a>
+
+				<!-- Mobile side nav -->
 				<ul class="side-nav" id="nav-mobile">
 					<li><a href="{{site.blog}}">Blog</a></li>
 					<li><a href="{{site.forum}}">Community</a></li>
@@ -40,149 +65,176 @@
 			</div>
 		</nav>
 	</div>
-	<div class="row" id="div_main">
-		<div id="side-nav" class="side-nav fixed hide-on-print">
-			<div class="container">
-				<div class="row">
-					{% if site.langs.size >= 2 %}
-					<div class="col s2">
-						<i class="material-icons" style="position: relative;top:15px;">language</i>
-					</div>
-					<div class="col s10">
-						<select class="sel_lang">
-							{% for lang in site.langs %}
-							<option data-href="index{% if lang != " fr_FR" %}-{{ lang }}{% endif %}.html"
-								value="{{ lang }}">{% if lang == "fr_FR" %}Français{% endif %}{% if lang == "en_US"
-								%}English{% endif %}{% if lang == "ru_RU" %}Russe{% endif %}{% if lang == "de_DE"
-								%}Deutsch{% endif %}{% if lang == "es_ES" %}Spanish{% endif %}{% if lang == "it_IT"
-								%}Italien{% endif %}{% if lang == "id_ID" %}Indien{% endif %}</option>
-							{% endfor %}
-						</select>
-					</div>
-					{% endif %}
+
+	<!-- ── Main layout ── -->
+	<div id="div_main">
+
+		<!-- Sidebar -->
+		<aside id="side-nav" class="side-nav fixed hide-on-print">
+
+			<!-- Language selector -->
+			{% if site.langs.size >= 2 %}
+			<div class="container" style="padding:1rem;">
+				<div style="display:flex;align-items:center;gap:.5rem;">
+					<i class="material-icons" style="color:var(--text-dim);font-size:1.1rem;">language</i>
+					<select class="sel_lang browser-default">
+						{% for lang in site.langs %}
+						<option data-href="index{% if lang != 'fr_FR' %}-{{ lang }}{% endif %}.html" value="{{ lang }}">
+							{% if lang == "fr_FR" %}Français
+							{% elsif lang == "en_US" %}English
+							{% elsif lang == "ru_RU" %}Русский
+							{% elsif lang == "de_DE" %}Deutsch
+							{% elsif lang == "es_ES" %}Español
+							{% elsif lang == "it_IT" %}Italiano
+							{% elsif lang == "id_ID" %}Indonesia
+							{% else %}{{ lang }}{% endif %}
+						</option>
+						{% endfor %}
+					</select>
 				</div>
 			</div>
-			<div id="div_summary" style="margin-top:-45px;padding-bottom: 45px;"></div>
-		</div>
-		<div>
-			<i class="material-icons hide-on-print" id="bt_up"
-				style="position:fixed;bottom:10px;right:10px;cursor: pointer;font-size:3em;">keyboard_arrow_up</i>
-			<div class="hide-on-large-only hide-on-print" id='div_menuMobile'>
-				<div class="row">
-					<div class="col s2">
-						<i class="material-icons" style="position: relative;top:15px;left:20px;">language</i>
-					</div>
-					<div class="col s10">
-						<select class="sel_lang">
-							{% if site.langs.size >= 2 %}
-							{% for lang in site.langs %}
-							<option value="{{ lang }}">{% if lang == "fr_FR" %}Français{% endif %}{% if lang == "en_US"
-								%}English{% endif %}{% if lang == "ru_RU" %}Russe{% endif %}{% if lang == "de_DE"
-								%}Deutsch{% endif %}{% if lang == "es_ES" %}Spanish{% endif %}{% if lang == "it_IT"
-								%}Italien{% endif %}{% if lang == "id_ID" %}Indien{% endif %}</option>
-							{% endfor %}
-							{% endif %}
-						</select>
-					</div>
+			{% endif %}
+
+			<!-- TOC -->
+			<div id="div_summary"></div>
+		</aside>
+
+		<!-- Content area -->
+		<div style="flex:1;min-width:0;">
+
+			<!-- Back-to-top -->
+			<i class="material-icons hide-on-print" id="bt_up">keyboard_arrow_up</i>
+
+			<!-- Mobile TOC -->
+			<div class="hide-on-large-only hide-on-print" id="div_menuMobile">
+				{% if site.langs.size >= 2 %}
+				<div style="display:flex;align-items:center;gap:.5rem;padding:.6rem 1rem .2rem;">
+					<i class="material-icons" style="color:var(--text-dim);font-size:1rem;">language</i>
+					<select class="sel_lang browser-default" style="flex:1;">
+						{% for lang in site.langs %}
+						<option value="{{ lang }}">
+							{% if lang == "fr_FR" %}Français
+							{% elsif lang == "en_US" %}English
+							{% elsif lang == "ru_RU" %}Русский
+							{% elsif lang == "de_DE" %}Deutsch
+							{% elsif lang == "es_ES" %}Español
+							{% elsif lang == "it_IT" %}Italiano
+							{% elsif lang == "id_ID" %}Indonesia
+							{% else %}{{ lang }}{% endif %}
+						</option>
+						{% endfor %}
+					</select>
 				</div>
+				{% endif %}
 				<div id="div_summary2"></div>
 			</div>
-			<div id="div_summary3" style="display: none;" class="show-on-print"></div>
+
+			<!-- Print TOC (hidden on screen) -->
+			<div id="div_summary3" class="show-on-print" style="display:none;"></div>
+
+			<!-- Page content -->
 			<div id="div_content">
 				{{content}}
 			</div>
-		</div>
-	</div>
-	<script type="text/javascript" src="{{site.baseurl}}/assets/js/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="{{site.baseurl}}/assets/js/materialize.min.js"></script>
-	<script type="text/javascript" src="{{site.baseurl}}/assets/js/jquery.inview.min.js"></script>
-	<script type="text/javascript" src="{{site.baseurl}}/assets/js/jquery.toc.js"></script>
-	<script type="text/javascript">
+
+		</div><!-- /content -->
+	</div><!-- /div_main -->
+
+	<!-- Scripts -->
+	<script src="{{site.baseurl}}/assets/js/jquery-2.1.1.min.js"></script>
+	<script src="{{site.baseurl}}/assets/js/materialize.min.js"></script>
+	<script src="{{site.baseurl}}/assets/js/jquery.inview.min.js"></script>
+	<script src="{{site.baseurl}}/assets/js/jquery.toc.js"></script>
+
+	<script>
 		$(document).ready(function () {
 			var title = '{{page.title}}';
-			$('#doc_title').append(title)
-			document.title = 'Documentation Jeedom | ' + title[0].toUpperCase() + title.substring(1)
+
+			// Page title
+			document.title = title + ' — Limad44 Documentation';
+			$('meta[name=description]').attr('content',
+				'Documentation du plugin ' + title + ' pour Jeedom');
+
+			// Materialize inits
 			$(".button-collapse").sideNav();
-			$('meta[name=description]').remove();
-			$('head').append('<meta name="description" content="Ceci est la documentation du plugin "' + title[0].toUpperCase() + title.substring(1) + '", lier à la solution domotique Jeedom.">');
 			$('img').addClass('responsive-img');
 			$('#div_content table').addClass('striped');
-			init();
-			var regex = /\/([a-z]{2}_[A-Z]{2})\//g;
-			var corresp = regex.exec(window.location.href)
-			if (corresp !== null && corresp[1]) {
-				$('.sel_lang').val(corresp[1])
-			}
-			$('select').material_select();
-			$('.sel_lang').on('change', function () {
-				var regex = /\/([a-z]{2}_[A-Z]{2})\//g;
-				var corresp = regex.exec(window.location.href);
-				var url = window.location.href.replace(corresp[1], $(this).find('option:selected').attr('value'));
-				if (url.endsWith('/')) {
-					url += 'index';
-				}
-				window.location.href = url;
-			})
-			$('#bt_up').on('click', function () {
-				window.scrollTo(0, 0);
-			})
-			$(window).on("orientationchange", function (event) {
-				init();
-			});
-			$(window).on("resize", function (event) {
-				init();
-			});
-			function init() {
-				$('#div_summary2,#div_summary,#div_summary3').empty();
-				var titlePlugin = title.charAt(0).toUpperCase() + title.substring(1).toLowerCase()
+
+			// Build TOC
+			function buildTOC() {
+				$('#div_summary, #div_summary2, #div_summary3').empty();
+				var titlePlugin = title.charAt(0).toUpperCase() + title.slice(1);
+
+				var tocLabel = '<div style="padding:.9rem 1.1rem .3rem;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);border-bottom:1px solid var(--border-muted);margin-bottom:.3rem;">' + titlePlugin + '</div>';
+
 				if (window.innerWidth < 992) {
 					$('#div_main').addClass('container');
-					$('#div_content').toc({
-						renderIn: "#div_summary2",
-						selectors: 'h1,h2'
-					});
+					$('#div_content').toc({ renderIn: '#div_summary2', selectors: 'h1,h2' });
+					$('#div_summary2').prepend(tocLabel);
 				} else {
 					$('#div_main').removeClass('container');
-					$('#div_content').toc({
-						renderIn: "#div_summary",
-						selectors: 'h1,h2'
-					});
+					$('#div_content').toc({ renderIn: '#div_summary', selectors: 'h1,h2' });
+					$('#div_summary').prepend(tocLabel);
 				}
-				$('#div_content').toc({
-					renderIn: "#div_summary3",
-					selectors: 'h1,h2'
-				});
-				$('#div_summary #toctitle').html('<h2 style="padding-left:5px !important;">' + titlePlugin + '</h2>');
-				$('#div_summary2 #toctitle').html('<h2 style="padding-left:5px !important;">' + titlePlugin + '</h2>');
-				$('#div_summary3 #toctitle').html('<h2 style="padding-left:5px !important;">' + titlePlugin + '</h2>');
-				$('.toclevel-2').parent().css('color', 'blue');
+
+				$('#div_content').toc({ renderIn: '#div_summary3', selectors: 'h1,h2' });
+				$('#div_summary3').prepend(tocLabel);
 			}
-			var i = 1, j = 1;
-			$('h1, h2', $('#div_content')).each(function () {
-				if ($(this)[0].tagName.toLowerCase() == 'h1') {
-					$('#' + $(this).attr('id')).text(i + ') ' + $(this).text());
-					i++;
+
+			buildTOC();
+
+			var resizeTimer;
+			$(window).on('resize orientationchange', function () {
+				clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(buildTOC, 120);
+			});
+
+			// Language selector
+			var langMatch = /\/([a-z]{2}_[A-Z]{2})\//.exec(window.location.href);
+			if (langMatch) {
+				$('.sel_lang').val(langMatch[1]);
+			}
+			$('select').material_select();
+
+			$('.sel_lang').on('change', function () {
+				var match = /\/([a-z]{2}_[A-Z]{2})\//.exec(window.location.href);
+				if (match) {
+					var url = window.location.href.replace(match[1], $(this).val());
+					if (url.endsWith('/')) url += 'index';
+					window.location.href = url;
 				}
-				if ($(this)[0].tagName.toLowerCase() == 'h2') {
-					$('#' + $(this).attr('id')).text((i - 1) + '.' + j + ') ' + $(this).text());
+			});
+
+			// Back to top
+			$('#bt_up').on('click', function () {
+				$('html, body').animate({ scrollTop: 0 }, 350);
+			});
+
+			// Number headings (optional — keeps original behaviour)
+			var i = 1, j = 1;
+			$('h1, h2', '#div_content').each(function () {
+				var tag = this.tagName.toLowerCase();
+				if (tag === 'h1') {
+					$(this).text(i + ') ' + $(this).text());
+					i++; j = 1;
+				} else if (tag === 'h2') {
+					$(this).text((i - 1) + '.' + j + ') ' + $(this).text());
 					j++;
-				} else {
-					j = 1;
 				}
 			});
 		});
 
-		var idChapitre = null, nbrChapitre = 0, idAncre = null;
+		// Active TOC highlight on scroll
+		var idChapitre = null, idAncre = null;
 		$('#div_content h1, #div_content h2').on('inview', function (event, isInView) {
-			nbrChapitre = $('a.active').length;
 			idAncre = $(this).attr('id');
 			if (isInView) {
 				$('a[href="#' + idAncre + '"]').addClass('active');
-				if (idChapitre != null) {
+				if (idChapitre) {
 					$('a[href="#' + idChapitre + '"]').removeClass('active');
 					idChapitre = null;
 				}
-			} else if (nbrChapitre > 1) {
+			} else if ($('a.active').length > 1) {
 				$('a[href="#' + idAncre + '"]').removeClass('active');
 			} else {
 				idChapitre = idAncre;
@@ -190,6 +242,7 @@
 			$('#div_summary3 a').removeClass('active');
 		});
 	</script>
+
 </body>
 
 </html>
