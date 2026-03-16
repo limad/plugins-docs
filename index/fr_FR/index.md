@@ -137,3 +137,13 @@ Plugin Alexa Premium
 - [Documentation]({{site.baseurl}}/plugin-alexaapiv2/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-alexaapiv2/{{page.lang}}/changelog)
 - [Market]({{site.market}}/index.php?v=d&plugin_id=4498)
+
+# Jeedom MCP Server(mcp_jeedom)
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/mcp_jeedom_icon.png">]({{site.baseurl}}/plugin-mcp_jeedom/{{page.lang}})
+
+Plugin Alexa Premium
+
+- [Documentation]({{site.baseurl}}/plugin-mcp_jeedom/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-mcp_jeedom/{{page.lang}}/changelog)
+- [Market]({{site.market}}/index.php?v=d&plugin_id=4498)
