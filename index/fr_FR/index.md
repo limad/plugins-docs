@@ -1,6 +1,6 @@
 ---
 layout: pluginlist
-title: Plugins Limad44
+title: Plugins by Limad44
 lang: fr_FR
 pluginId: limad44
 ---
@@ -15,7 +15,7 @@ pluginId: limad44
 		<span class="plugin-card__id">naEnergie</span>
 	</div>
 	</a>
-	<p class="plugin-card__desc">Intégration des thermostats, vannes et thermostat OpenTherm Netatmo dans Jeedom. Acquisition des données et exécution des actions via API et webhooks. Compatible plugin mobile.</p>
+	<p class="plugin-card__desc">Intégration des thermostats, vannes et thermostat Netatmo dont OpenTherm dans Jeedom. Acquisition des données et exécution des actions via API et webhooks. Compatible plugin mobile.</p>
 	<div class="plugin-card__links">
 	<a href="{{site.baseurl}}/plugin-naEnergie/{{page.lang}}">Documentation</a>
 	<a href="{{site.baseurl}}/plugin-naEnergie/{{page.lang}}/changelog">Changelog</a>
