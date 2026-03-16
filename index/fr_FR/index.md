@@ -146,4 +146,4 @@ Plugin Alexa Premium
 
 - [Documentation]({{site.baseurl}}/plugin-mcp_jeedom/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-mcp_jeedom/{{page.lang}}/changelog)
-- [Market]({{site.market}}/index.php?v=d&plugin_id=4498)
+- [Market]({{site.market}}/index.php?v=d&plugin_id=4629)

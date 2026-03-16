@@ -1,6 +1,6 @@
 ---
 layout: default
-title: mcp_jeedom — Plugin MCP pour Jeedom
+title: MCP Server — Plugin MCP pour Jeedom
 lang: fr_FR
 ---
 
