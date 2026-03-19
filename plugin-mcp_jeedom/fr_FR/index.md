@@ -24,7 +24,8 @@ Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout c
 ## Fonctionnalités
 
 - 🤖 Transport **Streamable HTTP** (standard MCP 2025) et SSE legacy
-- 🏠 Plus de **35 outils** couvrant l'ensemble de l'API Jeedom
+- 🏠 Plus de **40 outils** couvrant l'ensemble de l'API Jeedom
+- ⚡ Outil `jeedom_api` pour les opérations composites avancées (bilan de santé, équipements virtuels, séquences d'actions…)
 - 🔍 Recherche sémantique par type de commande (`LIGHT_ON`, `TEMPERATURE`…)
 - ⚙️ Whitelist des équipements et commandes exposés à l'IA
 - 🔐 Token Bearer pour l'accès externe, **mode lecture seule** disponible
@@ -49,7 +50,35 @@ Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout c
 
 Vous définissez précisément ce que l'IA peut voir et faire. Le plugin ne fait jamais rien sans que vous ayez explicitement activé la permission correspondante. Chaque action est tracée dans le journal d'audit.
 
-> ⚠️ **Avertissement** — Ce plugin connecte une IA à votre installation domotique. L'utilisateur est seul responsable de sa configuration. Ni le développeur ni Domadoo ne peuvent être tenus responsables des conséquences d'une erreur de l'IA ou d'un accès non autorisé. Consultez la section [Sécurité](#sécurité) avant de démarrer.
+---
+
+> ## ⛔ AVERTISSEMENT — À LIRE AVANT TOUTE UTILISATION
+>
+> Ce plugin expose des **outils ultra-avancés** donnant à une intelligence artificielle un accès direct à votre installation domotique : lecture d'état, contrôle d'équipements, exécution de commandes shell, lecture/écriture de fichiers, gestion de scénarios…
+>
+> Des efforts particuliers ont été apportés à la sécurisation du code, mais **aucun système n'est infaillible**. Les risques suivants existent et ne peuvent pas être totalement éliminés :
+>
+> - 🔓 **En cas de piratage** — si un attaquant accède à votre endpoint MCP (URL externe, token volé, réseau compromis), il dispose d'un contrôle total sur votre installation domotique.
+> - 🐛 **En cas de bug dans le plugin** — une erreur de code peut entraîner des comportements inattendus, des actions non souhaitées ou une exposition de données sensibles.
+> - 🤖 **En cas d'erreur de l'IA** — un modèle de langage peut mal interpréter une demande, exécuter une mauvaise action ou enchaîner des commandes non prévues. L'IA n'est pas infaillible.
+> - 🌐 **En cas de configuration réseau inadaptée** — exposer directement le port du daemon MCP sur Internet sans protection revient à ouvrir un accès root à votre maison.
+>
+> ### Règles essentielles
+>
+> - ✅ **Ne connectez que des IA auxquelles vous faites entièrement confiance** et dont vous contrôlez la configuration.
+> - ✅ **Privilégiez une IA locale** (Claude Desktop, serveur local…) plutôt qu'un service cloud quand c'est possible — les données ne quittent pas votre réseau.
+> - ✅ **N'utilisez jamais le mode accès externe** sans avoir lu et appliqué la section [Sécurité](#sécurité).
+> - ❌ **Ne partagez jamais** votre URL externe, votre token Bearer ni votre clé API Jeedom — même partiellement, même dans une capture d'écran.
+> - ❌ **N'activez pas** `execute_local`, `write_file` ou `restart_jeedom` en usage quotidien — ces outils doivent rester désactivés sauf besoin explicite et temporaire.
+> - ❌ **N'exposez jamais directement** le port du daemon (8765) sur Internet sans proxy authentifié.
+>
+> ### Responsabilité
+>
+> **L'utilisateur est seul responsable** de la configuration, de l'exposition réseau et de l'usage du plugin. Ni le développeur ni Domadoo ne peuvent être tenus responsables des conséquences d'un accès non autorisé, d'une erreur de l'IA, d'un bug du plugin ou d'une mauvaise configuration réseau.
+>
+> Consultez la section [Sécurité](#sécurité) pour les bonnes pratiques détaillées.
+
+---
 
 ---
 
@@ -128,6 +157,7 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 | `get_battery_report` | État des batteries avec seuil d'alerte configurable |
 | `get_plugin_status` | État daemons et dépendances de tous les plugins actifs |
 | `get_room_summary` | Résumé Jeedom d'une pièce : nb lumières allumées, volets ouverts… |
+| `jeedom_api` | **Opérations composites avancées** : bilan de santé global, état optimisé, équipements virtuels, séquences, duplication de scénarios… |
 
 > 💡 **Conseil** : commencer par `get_full_state` pour une vue complète, puis utiliser `find_command` pour cibler une commande précise avant d'agir.
 
@@ -158,6 +188,27 @@ Les outils sont des fonctions appelables par le LLM, organisées par catégorie.
 | `bulk_execute` | Exécute plusieurs commandes en une seule requête |
 | `get_dead_devices` | Équipements injoignables ou en erreur |
 | `get_command_history` | Historique des valeurs d'une commande sur une période |
+
+### Opérations composites avancées (`jeedom_api`)
+
+> Cet outil unique donne accès à des opérations PHP natives impossibles ou inefficaces via l'API RPC standard. Il est toujours disponible (aucune permission supplémentaire requise).
+
+| Action | Description |
+|---|---|
+| `healthReport` | Bilan de santé global en 1 appel : équipements en erreur, batteries faibles, messages système, daemons NOK, mises à jour disponibles |
+| `fullStateOptimized` | État complet de la maison avec valeurs temps réel, format épuré pour le LLM |
+| `getCommandValues` | Valeurs de plusieurs commandes en un seul appel |
+| `duplicateScenario` | Copie complète d'un scénario existant avec nouveau nom |
+| `bulkScenarioAction` | Activer, désactiver, déclencher ou arrêter tous les scénarios d'un groupe |
+| `saveVirtualDevice` | Créer ou mettre à jour un équipement virtuel avec ses commandes |
+| `saveCommand` | Créer ou mettre à jour une commande sur un équipement |
+| `removeDevice` | Supprimer un équipement (confirmation obligatoire) |
+| `objectSummary` | Résumés Jeedom agrégés d'un ou de tous les objets |
+| `sequenceActions` | Séquence d'actions avec délai configurable entre chacune |
+
+Exemples : `jeedom_api(action='healthReport')` · `jeedom_api(action='duplicateScenario', params={scenario_id:8, new_name:'Copie'})` · `jeedom_api(action='saveVirtualDevice', body={device:{name:'Temp ext', object_id:1, commands:[{name:'Température', type:'info', subType:'numeric', unite:'°C'}]}})`
+
+---
 
 ### Scénarios
 
@@ -280,6 +331,7 @@ Exemple d'utilisation : `find_command(generic_type="LIGHT_ON", room_name="salon"
 | Mode lecture seule | ✅ | ❌ | ❌ | ❌ |
 | Audit log des actions IA | ✅ | ❌ | ❌ | ❌ |
 | Accès fichiers serveur | ✅ *(opt.)* | ❌ | ❌ | ❌ |
+| Opérations PHP composites | ✅ | ❌ | ❌ | ❌ |
 | Accès externe gratuit | ✅ | ✅ | ✅ | payant |
 
 *(opt.) = optionnel, sécurisé par whitelist de répertoires*
@@ -290,16 +342,25 @@ Exemple d'utilisation : `find_command(generic_type="LIGHT_ON", room_name="salon"
 
 ## Installation
 
-1. Dans Jeedom, aller dans **Plugins → Gestion des plugins → Installer depuis GitHub**.
-2. **Installer les dépendances** depuis la page du plugin (Python venv + librairies MCP).
-3. Démarrer le daemon depuis la page de configuration.
-4. Vérifier que le statut affiche **✓ Actif**.
+1. Dans Jeedom, aller dans **Plugins → Gestion des plugins → Market**.
+2. Taper "MCP Jeedom" dans "Rechercher" et selectionner "MCP Jeedom" par Limad44
+3. **Installer le plugin comme d'habitude**
+4. **Activer le plugin et installer les dépendances** (Python venv + librairies MCP).
+5. Démarrer le daemon depuis la page de configuration.
+6. Vérifier que le statut affiche **OK**.
 
-## Prérequis côté client
+## Complter la configuration du plugin
+ Voir §7.3 pour la configuration complète.
 
-- Le port **8765** (ou celui configuré) doit être accessible depuis le poste client.
+Prérequis côté client
+
+- Le port **8765** (ou celui configuré) doit être accessible depuis le poste client (éxecutant l'IA).
 - Pour le transport **Streamable HTTP** (défaut) : aucun outil supplémentaire requis — connexion directe.
 - Pour le transport **SSE** (legacy) : `uvx` ou `npx` pour lancer `mcp-proxy`.
+
+## Configuration des clients IA
+
+Pour la configuration complète de tous les clients IA supportés (Claude Desktop, Claude Code, Cursor, VS Code, Codex, Windsurf, Continue, Zed, JetBrains, Raycast…), consultez le guide dédié → [Connexion des clients IA](clients.md)
 
 ## Configuration Claude Desktop
 
@@ -415,7 +476,7 @@ Une fois le tunnel configuré, utilisez la Méthode 3 avec l'URL Cloudflare Tunn
 
 ### Méthode 5 — Accès externe via reverse proxy nginx/Apache
 
-Si vous gérez déjà un serveur web sur votre réseau (nginx, Apache, Caddy), vous pouvez proxifier directement le daemon MCP :
+Si vous gérez déjà un serveur web sur votre réseau, vous pouvez proxifier directement le daemon MCP :
 
 ```nginx
 # Streamable HTTP
@@ -462,7 +523,7 @@ Dans la page de configuration du plugin :
 
 **Audit des actions** — journal horodaté de chaque appel d'outil par l'IA (nom, arguments, résultat). Consultable et effaçable depuis la page de configuration.
 
-> ℹ️ Après toute modification des options, **redémarrez le daemon** pour appliquer les changements.
+> ℹ️ Après toute modification des options, **sauvegarder et redémarrez le daemon** pour appliquer les changements.
 
 ## Profil maison
 
@@ -634,10 +695,16 @@ Claude va :
 **Demande :** *« Donne-moi un bilan de santé complet de mon installation. »*
 
 Claude va :
-- Appeler `get_battery_report` pour les piles faibles
-- Appeler `get_dead_devices` pour les équipements en erreur
-- Consulter `get_system_messages` pour les alertes
-- Présenter une synthèse avec les actions prioritaires
+- Appeler `jeedom_api(action='healthReport')` pour obtenir en un seul appel : équipements en erreur, batteries faibles, messages système, daemons NOK et mises à jour disponibles
+- Présenter une synthèse structurée avec les actions prioritaires
+
+## Créer un équipement virtuel
+
+**Demande :** *« Crée un équipement virtuel 'Météo ext' avec une commande température et une commande humidité. »*
+
+Claude va :
+- Appeler `jeedom_api(action='saveVirtualDevice', body={device:{name:'Météo ext', commands:[{name:'Température', type:'info', subType:'numeric', unite:'°C'}, {name:'Humidité', type:'info', subType:'numeric', unite:'%'}]}})` 
+- Confirmer la création avec les IDs des commandes générées
 
 ## Surveillance et alertes
 
