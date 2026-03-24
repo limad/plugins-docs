@@ -148,8 +148,18 @@ Plugin Alexa Premium
 
 [<img width="77" src="{{site.market}}/filestore/market/plugin/images/mcp_jeedom_icon.png">]({{site.baseurl}}/plugin-mcp_jeedom/{{page.lang}})
 
-Plugin Alexa Premium
+Plugin MCP AI Server
 
 - [Documentation]({{site.baseurl}}/plugin-mcp_jeedom/{{page.lang}})
 - [Changelog]({{site.baseurl}}/plugin-mcp_jeedom/{{page.lang}}/changelog)
-- [Market]({{site.market}}/index.php?v=d&plugin_id=4498)
+- [Market]({{site.market}}/index.php?v=d&plugin_id=4629)
+
+# Jeedom AI Assistant(jeeAI)
+
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/jeeAi_icon.png">]({{site.baseurl}}/plugin-jeeAi/{{page.lang}})
+
+Plugin AI Assistant
+
+- [Documentation]({{site.baseurl}}/plugin-jeeAi/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-jeeAi/{{page.lang}}/changelog)
+- [Market]({{site.market}}/index.php?v=d&plugin_id=4621)
