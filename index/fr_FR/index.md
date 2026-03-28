@@ -56,18 +56,18 @@ pluginId: limad44
 </div>
 
 <div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-jeeAi/{{page.lang}}">
-	<img src="{{site.market}}/filestore/market/plugin/images/jeeAi_icon.png" alt="jeeAi">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-ai_assistant/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/ai_assistant_icon.png" alt="ai_assistant">
 	<div>
 		<h2 class="plugin-card__name">AI Assistant</h2>
-		<span class="plugin-card__id">jeeAi</span>
+		<span class="plugin-card__id">ai_assistant</span>
 	</div>
 	</a>
 	<p class="plugin-card__desc">Ce plugin repose sur trois piliers :\n- **Agent conversationnel classique** : dialogue fluide pour vos questions générales.\n- **Assistant spécialisé Jeedom** : un expert qui connaît votre installation.\n- **Pont MCP (Model Context Protocol)** : lien direct entre votre serveur MCP et votre modèle d'IA (Plugin 'MCP AI Server' conseillé).</p>
 	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-jeeAi/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-jeeAi/{{page.lang}}/changelog">Changelog</a>
-	<a href="{{site.market}}/index.php?v=d&plugin_id=4621" target="_blank" rel="noopener">Market ↗</a>
+	<a href="{{site.baseurl}}/plugin-ai_assistant/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-ai_assistant/{{page.lang}}/changelog">Changelog</a>
+	<a href="{{site.market}}/index.php?v=d&plugin_id=4636" target="_blank" rel="noopener">Market ↗</a>
 	</div>
 </div>
 

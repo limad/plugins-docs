@@ -154,12 +154,12 @@ Plugin MCP AI Server
 - [Changelog]({{site.baseurl}}/plugin-mcp_jeedom/{{page.lang}}/changelog)
 - [Market]({{site.market}}/index.php?v=d&plugin_id=4629)
 
-# Jeedom AI Assistant(jeeAI)
+# AI Assistant(jeeAI)
 
-[<img width="77" src="{{site.market}}/filestore/market/plugin/images/jeeAi_icon.png">]({{site.baseurl}}/plugin-jeeAi/{{page.lang}})
+[<img width="77" src="{{site.market}}/filestore/market/plugin/images/ai_assistant_icon.png">]({{site.baseurl}}/plugin-ai_assistant/{{page.lang}})
 
 Plugin AI Assistant
 
-- [Documentation]({{site.baseurl}}/plugin-jeeAi/{{page.lang}})
-- [Changelog]({{site.baseurl}}/plugin-jeeAi/{{page.lang}}/changelog)
-- [Market]({{site.market}}/index.php?v=d&plugin_id=4621)
+- [Documentation]({{site.baseurl}}/plugin-ai_assistant/{{page.lang}})
+- [Changelog]({{site.baseurl}}/plugin-ai_assistant/{{page.lang}}/changelog)
+- [Market]({{site.market}}/index.php?v=d&plugin_id=4636)

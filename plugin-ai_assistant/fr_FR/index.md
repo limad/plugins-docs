@@ -1,13 +1,13 @@
 ---
 layout: default
-title: jeeAi — Assistant IA pour Jeedom
+title: ai_assistant — Assistant IA pour Jeedom
 lang: fr_FR
-pluginId: jeeAi
+pluginId: ai_assistant
 ---
 
 # Presentation
 
-**jeeAi** est le plugin Jeedom qui apporte une interface de chat IA et des assistants specialises pour piloter votre domotique. Il peut fonctionner **en mode API direct** (sans daemon) ou se connecter a un **serveur MCP** via le plugin `mcp_jeedom`.
+**ai_assistant** est le plugin Jeedom qui apporte une interface de chat IA et des assistants specialises pour piloter votre domotique. Il peut fonctionner **en mode API direct** (sans daemon) ou se connecter a un **serveur MCP** via le plugin `mcp_jeedom`.
 
 > ## Un plugin, multi roles
 >
@@ -23,13 +23,13 @@ pluginId: jeeAi
 
 # Pourquoi ajouter mcp_jeedom ?
 
-Le plugin **mcp_jeedom** transforme Jeedom en serveur MCP. Associe a **jeeAi**, cela apporte :
+Le plugin **mcp_jeedom** transforme Jeedom en serveur MCP. Associe a **ai_assistant**, cela apporte :
 
 - **Outils avances** (MCP) : lecture d etats, statistiques, snapshots camera, actions composites.
 - **Mode Jeedom specialist** : l IA est alimentee par une connaissance riche et structuree de votre maison.
 - **Whitelists et securite** : controle fin des equipements et commandes exposes.
 
-Sans MCP, jeeAi reste pleinement utilisable en **mode API direct** (Gemini, OpenAI, Claude, Mistral, Groq, Ollama, etc.).
+Sans MCP, ai_assistant reste pleinement utilisable en **mode API direct** (Gemini, OpenAI, Claude, Mistral, Groq, Ollama, etc.).
 
 ---
 
@@ -39,10 +39,21 @@ Sans MCP, jeeAi reste pleinement utilisable en **mode API direct** (Gemini, Open
 
 Le panel est l interface principale :
 
-- **Selection d equipement IA** (assistant ou client MCP)
+- **Selection d equipement IA** (provider, assistant ou client MCP)
 - **Streaming des reponses**
 - **Options avancees** : modele, temperature, theme
 - **Pieces jointes** (image / pdf / txt / docx)
+- **Bouton flottant "Defiler vers le bas"** (affichage automatique si vous remontez dans l historique)
+
+## 1bis) Pan Light (vue provider)
+
+Interface legere orientee provider direct :
+
+- **Selection provider + modele**
+- **Streaming**
+- **Pieces jointes**
+- **Bouton flottant "Defiler vers le bas"**
+- **Toggle menu Jeedom**
 
 ## 2) Mini chat (navbar)
 
@@ -58,20 +69,17 @@ Un chat rapide integre a la barre Jeedom :
 # Types d equipements
 
 ## Assistant general (Provider)
-
 - Connexion directe a votre fournisseur IA
 - Sert de base a d autres equipements
 
 ## Assistant Jeedom
-
 - **Lie a un Provider**
 - Specialise pour Jeedom
 - Recommande pour piloter la maison
 
 ## Client MCP
-
 - **Lie a un Provider**
-- Sert d interface entre jeeAi et un serveur MCP
+- Sert d interface entre ai_assistant et un serveur MCP
 - Associe a `mcp_jeedom` pour un controle domotique avance
 
 ---
@@ -104,6 +112,7 @@ Idem pour les autres providers : le plugin fonctionne en mode API direct.
 
 - **Whitelists** : controle fin des commandes autorisees
 - **Mode lecture seule** recommande pour tests
+- **Confirmations d actions sensibles** (selon configuration)
 
 ---
 
@@ -128,7 +137,7 @@ Cette liste est amennee a evoluer.
 
 # FAQ
 
-**Puis je utiliser jeeAi sans mcp_jeedom ?**
+**Puis je utiliser ai_assistant sans mcp_jeedom ?**
 Oui. Le plugin fonctionne en mode API direct (sans MCP).
 
 **Pourquoi ajouter mcp_jeedom ?**
@@ -139,4 +148,10 @@ Le plugin propose des gardes fous (whitelist, confirmations). L utilisateur rest
 
 ---
 
-_Documentation jeeAi — Plugin IA pour Jeedom_
+# Guides pratiques
+
+- [Tuto micro (HTTP local)](tuto_micro.md)
+
+---
+
+*Documentation ai_assistant — Plugin IA pour Jeedom*
