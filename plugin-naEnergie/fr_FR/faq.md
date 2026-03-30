@@ -1,6 +1,5 @@
 # FAQ
 
-## Quelle est la fréquence de rafraichissement ?
+## Quelle est la fréquence de rafraîchissement ?
 
-
-	Le systeme recupère les informations toutes les **5 min**.
+Le système récupère les informations toutes les **5 min**.

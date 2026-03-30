@@ -1,22 +1,19 @@
 # Présentation
 
-**Netatmo Energie For Jeedom** 
-Plugin permettant de controller les thermostats et vannes Netatmo par piéce:
+**Netatmo Energie pour Jeedom**
+Plugin permettant de contrôler les thermostats et vannes Netatmo par pièce.
 
-Ce plugin vous donnera la possibilité de *(1):
+Ce plugin vous donne la possibilité de :
 
--Connaitre la majorité des infos( consigne, températures...)
--Choisir le mode de fonctionnement du thermostat (Programme, Consigne manuel, Absent, Hors gel)
-- De connaitre et changer le planning en cours
-- De connaitre le profilde temperature en cours/suivant  
-- De définir le jour et heure de fin des modes (manuel/absent/hg)
--...etc
+- Connaitre la plupart des informations (consigne, températures...)
+- Choisir le mode de fonctionnement du thermostat (Programme, Consigne manuelle, Absent, Hors gel)
+- Connaître et changer le planning en cours
+- Connaître le profil de température en cours/suivant
+- Définir le jour et l'heure de fin des modes (manuel/absent/hors gel)
+- ...etc
 
-
-*
-(1): plugin testé en configuration "thermostat+chaudière compatible"
-(2): selon votre équipement certaines fonctions ne seront pas disponibles.
-
+*(1) : plugin testé en configuration "thermostat + chaudière compatible"
+*(2) : selon votre équipement, certaines fonctions ne seront pas disponibles.
 
 ## Aperçu du plugin
 
