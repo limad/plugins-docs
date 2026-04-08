@@ -4,91 +4,145 @@ title: helloWatt documentation
 lang: fr_FR
 pluginId: helloWatt
 ---
-![logo](https://limad.github.io/plugins-docs/plugin-helloWatt/images/logo.PNG)
+
 # Plugin helloWatt
 
-Plugin permettant la récupération des consommations (Gaz/Elec) par l'interrogation du compte-client *helloWatt*. Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les dernières données de consommations disponibles. 
+Plugin permettant la récupération des consommations d'énergie (Gaz et Electricité) par l'interrogation du compte-client **Hello Watt**. Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les dernières données de consommation disponibles.
 
-Types de consommation accessibles :
-- la **consommation journalière** *(en kWh)*,
-- la **consommation mensuelle** *(en kWh)*,
-- la **consommation annuelle** *(en kWh)*,
-- le cout associé aux consommations.
-Si vous disposez d'une production solaire en contrat avec ENEDIS :
-- la **production journalière** *(en kWh)*,
-- la **production mensuelle** *(en kWh)*,
-- la **production annuelle** *(en kWh)*,
-- le cout associé aux productions.
-Si vous disposez d'un abonnement TEMPO :
-- la **couleur du jour**,
-- la **couleur du lendemain**.
-Et d'autres...
-![Commandes](https://limad.github.io/plugins-docs/plugin-helloWatt/images/helloWatt_screenshot2.png)
+> **Important**
+>
+> Il est nécessaire d'être en possession d'un compte-client Hello Watt. Le plugin récupère les informations à partir de la partie *mes-données* du <a href="https://www.hellowatt.fr/mon-compte/ma-consommation/mes-donnees" target="_blank">site Hello Watt</a>. Vérifiez que vous y avez bien accès avec vos identifiants habituels (email/mot de passe) et que vos données y sont visibles. Dans le cas contraire, le plugin ne fonctionnera pas.
 
->**Important**      
->Il est nécessaire d'être en possession d'un compte-client helloWatt. Le plugin récupère les informations à partir de la partie *mes-donnees* <a href="https://www.helloWatt.fr/mon-compte/ma-consommation/mes-donnees" target="_blank">du site helloWatt</a>, il faut donc vérifier que vous y avez bien accès avec vos identifiants habituels (email/mot de passe) et que les données y sont visibles. Dans le cas contraire, le plugin ne fonctionnera pas.
+# Prérequis
 
-# Configuration
+- Jeedom version **4.4** minimum
+- Un compte Hello Watt actif avec au moins un compteur Linky (Enedis) ou Gazpar (GRDF) rattaché
 
-## Configuration du plugin
+# Configuration du plugin
 
-Sur la page de configuration du plugin, renseignez l'**identifiant** ainsi que le **mot de passe** de votre compte-client *helloWatt* puis cliquez sur le bouton **Sauvegarder**.
+Sur la page de configuration du plugin (**Plugins > Gestion des plugins > helloWatt**), renseignez :
 
-![Configuration](https://limad.github.io/plugins-docs/plugin-helloWatt/images/helloWatt_Eqconfig.png)
+| Paramètre | Description |
+|-----------|-------------|
+| **Email** | L'adresse email de votre compte Hello Watt |
+| **Mot de passe** | Le mot de passe de votre compte Hello Watt (stocké chiffré en base) |
+| **Heure de début de récupération** | Heure à partir de laquelle le plugin commence à récupérer les données (entre 15 et 23, défaut : 15). Les données de comptage remontent généralement à des heures régulières ; ce réglage permet de limiter les requêtes inutiles |
+| **Objet par défaut** | Objet Jeedom dans lequel les équipements seront créés automatiquement |
 
-## Configuration des équipements
+Cliquez sur **Synchroniser** pour vérifier la connexion et créer automatiquement vos équipements.
 
-Pour accéder aux différents équipements **helloWatt**, dirigez-vous vers le menu **Plugins → Energie → helloWatt**.
+# Équipements et commandes
 
-> **A savoir**    
+Pour accéder aux équipements, dirigez-vous vers **Plugins > Energie > helloWatt**.
 
-Le plugin va alors vérifier la bonne connexion au site *helloWatt*, créer les équipements, récupérer et insérer les informations dans l'historique Jeedom.
+Le plugin crée automatiquement un équipement par compteur détecté sur votre compte Hello Watt. Chaque équipement est identifié par son type (`elec` ou `gaz`), l'identifiant du domicile et le numéro de point de comptage (PDL ou PCE).
 
-![Eq_Configuration](https://limad.github.io/plugins-docs/plugin-helloWatt/images/helloWatt_config.png)
+## Commandes disponibles
 
-# Affichage des informations
-Deux tuiles sont disponibles : 
-- tuile pérsonalisée : l'affichage des informations de consommation, il est possible de cacher les informations non souhaitées par la procédure habituelle,
-- tuile *core* : cette tuile est gérée par le *Core Jeedom* et vous laisse la possibilité d'apporter vos propres personnalisations.
+### Commandes communes (électricité et gaz)
 
-Le plugin dispose également d'un panneau affichant la tuile et des graphiques.
+| Commande | Description | Unité |
+|----------|-------------|-------|
+| **Conso jour** | Consommation journalière | kWh |
+| **Conso mois** | Consommation mensuelle (agrégée) | kWh |
+| **Conso annuelle** | Consommation annuelle (agrégée) | kWh |
+| **Coût jour** | Coût de la consommation journalière | € |
+| **Coût mois** | Coût mensuel (agrégé) | € |
+| **Coût annuel** | Coût annuel (agrégé) | € |
+| **CO₂ jour** | Émissions CO₂ journalières | kgCO₂ |
+| **CO₂ mensuelle** | Émissions CO₂ mensuelles (agrégées) | kgCO₂ |
+| **CO₂ temps réel** | Intensité carbone actuelle du réseau | gCO₂/kWh |
+| **Température** | Température extérieure journalière | °C |
+| **EcoWatt** | Signal EcoWatt du jour | - |
+| **EcoWatt demain** | Signal EcoWatt du lendemain | - |
+| **Fournisseur** | Nom du fournisseur d'énergie | - |
+| **Offre** | Nom de l'offre souscrite | - |
+| **Rafraichir** | Action de mise à jour manuelle | - |
+
+### Commandes injection solaire (si contrat d'injection Enedis détecté)
+
+| Commande | Description | Unité |
+|----------|-------------|-------|
+| **Production jour** | Production injectée journalière | kWh |
+| **Production mois** | Production mensuelle (agrégée) | kWh |
+| **Production année** | Production annuelle (agrégée) | kWh |
+| **Rémunération jour** | Rémunération journalière | € |
+| **Rémunération mois** | Rémunération mensuelle (agrégée) | € |
+| **Rémunération année** | Rémunération annuelle (agrégée) | € |
+
+### Commandes Tempo (si abonnement Tempo détecté)
+
+| Commande | Description |
+|----------|-------------|
+| **Tempo jour** | Couleur du jour (bleu, blanc, rouge) |
+| **Tempo demain** | Couleur du lendemain |
+
+### Commandes puissance (électricité uniquement)
+
+| Commande | Description | Unité |
+|----------|-------------|-------|
+| **Puissance max** | Puissance maximale atteinte | kVA |
+| **Puissance souscrite** | Puissance souscrite au contrat | kVA |
+
+# Fonctionnement du cron
+
+Le plugin utilise le cron horaire de Jeedom. La récupération des données s'effectue :
+
+- **Entre l'heure configurée et 23h59**, une heure sur deux
+- Le plugin vérifie si les dernières données collectées ont plus de **18 heures** avant de relancer une récupération
+- Un délai de 500 ms est appliqué entre chaque appel API pour éviter les blocages côté Hello Watt
+- En cas d'expiration de session, le plugin se ré-authentifie automatiquement et retente la requête
+
+# Affichage
+
+## Tuiles dashboard
+
+Deux tuiles sont disponibles dans la configuration de l'équipement :
+
+- **Tuile personnalisée (helloWatt)** : affichage compact des consommations avec comparaison mensuelle. Les informations non souhaitées peuvent être masquées via la configuration habituelle des commandes
+- **Tuile Core** : tuile standard gérée par le core Jeedom, personnalisable selon vos préférences
+
+## Panneau (Panel)
+
+Le plugin dispose d'un panneau dédié accessible via **Accueil > helloWatt**. Il affiche :
+
+- La tuile de l'équipement sélectionné
+- Des graphiques de consommation (journalier, mensuel)
+- Des graphiques de comparaison entre périodes
 
 # Recommandations d'usage
-- Il faut laisser les commandes en mode "Lissage historique => aucun".
-- Évitez d'exécuter les commandes *refresh et* veillez à limiter le nombre de requêtes.
-- En cas du discussion sur le forum, **Ne pas poster vos logs sur un fil public, uniquement en MP si nécessaire**
 
-# En cas de dysfonctionnements importants
-Commencez par vérifier :
-1. vos identifiants (email, mdp),
-2. si votre compte sur le site helloWatt est accessible en vous connectant,
-3. si votre mdp est conforme aux exigences récentes de helloWatt (12 caractères, caractères spéciaux…),
-4. si votre version Jeedom est en adéquation avec la version minimale requise par le plugin.
+- **Lissage historique** : laissez les commandes en mode *Aucun* (configuré automatiquement par le plugin)
+- **Requêtes** : évitez d'utiliser le bouton *Rafraichir* de manière excessive. Le cron automatique suffit dans la majorité des cas
+- **Logs** : en cas de problème, activez les logs en mode *Debug* dans la configuration du plugin
+- **Confidentialité** : ne postez **jamais** vos logs sur un fil public du forum. Les logs peuvent contenir des informations personnelles. Transmettez-les uniquement par **message privé**
 
-Si des erreurs persistent :
-1. Activer les logs en début.
-2. Faire un refresh ou "sauvegarder l’équipement" si les commandes ne sont pas créées, me transmettre les logs complets de cette séquence en MP. 
-3. En cas d’erreur 500 joindre également les logs `http.error`.
+# Dépannage
 
-Rappel : !!! Ne pas poster vos logs sur un fil public, **uniquement en MP**, les logs pourraient contenir des informations personnelles directement visibles mais parfois codée !
+## Vérifications préliminaires
 
+1. Vérifiez vos identifiants (email et mot de passe) sur le <a href="https://www.hellowatt.fr/mon-compte/me-connecter" target="_blank">site Hello Watt</a>
+2. Vérifiez que vos données de consommation sont bien visibles dans la section *Mes données* du site
+3. Vérifiez que votre mot de passe est conforme aux exigences de Hello Watt (12 caractères minimum, caractères spéciaux)
+4. Vérifiez que votre version Jeedom est au minimum 4.1
 
-# Problèmes potentiels
+## En cas d'erreur persistante
 
-Comme tous les serveurs, celui de helloWatt n'est pas infaible, il peut être momentanement inaccéssible notament pour maintenance…
-Le plugin réessaie à intervals réguliers.
+1. Activez les logs en mode **Debug** dans la configuration du plugin
+2. Effectuez un **Rafraichir** ou sauvegardez l'équipement si les commandes ne sont pas créées
+3. Transmettez les logs complets par **MP** au développeur
+4. En cas d'erreur HTTP 500, joignez également les logs `http.error` de Jeedom
 
-En l'abscence d'API officielle, des changements coté serveur peuvent rendre le plugin inopérant. Je ferais mon maximum pour résoudre ce genre de probleme mais sans garantie.
+## Problèmes connus
 
-# Remarques
-
-Le plugin se repose sur la manière dont le site helloWatt est structuré. Tout changement sur le site entrainera vraisemblablement une erreur sur le plugin et nécessitera une adaptation de celui-ci plus ou moins difficile à faire.
-
+- Le serveur Hello Watt peut être momentanément inaccessible (maintenance, surcharge). Le plugin retente automatiquement lors du prochain cycle cron
+- En l'absence d'API officielle, des changements côté Hello Watt peuvent rendre le plugin temporairement inopérant. Les mises à jour du plugin corrigent ces incompatibilités
 
 # Disclaimer
 
--   En l'abscence d'API officielle, des changements coté serveur peuvent rendre le plugin inoperant. Je ferais mon maximum pour résoudre ce genre de probleme mais sans garantie.
--   Ce plugin vous est fourni sans aucune garantie. Bien que peu probable, si il venait à corrompre votre installation Jeedom, l'auteur ne pourrait en être tenu pour responsable.
+- Ce plugin utilise une **API non officielle** de Hello Watt. Des changements côté serveur peuvent rendre le plugin temporairement inopérant
+- Ce plugin vous est fourni **sans aucune garantie**. L'auteur ne pourrait être tenu pour responsable en cas de dysfonctionnement
 
-# ChangeLog
+# Changelog
+
 Disponible [ici](./changelog.html).

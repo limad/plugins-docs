@@ -1,85 +1,148 @@
 ---
 layout: default
-title: helloWatt changelog
+title: helloWatt documentation
 lang: fr_FR
 pluginId: helloWatt
 ---
-# helloWatt 
 
-Plugin allowing the recovery of consumption of the communicating meter ** by querying the customer account *helloWatt*. As the data is not made available in real time, the plugin retrieves the gaz consumption data from the day before each day.
+# Plugin helloWatt
 
-2 types of consumption data are accessible :
-- the **daily consumption** *(in kWh and m3)*.
-- the **monthly consumption** *(in kWh and m3)*.
+Plugin permettant la récupération des consommations d'énergie (Gaz et Electricité) par l'interrogation du compte-client **Hello Watt**. Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les dernières données de consommation disponibles.
 
->**Important**      
->You must have a helloWatt customer account. The plugin retrieves information from the game *my space* <a href="https://www.hellowatt.fr/mon-compte" target="_blank">of the helloWatt website</a>, you must therefore check that you have access to it with your usual identifiers and that the data is visible there. Otherwise, the plugin will not work.
+> **Important**
+>
+> Il est nécessaire d'être en possession d'un compte-client Hello Watt. Le plugin récupère les informations à partir de la partie *mes-données* du <a href="https://www.hellowatt.fr/mon-compte/ma-consommation/mes-donnees" target="_blank">site Hello Watt</a>. Vérifiez que vous y avez bien accès avec vos identifiants habituels (email/mot de passe) et que vos données y sont visibles. Dans le cas contraire, le plugin ne fonctionnera pas.
 
-# Configuration
+# Prérequis
 
-## Plugin configuration
+- Jeedom version **4.4** minimum
+- Un compte Hello Watt actif avec au moins un compteur Linky (Enedis) ou Gazpar (GRDF) rattaché
 
-The plugin **helloWatt** does not require any specific configuration and should only be activated after installation.
+# Configuration du plugin
 
-Two options are available in the plugin's configuration to manage behavior when a captcha is detected at connection time:
-- Add an entry in the message center (checked by default)
-- Disable the equipment
+Sur la page de configuration du plugin (**Plugins > Gestion des plugins > helloWatt**), renseignez :
 
-You can also specify the number of days delay generally witnessed in order to prevent the plugin querying the website for nothing.
+| Paramètre | Description |
+|-----------|-------------|
+| **Email** | L'adresse email de votre compte Hello Watt |
+| **Mot de passe** | Le mot de passe de votre compte Hello Watt (stocké chiffré en base) |
+| **Heure de début de récupération** | Heure à partir de laquelle le plugin commence à récupérer les données (entre 15 et 23, défaut : 15). Les données de comptage remontent généralement à des heures régulières ; ce réglage permet de limiter les requêtes inutiles |
+| **Objet par défaut** | Objet Jeedom dans lequel les équipements seront créés automatiquement |
 
-The webste allows you to define thresholds for each mnth (in kWh). The plugin is retrieving these values and stores them in a dedicated command.
-If you prefer to compute thresholds based on last year consumptions, uncheck the option.
+Cliquez sur **Synchroniser** pour vérifier la connexion et créer automatiquement vos équipements.
 
-The data is checked every hour between 4 a.m. and 10 p.m. and updated only if not available in Jeedom.
+# Équipements et commandes
 
-## Equipment configuration
+Pour accéder aux équipements, dirigez-vous vers **Plugins > Energie > helloWatt**.
 
-To access the different equipment **helloWatt**, go to the menu **Plugins → Energy → helloWatt **.
+Le plugin crée automatiquement un équipement par compteur détecté sur votre compte Hello Watt. Chaque équipement est identifié par son type (`elec` ou `gaz`), l'identifiant du domicile et le numéro de point de comptage (PDL ou PCE).
 
-> **To know**    
-> The button **+ Add** allows you to add a new account **helloWatt **.
+## Commandes disponibles
 
-On the equipment page, fill in the'**Login** as well as the **Password** of your customer account *helloWatt* then click on the button **Save**.
+### Commandes communes (électricité et gaz)
 
-You can also specify the PCE if you own several gas meters.
+| Commande | Description | Unité |
+|----------|-------------|-------|
+| **Conso jour** | Consommation journalière | kWh |
+| **Conso mois** | Consommation mensuelle (agrégée) | kWh |
+| **Conso annuelle** | Consommation annuelle (agrégée) | kWh |
+| **Coût jour** | Coût de la consommation journalière | € |
+| **Coût mois** | Coût mensuel (agrégé) | € |
+| **Coût annuel** | Coût annuel (agrégé) | € |
+| **CO₂ jour** | Émissions CO₂ journalières | kgCO₂ |
+| **CO₂ mensuelle** | Émissions CO₂ mensuelles (agrégées) | kgCO₂ |
+| **CO₂ temps réel** | Intensité carbone actuelle du réseau | gCO₂/kWh |
+| **Température** | Température extérieure journalière | °C |
+| **EcoWatt** | Signal EcoWatt du jour | - |
+| **EcoWatt demain** | Signal EcoWatt du lendemain | - |
+| **Fournisseur** | Nom du fournisseur d'énergie | - |
+| **Offre** | Nom de l'offre souscrite | - |
+| **Rafraichir** | Action de mise à jour manuelle | - |
 
-The option **Force data retrieval** to force data retrieval even if data is already present for concerned periods.
+### Commandes injection solaire (si contrat d'injection Enedis détecté)
 
-The plugin will then check the correct connection to the site *helloWatt* and retrieve and insert in history :
-- **daily consumption** : the last 365 days,
-- **monthly consumption** : the last 12 months,
-- **maximum, minimum and average monthly consumptions of similar profiles of the last 12 months**
-- **monthly thresholds** as defined on the website
+| Commande | Description | Unité |
+|----------|-------------|-------|
+| **Production jour** | Production injectée journalière | kWh |
+| **Production mois** | Production mensuelle (agrégée) | kWh |
+| **Production année** | Production annuelle (agrégée) | kWh |
+| **Rémunération jour** | Rémunération journalière | € |
+| **Rémunération mois** | Rémunération mensuelle (agrégée) | € |
+| **Rémunération année** | Rémunération annuelle (agrégée) | € |
 
-Four widget's tmplates are available. The ones with comparison inform you how your previous month consumption compares with similar profiles.
+### Commandes Tempo (si abonnement Tempo détecté)
 
-# Potential issues
+| Commande | Description |
+|----------|-------------|
+| **Tempo jour** | Couleur du jour (bleu, blanc, rouge) |
+| **Tempo demain** | Couleur du lendemain |
 
-From time to time, a captccha might be required to connect to the website.
-It will be mentioned in the plugin's logs and the plugin will react depending on the plugin's configuration you defined.
-In this case, you need to connect to the website "manually" and resolve the captcha.
+### Commandes puissance (électricité uniquement)
 
-# Remarks
+| Commande | Description | Unité |
+|----------|-------------|-------|
+| **Puissance max** | Puissance maximale atteinte | kVA |
+| **Puissance souscrite** | Puissance souscrite au contrat | kVA |
 
-During tests, it appeared that the helloWatt website is quite "unstable" with direct impacts on the plugin. On Jeedom, the plugin is configured to gather data every hour. It may happen that it does not work each time: no issue, just wait for the next scheduled run.
+# Fonctionnement du cron
 
-This plugin heavily relies on how the helloWatt website is structured/designed. Any change on the website will most probably break the plugin and will then require to perform code changes on the plugin.
+Le plugin utilise le cron horaire de Jeedom. La récupération des données s'effectue :
 
-# Contributions
+- **Entre l'heure configurée et 23h59**, une heure sur deux
+- Le plugin vérifie si les dernières données collectées ont plus de **18 heures** avant de relancer une récupération
+- Un délai de 500 ms est appliqué entre chaque appel API pour éviter les blocages côté Hello Watt
+- En cas d'expiration de session, le plugin se ré-authentifie automatiquement et retente la requête
 
-This plugin is opened for contributions and even encouraged! Please submit your pull requests for improvements/fixes on <a href="https://github.com/hugoKs3/plugin-helloWatt" target="_blank">Github</a>
+# Affichage
 
-# Credits
+## Tuiles dashboard
 
-This plugin has been inspired by the work done by:
+Deux tuiles sont disponibles dans la configuration de l'équipement :
 
--   [Jeedom](https://github.com/jeedom)  through their Enedis plugin:  [plugin-enedis](https://github.com/jeedom/plugin-enedis)
--   [empierre](https://github.com/empierre)  through his similar work done for Domoticz:  [domoticz_gaspar](https://github.com/empierre/domoticz_gaspar)
+- **Tuile personnalisée (helloWatt)** : affichage compact des consommations avec comparaison mensuelle. Les informations non souhaitées peuvent être masquées via la configuration habituelle des commandes
+- **Tuile Core** : tuile standard gérée par le core Jeedom, personnalisable selon vos préférences
+
+## Panneau (Panel)
+
+Le plugin dispose d'un panneau dédié accessible via **Accueil > helloWatt**. Il affiche :
+
+- La tuile de l'équipement sélectionné
+- Des graphiques de consommation (journalier, mensuel)
+- Des graphiques de comparaison entre périodes
+
+# Recommandations d'usage
+
+- **Lissage historique** : laissez les commandes en mode *Aucun* (configuré automatiquement par le plugin)
+- **Requêtes** : évitez d'utiliser le bouton *Rafraichir* de manière excessive. Le cron automatique suffit dans la majorité des cas
+- **Logs** : en cas de problème, activez les logs en mode *Debug* dans la configuration du plugin
+- **Confidentialité** : ne postez **jamais** vos logs sur un fil public du forum. Les logs peuvent contenir des informations personnelles. Transmettez-les uniquement par **message privé**
+
+# Dépannage
+
+## Vérifications préliminaires
+
+1. Vérifiez vos identifiants (email et mot de passe) sur le <a href="https://www.hellowatt.fr/mon-compte/me-connecter" target="_blank">site Hello Watt</a>
+2. Vérifiez que vos données de consommation sont bien visibles dans la section *Mes données* du site
+3. Vérifiez que votre mot de passe est conforme aux exigences de Hello Watt (12 caractères minimum, caractères spéciaux)
+4. Vérifiez que votre version Jeedom est au minimum 4.1
+
+## En cas d'erreur persistante
+
+1. Activez les logs en mode **Debug** dans la configuration du plugin
+2. Effectuez un **Rafraichir** ou sauvegardez l'équipement si les commandes ne sont pas créées
+3. Transmettez les logs complets par **MP** au développeur
+4. En cas d'erreur HTTP 500, joignez également les logs `http.error` de Jeedom
+
+## Problèmes connus
+
+- Le serveur Hello Watt peut être momentanément inaccessible (maintenance, surcharge). Le plugin retente automatiquement lors du prochain cycle cron
+- En l'absence d'API officielle, des changements côté Hello Watt peuvent rendre le plugin temporairement inopérant. Les mises à jour du plugin corrigent ces incompatibilités
 
 # Disclaimer
 
--   This code does not pretend to be bug-free
--   Although it should not harm your Jeedom system, it is provided without any warranty or liability
+- Ce plugin utilise une **API non officielle** de Hello Watt. Des changements côté serveur peuvent rendre le plugin temporairement inopérant
+- Ce plugin vous est fourni **sans aucune garantie**. L'auteur ne pourrait être tenu pour responsable en cas de dysfonctionnement
 
-# ChangeLog
-Available [here](./changelog.html).
+# Changelog
+
+Disponible [ici](./changelog.html).
