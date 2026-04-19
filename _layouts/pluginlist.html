@@ -24,8 +24,7 @@
 			</div>
 
 			<a class="nav-logo" href="{{site.baseurl}}">
-				<img src="{{site.market}}/filestore/market/plugin/images/{{page.pluginId}}_icon.png"
-					alt="{{ page.pluginId }}">
+				<img src="{{site.baseurl}}/assets/images/logo_docs.png" alt="Limad44">
 			</a>
 
 			<ul class="nav-links">
@@ -90,8 +89,8 @@
 		</div>
 	</div>
 
-	<script src="{{site.baseurl}}/assets/js/jquery-2.1.1.min.js" defer></script>
-	<script src="{{site.baseurl}}/assets/js/jquery.toc.js" defer></script>
+	<script src="{{site.baseurl}}/assets/js/jquery-2.1.1.min.js"></script>
+	<script src="{{site.baseurl}}/assets/js/jquery.toc.js"></script>
 	<script>
 		$(function () {
 			var title = '{{ page.title }}';
@@ -116,6 +115,9 @@
 			});
 
 			/* Language */
+			var langMatch = /\/([a-z]{2}_[A-Z]{2})\//.exec(window.location.href);
+			if (langMatch) { $('#lang-select').val(langMatch[1]); }
+
 			$('#lang-select').on('change', function () {
 				var match = /\/([a-z]{2}_[A-Z]{2})\//.exec(window.location.href);
 				if (match) {
