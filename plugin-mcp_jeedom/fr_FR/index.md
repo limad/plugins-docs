@@ -309,6 +309,38 @@ Exemple d'utilisation : `find_command(generic_type="LIGHT_ON", room_name="salon"
 
 ---
 
+## Skills — expertise Jeedom embarquée
+
+Le plugin fournit à l'IA des guides métier spécialisés qu'elle consulte automatiquement avant d'agir. Objectif : des réponses précises, conformes aux conventions Jeedom, sans hallucination.
+
+| Skill | Domaine | Déclenche sur |
+|---|---|---|
+| `jeedom-expert-scenarios` | Conception de scénarios (blocks, conditions, code PHP) | création / modification / debug de scénarios |
+| `jeedom-history-analytics` | Analyse d'historique de commandes, statistiques, tendances | questions sur consommation, moyennes, évolutions |
+| `jeedom-devices-energy` | Mesure et optimisation énergétique (W, kWh, coûts) | audits énergie, alertes de consommation |
+| `jeedom-interaction-ask` | Règles de dialogue (quand demander confirmation, comment clarifier) | toute interaction longue ou à risque |
+
+Les skills sont exposés comme ressources MCP (`jeedom://skill/<nom>`) : l'IA les lit à la demande selon le contexte de la conversation.
+
+---
+
+## Extensions MCP de plugins tiers
+
+Les développeurs d'autres plugins Jeedom peuvent exposer leurs propres outils MCP **sans modifier `mcp_jeedom`**. Un plugin tiers devient acteur du serveur MCP en déposant deux fichiers :
+
+```
+plugins/{votre_plugin}/resources/mcp_extension/mcp_tools.json    ← définitions (schémas)
+plugins/{votre_plugin}/resources/mcp_extension/McpExtension.php  ← handler (exécution)
+```
+
+Les outils apparaissent automatiquement avec le préfixe `ext__{votre_plugin}__{nom_outil}` dès le premier `tools/list` (cache à la demande, revalidation automatique).
+
+**Exemple** : un plugin météo exposant `ext__meteo__get_forecast` → l'IA peut ensuite l'appeler comme n'importe quel outil natif pour intégrer la météo dans ses réponses ou scénarios.
+
+Le guide complet pour les développeurs se trouve dans `plugins/mcp_jeedom/resources/mcp_extension/EXTENSION_GUIDE.md`.
+
+---
+
 ## Comparaison avec d'autres serveurs MCP domotique
 
 | Capacité | **mcp_jeedom** | HA officiel | HA communauté | Gladys |
