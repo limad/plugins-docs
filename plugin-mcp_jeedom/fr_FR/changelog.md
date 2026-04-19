@@ -19,6 +19,27 @@ lang: fr_FR
 
 ---
 
+## 18/04/2026
+
+**L'IA devient experte de votre Jeedom grâce aux "skills"**
+Quatre guides spécialisés sont désormais embarqués dans le plugin : scénarios experts, analyse historique, gestion énergie et interaction avec l'utilisateur. Avant de répondre ou d'agir, l'IA consulte automatiquement le guide adapté à votre demande.
+Résultat : créations de scénarios plus fiables, analyses de consommation plus pertinentes, moins de réponses "hors-sol".
+
+**D'autres plugins Jeedom peuvent exposer leurs propres outils MCP**
+Un mécanisme d'extension permet aux développeurs d'autres plugins d'ajouter leurs outils au client MCP sans modifier `mcp_jeedom`. Il suffit de déposer deux fichiers dans le plugin tiers (`mcp_tools.json` + `McpExtension.php`) et les outils apparaissent automatiquement avec le préfixe `ext__{plugin}__{outil}`.
+Exemple d'usage : un plugin météo pourrait exposer `ext__meteo__get_forecast` que l'IA utiliserait directement.
+
+**L'IA connaît les types génériques Jeedom**
+Elle dispose d'une documentation intégrée sur les types de commandes (`info`, `action`, `numeric`, `binary`…) et d'équipements (`light`, `heating`, `presence`…). Elle choisit la bonne catégorie lorsqu'elle crée ou modifie des équipements virtuels.
+
+**Refonte complète de l'interface administrateur**
+Les pages Configuration, Tokens, Clients, Whitelist et Santé ont été entièrement réécrites pour plus de clarté : meilleur affichage mobile, tableaux plus lisibles, actions mieux regroupées, messages d'erreur explicites.
+
+**Code interne réorganisé (invisible pour vous, mais plus robuste)**
+Le cœur du plugin a été découpé en modules spécialisés (scénarios, équipements, santé, administration côté PHP ; références, outils intelligents, extensions côté Python). Les futures évolutions et correctifs seront plus rapides, avec moins de risque de régression.
+
+---
+
 ## 19/03/2026
 
 **L'IA peut créer, modifier et gérer vos scénarios Jeedom** *(option à activer)*
