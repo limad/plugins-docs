@@ -136,6 +136,21 @@ pluginId: limad44
 </div>
 
 <div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-alexaamazonmusic/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/alexaamazonmusic_icon.png" alt="alexaamazonmusic">
+	<div>
+		<h2 class="plugin-card__name">Alexa - Amazon Music</h2>
+		<span class="plugin-card__id">alexaamazonmusic</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Contrôle Amazon Music sur vos appareils Alexa depuis Jeedom : lecture, volume, playlists, radio TuneIn, égaliseur et transfert de lecture entre appareils.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-alexaamazonmusic/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-alexaamazonmusic/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
+<div class="plugin-card">
 	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-sfrBox/{{page.lang}}">
 	<img src="{{site.market}}/filestore/market/plugin/images/sfrBox_icon.png" alt="sfrBox">
 	<div>
