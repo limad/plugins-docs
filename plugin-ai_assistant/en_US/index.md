@@ -19,6 +19,42 @@ pluginId: ai_assistant
 >
 > This last use is a small revolution. Beyond the practical aspect, the possibilities become unlimited: imagine a Jeedom scenario asking the AI to generate and integrate a complex script, all internally and autonomously.
 
+## At a glance
+
+- **9+ interchangeable providers**: Claude, Gemini, OpenAI, DeepSeek, Mistral, Groq, xAI, OpenRouter, Perplexity, Ollama — with **automatic fallback**.
+- **MCP home-automation agent**: the AI calls tools to read the real state then act (multi-step loop: read → decide → act → verify).
+- **3 modes**: pure chat (`provider`), native Jeedom assistant (`jeeAssist`), MCP agent (`mcp_client` — jeedom or third-party such as Home Assistant).
+- **Real security**: read/write/execute ACL, destructive actions denied by default, confirmation of sensitive actions, real-time preview, full audit.
+- **Automatable**: triggerable from scenarios, voice interactions, events, cron.
+- **Cost-efficient**: `tools/list` cache + prompt caching, tool selection, tool-less mode, filtered home context, history compression, user memory.
+- **Local & multimodal**: hosted on your Jeedom, image (camera) and document analysis, desktop / mobile / PWA access.
+
+## When to use it (vs a classic AI client)
+
+The AI model is the same as everywhere — what changes is **where it is plugged in** and **what it can do**: knowledge of your home, the power to act, and the safeguards to do so safely. These are **complementary** tools.
+
+| You want to… | Use |
+|---|---|
+| Code, long general-purpose tasks | A dedicated client (Codex, ChatGPT…) |
+| Understand and **control your home** | **ai_assistant + MCP** |
+| An AI triggered by a **scenario / voice** | **ai_assistant** |
+| Act on devices **safely** | **ai_assistant** (ACL + confirmation) |
+| Avoid depending on a single vendor | **ai_assistant** (multi-provider + fallback) |
+
+### Examples
+
+```text
+"Why isn't the heating warming the bedroom?"
+   → reads setpoint + temperature + history, explains the cause.
+
+"Get the house ready for the night."
+   → checks openings, lowers setpoints, runs the scenario
+     (with confirmation if the action is sensitive).
+
+[Triggered by Jeedom] abnormal consumption detected
+   → the AI analyzes the faulty device and proposes a fix.
+```
+
 ---
 
 # Why add mcp_jeedom?

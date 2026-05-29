@@ -41,9 +41,10 @@ lang: fr_FR
 
 > Échappatoires `always` / `full` / TTL `0` pour restaurer le comportement d'origine.
 
-### 🔒 Documentation sécurité MCP
+### 📚 Documentation
 
-- Détail des **ACL d'outils MCP** (niveaux `read`/`write`/`execute`), du **garde-fou destructif** (refus par défaut), de la **confirmation** des actions sensibles, de l'**aperçu temps réel** (SSE) et de l'**audit** (`tool_call_audit.json`).
+- **Présentation enrichie** : « En bref » (capacités clés), tableau *Quand l'utiliser (vs un client IA classique)* et exemples concrets.
+- **Sécurité MCP détaillée** : **ACL d'outils** (niveaux `read`/`write`/`execute`), **garde-fou destructif** (refus par défaut), **confirmation** des actions sensibles, **aperçu temps réel** (SSE) et **audit** (`tool_call_audit.json`).
 
 ## 19/04/2026
 

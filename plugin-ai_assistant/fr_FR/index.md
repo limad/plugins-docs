@@ -19,6 +19,42 @@ pluginId: ai_assistant
 >
 > Ce dernier usage est une petite revolution. Au dela de l aspect pratique, les possibilites deviennent illimitees : imaginez un scenario Jeedom demandant a l IA de generer et d integrer un script complexe, le tout en interne et de maniere autonome.
 
+## En bref
+
+- **9+ providers** interchangeables : Claude, Gemini, OpenAI, DeepSeek, Mistral, Groq, xAI, OpenRouter, Perplexity, Ollama — avec **fallback automatique**.
+- **Agent domotique MCP** : l IA appelle des outils pour lire l etat reel puis agir (boucle multi-etapes : lire → decider → agir → verifier).
+- **3 modes** : chat pur (`provider`), assistant Jeedom natif (`jeeAssist`), agent MCP (`mcp_client` — jeedom ou tiers comme Home Assistant).
+- **Securite reelle** : ACL read/write/execute, refus des actions destructives par defaut, confirmation des actions sensibles, apercu temps reel, audit complet.
+- **Automatisable** : declenchable depuis scenarios, interactions vocales, evenements, cron.
+- **Econome** : cache `tools/list` + cache de prompt, selection d outils, mode sans-outils, contexte domotique filtre, compression d historique, memoire utilisateur.
+- **Local & multimodal** : heberge sur votre Jeedom, analyse d images (cameras) et documents, acces desktop / mobile / PWA.
+
+## Quand l utiliser (vs un client IA classique)
+
+Le modele d IA est le meme que partout — ce qui change, c est **ou il est branche** et **ce qu il peut faire** : la connaissance de votre maison, le pouvoir d agir, et les garde-fous pour le faire sans danger. Ce sont des outils **complementaires**.
+
+| Vous voulez… | Utilisez |
+|---|---|
+| Coder, taches generalistes longues | Un client dedie (Codex, ChatGPT…) |
+| Comprendre et **piloter votre maison** | **ai_assistant + MCP** |
+| Une IA declenchee par un **scenario / la voix** | **ai_assistant** |
+| Agir sur des equipements **en securite** | **ai_assistant** (ACL + confirmation) |
+| Ne pas dependre d un seul fournisseur | **ai_assistant** (multi-provider + fallback) |
+
+### Exemples
+
+```text
+« Pourquoi le chauffage ne chauffe pas dans la chambre ? »
+   → lit consigne + temperature + historique, explique la cause.
+
+« Prepare la maison pour la nuit. »
+   → verifie ouvertures, baisse les consignes, lance le scenario
+     (avec confirmation si action sensible).
+
+[Declenche par Jeedom] conso anormale detectee
+   → l IA analyse l equipement fautif et propose une correction.
+```
+
 ---
 
 # Pourquoi ajouter mcp_jeedom ?
