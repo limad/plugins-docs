@@ -19,6 +19,42 @@ pluginId: ai_assistant
 >
 > Ce dernier usage est une petite revolution. Au dela de l aspect pratique, les possibilites deviennent illimitees : imaginez un scenario Jeedom demandant a l IA de generer et d integrer un script complexe, le tout en interne et de maniere autonome.
 
+## En bref
+
+- **9+ providers** interchangeables : Claude, Gemini, OpenAI, DeepSeek, Mistral, Groq, xAI, OpenRouter, Perplexity, Ollama — avec **fallback automatique**.
+- **Agent domotique MCP** : l IA appelle des outils pour lire l etat reel puis agir (boucle multi-etapes : lire → decider → agir → verifier).
+- **3 modes** : chat pur (`provider`), assistant Jeedom natif (`jeeAssist`), agent MCP (`mcp_client` — jeedom ou tiers comme Home Assistant).
+- **Securite reelle** : ACL read/write/execute, refus des actions destructives par defaut, confirmation des actions sensibles, apercu temps reel, audit complet.
+- **Automatisable** : declenchable depuis scenarios, interactions vocales, evenements, cron.
+- **Econome** : cache `tools/list` + cache de prompt, selection d outils, mode sans-outils, contexte domotique filtre, compression d historique, memoire utilisateur.
+- **Local & multimodal** : heberge sur votre Jeedom, analyse d images (cameras) et documents, acces desktop / mobile / PWA.
+
+## Quand l utiliser (vs un client IA classique)
+
+Le modele d IA est le meme que partout — ce qui change, c est **ou il est branche** et **ce qu il peut faire** : la connaissance de votre maison, le pouvoir d agir, et les garde-fous pour le faire sans danger. Ce sont des outils **complementaires**.
+
+| Vous voulez… | Utilisez |
+|---|---|
+| Coder, taches generalistes longues | Un client dedie (Codex, ChatGPT…) |
+| Comprendre et **piloter votre maison** | **ai_assistant + MCP** |
+| Une IA declenchee par un **scenario / la voix** | **ai_assistant** |
+| Agir sur des equipements **en securite** | **ai_assistant** (ACL + confirmation) |
+| Ne pas dependre d un seul fournisseur | **ai_assistant** (multi-provider + fallback) |
+
+### Exemples
+
+```text
+« Pourquoi le chauffage ne chauffe pas dans la chambre ? »
+   → lit consigne + temperature + historique, explique la cause.
+
+« Prepare la maison pour la nuit. »
+   → verifie ouvertures, baisse les consignes, lance le scenario
+     (avec confirmation si action sensible).
+
+[Declenche par Jeedom] conso anormale detectee
+   → l IA analyse l equipement fautif et propose une correction.
+```
+
 ---
 
 # Pourquoi ajouter mcp_jeedom ?
@@ -293,13 +329,51 @@ Les actions programmees via `schedule_action` (ex: *"eteins le salon dans 30 min
 
 ---
 
+# Optimisation des couts (economie de tokens)
+
+Le plugin reduit automatiquement le nombre de tokens envoyes a chaque message, sans degrader les usages domotiques. Ces optimisations sont actives par defaut et reglables par equipement (le cache `tools/list` est global).
+
+| Option | Role | Valeurs | Defaut |
+|---|---|---|---|
+| `mcp_tools_prompt_mode` | Injection des outils MCP dans le prompt | `auto` / `always` / `never` | `auto` |
+| `mcpMaxTools` | Nb max d outils MCP envoyes au modele (selection par pertinence) | entier (`0` = illimite) | `28` |
+| `mcp_tools_cache_ttl` | Duree du cache de la liste `tools/list` par serveur MCP (secondes) | entier (`0` = desactive) | `21600` (6 h) |
+| `jeedom_context_mode` | Contexte Jeedom injecte (jeeAssist) | `auto` (filtre par la question) / `full` | `auto` |
+
+Mecanismes :
+
+- **Cache `tools/list`** : la liste des outils d un serveur MCP n est plus rechargee a chaque message. Bouton *Actualiser tools/list* dans le modal MCP pour forcer le refresh.
+- **Catalogue compact + selection d outils** : seuls les outils pertinents (mots-cles de la question) sont envoyes, descriptions tronquees — au lieu de dizaines de schemas complets.
+- **Mode sans-outils** : une question conversationnelle (*"resume notre discussion"*, *"explique cette option"*) n envoie aucun outil ni appel `tools/list` ; une demande domotique (*"allume le salon"*) garde les outils.
+- **Contexte Jeedom filtre** : en jeeAssist, seuls les equipements lies a la question sont injectes. Une demande globale (*"liste tous mes equipements"*, *"recapitulatif de la maison"*) recoit le contexte complet.
+- **Compression d historique** : au-dela d un seuil, les anciens echanges sont resumes par un mini-modele.
+- **Memoire utilisateur** : les faits utiles (preferences) sont stockes a part (`dataStore`) et injectes de facon ciblee, pas via tout l historique.
+- **Cache de prompt** : exploite le prompt caching des fournisseurs (Claude, OpenAI/DeepSeek, Gemini). La part de tokens servie depuis le cache est tracee (`cached_tokens`) dans les logs debug `[tokens]`.
+
+> Les echappatoires `always` / `full` / TTL `0` restaurent integralement le comportement d origine si besoin.
+
+---
+
 # Securite
+
+## Gardes-fous generaux
 
 - **Whitelists** : controle fin des commandes autorisees — les tools natifs passent par les memes `_execAllowed*` que le protocole legacy
 - **Mode lecture seule** recommande pour tests
 - **Confirmations d actions sensibles** (selon configuration)
 - **Ecritures atomiques** (tmp + rename) sur `scheduled_actions.json`, `whitelist.json`, `tool_call_audit.json` pour resister a un crash mid-write
 - **Source de verite unique** : les modeles et endpoints sont lus depuis `core/config/ai_models.json` et `ai_assistant::PROVIDER_ENDPOINTS` — plus de divergence entre le code et le catalogue
+
+## ACL des outils MCP
+
+Chaque equipement client MCP applique un controle d acces par niveau, independamment du serveur connecte :
+
+- **Niveaux `read` / `write` / `execute`** : actives separement par equipement. Un outil est classe automatiquement d apres son nom (`get_`/`list_`/`read_` = read ; `set_`/`create_`/`update_` = write ; `exec_`/`run_`/`trigger_`/`send_` = execute).
+- **Garde-fou destructif** : les outils de suppression / purge / execution shell (`delete_`, `purge_`, `exec_shell`...) sont **refuses par defaut** — activation explicite requise par equipement (*Autoriser actions destructives*).
+- **Confirmation** des actions sensibles avant execution (serrure, alarme, portail...).
+- **Apercu temps reel** (SSE) des actions a effet de bord, affiche avant leur execution.
+- **Audit complet** : chaque appel d outil (objectif, arguments, decision, statut) est trace dans `tool_call_audit.json`.
+- **Refus explicite renvoye au modele** : si un outil est bloque par l ACL, l IA recoit l erreur et peut s adapter plutot que d echouer.
 
 ---
 
