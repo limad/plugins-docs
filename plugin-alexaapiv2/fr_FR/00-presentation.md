@@ -15,7 +15,7 @@
 | 01 | [Installation & Mise à jour](01-installation.md) | Market, cookie/Auth, Daemon, Scan, widgets, MAJ |
 | 02 | [Commandes](02-commandes.md) | Commandes simples, complexes, SSML, expressions |
 | 03 | [AlexaSys & SmartHome](03-alexasys-smarthome.md) | Alexa Chat, TTS, scénarios, gestion SmartHome |
-| 04 | [Skill ASK Amazon](04-skill-ask.md) | Déploiement automatisé, VoiceQuery, interactions vocales |
+| 04 | [Skill ASK Amazon](04-skill-ask.md) | Alternative manuelle de création du Skill ASK |
 | 05 | [Bonnes pratiques & Dépannage](05-depannage.md) | Astuces, guide de dépannage, forum |
 
 ---

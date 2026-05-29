@@ -1,18 +1,21 @@
-# Plugin Alexa Premium — Skill ASK, VoiceQuery et JeeViewer
+# Plugin Alexa Premium — Créer un Skill ASK Amazon
+
+> Cette page décrit l'**alternative manuelle**. La méthode recommandée reste le déploiement automatisé depuis la configuration du plugin Alexa Premium.
 
 ---
 
 ## Sommaire
 
 - [1. Présentation](#1-présentation)
-- [2. Prérequis](#2-prérequis)
-- [3. Déployer le Skill ASK depuis Jeedom](#3-déployer-le-skill-ask-depuis-jeedom)
-- [4. Activer et tester le Skill](#4-activer-et-tester-le-skill)
-- [5. VoiceQuery](#5-voicequery)
-- [6. Assistant d'interactions vocales](#6-assistant-dinteractions-vocales)
-- [7. JeeViewer](#7-jeeviewer)
-- [8. Consulter les logs](#8-consulter-les-logs)
-- [9. Exemples d'utilisation](#9-exemples-dutilisation)
+- [2. Créer un compte développeur Amazon](#2-créer-un-compte-développeur-amazon)
+- [3. Créer le Skill](#3-créer-le-skill)
+- [4. Importer le code](#4-importer-le-code)
+- [5. Configurer les paramètres Jeedom](#5-configurer-les-paramètres-jeedom)
+- [6. Importer le modèle d'interaction](#6-importer-le-modèle-dinteraction)
+- [7. Déployer et activer le Skill](#7-déployer-et-activer-le-skill)
+- [8. Renseigner l'ID du Skill dans le plugin](#8-renseigner-lid-du-skill-dans-le-plugin)
+- [9. Consulter les logs du Skill](#9-consulter-les-logs-du-skill)
+- [10. Exemples d'utilisation](#10-exemples-dutilisation)
 
 ---
 
@@ -26,123 +29,161 @@ Sans Skill ASK, Alexa exécute des actions de façon silencieuse. Avec le Skill 
 - « Quelle température souhaitez-vous ? » → Réponse vocale → Action dans Jeedom
 - « Confirmez-vous l'extinction de tous les volets ? » → Confirmation vocale requise
 
-Le plugin sait maintenant déployer le Skill ASK directement depuis Jeedom. La création manuelle dans la console Amazon n'est plus la méthode recommandée.
+> Le Skill doit être **appelé par le plugin Alexa Premium** pour fonctionner correctement — il ne fonctionne pas de façon autonome.
 
 ---
 
-## 2. Prérequis
+## 2. Créer un compte développeur Amazon
 
-- Un compte développeur Amazon connecté au **même compte Amazon** que vos appareils Alexa.
-- Une URL externe Jeedom fonctionnelle, idéalement en HTTPS avec certificat valide.
-- Le cookie Amazon du plugin Alexa Premium opérationnel.
-- Une clé API plugin valide.
-
-> Le Skill reste en mode **Development**. C'est suffisant pour une utilisation personnelle avec Jeedom.
+Rendez-vous sur [developer.amazon.com](https://developer.amazon.com/) et connectez-vous avec le **même compte Amazon** que celui utilisé pour vos appareils Alexa.
 
 ---
 
-## 3. Déployer le Skill ASK depuis Jeedom
+## 3. Créer le Skill
 
-Ouvrez la configuration du plugin Alexa Premium puis utilisez l'écran de **déploiement du Skill ASK**.
+Accédez à la console ASK : [developer.amazon.com/alexa/console/ask](https://developer.amazon.com/alexa/console/ask)
 
-Le déploiement automatisé effectue les étapes suivantes :
+![Console ASK — écran d'accueil](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/0.png)
 
-1. recherche d'un Skill existant du même nom ;
-2. création du Skill si nécessaire ;
-3. synchronisation du code Lambda ;
-4. injection de l'URL Jeedom et de la clé API ;
-5. déploiement du code ;
-6. import des modèles d'interaction ;
-7. build du Skill ;
-8. activation du Skill ;
-9. enregistrement automatique de l'ID du Skill dans la configuration Jeedom.
+Cliquez sur **Créer un Skill** :
 
-L'opération peut prendre plusieurs minutes. Laissez la fenêtre de déploiement ouverte jusqu'au message de réussite.
+![Bouton Créer un Skill](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/1.png)
 
-> Si l'URL externe Jeedom est en HTTPS, le Skill vérifie le certificat SSL. Si elle est en HTTP, la vérification SSL est désactivée automatiquement.
+Renseignez les informations du Skill :
+- **Nom** : `ask Jeedom`
+- **Langue** : Français (FR)
 
----
+Cliquez sur **Next** en haut à droite.
 
-## 4. Activer et tester le Skill
+![Nom et langue du Skill](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/2.png)
 
-Après un déploiement réussi :
+Sélectionnez les options suivantes :
 
-1. ouvrez l'application Alexa ;
-2. allez dans **Skills et jeux** puis **Vos Skills** ;
-3. cherchez les **Skills développeur** ;
-4. vérifiez que le Skill Alexa Premium est activé ;
-5. testez à la voix avec son nom d'invocation.
+![Sélection type Other et Custom](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/3.png)
 
-Exemple :
+![Sélection hébergement et région](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/4.png)
+
+- **Type d'expérience** → `Other`
+- **Modèle** → `Custom` avec **Sync Locales** activé
+- **Service d'hébergement** → `Alexa-hosted (Python)`
+- **Région d'hébergement** → `EU (Ireland)`
+
+Cliquez sur **Next** puis sélectionnez **Start from Scratch**.
+
+![Sélection Start from Scratch](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/5.png)
+
+### Nom d'invocation
+
+Dans la section **Invocation Name**, saisissez le mot ou la phrase qui permettra d'activer votre Skill à la voix :
 
 ```
-Alexa, ouvre Jeedom
+pose question
 ```
 
-Alexa doit répondre et attendre votre demande.
+> Vous pouvez choisir un autre nom d'invocation, mais il doit être **simple et mémorisable**. C'est ce que vous direz à Alexa : *« Alexa, ouvre pose question »*.
+
+Cliquez sur **Enregistrer**.
 
 ---
 
-## 5. VoiceQuery
+## 4. Importer le code
 
-VoiceQuery permet de poser une question en langage naturel au Skill ASK, puis de laisser Jeedom chercher la commande ou l'interaction correspondante.
+Cliquez sur l'onglet **Code** puis sur **Import skill** en haut à droite :
 
-Exemples :
+![Import du code](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.png)
+
+Dans le formulaire qui s'ouvre, renseignez l'URL GitHub :
 
 ```
-Quelle est la température du salon ?
-Allume la lumière du séjour
-Lance la routine cinéma
+https://github.com/limad/premiumAsk_skill.git
 ```
 
-Important : VoiceQuery s'appuie sur les commandes et interactions visibles par Jeedom. Une réponse native Alexa peut donc fonctionner hors Skill, alors que la même phrase dans le Skill ASK peut répondre **Aucune commande trouvée** si l'équipement n'est pas visible côté Jeedom ou interactions.
+Validez et **patientez** pendant la génération du Skill (cela peut prendre plusieurs minutes).
 
 ---
 
-## 6. Assistant d'interactions vocales
+## 5. Configurer les paramètres Jeedom
 
-L'assistant d'interactions vocales aide à créer des phrases Jeedom exploitables par le Skill ASK.
+Une fois le code importé, ouvrez le fichier **`lambda/config.py`** dans l'onglet Code et renseignez les paramètres suivants :
 
-Il peut notamment :
+![Configuration lambda/config.py](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.1.png)
 
-- détecter les commandes info utiles ;
-- proposer des phrases pour les capteurs ;
-- grouper les commandes par pièce ;
-- créer ou régénérer les interactions nécessaires.
+| Paramètre | Description |
+|---|---|
+| `JEEDOM_URL` | URL externe de votre Jeedom (ex. : `https://votre-jeedom.fr`) |
+| `APIKEY` | Clé API du plugin Alexa Premium |
+| `VERIFY_SSL` | `True` si votre URL externe est en HTTPS avec certificat valide, sinon `False` |
 
-Après génération, testez toujours quelques phrases depuis l'application Alexa ou un Echo.
+**Où trouver ces paramètres ?**
+Dans la configuration du plugin Alexa Premium, cliquez sur le bouton **Params** :
 
----
+![Bouton Params dans la configuration](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.1.png)
 
-## 7. JeeViewer
+Une fois les paramètres renseignés, cliquez sur **Save** puis sur **Deploy** :
 
-JeeViewer est un Skill séparé permettant d'afficher Jeedom sur un appareil Alexa avec écran compatible : Echo Show, Fire TV ou écran Alexa équivalent.
-
-Le déploiement se fait depuis l'écran dédié du plugin. Comme pour le Skill ASK, laissez le déploiement aller jusqu'au build final avant de tester.
-
----
-
-## 8. Consulter les logs
-
-En cas de problème, consultez :
-
-- le log Jeedom du plugin Alexa Premium ;
-- la fenêtre de progression du déploiement ;
-- le panneau Santé Skill ;
-- les logs CloudWatch du Skill dans la console ASK.
-
-Les erreurs fréquentes sont :
-
-- URL externe Jeedom inaccessible depuis Internet ;
-- clé API invalide ;
-- Skill non activé dans l'application Alexa ;
-- build non terminé ;
-- modèle vocal pas encore propagé par Amazon ;
-- phrase captée par Alexa comme un autre intent que VoiceQuery.
+![Boutons Save et Deploy](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.2.png)
 
 ---
 
-## 9. Exemples d'utilisation
+## 6. Importer le modèle d'interaction
+
+1. Cliquez sur **Interaction Model** dans le menu de gauche
+2. Ouvrez **JSON Editor**
+3. Importez le fichier `skill.json` fourni avec le code
+4. Cliquez sur **Enregistrer**
+5. Cliquez sur **Build Model** et attendez la fin de la compilation
+
+> Le Build est indispensable — sans lui, le Skill ne fonctionnera pas même si le code est déployé.
+
+---
+
+## 7. Déployer et activer le Skill
+
+Une fois le Build terminé :
+
+1. **Activez le Skill** depuis l'application **Alexa** sur votre smartphone (section *Vos Skills* → *Skills développeur*)
+2. Vérifiez que le Skill apparaît bien en mode **Development** dans la console ASK
+
+> Le Skill restera en mode Development tant qu'il n'est pas soumis à la certification Amazon — ce mode est **suffisant** pour une utilisation personnelle avec Jeedom.
+
+---
+
+## 8. Renseigner l'ID du Skill dans le plugin
+
+La dernière étape consiste à informer le plugin Alexa Premium de l'ID de votre Skill.
+
+**Où trouver l'ID du Skill ?**
+
+- Depuis la page [developer.amazon.com/alexa/console/ask](https://developer.amazon.com/alexa/console/ask), cliquez sur **Copier l'identifiant de la Skill**
+- Ou directement dans l'**URL** lorsque vous êtes sur la page du code du Skill
+
+L'ID ressemble à :
+```
+amzn1.ask.skill.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+```
+
+Collez cet ID dans la page de **Configuration** du plugin Alexa Premium, dans le champ dédié au Skill ASK.
+
+---
+
+## 9. Consulter les logs du Skill
+
+En cas de problème, les logs du Skill sont disponibles via :
+
+```
+Onglet Code → CloudWatch Logs
+```
+
+Les erreurs les plus fréquentes sont :
+- `JEEDOM_URL` incorrecte ou inaccessible depuis Internet
+- `APIKEY` invalide ou expirée
+- `VERIFY_SSL` à `True` avec un certificat HTTPS invalide
+- Jeedom non accessible depuis Internet
+- Build non effectué après une modification du code
+
+---
+
+## 10. Exemples d'utilisation
 
 ### Conditionner une action à une réponse vocale
 
