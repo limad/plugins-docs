@@ -47,6 +47,10 @@ Les quatre commandes INFO retournent leur valeur au format `2024-12-31 21:10:00`
 
 Le champ texte de toutes les commandes vocales est **évalué comme une expression Jeedom** avant d'être envoyé à Alexa. Voir la section [3. Commandes vocales](#3-commandes-vocales--évaluation-dexpressions).
 
+Le générateur Speak intégré aide à composer rapidement les balises SSML les plus courantes.
+
+![Générateur Speak](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/speak-generator.png)
+
 ---
 
 ### Faire une annonce sur tous les appareils

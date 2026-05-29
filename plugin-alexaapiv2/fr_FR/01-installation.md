@@ -130,6 +130,20 @@ Les appareils détectés apparaissent dans la liste des équipements. Pour teste
 | **Requêteur Info** | *(Utilisateurs avertis)* Interroge directement le serveur Amazon. |
 | **Requêteur Action** | *(Utilisateurs experts)* Envoie des requêtes brutes au serveur Amazon. |
 
+### Outils Skill intégrés
+
+Le plugin peut créer et mettre à jour automatiquement le Skill ASK Alexa Premium depuis Jeedom.
+
+![Déploiement Skill ASK](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/skill-ask-deploy.png)
+
+L'assistant d'interactions prépare les phrases Jeedom utilisables par VoiceQuery et le Skill ASK.
+
+![Assistant interactions vocales](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/wizard-interactions.png)
+
+JeeViewer dispose de son propre écran de déploiement pour afficher Jeedom sur un écran Alexa compatible.
+
+![Déploiement Skill JeeViewer](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/skill-jeeviewer-deploy.png)
+
 ---
 
 ## 8. Mise à jour et changement de version
