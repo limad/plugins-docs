@@ -268,4 +268,3 @@ Pour qu'une aide efficace soit possible, joignez **systématiquement** les élé
 | **Amazon Music** | Lancement de playlists Amazon Music |
 | **Deezer / Spotify** | Intégration des plateformes de streaming |
 | **Fire TV** | Contrôle des appareils Fire TV |
-| **Todo List** | Gestion des listes de tâches Alexa |

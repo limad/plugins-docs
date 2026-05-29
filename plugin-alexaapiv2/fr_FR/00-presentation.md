@@ -62,7 +62,6 @@ En conjonction avec les plugins supplémentaires
 | Amazon Music | [Documentation](http://jeedom.sigalou-domotique.fr/alexa-amazon-music-documentation) |
 | Deezer / Spotify | [Documentation](http://jeedom.sigalou-domotique.fr/alexa-deezer-documentation) |
 | Fire TV | [Documentation](http://jeedom.sigalou-domotique.fr/alexafiretv-documentation) |
-| Todo List | [Documentation](http://jeedom.sigalou-domotique.fr/alexatodolist-documentation) |
 
 ---
 

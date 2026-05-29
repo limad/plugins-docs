@@ -13,7 +13,7 @@ Changelog Plugins-Alexa
 
 Changelog Alexa-Premium
 ---------------------
-<a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexaapiv2_icon.pngg" alt="alexatodolist icon" width="150px"></a>
+<a href="https://limad.github.io/plugins-docs/plugin-alexaapiv2"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexaapiv2_icon.png" alt="alexaapiv2 icon" width="150px"></a>
 
 **Version en cours de dev**
 
@@ -38,9 +38,8 @@ Changelog Alexa-Premium
 *   Nettoyage interne du plugin et suppression de fichiers obsolètes.
 
 
-Todo List
+Notes historiques
 ---------------------
-<a href="http://jeedom.sigalou-domotique.fr/alexatodolist-documentation"><img src="https://market.jeedom.com/filestore/market/plugin/images/alexatodolist_icon.png" alt="alexatodolist icon" width="100px"></a>
 
 #### Bugs
 
