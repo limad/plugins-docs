@@ -19,6 +19,7 @@ lang: fr_FR
 
 ## Sommaire
 
+- [29/05/2026](#29052026)
 - [19/04/2026](#19042026)
 - [18/04/2026](#18042026)
 - [17/04/2026](#17042026)
@@ -27,6 +28,22 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 29/05/2026
+
+### ⚡ Optimisation des coûts (économie de tokens)
+
+- **Cache `tools/list`** par serveur MCP (`mcp_tools_cache_ttl`, défaut 6 h) : la liste des outils n'est plus rechargée à chaque message. Bouton *Actualiser tools/list* dans le modal MCP pour forcer le refresh.
+- **Sélection d'outils par pertinence + catalogue compact** (`mcpMaxTools`, défaut 28) : seuls les outils utiles à la question sont envoyés, descriptions tronquées — désormais sur **tous** les providers (plus seulement Gemini).
+- **Mode sans-outils** (`mcp_tools_prompt_mode = auto|always|never`) : une question conversationnelle (*"résume notre discussion"*) n'envoie aucun outil ni appel `tools/list` ; une demande domotique garde les outils.
+- **Contexte Jeedom filtré** par la question en jeeAssist (`jeedom_context_mode = auto|full`) : seuls les équipements liés à la demande sont injectés ; les demandes globales reçoivent le contexte complet.
+- **Suivi du cache de prompt** : la part de tokens servie depuis le cache fournisseur (Claude, OpenAI/DeepSeek, Gemini) est tracée (`cached_tokens`) dans les logs debug `[tokens]`.
+
+> Échappatoires `always` / `full` / TTL `0` pour restaurer le comportement d'origine.
+
+### 🔒 Documentation sécurité MCP
+
+- Détail des **ACL d'outils MCP** (niveaux `read`/`write`/`execute`), du **garde-fou destructif** (refus par défaut), de la **confirmation** des actions sensibles, de l'**aperçu temps réel** (SSE) et de l'**audit** (`tool_call_audit.json`).
 
 ## 19/04/2026
 

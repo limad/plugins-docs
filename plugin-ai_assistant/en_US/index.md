@@ -208,12 +208,50 @@ Actions scheduled via `schedule_action` (e.g. *"turn off the living room in 30 m
 
 ---
 
+# Cost optimization (token economy)
+
+The plugin automatically reduces the number of tokens sent on each message, without degrading home-automation use cases. These optimizations are enabled by default and tunable per device (the `tools/list` cache is global).
+
+| Option | Purpose | Values | Default |
+|---|---|---|---|
+| `mcp_tools_prompt_mode` | MCP tools injection into the prompt | `auto` / `always` / `never` | `auto` |
+| `mcpMaxTools` | Max MCP tools sent to the model (relevance selection) | integer (`0` = unlimited) | `28` |
+| `mcp_tools_cache_ttl` | `tools/list` cache duration per MCP server (seconds) | integer (`0` = disabled) | `21600` (6 h) |
+| `jeedom_context_mode` | Injected Jeedom context (jeeAssist) | `auto` (filtered by the question) / `full` | `auto` |
+
+Mechanisms:
+
+- **`tools/list` cache**: a server's tool list is no longer reloaded on every message. Use *Refresh tools/list* in the MCP modal to force a refresh.
+- **Compact catalog + tool selection**: only relevant tools (question keywords) are sent, with truncated descriptions — instead of dozens of full schemas.
+- **Tool-less mode**: a conversational question (*"summarize our discussion"*, *"explain this option"*) sends no tools and no `tools/list` call; a home request (*"turn on the living room"*) keeps the tools.
+- **Filtered Jeedom context**: in jeeAssist, only devices related to the question are injected. A global request (*"list all my devices"*, *"home overview"*) receives the full context.
+- **History compression**: beyond a threshold, older exchanges are summarized by a small model.
+- **User memory**: useful facts (preferences) are stored separately (`dataStore`) and injected selectively, not via the whole history.
+- **Prompt caching**: leverages provider prompt caching (Claude, OpenAI/DeepSeek, Gemini). The share of tokens served from cache is tracked (`cached_tokens`) in the `[tokens]` debug logs.
+
+> The `always` / `full` / TTL `0` escape hatches fully restore the original behavior if needed.
+
+---
+
 # Security
+
+## General safeguards
 
 - **Whitelists**: fine-grained control of authorized commands
 - **Read-only mode** recommended for testing
 - **Confirmations for sensitive actions** (according to configuration)
 - **Atomic writes** (tmp + rename) on `scheduled_actions.json`, `whitelist.json`, `tool_call_audit.json`
+
+## MCP tool ACL
+
+Each MCP client device enforces level-based access control, independent of the connected server:
+
+- **`read` / `write` / `execute` levels**: enabled separately per device. A tool is auto-classified by name (`get_`/`list_`/`read_` = read; `set_`/`create_`/`update_` = write; `exec_`/`run_`/`trigger_`/`send_` = execute).
+- **Destructive guard**: deletion / purge / shell-execution tools (`delete_`, `purge_`, `exec_shell`...) are **denied by default** — explicit opt-in required per device (*Allow destructive actions*).
+- **Confirmation** of sensitive actions before execution (lock, alarm, gate...).
+- **Real-time preview** (SSE) of side-effect actions, shown before execution.
+- **Full audit**: every tool call (goal, arguments, decision, status) is logged in `tool_call_audit.json`.
+- **Explicit denial returned to the model**: if a tool is blocked by ACL, the AI receives the error and can adapt rather than fail.
 
 ---
 
