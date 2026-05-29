@@ -8,6 +8,7 @@
 - [2. Commandes complexes](#2-commandes-complexes)
 - [3. Commandes vocales — Évaluation d'expressions](#3-commandes-vocales--évaluation-dexpressions)
 - [4. Balises SSML enrichies](#4-balises-ssml-enrichies)
+- [5. Commandes SmartHome](#5-commandes-smarthome)
 
 ---
 
@@ -513,6 +514,25 @@ Pour les cas complexes ou les combinaisons imbriquées, la commande **Speak SSML
 - [Documentation Amazon SSML (EN)](https://developer.amazon.com/fr-FR/docs/alexa/custom-skills/speech-synthesis-markup-language-ssml-reference.html)
 - [Interjections françaises Amazon](https://developer.amazon.com/fr-FR/docs/alexa/custom-skills/speechcon-reference-interjections-french.html)
 - [Bibliothèque de sons Amazon](https://developer.amazon.com/en-US/docs/alexa/custom-skills/ask-soundlibrary.html)
+
+---
+
+## 5. Commandes SmartHome
+
+Les commandes SmartHome sont générées automatiquement selon les capacités réellement déclarées par Alexa pour chaque équipement.
+
+Selon l'appareil, le plugin peut créer des commandes pour :
+
+- marche / arrêt ;
+- température, humidité, consigne et mode thermostat ;
+- ouverture / fermeture ;
+- robot aspirateur ;
+- source, chaîne, entrée HDMI et lecture multimédia ;
+- égaliseur et réglages audio.
+
+Les actions modernes passent autant que possible par les endpoints GraphQL Alexa. Après ajout ou modification d'un appareil dans l'application Alexa, relancez un scan SmartHome ciblé pour mettre à jour les commandes Jeedom.
+
+> Évitez de dupliquer manuellement les commandes SmartHome : privilégiez le scan, puis ajustez uniquement la visibilité ou le nom des commandes utiles.
 
 ---
 

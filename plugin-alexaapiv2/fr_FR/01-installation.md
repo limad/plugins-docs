@@ -1,12 +1,12 @@
 # Plugin Alexa Premium — Installation & Mise à jour
 
-> **Commandez Alexa depuis Jeedom** — Ce plugin ne commande **pas** Jeedom depuis Alexa (contrairement au plugin Alexa officiel) mais **commande Alexa depuis Jeedom**.
+> **Commandez Alexa depuis Jeedom** — Alexa Premium pilote les appareils et services Alexa depuis Jeedom. Les fonctions Skill ASK, VoiceQuery et JeeViewer ajoutent des usages interactifs, mais ne remplacent pas le plugin Alexa officiel pour l'exposition native des équipements Jeedom.
 
 ---
 
 ## Ce que permet de faire ce plugin
 
-- Scanner automatiquement tous les Echo du compte Amazon (scan général ou par type)
+- Scanner automatiquement les Echo, groupes et équipements SmartHome du compte Amazon
 - Faire parler les Amazon Echo (texte libre, SSML, annonces multi-appareils)
 - Régler et récupérer le volume de chaque équipement ou d'un groupe
 - Programmer, supprimer et consulter des alarmes et des rappels
@@ -15,14 +15,17 @@
 - Afficher la playlist en cours et lancer des pistes Amazon Music
 - Lancer des routines Alexa et des stations de radio
 - Récupérer le texte de la dernière interaction vocale
-- Scanner et commander les équipements SmartHome (turnOn / turnOff)
+- Scanner et commander les équipements SmartHome compatibles Alexa
 - Discuter avec Alexa et exploiter la réponse vocale (MP3) via **Alexa Chat**
 - Convertir du texte en MP3 via la commande **TTS**
+- Déployer automatiquement le Skill ASK Alexa Premium
+- Interroger Jeedom en langage naturel avec **VoiceQuery**
+- Afficher Jeedom sur un écran Alexa compatible avec **JeeViewer**
 
 **Ce que ce plugin ne fait pas :**  
-Envoyer un ordre vocal à exécuter par Alexa (il faut passer par le plugin Alexa officiel ou IFTTT).
+Remplacer le plugin Alexa officiel pour exposer nativement tous les équipements Jeedom dans Alexa.
 
-> **Astuce :** Il est toutefois possible de détecter via un scénario une phrase courte dite à Alexa (ex. : « Alexa volets ») et d'en déclencher l'action dans Jeedom.
+> **Astuce :** pour des commandes vocales ciblées depuis Alexa vers Jeedom, utilisez le Skill ASK, VoiceQuery ou l'assistant d'interactions vocales.
 
 ---
 
@@ -119,6 +122,11 @@ Les appareils détectés apparaissent dans la liste des équipements. Pour teste
 | **Routines** | Liste des routines de votre compte Amazon, lançables manuellement. |
 | **Rappels / Alarmes** | Consultation et suppression de vos alarmes et rappels. Modal entièrement revu. |
 | **Historique** | Historique d'activité de vos équipements avec indication de succès. |
+| **Skills Alexa** | Gestion des Skills développeur et sélection du Skill ASK utilisé par Jeedom. |
+| **Déploiement Skill ASK** | Création, mise à jour, build et activation du Skill ASK Alexa Premium. |
+| **JeeViewer** | Déploiement du Skill d'affichage Jeedom sur écran Alexa compatible. |
+| **Santé Skill** | Vérification du build, du déploiement, de l'endpoint et des logs associés. |
+| **Interactions vocales** | Assistant pour créer des phrases Jeedom exploitables par VoiceQuery. |
 | **Requêteur Info** | *(Utilisateurs avertis)* Interroge directement le serveur Amazon. |
 | **Requêteur Action** | *(Utilisateurs experts)* Envoie des requêtes brutes au serveur Amazon. |
 

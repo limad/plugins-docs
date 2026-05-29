@@ -12,7 +12,7 @@
   - [3.3 Appareils absents ou non remontés](#33-appareils-absents-ou-non-remontés)
   - [3.4 Commande envoyée sans effet](#34-commande-envoyée-sans-effet)
   - [3.5 Problèmes Amazon Music](#35-problèmes-amazon-music)
-  - [3.6 Problèmes de Skill ASK](#36-problèmes-de-skill-ask)
+  - [3.6 Problèmes de Skill ASK / VoiceQuery](#36-problèmes-de-skill-ask--voicequery)
   - [3.7 Cas réseau spécifiques](#37-cas-réseau-spécifiques)
   - [3.8 Procédure de reset complet](#38-procédure-de-reset-complet)
 - [4. Ouvrir un sujet sur le forum](#4-ouvrir-un-sujet-sur-le-forum)
@@ -186,22 +186,34 @@ Causes possibles :
 
 ---
 
-### 3.6 Problèmes de Skill ASK
+### 3.6 Problèmes de Skill ASK / VoiceQuery
 
 #### Le Skill ne répond pas
 
-- Vérifiez que le Skill est en mode **Development** dans la console ASK.
-- Vérifiez qu'un **Build a bien été effectué** après chaque modification du code ou du modèle d'interaction.
-- Vérifiez que le fichier `skill.json` a bien été importé et sauvegardé.
+- Vérifiez que le déploiement depuis Jeedom est allé jusqu'au statut **réussi**.
+- Vérifiez que le Skill est bien activé dans l'application Alexa, section **Skills développeur**.
+- Vérifiez dans Jeedom que l'ID du Skill ASK est renseigné dans la configuration du plugin.
+- Attendez quelques minutes après un build : Amazon peut mettre du temps à propager le modèle vocal.
 
 #### Erreur 500
 
 Causes fréquentes :
-- `JEEDOM_URL` incorrecte (slash final manquant, HTTP au lieu de HTTPS)
-- `APIKEY` invalide ou expirée
+- URL externe Jeedom inaccessible depuis Internet
+- clé API plugin invalide ou expirée
 - Jeedom non accessible depuis Internet
 
 **Vérification :** testez l'URL de votre Jeedom depuis un navigateur externe (depuis un réseau mobile par exemple).
+
+#### Aucune commande trouvée
+
+Cette réponse signifie généralement que le Skill ASK a bien compris la phrase, mais que Jeedom n'a pas trouvé de commande ou d'interaction correspondante.
+
+- Vérifiez que l'équipement et la commande existent dans Jeedom.
+- Vérifiez que la commande est visible et exploitable par l'assistant d'interactions vocales.
+- Générez ou régénérez les interactions depuis l'assistant vocal du plugin.
+- Comparez avec les logs `alexaapiv2_push` pour savoir si la phrase est bien passée par VoiceQuery.
+
+> Une réponse native Alexa peut fonctionner hors Skill alors que la même phrase échoue dans le Skill ASK : ce ne sont pas les mêmes moteurs. Le Skill ASK interroge Jeedom, pas directement tout le graphe SmartHome Alexa.
 
 #### Consulter les logs du Skill
 

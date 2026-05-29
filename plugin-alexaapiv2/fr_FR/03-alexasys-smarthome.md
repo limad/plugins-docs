@@ -129,7 +129,7 @@ ALORS
 
 ## 5. Gestion SmartHome
 
-Le code du démon gérant la partie SmartHome a été **entièrement reconstruit**.
+La partie SmartHome a été reconstruite pour s'appuyer davantage sur les capacités réellement remontées par Alexa. Le plugin utilise les informations disponibles côté Amazon pour créer des commandes plus cohérentes et limiter les équipements inutiles.
 
 ### Faire le ménage dans les équipements SmartHome
 
@@ -144,6 +144,20 @@ Pour nettoyer également côté Amazon, gérez vos appareils enregistrés depuis
 ### Scan SmartHome
 
 Vous pouvez lancer un **scan ciblé SmartHome** depuis l'écran Scan du plugin, sans affecter vos autres équipements (Echo, Groupes…).
+
+Le scan tient compte des capacités déclarées par Alexa : température, humidité, consigne, mode thermostat, interrupteur, robot, égaliseur, chaîne TV, entrée HDMI, etc. Les capacités non reconnues sont ignorées proprement au lieu de créer des commandes vides.
+
+> Les appareils purement mobiles ou applicatifs Alexa peuvent apparaître dans les données Amazon sans correspondre à un équipement Jeedom utile. Le plugin évite de déclencher des rescans inutiles pour ces entrées.
+
+### Commandes GraphQL
+
+Quand l'API Alexa le permet, les actions SmartHome passent par les endpoints GraphQL modernes. Cela améliore notamment les commandes de type :
+
+- interrupteur et prise connectée ;
+- thermostat, consigne et mode ;
+- robot aspirateur ;
+- chaînes, sources, entrées et contrôles multimédia ;
+- égaliseur et réglages audio.
 
 ### CRON centralisé et paramétrable
 
