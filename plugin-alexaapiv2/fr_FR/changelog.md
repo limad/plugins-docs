@@ -19,6 +19,24 @@ Changelog Alexa-Premium
 
 *   Changement de la méthode de définition des logs au démarrage et quelques ajustement de messages (merci Neurall)
 
+### 30/05/2026
+
+*   Ajout du déploiement automatisé du Skill ASK Alexa Premium depuis Jeedom.
+*   Ajout du Skill JeeViewer pour afficher Jeedom sur les écrans Alexa compatibles.
+*   Ajout d'un assistant de création d'interactions vocales.
+*   Ajout du mode VoiceQuery pour interroger Jeedom en langage naturel.
+*   Ajout d'un panneau de santé du Skill Alexa.
+*   Ajout d'un écran de gestion des Skills Alexa.
+*   Ajout du support OAuth pour le lien de compte Alexa / Jeedom.
+*   Amélioration de l'authentification Amazon / Alexa.
+*   Amélioration de la gestion des appareils, routines, rappels, alarmes et notifications.
+*   Amélioration du scan SmartHome et des commandes GraphQL.
+*   Amélioration des fenêtres de gestion : rappels, routines, historique, santé, requêtes et speak.
+*   Amélioration des traductions multilingues.
+*   Corrections sur les commandes Alexa, les interactions vocales et les retours SmartHome.
+*   Corrections de sécurité sur les logs et la protection des informations sensibles.
+*   Nettoyage interne du plugin et suppression de fichiers obsolètes.
+
 
 Todo List
 ---------------------
