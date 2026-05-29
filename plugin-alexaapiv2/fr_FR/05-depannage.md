@@ -160,6 +160,13 @@ Cause probable : Amazon détecte une activité automatisée.
   👉 [amazon.fr — Gestion des appareils Alexa](https://www.amazon.fr/hz/mycd/digital-console/devicedetails?deviceFamily=ALEXA_APP)
 - Relancez un scan (général ou par type) depuis l'écran Scan du plugin.
 
+#### Où vérifier dans le plugin
+
+- **Santé** : liste les appareils Alexa, SmartHome et autres équipements avec leur objet Jeedom, leur état de connexion et leur dernière communication.
+- **Historique** : permet de confirmer qu'Alexa remonte bien les événements SmartHome ou les commandes vocales récentes.
+- **Équipements désactivés** : vérifiez qu'un appareil absent du dashboard n'a pas simplement été désactivé dans Jeedom.
+- **Scan ciblé** : relancez d'abord le scan de la famille concernée plutôt qu'un scan complet.
+
 ---
 
 ### 3.4 Commande envoyée sans effet
@@ -167,6 +174,15 @@ Cause probable : Amazon détecte une activité automatisée.
 - Vérifiez que l'appareil est bien **en ligne** (page Santé du plugin).
 - Vérifiez que le **deviceId** utilisé dans la commande est correct.
 - Activez les logs en mode **Debug** et analysez les entrées `alexaapi` et `alexapremium` pour identifier l'erreur.
+
+#### Indicateurs visuels utiles
+
+| Indicateur | Action conseillée |
+|---|---|
+| Badge **Off** sur un Echo | Vérifier l'alimentation/réseau de l'appareil, puis relancer Santé. |
+| Triangle sur un SmartHome | Vérifier l'état dans l'application Alexa ou Tuya/constructeur, puis relancer un scan SmartHome. |
+| Tuile grisée | Réactiver l'équipement dans Jeedom si vous voulez le piloter. |
+| Objet parent `Aucun` | Ranger l'équipement dans un objet Jeedom si vos scénarios filtrent par pièce. |
 
 ---
 
@@ -220,6 +236,12 @@ Cette réponse signifie généralement que le Skill ASK a bien compris la phrase
 ```
 Console ASK → Onglet Code → CloudWatch Logs
 ```
+
+Depuis le plugin, l'écran **Santé Skill ASK** permet aussi de vérifier le build, le déploiement et d'ouvrir CloudWatch quand le Skill est bien configuré.
+
+L'écran **Gérer les skills** sert à choisir le Skill ASK actif côté Jeedom. Si le déploiement automatique réussit mais que le Skill ne répond pas, vérifiez que le bon Skill est marqué comme utilisé.
+
+Les écrans **Requêteur Infos** et **Requêteur Actions** sont réservés au diagnostic avancé. Le Requêteur Actions peut envoyer des requêtes brutes vers Amazon : ne l'utilisez pas pour un test utilisateur courant.
 
 ---
 

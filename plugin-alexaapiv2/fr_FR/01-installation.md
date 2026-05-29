@@ -130,6 +130,37 @@ Les appareils détectés apparaissent dans la liste des équipements. Pour teste
 | **Requêteur Info** | *(Utilisateurs avertis)* Interroge directement le serveur Amazon. |
 | **Requêteur Action** | *(Utilisateurs experts)* Envoie des requêtes brutes au serveur Amazon. |
 
+### Lire l'écran principal
+
+L'écran principal est organisé par familles d'équipements :
+
+- **Appareils Alexa** : Echo, Fire TV, tablettes et groupes audio Amazon.
+- **Appareils SmartHomes** : équipements domotiques remontés par Alexa.
+- **Groupes Alexa** : groupes/pièces Alexa détectés côté Amazon.
+- **Scènes Alexa** : scènes ou déclencheurs SmartHome quand Amazon les remonte séparément.
+- **Équipements désactivés** : équipements conservés dans Jeedom mais désactivés.
+
+Sur chaque tuile, le petit libellé au-dessus du nom indique l'**objet parent Jeedom**. `Aucun` signifie que l'équipement n'est rangé dans aucun objet Jeedom.
+
+Les indicateurs visuels principaux sont :
+
+| Indicateur | Signification |
+|---|---|
+| **Off** | Appareil Alexa vu hors ligne. |
+| Triangle d'alerte | Équipement SmartHome ou groupe vu hors ligne. |
+| Tuile grisée | Équipement désactivé dans Jeedom. |
+| Icône marque | Fabricant reconnu pour un équipement SmartHome. |
+
+Chaque famille dispose de ses propres actions :
+
+| Bouton | Usage |
+|---|---|
+| Crayon | Sélection multiple / activation / désactivation en masse. |
+| Cible | Scan ciblé de la famille concernée. |
+| **Supprimer tout** | Supprime uniquement les équipements de la famille affichée. |
+
+> Les boutons **Supprimer tout** demandent confirmation, mais ils peuvent casser les liens de scénarios. À réserver aux remises à plat.
+
 ### Outils Skill intégrés
 
 Le plugin peut créer et mettre à jour automatiquement le Skill ASK Alexa Premium depuis Jeedom.

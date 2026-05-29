@@ -131,6 +131,31 @@ ALORS
 
 La partie SmartHome a été reconstruite pour s'appuyer davantage sur les capacités réellement remontées par Alexa. Le plugin utilise les informations disponibles côté Amazon pour créer des commandes plus cohérentes et limiter les équipements inutiles.
 
+### Lecture des tuiles SmartHome
+
+Les tuiles SmartHome affichent à la fois l'état Jeedom et l'état connu côté Alexa :
+
+| Élément affiché | Interprétation |
+|---|---|
+| Libellé `Aucun` ou nom d'objet | Objet parent Jeedom de l'équipement. |
+| Triangle d'alerte | Équipement vu hors ligne par Alexa. |
+| Tuile grisée | Équipement désactivé dans Jeedom. |
+| Badge fabricant | Fabricant reconnu par le plugin. |
+
+Un équipement avec `Aucun` n'est pas forcément en erreur : il n'est simplement pas classé dans un objet Jeedom. Assignez-lui un objet parent depuis l'onglet **Équipement** si vous voulez le ranger dans une pièce.
+
+### Actions par famille
+
+Les sections **Appareils Alexa**, **Appareils SmartHomes** et **Groupes Alexa** disposent chacune de boutons dédiés :
+
+| Action | Effet |
+|---|---|
+| Sélection multiple | Active ou désactive plusieurs équipements en une seule fois. |
+| Scan ciblé | Relance uniquement la découverte de la famille concernée. |
+| Supprimer tout | Supprime les équipements de cette famille dans Jeedom. |
+
+Les équipements désactivés restent visibles dans une section dédiée. Ils ne sont pas pilotés tant qu'ils ne sont pas réactivés.
+
 ### Faire le ménage dans les équipements SmartHome
 
 Amazon peut remonter un très grand nombre d'appareils SmartHome, y compris des appareils anciens, dupliqués ou inutilisés.
