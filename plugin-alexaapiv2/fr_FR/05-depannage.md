@@ -204,6 +204,8 @@ Causes possibles :
 
 ### 3.6 Problèmes de Skill ASK / VoiceQuery
 
+Voir aussi [Skills Alexa](06-skills.md) pour le détail du déploiement, de `voiceControl.php`, de `voiceQuery.php` et de JeeViewer.
+
 #### Le Skill ne répond pas
 
 - Vérifiez que le déploiement depuis Jeedom est allé jusqu'au statut **réussi**.
