@@ -69,6 +69,61 @@ Without MCP, ai_assistant remains fully usable in **direct API mode** (Gemini, O
 
 ---
 
+# ai_assistant vs other MCP clients connected to mcp_jeedom
+
+When multiple tools connect to the same `mcp_jeedom` server, the difference does not come from the AI model (identical everywhere) but from what each client does with the exposed tools.
+
+`mcp_jeedom` typically exposes **60+ tools** with their full JSON schemas — around **7,500 tokens** per message if everything is sent.
+
+## Schema tokens sent per message
+
+Measured on a mcp_jeedom server exposing 61 tools (~7,500 schema tokens):
+
+| MCP client | Tools sent | Schema tokens/msg | tools/list cache |
+|---|---|---|---|
+| Claude Desktop | 61 (all) | ~7,500 | No |
+| LibreChat | 61 (all) | ~7,500 | No |
+| Open WebUI | 61 (all) | ~7,500 | No |
+| Cursor / Cline | 61 (all) | ~7,500 | No |
+| **ai_assistant domotique mode** | ~8 relevant | **~1,500** | Yes (6 h) |
+| **ai_assistant chat mode** | 0 | **0** | Yes (not called) |
+
+Measured reduction: **-80% schema tokens** on a targeted home-automation request,
+0 tokens on a conversational question.
+
+The `tools/list` cache also saves a network round-trip on every message — all other clients re-query the server each session.
+
+## Features exclusive to ai_assistant
+
+These capabilities are not available in other MCP clients connected to mcp_jeedom:
+
+| Feature | Claude Desktop | LibreChat | Open WebUI | **ai_assistant** |
+|---|---|---|---|---|
+| Tool selection by intent | No | No | No | Yes (15 families) |
+| Dangerous tools excluded by default | No | No | No | Yes |
+| Adaptive profile eco / normal / expert | No | No | No | Yes |
+| Cost cap €/day or €/month | No | Partial | No | Yes |
+| Jeedom triggers → AI automatic | No | No | No | Yes |
+| Equipment / room Jeedom context | No | No | No | Yes (jeeAssist) |
+| Persistent user memory | No | Partial | No | Yes |
+
+## What other clients cannot do
+
+Generic MCP clients (Claude Desktop, LibreChat, Open WebUI, Cursor) treat `mcp_jeedom`
+as any ordinary server: they send all tools, with no home-automation context,
+no safeguards, and no cost control.
+
+`ai_assistant` knows it is dealing with **home automation**:
+
+- it selects relevant tools based on the question ("turn on" → action tools, "temperature" → read tools);
+- it excludes sensitive tools (`restart_jeedom`, `delete_interaction`, `write_file`…) unless explicitly requested;
+- it knows the devices, rooms and home state (jeeAssist mode);
+- it protects the budget with per-equipment configurable cost caps.
+
+MCP is a transport layer — the value is in the orchestration around it.
+
+---
+
 # User interfaces
 
 ## 1) Panel (full interface)
