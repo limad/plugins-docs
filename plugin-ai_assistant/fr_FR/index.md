@@ -69,6 +69,61 @@ Sans MCP, ai_assistant reste pleinement utilisable en **mode API direct** (Gemin
 
 ---
 
+# ai_assistant vs autres clients MCP connectes a mcp_jeedom
+
+Quand plusieurs outils se connectent au meme serveur `mcp_jeedom`, la difference ne vient pas du modele d IA (identique partout) mais de ce que chaque client fait avec les outils exposes.
+
+`mcp_jeedom` expose typiquement **60+ outils** avec leurs schemas JSON complets, soit environ **7 500 tokens** par message si tout est envoye.
+
+## Tokens de schemas envoyes par message
+
+Mesure realisee sur un serveur mcp_jeedom exposant 61 outils (~7 500 tokens de schemas) :
+
+| Client MCP | Outils envoyes | Tokens schemas/msg | Cache tools/list |
+|---|---|---|---|
+| Claude Desktop | 61 (tous) | ~7 500 | Non |
+| LibreChat | 61 (tous) | ~7 500 | Non |
+| Open WebUI | 61 (tous) | ~7 500 | Non |
+| Cursor / Cline | 61 (tous) | ~7 500 | Non |
+| **ai_assistant mode domotique** | ~8 pertinents | **~1 500** | Oui (6 h) |
+| **ai_assistant mode chat** | 0 | **0** | Oui (non appele) |
+
+Reduction mesuree : **-80 % de tokens schemas** sur une demande domotique ciblee,
+0 token sur une question conversationnelle.
+
+Le cache `tools/list` evite en plus un aller-retour reseau a chaque message — tous les autres clients rappellent le serveur a chaque session.
+
+## Fonctionnalites exclusives a ai_assistant
+
+Ces capacites ne sont pas disponibles dans les autres clients MCP connectes a mcp_jeedom :
+
+| Capacite | Claude Desktop | LibreChat | Open WebUI | **ai_assistant** |
+|---|---|---|---|---|
+| Selection d outils par intention | Non | Non | Non | Oui (15 familles) |
+| Outils dangereux exclus par defaut | Non | Non | Non | Oui |
+| Profil adaptatif eco / normal / expert | Non | Non | Non | Oui |
+| Plafond de cout €/jour ou €/mois | Non | Partiel | Non | Oui |
+| Triggers Jeedom → IA automatiques | Non | Non | Non | Oui |
+| Contexte equipements / pieces Jeedom | Non | Non | Non | Oui (jeeAssist) |
+| Memoire utilisateur persistante | Non | Partiel | Non | Oui |
+
+## Ce que les autres clients ne peuvent pas faire
+
+Les clients MCP generiques (Claude Desktop, LibreChat, Open WebUI, Cursor) traitent
+`mcp_jeedom` comme un serveur quelconque : ils envoient tous les outils, sans contexte
+domotique, sans garde-fous, sans controle des couts.
+
+`ai_assistant` sait que c est de la **domotique** :
+
+- il choisit les outils pertinents selon la question (« allume » → outils d action, « temperature » → outils de lecture) ;
+- il exclut les outils sensibles (`restart_jeedom`, `delete_interaction`, `write_file`…) tant que l utilisateur ne les demande pas explicitement ;
+- il connaît les equipements, les pieces et l etat de la maison (mode jeeAssist) ;
+- il protege le budget avec des plafonds configurables par equipement.
+
+Le MCP est un transport — la valeur est dans l orchestration autour.
+
+---
+
 # Interfaces utilisateur
 
 ## 1) Panel (interface complete)
