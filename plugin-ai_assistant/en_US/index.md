@@ -7,11 +7,37 @@ pluginId: ai_assistant
 
 # Presentation
 
-**ai_assistant** is the Jeedom plugin that brings an AI chat interface and specialized assistants to control your home automation. It works in **direct API mode** (no daemon) or can connect to an **MCP server** via the `mcp_jeedom` plugin.
+**ai_assistant** is not a chat interface that sends a question to a model and displays the answer.
+It is an **AI orchestrator embedded in Jeedom**: between your message and the response, a lot more happens.
+
+## What actually happens between your message and the response
+
+When you type *"turn everything off and get the house ready for the night"*, here is what ai_assistant does —
+and what a simple AI client cannot do:
+
+```
+1. Analyse the intent               → domotique + agent, not a chat question
+2. Choose the cost profile          → Expert: more tools, longer history
+3. Select relevant tools            → 8 tools out of 61, those linked to lights/shutters/scenarios
+4. Inject the Jeedom context        → your home devices, current states, rooms
+5. Inject your preferences          → "evening_temp: 19°C" if you stored it
+6. Check the budget                 → daily/monthly cap not exceeded
+7. Call the AI model                → with a precise, controlled context
+8. Execute tools (multi-step)
+   ├── list_devices → inventory of lights
+   ├── execute_action × N → switch off room by room
+   ├── trigger_scenario → night scenario
+   └── get_command_value → confirm shutters closed
+9. Verify the result                → confirm or iterate
+10. Respond                         → "Everything is off, shutters closed, night scenario started."
+11. Log                             → tools called, tokens, cost, duration
+12. Suggest memorising              → if you expressed a preference during the conversation
+```
+
+A generic AI client does steps 7 and 10 only.
+**ai_assistant does all 12.**
 
 > ## One plugin, multiple roles
->
-> The Swiss Army knife of artificial intelligence, this plugin has three pillars:
 >
 > - **Classic conversational agent:** a smooth dialogue with the AI for all your general questions.
 > - **Specialized Jeedom assistant:** an expert that knows your installation inside out.

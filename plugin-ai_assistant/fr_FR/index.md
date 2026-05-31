@@ -7,11 +7,37 @@ pluginId: ai_assistant
 
 # Presentation
 
-**ai_assistant** est le plugin Jeedom qui apporte une interface de chat IA et des assistants specialises pour piloter votre domotique. Il peut fonctionner **en mode API direct** (sans daemon) ou se connecter a un **serveur MCP** via le plugin `mcp_jeedom`.
+**ai_assistant** n est pas une interface de chat qui envoie une question a un modele et affiche la reponse.
+C est un **orchestrateur IA embarque dans Jeedom** : entre votre message et la reponse, il se passe beaucoup plus.
+
+## Ce qui se passe vraiment entre votre message et la reponse
+
+Quand vous ecrivez *"eteins tout et prepare la maison pour la nuit"*, voici ce qu ai_assistant fait —
+et qu un simple client IA ne peut pas faire :
+
+```
+1. Analyser l intention              → domotique + agent, pas une question de chat
+2. Choisir le profil de cout         → Expert : plus d outils, historique long
+3. Selectionner les outils pertinents → 8 outils sur 61, ceux lies aux lumieres/volets/scenarios
+4. Injecter le contexte Jeedom       → equipements de votre maison, etats actuels, pieces
+5. Injecter vos preferences          → "temp_soir : 19°C" si vous l avez memorise
+6. Verifier le budget                → plafond journalier/mensuel non depasse
+7. Appeler le modele IA              → avec un contexte precis et controle
+8. Executer les outils (multi-etapes)
+   ├── list_devices → inventaire des lumieres
+   ├── execute_action × N → extinction piece par piece
+   ├── trigger_scenario → scenario nuit
+   └── get_command_value → verification volets fermes
+9. Verifier le resultat              → confirmation ou nouvelle iteration
+10. Repondre                         → "Tout est eteint, volets fermes, scenario nuit lance."
+11. Journaliser                      → outils appeles, tokens, cout, duree
+12. Proposer de memoriser            → si vous exprimez une preference en cours de route
+```
+
+Un client IA generique fait les etapes 7 et 10 seulement.
+**ai_assistant fait les 12.**
 
 > ## Un plugin, multi roles
->
-> Couteau suisse de l intelligence artificielle, ce plugin se decline en trois piliers :
 >
 > - **Agent conversationnel classique :** un dialogue fluide avec l IA pour toutes vos questions generales.
 > - **Assistant specialise Jeedom :** un expert qui connait votre installation sur le bout des doigts.
