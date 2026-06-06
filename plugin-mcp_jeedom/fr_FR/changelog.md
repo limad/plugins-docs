@@ -19,6 +19,25 @@ lang: fr_FR
 
 ---
 
+## 06/06/2026
+
+**Installation plus simple : suppression de la dépendance Composer**
+Le plugin n'a plus besoin d'installer des dépendances PHP via Composer. Les éléments nécessaires ont été intégrés directement dans le plugin, ce qui rend l'installation et l'activation plus fiables, notamment sur les Jeedom où Composer n'est pas disponible ou pas maintenu à jour.
+
+**Profil maison généré automatiquement depuis Jeedom**
+Le fichier `home_profile.md` peut maintenant être pré-rempli depuis l'installation Jeedom. Le plugin conserve les sections personnelles déjà saisies, puis ajoute la structure des pièces visibles et les plugins actifs pour donner plus de contexte à l'IA.
+
+**Nouveaux prompts MCP intégrés**
+Trois nouveaux prompts sont disponibles côté MCP : aide à la création de scénarios Jeedom, rapport complet des batteries et audit des plugins. Ils guident l'IA étape par étape et privilégient les outils Jeedom adaptés.
+
+**Corrections de l'interface de configuration**
+La page de configuration charge correctement la classe du plugin, ne dépend plus de jQuery pour ses actions internes récentes et corrige plusieurs cas où les blocs dépendances ou démon pouvaient rester vides côté Jeedom.
+
+**Correctifs daemon et maintenance**
+Les informations de dépendances Python sont de nouveau calculées correctement après la suppression de Composer. Le proxy, les prompts MCP et plusieurs fichiers internes ont été synchronisés avec l'état stable du plugin.
+
+---
+
 ## 18/04/2026
 
 **L'IA devient experte de votre Jeedom grâce aux "skills"**
