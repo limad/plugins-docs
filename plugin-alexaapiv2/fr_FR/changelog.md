@@ -19,6 +19,16 @@ Changelog Alexa-Premium
 
 *   Changement de la méthode de définition des logs au démarrage et quelques ajustement de messages (merci Neurall)
 
+### 06/06/2026
+
+*   Amélioration du flow ASK : état des questions isolé par appareil Echo pour éviter les collisions multi-équipements.
+*   Ajout de protections anti-réponses tardives : une réponse ASK est ignorée si elle ne correspond plus à l’événement ou à l’appareil attendu.
+*   Ajout de la commande `alexaAskSilent` pour enchaîner des dialogues ASK multi-tours sans relancer une annonce vocale.
+*   Nettoyage des anciens chemins `reponseASK` et suppression du code legacy divergent.
+*   Correction du modèle Skill ASK sur le slot `VoiceQuery` et amélioration des tests associés.
+*   Amélioration de l’internationalisation des templates HTML de scénarios et widgets, avec déclenchement du workflow de traduction sur les fichiers `.html`.
+*   Documentation du fonctionnement interne du flow ASK et ajout de tests unitaires sur l’état ASK.
+
 ### 30/05/2026
 
 *   Ajout du déploiement automatisé du Skill ASK Alexa Premium depuis Jeedom.
