@@ -19,6 +19,7 @@ lang: fr_FR
 
 ## Sommaire
 
+- [06/06/2026](#06062026)
 - [29/05/2026](#29052026)
 - [19/04/2026](#19042026)
 - [18/04/2026](#18042026)
@@ -28,6 +29,28 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 06/06/2026
+
+### 🤖 Modèles IA
+
+- **Claude Opus 4.8** ajouté au catalogue Anthropic.
+- **OpenRouter** : ajout des variantes `anthropic/claude-opus-4.8` et `anthropic/claude-opus-4.8-fast`.
+- **Claude Sonnet 4.6** : contexte ajusté à 1M tokens dans le catalogue.
+- **Compatibilité Anthropic** : les paramètres de sampling non acceptés sont automatiquement omis pour les modèles Opus 4.7 / 4.8.
+
+### 🧹 Audit qualité
+
+- Ajout d'un **rapport d'audit général** du plugin (`AUDIT_REPORT.md`) : sécurité, cohérence, caches, logs, dead code, JS panel.
+- Casts défensifs harmonisés sur les comparaisons strictes `getConfiguration()` pour éviter les régressions PHP/Jeedom.
+- Lecture de `cost_profile_auto` simplifiée et cohérente avec le comportement checkbox Jeedom.
+- Documentation interne des clés cache et de la relation `MAX_HISTORY_ENTRIES` / `budget_history`.
+- Listes MCP sensibles mieux documentées : lien explicite entre ACL, outils destructifs et outils dangereux.
+- Catches silencieux remplacés par des logs debug ciblés ; plusieurs échecs persistants passent en warning.
+
+### 🧪 Tests
+
+- Vérifications locales : `php -l` OK sur les PHP principaux et `php tests/run.php` OK.
 
 ## 29/05/2026
 
