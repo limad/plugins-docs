@@ -59,6 +59,13 @@ Pour chaque valeur que vous souhaitez récupérer, ajoutez une commande "Info / 
   - Si votre équipement envoie la tension en dixièmes de volts (ex: la valeur brute `2325` pour `232.5 V`), renseignez `/10` dans ce champ.
   - S'il envoie une puissance de `2500 W` sous la forme de la valeur `25`, renseignez `*100`.
 
+# Outils intégrés : Scan et Test
+
+Le plugin intègre des outils de diagnostic très puissants, accessibles directement depuis la configuration de votre équipement :
+
+- **Le Scanner Modbus** : Vous ne connaissez pas l'adresse exacte d'une valeur ou vous cherchez des registres cachés ? Le scanner vous permet de lancer une recherche automatique sur une plage d'adresses (ex: de 50000 à 51000). Il interroge le périphérique et vous affiche sous forme de tableau tous les registres qui répondent, avec leur valeur brute décodée selon plusieurs formats (Int32, Float, etc.). Il vous indique même si une commande existe déjà pour ce registre !
+- **L'outil de Test** : Accessible depuis les résultats du scan ou directement depuis l'équipement, cet outil vous permet de tester une adresse spécifique en temps réel et de jouer avec les cases "Word Reverse" ou "Byte Reverse". C'est la méthode idéale pour trouver la bonne combinaison de décodage *avant* de créer la commande définitive.
+
 # Dépannage fréquent
 
 - **Le démon crashe ou ne se connecte pas** : Vérifiez scrupuleusement l'adresse IP et surtout le `Slave ID`. Un mauvais Slave ID provoquera l'absence de réponse de l'équipement et une déconnexion.
