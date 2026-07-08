@@ -221,6 +221,20 @@ Exemples : `jeedom_api(action='healthReport')` · `jeedom_api(action='duplicateS
 | `get_scenario_code` | **Lit le code et la logique complète d'un scénario** (pour comprendre/déboguer) |
 | `get_scenario_log` | Log d'exécution d'un scénario *(optionnel — voir §3.1 accès fichiers)* |
 
+> 🆕 **Scénarios multi-déclencheurs (Jeedom ≥ 4.5)** — l'IA peut générer des conditions basées sur les tags `#trigger_id#`, `#trigger_name#`, `#trigger_value#`, `#trigger#` (qui remplacent les fonctions dépréciées `trigger()`/`triggerId()`/`triggerValue()`) via `scenario_write(action=build_trigger, cmd_id=...)` pour une condition unique, ou `scenario_write(action=dispatch_trigger, cmd_ids=[...])` pour générer directement un squelette if/elseif complet routant sur plusieurs commandes déclenchantes. Un garde-fou détecte automatiquement l'ancienne syntaxe dépréciée dans les scénarios importés/modifiés et remonte un avertissement (non bloquant).
+
+### Vues et tableaux de bord *(nouveau)*
+
+| Outil (`views`) | Description |
+|---|---|
+| `create_view` / `create_zone` / `add_zone` | Crée un dashboard Jeedom et y ajoute des zones (widgets, tableaux) liées à des équipements, commandes ou scénarios |
+| `set_zone_table` | Construit un tableau de commandes avec disposition personnalisée (lignes/colonnes) |
+| `tile_to_table` | Convertit la tuile d'un équipement en tableau compact (regroupe automatiquement les paires On/Off) — réversible |
+| `list` / `get` | Liste ou détaille les vues existantes |
+| `list_designs` / `get_design` | Liste ou détaille les plans 2D (designs) Jeedom |
+
+Exemple : *« Crée un dashboard Salon avec un tableau de commandes pour les lumières et volets »*.
+
 ### Variables et interaction
 
 | Outil | Description |
@@ -273,8 +287,10 @@ Les ressources MCP sont des URI lisibles directement par le client, sans appel d
 | `jeedom://ai_context` | Architecture complète du plugin en JSON | À lire **en priorité** à la première connexion |
 | `jeedom://instructions` | Guide opérationnel : workflows, règles, generic_types | Référence pour l'IA pendant la session |
 | `jeedom://home_profile` | Profil de la maison : habitants, habitudes, préférences | Personnalise les réponses à votre installation |
-| `jeedom://full_map` | Carte pièces→équipements→commandes avec IDs et generic_type | Index complet pour trouver tout cmd_id sans appel supplémentaire |
+| `jeedom://full_map` | Carte pièces→équipements→commandes avec IDs et generic_type (format compact) | Index complet pour trouver tout cmd_id sans appel supplémentaire |
 | `jeedom://generic_types` | Index des commandes groupées par LIGHT_ON / TEMPERATURE / POWER… | Trouver instantanément tous les capteurs d'un type |
+| `jeedom://scenario_schema` *(nouveau)* | Format JSON des blocs de scénarios + syntaxe des conditions, dont les tags `#trigger_*#` | Référence avant de créer/modifier un scénario complexe |
+| `jeedom://views_guide` *(nouveau)* | Guide détaillé des vues/designs : types de zones, link_types, schéma position/style | Référence à la demande pour dashboards avancés |
 
 ### Ressources état maison
 
@@ -380,6 +396,18 @@ Le guide complet pour les développeurs se trouve dans `plugins/mcp_jeedom/resou
 4. **Activer le plugin et installer les dépendances** (Python venv + librairies MCP).
 5. Démarrer le daemon depuis la page de configuration.
 6. Vérifier que le statut affiche **OK**.
+
+## Assistant de configuration
+
+Dès la première ouverture de la page du plugin (tant qu'elle n'a pas été terminée), un **assistant de configuration** s'ouvre automatiquement en 5 étapes :
+
+1. **Santé** — vérifie que le daemon Python est démarré (bloquant tant qu'il ne l'est pas, avec un bouton pour le lancer).
+2. **Profil d'usage** — choisissez un des 3 préréglages (Consultation lecture seule, Pilotage, Avancé avec écriture de scénarios) ; le préréglage détecté correspondant à votre configuration actuelle est présélectionné.
+3. **Whitelist** — génère automatiquement la liste des équipements autorisés depuis votre installation Jeedom.
+4. **Premier token** — crée un jeton d'accès avec le rôle adapté au préréglage choisi.
+5. **Connexion client** — récupère l'URL à donner à votre IA et teste l'accessibilité externe si configurée.
+
+Vous pouvez ignorer une étape (`Passer cette étape`) ou rouvrir l'assistant à tout moment depuis la vignette **Assistant** de la page du plugin. Les réglages sensibles (`allow_local_exec`, `allow_write_file`, `allow_restart`) ne sont **jamais** modifiés par l'assistant, quel que soit le préréglage choisi — ils restent à activer manuellement dans la configuration avancée si besoin.
 
 ## Complter la configuration du plugin
  Voir §7.3 pour la configuration complète.

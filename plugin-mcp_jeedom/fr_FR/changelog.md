@@ -19,6 +19,24 @@ lang: fr_FR
 
 ---
 
+## 08/07/2026
+
+**Scénarios multi-déclencheurs avec les tags Jeedom ≥ 4.5**
+L'IA peut désormais générer des conditions de scénario basées sur `#trigger_id#`, `#trigger_name#`, `#trigger_value#` et `#trigger#`, qui remplacent les fonctions dépréciées `trigger()`/`triggerId()`/`triggerValue()`. Deux nouvelles actions dans `scenario_write` : une condition unique prête à coller, ou un squelette if/elseif complet routant automatiquement sur plusieurs commandes déclenchantes. Une syntaxe dépréciée détectée dans un scénario importé ou modifié déclenche désormais un avertissement (sans bloquer l'opération).
+Exemple : *« Crée un scénario qui réagit différemment selon que ce soit l'interrupteur du salon ou celui de la cuisine qui a déclenché »*.
+
+**Nouvel Assistant de configuration**
+Un assistant en 5 étapes s'ouvre automatiquement à la première utilisation du plugin : vérification de la santé du daemon, choix d'un profil d'usage (Consultation / Pilotage / Avancé), génération de la whitelist, création du premier jeton d'accès et configuration du client IA. Les réglages à risque (exécution locale, écriture de fichiers, redémarrage) restent toujours à activer manuellement, quel que soit le profil choisi.
+
+**Vues et tableaux de bord pilotables par l'IA**
+Demandez à l'IA de créer un dashboard, d'y ajouter des zones de widgets ou des tableaux de commandes, ou de convertir la tuile d'un équipement en tableau compact. Elle peut aussi lister vos vues et plans 2D (designs) existants.
+Exemple : *« Crée un dashboard Salon avec un tableau regroupant les lumières et volets »*.
+
+**Contexte IA allégé**
+Le format de la carte complète de la maison (`jeedom://full_map`) a été compacté (près de deux tiers de tokens en moins), et les instructions internes envoyées à l'IA ont été simplifiées, pour une prise en main plus rapide et moins coûteuse en tokens, notamment pour les longues conversations.
+
+---
+
 ## 06/06/2026
 
 **Installation plus simple : suppression de la dépendance Composer**

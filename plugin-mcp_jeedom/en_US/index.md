@@ -220,6 +220,18 @@ Tools are callable functions for the LLM, organized by category.
 | `import_scenario` | Imports a previously exported scenario |
 | `get_scenario_log` | Reads the execution log of a scenario |
 
+> 🆕 **Multi-trigger scenarios (Jeedom ≥ 4.5)** — the AI can generate conditions based on the `#trigger_id#`, `#trigger_name#`, `#trigger_value#`, `#trigger#` tags (replacing the deprecated `trigger()`/`triggerId()`/`triggerValue()` functions) via `scenario_write(action=build_trigger, cmd_id=...)` for a single condition, or `scenario_write(action=dispatch_trigger, cmd_ids=[...])` to generate a full if/elseif skeleton routing on several triggering commands. Deprecated syntax found in an imported/modified scenario now raises a non-blocking warning.
+
+### Views and dashboards *(new)*
+
+| Tool (`views`) | Description |
+|---|---|
+| `create_view` / `create_zone` / `add_zone` | Creates a Jeedom dashboard and adds zones (widgets, tables) linked to devices, commands or scenarios |
+| `set_zone_table` | Builds a command table with a custom layout (rows/columns) |
+| `tile_to_table` | Converts a device's tile into a compact table (auto-groups On/Off pairs) — reversible |
+| `list` / `get` | Lists or shows details of existing views |
+| `list_designs` / `get_design` | Lists or shows details of 2D floor plans (designs) |
+
 ### History and statistics
 
 | Tool | Description |

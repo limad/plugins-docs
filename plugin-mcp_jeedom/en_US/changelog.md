@@ -19,6 +19,43 @@ lang: en_US
 
 ---
 
+## 08/07/2026
+
+**Multi-trigger scenarios with Jeedom ≥ 4.5 tags**
+The AI can now generate scenario conditions based on `#trigger_id#`, `#trigger_name#`, `#trigger_value#` and `#trigger#`, which replace the deprecated `trigger()`/`triggerId()`/`triggerValue()` functions. Two new actions in `scenario_write`: a single ready-to-paste condition, or a complete if/elseif skeleton automatically routing on several triggering commands. Deprecated syntax detected in an imported or modified scenario now raises a warning (without blocking the operation).
+Example: *"Create a scenario that reacts differently depending on whether it was the living room switch or the kitchen switch that triggered it"*.
+
+**New configuration assistant**
+A 5-step wizard now opens automatically the first time you use the plugin: daemon health check, usage profile selection (Read-only / Control / Advanced), whitelist generation, first access token creation, and AI client configuration. Risky settings (local execution, file writing, restart) always remain to be enabled manually, whatever profile is chosen.
+
+**AI-controllable views and dashboards**
+Ask the AI to create a dashboard, add widget zones or command tables to it, or convert a device's tile into a compact table. It can also list your existing views and 2D floor plans (designs).
+Example: *"Create a Living Room dashboard with a table grouping the lights and shutters"*.
+
+**Lighter AI context**
+The full home map format (`jeedom://full_map`) has been compacted (nearly two thirds fewer tokens), and the internal instructions sent to the AI have been simplified, for faster and cheaper onboarding, especially in long conversations.
+
+---
+
+## 06/06/2026
+
+**Simpler installation: Composer dependency removed**
+The plugin no longer needs to install PHP dependencies via Composer. The required elements have been integrated directly into the plugin, making installation and activation more reliable, especially on Jeedom instances where Composer is unavailable or not kept up to date.
+
+**Home profile automatically generated from Jeedom**
+The `home_profile.md` file can now be pre-filled from your Jeedom installation. The plugin keeps any personal sections already filled in, then adds the structure of visible rooms and active plugins to give the AI more context.
+
+**New built-in MCP prompts**
+Three new prompts are available on the MCP side: help creating Jeedom scenarios, a complete battery report, and a plugin audit. They guide the AI step by step and favor the Jeedom tools best suited to the task.
+
+**Configuration interface fixes**
+The configuration page now correctly loads the plugin class, no longer depends on jQuery for its recent internal actions, and fixes several cases where the dependencies or daemon blocks could remain empty on the Jeedom side.
+
+**Daemon and maintenance fixes**
+Python dependency information is correctly computed again after the Composer removal. The proxy, MCP prompts and several internal files have been synchronized with the plugin's stable state.
+
+---
+
 ## 18/04/2026
 
 **The AI becomes an expert of your Jeedom thanks to "skills"**
