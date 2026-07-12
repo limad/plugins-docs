@@ -1,53 +1,37 @@
 # Configuration
 
-## **Configuration des équipements**
+## Configuration des équipements
 
-Préalable: Vous avez déja renseiger les parametres d'autentification et synchroniser le plugin avec les serveur Vaillant.
-(Voir section2 Comment installer ce plugin ? )
+Préalable : les paramètres d'authentification sont renseignés et la synchronisation a été effectuée (voir la section "Comment installer ce plugin ?" ci-dessus).
 
-
-La configuration des équipements Vaillant Energie est accessible à partir du menu Plugin => Confort => MyVaillant:
+La liste des équipements est accessible depuis le menu **Plugins => Confort => MyVaillant** :
 
 ![configuration3](https://limad.github.io/plugins-docs/plugin-MyVaillant/images/MyVaillant_doc3.PNG)
 
+En cliquant sur un équipement, vous retrouvez sa configuration standard Jeedom :
 
-
-Une fois que vous cliquez sur un équipement vous obtenez :
-
-
-Vous retrouvez ici toute la configuration de votre équipement :
-
-**Nom de l'équipement ** : nom de votre équipement (Vous pouver le changer librement).
-
-**Objet parent** : indique l’objet parent auquel appartient l’équipement c'est là que la tuile va apparaitre.
-
-**Activer** : permet d'activer l'équipement et synchroniser ses informations périodiquement
-
-**Visible** : le rend visible sur le dashboard
-
-**Identifiant** : identifiant unique de l’équipement
-
-**Type** : type de votre équipement (Home/Thermostat/Dhw)
+- **Nom de l'équipement** : librement modifiable.
+- **Objet parent** : l'objet Jeedom auquel appartient l'équipement (emplacement de la tuile).
+- **Activer** : active l'équipement et la synchronisation périodique de ses informations.
+- **Visible** : affiche l'équipement sur le dashboard.
+- **Identifiant** : identifiant unique de l'équipement.
+- **Type** : type de l'équipement (**Home**, **Zone** ou **ECS**).
 
 ![configuration3](https://limad.github.io/plugins-docs/plugin-MyVaillant/images/MyVaillant_doc4.PNG)
 
+## Configuration des commandes (infos et actions)
 
+Les commandes disponibles sont accessibles depuis l'onglet **Commandes** de l'équipement, classées en **infos** et **actions**.
 
+- **Afficher** : affiche la commande sélectionnée (tuiles "core" uniquement).
+- **Historiser** : conserve l'historique de la commande "info" sélectionnée.
+- **Tester** : exécute la commande "action" sélectionnée.
+- La roue crantée ouvre la configuration avancée de la commande (méthode d'historisation, widget...).
 
-## Configuration les Commandes infos et actions
+## Paramètres additionnels
 
-Les Commandes disponibles pour votre équipement sont accéssibles depuis **l'onglet Commandes**
-Elles sont classées par type ; infos ou actions
+- **Prix du kWh** : prix TTC de votre électricité, utilisé pour estimer le coût affiché dans la vue **Consommations** (laisser vide pour ne pas afficher de coût). Une alerte signale si ce prix n'a pas été mis à jour depuis plus d'un an.
 
-![configuration3](https://limad.github.io/plugins-docs/plugin-MyVaillant/images/MyVaillant_doc3.PNG
+## Alerte COP (scénario)
 
-**Afficher** : permet d'afficher la commande selectionnée( uniquement pour tuiles 'core'**)
-**Historiser** : permet d’historiser la donnée de la commande "Info" selectionnée
-
-configuration avancée (petites roues crantées) : permet d’afficher la configuration avancée de la commande (méthode d’historisation, widget…​)
-**Evaluer**: retourne la valeur de la commande "Info" selectionnée
-**Tester** : permet de tester la commande "Action" selectionnée
-
-** ce parametre est disponible dans la page de l'équipement "Type de la tuile" 
-Default: le plugin va utiliser la tuile pérsonalisé (conseillé)
-Core: la tuile sera gérée par le core Jeedom
+Le plugin calcule un **COP glissant** chaque heure (commande "COP live (chauffage + ECS)" sur l'équipement Home) — utile pour détecter un entartrage, un filtre encrassé ou du givre mal résorbé. Pour être notifié en cas de COP anormalement bas, importez le modèle de scénario fourni (menu **Scénarios**, bloc d'action "Code", coller le contenu de `core/config/scenario_cop_optimisation.php`) et adaptez-le à votre commande de notification.

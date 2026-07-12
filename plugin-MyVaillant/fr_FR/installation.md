@@ -1,19 +1,22 @@
 # Comment installer ce plugin ?
 
-1. Rendez vous sur la page du market Jeedom et télecharger la dérniere virsion du plugin
+1. Rendez-vous sur le market Jeedom et installez le plugin **MyVaillant**.
 ![install1](https://limad.github.io/plugins-docs/plugin-MyVaillant/images/MyVaillant_doc1.PNG)
 
-2. Une fois le plugin installé, il vous faut renseigner vos informations de connexion Vaillant :
+2. Une fois le plugin activé, renseignez vos informations de connexion dans l'onglet **Configuration** :
 
-Utilisateur : le nom d'utilisateur de votre compte Vaillant(! ne pas confondre avec l'adresse mail)
+   - **Utilisateur** : le nom d'utilisateur de votre compte Vaillant (à ne pas confondre avec l'adresse e-mail).
+   - **Mot de passe** : le mot de passe associé à ce compte.
+   - **Emplacement du dispositif** : le pays de votre installation, identique à celui renseigné dans l'app mobile.
+   - **Application utilisée** : **myVAILLANT** ou **MiGo Link**, selon l'application que vous utilisez sur votre smartphone.
+   - **Objets par défaut** : l'objet Jeedom auquel seront rattachés les nouveaux équipements créés.
 
-Mot de passe : mot de passe associé à cet Utilisateur.
+   *(*) Un compte Vaillant est indispensable pour accéder à l'API. Il est recommandé d'utiliser un compte dédié, différent de celui de votre smartphone (invitation possible depuis l'application mobile).*
 
-Objets par défaut : le cas écheant, choisir l'objet Jeedom auquel seront associés les nouveaux équipements.
+3. Cliquez sur **Synchroniser** : le plugin se connecte à votre compte Vaillant et découvre automatiquement vos équipements (Home, Zones, ECS...).
 
-(*) Pour accéder à L'api Vaillant, il est indispensable d'avoir un compte Vaillant. Il est préferable de créer un compte different de celui utilisé sur votre smartphones. Ceci peut se faire par invitation depuis l'application mobile.
-    Si vous n'y arrivez pas demandez de l'aides à vos amis !... ;-)
+   *En cas de simple perte de connexion (sans changement de mot de passe), utilisez plutôt **Synchroniser sans reconnexion** : elle réutilise la session existante sans redemander d'authentification complète.*
 
-**Cliquer le boutton "Synchroniser" **: Celà permet de synchroniser le plugin avec votre compte Vaillant pour découvrir automatiquement vos équipements !! 
-  
-![install3](https://limad.github.io/plugins-docs/plugin-MyVaillant/images/MyVaillant_doc2.PNG)
+   ![install3](https://limad.github.io/plugins-docs/plugin-MyVaillant/images/MyVaillant_doc2.PNG)
+
+4. En cas de besoin (changement de mot de passe, compte à réinitialiser...), le bouton **Se déconnecter** supprime les informations d'authentification stockées ; la prochaine synchronisation effectuera une connexion complète.
