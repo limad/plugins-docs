@@ -1,5 +1,9 @@
 # Configuration
 
+## Activer le panel (vue Consommations)
+
+En haut de la page de configuration du plugin, la section **Panel** propose une case **Afficher le panneau desktop** (élément standard Jeedom pour les plugins de type "panel"). Elle doit être cochée pour que la vue **Consommations** apparaisse comme une entrée dédiée dans le menu **Accueil** de Jeedom (Accueil => MyVaillant).
+
 ## Configuration des équipements
 
 Préalable : les paramètres d'authentification sont renseignés et la synchronisation a été effectuée (voir la section "Comment installer ce plugin ?" ci-dessus).
