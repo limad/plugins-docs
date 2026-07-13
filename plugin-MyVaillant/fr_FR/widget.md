@@ -12,10 +12,8 @@ Après un changement de mode depuis le widget, il est conseillé de cliquer sur 
 
 ## Vue Consommations
 
-Depuis la page de l'équipement **Home**, l'onglet **Consommations** propose :
+Depuis la page du plugin (menu **Plugins => Confort => MyVaillant**), le bouton **Consommations** ouvre une page dédiée, avec un sélecteur de période (jour/semaine/mois/année), un indicateur d'**état du système** (codes défaut) et le téléchargement du **rapport annuel**, communs à trois onglets :
 
-- la consommation électrique, gazière et environnementale par usage (chauffage, ECS, rafraîchissement), avec navigation jour/semaine/mois/année ;
-- le **COP** (chauffage+ECS et rafraîchissement) et sa tendance sur les 12 derniers mois, comparée à l'année précédente ;
-- le COP quotidien corrélé à la température extérieure ;
-- les **codes défaut** actifs ;
-- le téléchargement du **rapport annuel** de consommation.
+- **Analyse** : consommation électrique, gazière et environnementale par usage (chauffage, ECS, rafraîchissement), coût estimé, **COP** (chauffage+ECS et rafraîchissement) et sa tendance sur les 12 derniers mois comparée à l'année précédente, COP quotidien corrélé à la température extérieure.
+- **Consommée / Produite** : bilan énergétique par mode (Produite = Consommée + Environnementale) sur 12 mois.
+- **Détail par commande** : graphique par commande brute.
