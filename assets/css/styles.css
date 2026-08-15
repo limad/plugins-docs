@@ -352,6 +352,41 @@ img {
 	margin-bottom: .3rem;
 }
 
+/* Bascule masquer/afficher le sommaire, injectée par jquery.toc.js à côté du
+   titre "Contents" : le plugin ne fournit aucun style pour elle, elle héritait
+   donc du lien brut du navigateur (crochets sans alignement ni couleur). */
+#toctitle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: .5rem;
+}
+
+#toctitle h2 {
+	flex: 1;
+	min-width: 0;
+	margin-top: 0;
+}
+
+.toctoggle {
+	flex-shrink: 0;
+	margin-right: 1.1rem;
+	font-size: .72rem;
+	color: var(--text-dim);
+}
+
+#toctogglelink {
+	color: var(--text-muted);
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	transition: color .18s, border-color .18s;
+}
+
+#toctogglelink:hover {
+	color: var(--green-light);
+	border-bottom-color: var(--green-light);
+}
+
 .toclevel-1 {
 	display: block;
 }
