@@ -272,4 +272,19 @@ pluginId: limad44
 	</div>
 </div>
 
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-shelly_control/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/shelly_control_icon.png" alt="shelly_control">
+	<div>
+		<h2 class="plugin-card__name">Shelly Control</h2>
+		<span class="plugin-card__id">shelly_control</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Contrôle local (sans cloud) des appareils Shelly Gen1 à Gen4 : découverte automatique par mDNS, commandes générées à partir des composants exposés par chaque appareil, gestion des scripts natifs (Gen2+).</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-shelly_control/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-shelly_control/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
 </div><!-- /plugin-grid -->
