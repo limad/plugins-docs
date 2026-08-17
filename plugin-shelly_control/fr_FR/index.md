@@ -43,9 +43,58 @@ n'y a rien à créer manuellement.
 
 - Appareils Shelly **Gen1** (CoIoT), **Gen2**, **Gen3** et **Gen4** (WebSocket RPC).
 - Relais (switch), volets/stores (cover), lumières (blanches, RGB, RGBW, blanc réglable CCT),
-  entrées, capteurs (température, humidité, alimentation, compteur d'énergie, fumée…).
+  entrées, capteurs (température, humidité, alimentation, compteur d'énergie, fumée, mouvement,
+  luminosité…).
 - Les composants non reconnus spécifiquement par le plugin remontent tout de même en Jeedom sous
   forme de commandes d'information génériques : aucune valeur exposée par l'appareil n'est perdue.
+
+### Exigences
+
+- **Wi-Fi** : l'appareil doit être connecté au réseau Wi-Fi local (2,4 GHz) et joignable en IP
+  depuis le serveur Jeedom — même réseau ou routage IP vers celui-ci. Un appareil accessible
+  uniquement en Bluetooth n'est pas compatible (voir plus bas).
+- **Gen1** : port UDP **5683** (CoIoT, multicast local) ouvert pour la remontée d'état en temps
+  réel. Sans lui, l'appareil reste pilotable mais son état n'est rafraîchi que périodiquement
+  (repli HTTP, voir réglage **Rafraîchissement Gen1** plus bas).
+  >**ATTENTION**
+  >
+  >CoIoT peut aussi être désactivé — ou redirigé vers un autre destinataire — **directement dans
+  >les paramètres de l'appareil** (page **Internet & Security** de son interface web, section
+  >**COIOT**), indépendamment de tout réglage réseau. Dans ce cas l'état reste lui aussi limité au
+  >rafraîchissement périodique, et le plugin affiche un message d'avertissement sur la page de
+  >gestion pour le signaler.
+- **Gen2/Gen3/Gen4** : connexion WebSocket sortante autorisée entre le démon et l'appareil (port
+  HTTP standard de l'appareil, 80 par défaut).
+- **Découverte mDNS** : le serveur Jeedom et les appareils Shelly doivent être sur un réseau qui
+  laisse passer le multicast mDNS (pas de VLAN cloisonné entre eux) pour que la découverte
+  automatique fonctionne ; sans cela, l'ajout reste possible manuellement par adresse IP.
+- Aucun compte Shelly Cloud n'est nécessaire ni utilisé : un appareil dont une fonctionnalité
+  dépendrait exclusivement du cloud Shelly (et non de son API locale) serait hors périmètre du
+  plugin, par principe — aucun cas de ce type n'existe à ce jour dans la gamme Shelly.
+
+### Ce qui n'est pas géré
+
+- **Appareils Bluetooth uniquement (gamme BLU)** — BLU Button1, BLU Door/Window, BLU H&T, BLU
+  Motion, BLU TRV, BLU RC Button, BLU Wall Switch… Ces capteurs ne parlent ni CoIoT ni WebSocket
+  RPC : ils passent par un **BLU Gateway** (lui-même un appareil Wi-Fi Gen2/Gen3, détecté
+  normalement). Le plugin ne relaie toutefois pas les appareils BLE rattachés à cette passerelle
+  vers Jeedom — seule la passerelle elle-même apparaît comme équipement.
+  >**ASTUCE**
+  >
+  >Ne pas confondre avec le **Shelly H&T Gen3** ou le **Shelly Plus H&T** : ce sont des capteurs
+  >**Wi-Fi** (pas Bluetooth), pleinement compatibles — y compris leur cycle veille/réveil sur
+  >batterie, déjà géré par le démon.
+- **Blaster infrarouge du Shelly Sense** — émission de codes IR, bibliothèque de codes stockés,
+  programmation hebdomadaire (`/ir`, `/ir/add`, `/ir/list`, `/ir/emit`) : non implémenté. Ses
+  capteurs (température, humidité, mouvement, luminosité, batterie) sont en revanche remontés
+  normalement.
+- **Shelly 4Pro et Shelly Sense** — ces deux appareils utilisent un dialecte CoIoT plus ancien
+  (v1) que celui du reste de la gamme Gen1 (v2) : pas de remontée d'état en temps réel, seulement
+  un rafraîchissement périodique (même repli HTTP que ci-dessus). Le pilotage (relais, capteurs)
+  fonctionne normalement par ailleurs.
+- **Appareils absents du catalogue de la bibliothèque `aioshelly`** utilisée par le démon (modèle
+  trop récent pas encore référencé, ou trop ancien/rare) : comportement non garanti, à tester au
+  cas par cas.
 
 # Installation
 
@@ -71,9 +120,11 @@ Configuration**, ou directement depuis le bandeau de gestion du plugin (bouton
 ![Configuration générale du plugin : découverte réseau et démon](../images/shelly_control_config_plugin.png)
 
 - **Découverte automatique (mDNS)** : active le scan périodique du réseau local à la recherche de
-  nouveaux appareils Shelly. Activée par défaut.
-- **Intervalle de découverte (secondes)** : fréquence des scans mDNS. Minimum 60 secondes, valeur
-  par défaut 300 secondes (5 minutes).
+  nouveaux appareils Shelly. **Désactivée par défaut** — un ajout se fait normalement via le
+  bouton **Rechercher** (scan ponctuel) sur la page du plugin ; n'activer le scan périodique que
+  si de nouveaux appareils Shelly sont ajoutés régulièrement au réseau.
+- **Intervalle de découverte (secondes)** : fréquence des scans mDNS quand la découverte
+  automatique est activée. Minimum 60 secondes, valeur par défaut 600 secondes (10 minutes).
 - **Port socket interne** : port TCP local (`127.0.0.1` uniquement, jamais exposé sur le réseau)
   utilisé pour la communication entre Jeedom et le démon. Valeur par défaut `55116`.
   >**IMPORTANT**
@@ -207,6 +258,28 @@ résumé compact (widget « summary ») sur un tableau de bord ou un objet :
 
 ![Résumé d'un équipement Shelly sur le tableau de bord](../images/shelly_control_tuile.png)
 
+# Vue « Panel »
+
+En plus de la page de gestion classique, le plugin expose une vue compacte façon application
+mobile : une grille de cartes, une par appareil, avec photo du modèle, pastille de statut de
+connexion et un contrôle rapide (bascule pour un relais/lumière, ou boutons Ouvrir / Stop /
+Fermer pour un volet). Elle ne remplace pas la page de gestion — elle s'y ajoute, pour une
+consultation et un pilotage plus rapides au quotidien.
+
+![Vue Panel : grille de cartes compactes par appareil, avec toggle rapide](../images/shelly_control_panel.png)
+
+Pour y accéder, activer la case **Afficher le panneau desktop** dans la page de gestion du
+plugin (menu **Plugins → Gestion des plugins → Shelly Control**), ou naviguer directement vers
+`index.php?v=d&m=shelly_control&p=panel`. L'entrée de menu **Shelly Control** apparaît alors dans
+la catégorie **Panel** du menu principal, à côté des autres plugins qui proposent cette vue.
+
+- Cliquer sur la photo ou le nom d'un appareil ouvre la page de gestion classique.
+- Le contrôle rapide agit immédiatement sur l'appareil (même mécanisme que n'importe quel widget
+  de tableau de bord Jeedom) et se resynchronise en direct si l'état change ailleurs (application
+  Shelly, autre onglet Jeedom…).
+- Un appareil purement capteur (sans relais, volet ni lumière) n'affiche pas de contrôle : juste
+  sa photo, son nom et son statut de connexion.
+
 # Diagnostic (Santé)
 
 Le bouton **Santé** du bandeau **Gestion** ouvre une modale de diagnostic complet de
@@ -220,6 +293,60 @@ en dessous, ainsi que les appareils détectés en attente d'ajout le cas échéa
 
 C'est le premier réflexe en cas de souci : appareil qui n'apparaît pas, commandes qui ne
 remontent pas d'état, etc.
+
+## Diagnostic réseau
+
+Le bouton **Diagnostic** du bandeau **Gestion** ouvre une page distincte, complémentaire à la
+modale Santé : elle interroge **directement l'appareil en HTTP, en dehors de Jeedom**, sur
+plusieurs endpoints connus (identification, état, configuration), et affiche les réponses brutes
+sous forme de JSON — avec des boutons **Copier** et **Télécharger** pour le transmettre facilement
+au support.
+
+Utile pour distinguer un problème côté Jeedom/démon d'un problème côté appareil (injoignable,
+authentification bloquante, firmware qui ne répond pas comme attendu…) : il suffit de renseigner
+son adresse IP, sans que l'appareil ait besoin d'être déjà ajouté au plugin.
+
+# Problèmes connus
+
+**Le nom de l'équipement ne correspond pas au nom donné à l'appareil**
+
+Le nom d'un appareil n'est lu par le démon **qu'au moment de la connexion** (démarrage du démon,
+reconnexion après coupure…), jamais republié ensuite tant que la connexion reste active. Deux
+causes possibles :
+
+- Le nom n'a en réalité jamais été enregistré comme **nom d'appareil** sur le Shelly lui-même —
+  vérifier, dans l'interface web ou l'application de l'appareil, que le champ **Device name**
+  (ou **Nom de l'appareil**) est bien renseigné : un intitulé visible uniquement dans une pièce ou
+  une liste de l'application n'est pas forcément enregistré sur l'appareil.
+- Le nom a bien été changé sur l'appareil, mais **après** la dernière connexion du démon à
+  celui-ci — le nouveau nom ne remonte donc pas tout seul.
+
+Dans les deux cas, forcer une resynchronisation règle le problème une fois le nom bien réglé sur
+l'appareil :
+
+- bouton **Métadonnées** sur la fiche d'un équipement précis (force sa reconnexion) ;
+- ou bouton **Synchronisation** du bandeau **Gestion**, qui le fait pour tous les équipements en
+  une fois.
+
+**Les mises à jour d'état Gen1 ne sont plus instantanées**
+
+Un appareil Gen1 pousse normalement ses changements d'état en temps réel via **CoIoT**
+(multicast UDP) ; sans lui, le plugin se replie sur un rafraîchissement HTTP périodique (réglage
+**Rafraîchissement Gen1**, 60 secondes par défaut) — perceptible comme un délai. Causes
+possibles :
+
+- **CoIoT désactivé ou redirigé directement dans les paramètres de l'appareil** (page
+  **Internet & Security**, section **COIOT**) — voir l'encart dans la section **Compatibilité**
+  ci-dessus. Le plugin affiche désormais un message d'avertissement sur la page de gestion quand
+  c'est le cas.
+- Multicast bloqué entre l'appareil et Jeedom (VLAN sans reflecteur multicast, pare-feu, switch
+  avec IGMP snooping mal configuré).
+- Port UDP **5683** (CoAP) déjà utilisé par un autre service sur le serveur Jeedom (une autre
+  passerelle domotique communiquant elle aussi en CoIoT/CoAP, par exemple) : le démon logue alors
+  une erreur au démarrage et ne recevra aucune mise à jour poussée, pour aucun appareil Gen1.
+- Modèle à dialecte CoAP trop ancien (**Shelly 4Pro**, **Shelly Sense**) — voir section
+  **Ce qui n'est pas géré** : le repli périodique est alors le fonctionnement normal, pas une
+  panne.
 
 # Scripts natifs (Gen2+)
 
