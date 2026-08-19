@@ -391,6 +391,166 @@ Shelly.addStatusHandler(function (status) {
 });
 ```
 
+# Webhooks (URLs d'action)
+
+Tous les appareils Shelly savent appeler eux-mêmes une URL quand un événement se produit (appui
+sur un bouton, changement d'état d'un relais, franchissement d'un seuil de mesure…). Le bouton
+**Webhooks** de la fiche équipement permet de lister et de modifier ces URLs directement, sans
+passer par l'interface web de l'appareil.
+
+## À quoi ça sert vraiment
+
+Il est tentant de voir un webhook comme « le tuyau qui fait remonter les appuis vers Jeedom ».
+C'est un usage, mais c'est le plus réducteur. Un webhook fait de l'appareil Shelly un **client HTTP
+autonome** : à chaque changement d'état de ses entrées ou de ses sorties, il émet lui-même une
+requête vers l'adresse de votre choix. Jeedom n'est qu'une destination possible.
+
+Trois propriétés en découlent, et ce sont elles qui font l'intérêt du mécanisme :
+
+- **Latence minimale** — la requête part de l'appareil vers sa cible, directement sur le réseau
+  local. Ni cloud Shelly, ni détour par la box, ni scénario à évaluer.
+- **Indépendance** — l'automatisme ne dépend ni de votre connexion internet, ni de Jeedom. Il
+  continue de fonctionner pendant une mise à jour de la box, un redémarrage, ou une panne.
+- **Universalité** — toute cible capable de recevoir une requête HTTP convient, sans intégration
+  spécifique de part et d'autre.
+
+Concrètement, quatre rôles bien distincts :
+
+| Rôle | Destination de l'URL | Ce que ça apporte |
+| --- | --- | --- |
+| **Association directe** (pair-à-pair) | un autre appareil Shelly | Un interrupteur pilote une lampe à l'autre bout du logement, sans intermédiaire. Survit à l'arrêt de Jeedom **et** à la coupure d'internet. |
+| **Remontée d'événement** | Jeedom (ou une autre box) | Déclenche un scénario complexe. **Seul rôle où un Gen1 n'a aucune alternative** : voir la section suivante. |
+| **Notification externe** | IFTTT, Zapier, Slack… | Une alerte push sans passer par le cloud Shelly ni exposer vos appareils. |
+| **Réaction sur sortie** | un autre appareil Shelly | Chaîner un état physique à un autre : le relais du vidéoprojecteur ferme les volets. |
+
+## Exemples
+
+**1. Association directe entre deux Shelly.** Un Shelly Plus 1 derrière l'interrupteur de l'entrée
+doit allumer une lampe branchée sur un Shelly Plug au fond du salon.
+
+- Sur l'interrupteur, événement : `input.button_push` (Gen2+) ou action `shortpush_url` (Gen1)
+- URL : `http://192.168.1.50/relay/0?turn=on`
+- La lampe s'allume en même temps que le plafonnier, sans intermédiaire.
+
+**2. Appui long déclenchant un scénario Jeedom.** Un appui long lance le scénario « Départ de la
+maison » (extinction générale, volets, alarme).
+
+- Événement : `input.button_longpush` (Gen2+) ou action `longpush_url` (Gen1)
+- URL : celle d'une commande virtuelle Jeedom (voir le tableau ci-dessous), ou plus simplement
+  l'URL de rappel posée automatiquement par **Brancher les événements sur Jeedom** — le scénario se
+  déclenche alors sur la valeur `long_push` de la commande « Appui ».
+
+**3. Notification externe.** Recevoir une notification push dès qu'une porte s'ouvre.
+
+- Événement : ouverture du capteur
+- URL : le webhook fourni par IFTTT, Zapier ou Slack (`https://…`)
+- Aucun compte Shelly Cloud impliqué, et Jeedom n'est pas dans la boucle.
+
+**4. Réaction sur une sortie.** Le vidéoprojecteur est branché sur un Shelly Plug S ; les volets
+sont motorisés par un Shelly 2PM. Allumer le projecteur doit faire le noir.
+
+- Sur la prise, événement : `switch.on` (Gen2+) ou action `out_on_url` (Gen1)
+- URL : `http://192.168.1.60/rpc/Cover.Close?id=0`
+- Dès que le projecteur est alimenté, les volets se ferment.
+
+### Formes d'URL utiles comme cible
+
+| Cible | URL |
+| --- | --- |
+| Relais d'un Shelly Gen1 | `http://<ip>/relay/0?turn=on` (`off`, `toggle`) |
+| Volet d'un Shelly Gen1 | `http://<ip>/roller/0?go=close` (`open`, `stop`) |
+| Relais d'un Shelly Gen2+ | `http://<ip>/rpc/Switch.Set?id=0&on=true` |
+| Volet d'un Shelly Gen2+ | `http://<ip>/rpc/Cover.Close?id=0` (`Cover.Open`, `Cover.Stop`) |
+| Commande Jeedom | `http://<jeedom>/core/api/jeeApi.php?apikey=<clé API>&type=cmd&id=<id commande>` |
+| Appui remonté par ce plugin | posée automatiquement par **Brancher les événements sur Jeedom** |
+
+>**ASTUCE**
+>
+>L'`id` d'une commande Jeedom se lit dans la colonne **ID** du tableau de commandes de
+>l'équipement, et la clé d'API dans **Réglages > Système > Configuration > API**. Une commande
+>virtuelle sans autre rôle que d'être déclenchée par un Shelly est souvent la façon la plus lisible
+>de faire le pont vers un scénario.
+
+>**IMPORTANT**
+>
+>Ce plugin **édite** ces configurations, il ne les possède pas. Beaucoup de webhooks présents sur
+>vos appareils n'auront rien à voir avec Jeedom, et doivent continuer à fonctionner exactement
+>comme avant. C'est pourquoi les URLs existantes ne sont jamais écrasées (voir « Remonter les
+>appuis d'un appareil Gen1 »), et pourquoi les restrictions Gen2+ qu'un webhook peut porter sont
+>affichées telles quelles.
+
+## Restrictions affichées sur les appareils Gen2 et supérieurs
+
+Les webhooks Gen2+ sont plus riches que les actions Gen1 : en plus des URLs, ils acceptent une
+plage horaire d'activation, une condition d'évaluation et un délai minimal entre deux
+déclenchements. Ces réglages se configurent depuis l'interface web de l'appareil, pas depuis ce
+plugin — mais ils sont **affichés** sur la carte du webhook, sous forme de pastilles :
+
+| Pastille | Signification |
+| --- | --- |
+| 🕐 `08:00–20:00` | Le webhook ne se déclenche que dans cette plage horaire. |
+| Condition | Une expression conditionne le déclenchement (survolez pour la lire). |
+| ⏳ `30 s` | Délai minimal imposé entre deux déclenchements. |
+
+Les afficher évite un faux diagnostic : sans elles, un webhook restreint à une plage horaire
+paraîtrait inconditionnel, et son silence en dehors passerait pour une panne. Modifier les URLs ou
+l'activation depuis ce plugin **préserve** ces réglages.
+
+Le mécanisme diffère selon la génération, et la modale s'adapte :
+
+- **Gen1** : les URLs vivent dans des **emplacements fixes** de la configuration, un par couple
+  (action, canal) — `shortpush_url`, `longpush_url`, `btn_on_url`, `out_on_url`,
+  `ext_temp_over_url`… Rien ne se crée ni ne se supprime : un emplacement est soit rempli, soit
+  vide. Le bouton de suppression vide donc l'emplacement au lieu de le faire disparaître.
+- **Gen2/Gen3/Gen4** : les webhooks sont des **objets à part entière**, créés et supprimés
+  librement, avec un événement choisi dans la liste que l'appareil déclare lui-même
+  (`input.button_push`, `switch.on`, `input.toggle_off`…). L'événement et le canal sont figés à la
+  création — seuls le nom, les URLs et l'activation restent modifiables ensuite.
+
+Chaque webhook accepte **plusieurs URLs**, une par ligne. L'appareil les appelle lui-même, en
+direct, sans passer par le cloud Shelly.
+
+## Remonter les appuis d'un appareil Gen1
+
+C'est l'usage principal de cette page. Un appareil **Gen1 ne transmet jamais les appuis** sur ses
+boutons ou entrées : le protocole CoIoT ne transporte que l'état des capteurs. Un webhook est le
+seul moyen d'obtenir cette information — contrairement aux appareils Gen2 et supérieurs, qui la
+poussent nativement au démon (notifications RPC) et n'ont donc rien à configurer ici.
+
+Le bouton **Brancher les événements sur Jeedom**, visible uniquement sur les équipements Gen1,
+s'occupe de tout : il écrit une URL de rappel dans chaque action d'entrée déclarée par l'appareil.
+Au premier appui reçu, une commande info **« Appui »** apparaît par canal (`input:0::event`), avec
+le même vocabulaire de valeurs que les appareils Gen2 et supérieurs :
+
+| Action Gen1 | Valeur de la commande | Équivalent Gen2+ |
+| --- | --- | --- |
+| `shortpush_url` | `single_push` | appui court |
+| `double_shortpush_url` | `double_push` | double appui |
+| `triple_shortpush_url` | `triple_push` | triple appui |
+| `longpush_url` | `long_push` | appui long |
+| `btn_on_url` / `btn_off_url` | `btn_on` / `btn_off` | bascule de l'entrée |
+
+Un même scénario peut ainsi réagir aux appuis d'un parc mixte Gen1/Gen2+ sans distinction.
+
+>**INFORMATION**
+>
+>Un appareil déclare généralement les deux familles d'actions à la fois (`btn_on`/`btn_off` et
+>`shortpush`/`longpush`) : celle qui se déclenche réellement dépend du mode configuré pour
+>l'entrée (bascule ou impulsion). Toutes sont branchées, ce qui est sans effet de bord — seules
+>les pertinentes seront jamais appelées.
+
+>**IMPORTANT**
+>
+>L'adresse interne de Jeedom (**Réglages > Système > Configuration > Réseaux**) doit être une
+>adresse joignable depuis le réseau local : c'est l'appareil Shelly qui appelle Jeedom, et non
+>l'inverse. Une adresse en `127.0.0.1` est refusée, car l'URL écrite dans l'appareil
+>n'atteindrait jamais Jeedom.
+
+Le branchement est **non destructif** : les URLs déjà présentes sur un emplacement sont
+conservées, une seule est ajoutée. C'est utile pour cohabiter avec une autre intégration, ou pour
+migrer progressivement depuis un ancien plugin sans rien casser. **Débrancher les événements
+Jeedom** fait l'inverse et ne retire que les URLs de rappel de ce plugin.
+
 # Sécurité et vie privée
 
 - Toute la communication passe en direct entre Jeedom et chaque appareil sur le réseau local :
@@ -399,3 +559,9 @@ Shelly.addStatusHandler(function (status) {
   sur le réseau.
 - Le mot de passe éventuel d'un appareil Shelly est stocké chiffré par Jeedom et n'est jamais
   journalisé.
+- Les deux points d'entrée HTTP du plugin (callback du démon, réception des webhooks d'appareils)
+  exigent la clé d'API du plugin et répondent `401` sans elle.
+- Les URLs de rappel écrites dans un appareil Gen1 contiennent cette clé d'API, condition pour que
+  l'appareil puisse s'authentifier auprès de Jeedom. Elles sont donc lisibles par quiconque a accès
+  à la configuration de l'appareil : en cas de doute, régénérer la clé d'API du plugin puis
+  rebrancher les événements.
