@@ -17,6 +17,14 @@ lang: fr_FR
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la
 >mise à jour de documentation, de traduction ou de texte.
 
+# 21/08/2026
+
+- Ajout d'un outil de **migration depuis l'ancien plugin Shelly** (lunarok) : bouton **Migration**
+  dans le bandeau de gestion (visible uniquement si l'ancien plugin est installé), qui retrouve
+  automatiquement l'équipement Shelly Control correspondant à chaque ancien équipement (via sa
+  MAC) et propose de réécrire les références de scénarios/vues/plans de l'un vers l'autre, sans
+  copier ni le nom ni la configuration des commandes.
+
 # 19/08/2026
 
 - Réduction de l'empreinte ressources du démon (usage interne, sans effet visible pour

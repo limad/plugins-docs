@@ -551,6 +551,59 @@ conservées, une seule est ajoutée. C'est utile pour cohabiter avec une autre i
 migrer progressivement depuis un ancien plugin sans rien casser. **Débrancher les événements
 Jeedom** fait l'inverse et ne retire que les URLs de rappel de ce plugin.
 
+# Migration depuis l'ancien plugin Shelly
+
+Pour les utilisateurs de l'ancien plugin communautaire **Shelly** (lunarok) qui basculent vers
+**Shelly Control**, un bouton **Migration** apparaît dans le bandeau **Gestion** de la page
+principale — **uniquement si l'ancien plugin `shelly` est installé et actif** sur la même
+installation Jeedom. Il ouvre une modale qui recherche automatiquement, pour chaque équipement de
+l'ancien plugin, l'équipement **Shelly Control** correspondant, puis propose de réécrire les
+références (scénarios, vues, plans…) de l'un vers l'autre.
+
+>**INFORMATION**
+>
+>Cette migration ne copie **ni le nom ni la configuration** des commandes : elle réécrit
+>uniquement les références internes (`#id#`) qui pointent vers l'ancienne commande pour qu'elles
+>pointent désormais vers la nouvelle. C'est le même mécanisme que le bouton natif Jeedom
+>**« Cette commande remplace l'ID »**, disponible sur la configuration avancée de toute commande —
+>ce bouton l'applique simplement en une fois, pour tout un parc d'appareils, au lieu de le faire
+>commande par commande.
+
+## Fonctionnement
+
+1. **Correspondance des équipements** : l'ancien plugin identifie ses appareils par adresse IP, le
+   nouveau par adresse MAC. La migration interroge donc directement chaque ancien équipement à son
+   adresse IP enregistrée (endpoint `/shelly`, public même sur un appareil protégé par mot de
+   passe) pour en obtenir la MAC, et retrouve l'équipement Shelly Control correspondant. Les
+   **sous-relais virtuels** de l'ancien plugin (option « syncVirtual » d'un Shelly 2 ou 4Pro, qui
+   expose chaque relais au-delà du premier comme un équipement séparé) sont eux aussi couverts :
+   rattachés à l'équipement réel qui les héberge, sans sonde réseau supplémentaire.
+2. **Correspondance des commandes** : déduite des commandes *réellement présentes* sur l'ancien
+   équipement (relais, volet, lumière ou capteur), pas d'un modèle déclaré — les cas les plus
+   courants sont couverts : état/allumer/éteindre, puissance/tension/courant/énergie, position
+   d'un volet, luminosité/couleur/température de couleur d'une lumière, température, humidité,
+   luminosité ambiante, mouvement, fumée, batterie.
+3. Cliquer sur **Lancer l'analyse** affiche le résultat sans rien modifier : la liste des
+   correspondances trouvées, et la liste de ce qui n'a pas pu être traité automatiquement.
+4. Cliquer sur **Appliquer la migration** demande confirmation puis réécrit réellement les
+   références concernées.
+
+>**ATTENTION**
+>
+>Une sauvegarde de la base de données avant de cliquer sur **Appliquer la migration** est
+>recommandée : cette action réécrit potentiellement du contenu de scénarios, vues et plans.
+
+## Ce qui n'est pas traité automatiquement
+
+Certains champs de l'ancien plugin n'ont pas de correspondance fiable connue côté Shelly Control
+et restent listés dans la modale plutôt que d'être devinés — un mauvais remplacement réécrirait
+silencieusement un scénario vers la mauvaise commande. C'est notamment le cas du compteur
+triphasé par phase (Shelly EM/3EM), du thermostat, du blaster infrarouge, des effets lumineux
+RGBW2, et des commandes d'appui bouton qui n'ont pas encore été déclenchées au moins une fois
+depuis la synchronisation (elles sont créées à la volée par Shelly Control, au premier appui
+reçu). Ces cas résiduels se traitent au cas par cas avec le bouton natif Jeedom **« Cette commande
+remplace l'ID »**.
+
 # Sécurité et vie privée
 
 - Toute la communication passe en direct entre Jeedom et chaque appareil sur le réseau local :
