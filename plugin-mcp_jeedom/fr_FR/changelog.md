@@ -19,6 +19,38 @@ lang: fr_FR
 
 ---
 
+## 29/08/2026
+
+**Analyse d'historique sur plusieurs commandes à la fois**
+Les outils d'historique et de statistiques acceptent désormais une liste de commandes en un seul appel. Vous pouvez filtrer les points sur un seuil de valeur, ne garder que les changements d'état, ou agréger par heure ou par jour. Les statistiques renvoient en plus l'écart-type, la somme, la dernière valeur et l'horodatage des extrêmes.
+Exemple : *« Compare les températures du salon, de la chambre et de l'extérieur sur les 7 derniers jours, en moyenne journalière »*.
+
+**Détection des références de commandes supprimées**
+Un nouvel outil de diagnostic liste les références `#cmdId#` restées dans vos scénarios, objets, vues, designs et interactions après la suppression d'une commande ou d'un équipement. Le nombre de références mortes est également remonté dans le diagnostic système. Un second outil réécrit ces références vers une commande valide, en lot, avec une simulation préalable avant d'appliquer (réservé à l'administrateur).
+Exemple : *« Quelles commandes supprimées sont encore référencées quelque part ? »*.
+
+**Recherche « où est-ce utilisé ? »**
+Demandez à l'IA où une commande ou un équipement est employé : elle parcourt les scénarios (déclencheurs et expressions), les vues, les designs et la configuration des autres commandes. Une recherche par texte libre dans les expressions de scénario est aussi possible.
+Exemple : *« Dans quels scénarios la température de la chaudière est-elle utilisée ? »*.
+
+**Redémarrage automatique du daemon à la mise à jour**
+Après une mise à jour du plugin, le daemon est relancé automatiquement pour charger le nouveau code, à condition qu'il tournait déjà (ou que le démarrage automatique soit activé) et que les dépendances soient prêtes. Plus besoin de le redémarrer à la main dans la plupart des cas.
+
+**Correctifs**
+Les outils d'analyse des logs, de nettoyage des logs et d'occupation disque ciblaient un mauvais dossier et ne trouvaient aucun fichier : ils sont de nouveau fonctionnels. Les valeurs d'historique à forte précision (`49.000000000`) sont affichées proprement (`49`).
+
+---
+
+## 19/08/2026
+
+**Migration vers le SDK MCP 2.0**
+Le daemon Python s'appuie désormais sur la version 2.0 du SDK officiel MCP. Le bridge `uvx mcp-proxy` utilisé par certains clients ne supportant pas encore le HTTP natif (JetBrains, Google Antigravity) a été corrigé par épinglage de version.
+
+**Nettoyage de l'authentification externe**
+L'ancien jeton d'accès externe unique a été supprimé : seuls subsistent les jetons multi-clients (avec rôles) et OAuth 2.0. L'ancien stockage des jetons sous forme de fichier est migré automatiquement et définitivement vers la base de données Jeedom lors de la mise à jour, de façon transparente.
+
+---
+
 ## 08/07/2026
 
 **Scénarios multi-déclencheurs avec les tags Jeedom ≥ 4.5**

@@ -19,6 +19,38 @@ lang: en_US
 
 ---
 
+## 29/08/2026
+
+**History analysis across several commands at once**
+The history and statistics tools now accept a list of commands in a single call. You can filter data points on a value threshold, keep only state changes, or aggregate by hour or by day. Statistics additionally return the standard deviation, the sum, the last value and the timestamps of the min/max.
+Example: *"Compare the living room, bedroom and outdoor temperatures over the last 7 days, daily average"*.
+
+**Detection of deleted command references**
+A new diagnostic tool lists the `#cmdId#` references left in your scenarios, objects, views, designs and interactions after a command or device was deleted. The number of dead references is also surfaced in the system diagnosis. A second tool rewrites those references to a valid command, in bulk, with a preview before applying (admin only).
+Example: *"Which deleted commands are still referenced somewhere?"*.
+
+**"Where is it used?" search**
+Ask the AI where a command or device is used: it scans scenarios (triggers and expressions), views, designs and the configuration of other commands. A free-text search inside scenario expressions is also available.
+Example: *"In which scenarios is the boiler temperature used?"*.
+
+**Automatic daemon restart on update**
+After a plugin update, the daemon is restarted automatically to load the new code, provided it was already running (or automatic start is enabled) and the dependencies are ready. No more manual restart in most cases.
+
+**Fixes**
+The log analysis, log cleanup and disk usage tools were pointing at the wrong folder and finding no files: they work again. Very high-precision history values (`49.000000000`) are now displayed cleanly (`49`).
+
+---
+
+## 19/08/2026
+
+**Migration to MCP SDK 2.0**
+The Python daemon now runs on version 2.0 of the official MCP SDK. The `uvx mcp-proxy` bridge used by some clients that do not yet support native HTTP (JetBrains, Google Antigravity) was fixed by pinning its version.
+
+**External authentication cleanup**
+The old single external access token has been removed: only multi-client tokens (with roles) and OAuth 2.0 remain. The old file-based token storage is migrated automatically and definitively to the Jeedom database on update, transparently.
+
+---
+
 ## 08/07/2026
 
 **Multi-trigger scenarios with Jeedom ≥ 4.5 tags**
