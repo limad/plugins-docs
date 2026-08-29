@@ -19,6 +19,9 @@ lang: fr_FR
 
 ## Sommaire
 
+- [29/08/2026](#29082026)
+- [23/08/2026](#23082026)
+- [19/08/2026](#19082026)
 - [06/06/2026](#06062026)
 - [29/05/2026](#29052026)
 - [19/04/2026](#19042026)
@@ -29,6 +32,50 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 29/08/2026
+
+### ✨ Nouveautés
+
+- **Notifications push PWA** : l'application PWA du plugin peut désormais recevoir des notifications push (Web Push / VAPID). Nouveaux endpoints AJAX (`pwaVapidKey`, `pwaSubscribe`, `pwaDevices`, `pwaRevoke`, `pwaTestPush`, `pwaRegenerateVapid`), stockage des souscriptions dans `data/push_store.json` (gitignoré car secret), gestion multi-appareils et régénération des clés VAPID depuis la configuration du plugin.
+- **Push contextuel** : option *Notifier* activable par trigger ; le résultat d'une action planifiée (succès ou échec) est poussé automatiquement au demandeur.
+- **Actions différées — `list` / `cancel`** : parité entre le mode MCP (`mcp_client`) et l'assistant Jeedom natif. L'IA peut désormais lister (`list_scheduled_actions`) et annuler (`cancel_scheduled_action`) les actions programmées, en plus de les créer (`schedule_action`). File `scheduled_actions.json` cloisonnée par équipement ; ACL `read` pour lister, `execute` pour planifier / annuler. Prompts FR / EN / ES mis à jour.
+
+### 🐛 Corrections
+
+- **Modale Serveurs MCP — boutons bloqués** : *Tester* / *Enregistrer* / *Actualiser tools/list* restaient en spinner infini si le serveur MCP ne répondait pas. `domUtils.ajax()` accepte désormais un callback `always` exécuté en succès **et** en échec.
+- **Détail d'erreur MCP** affiché directement dans la console de la modale (code HTTP, extrait du corps, message RPC) au lieu d'un simple renvoi vers la notification.
+- **Champ token MCP** : pattern natif Jeedom (`input-group` + œil `bt_showPass`). Le token enregistré est renvoyé à l'admin et réellement révélé par l'œil — il ne « disparaît » plus après enregistrement. Bouton corbeille visible uniquement si un token est renseigné.
+- **`testMcpServer`** : renvoie jusqu'à 250 noms d'outils (au lieu de 30) ; l'UI signale « +N autres non affichés ».
+
+## 23/08/2026
+
+### ✨ Nouveautés
+
+- **Contrôle du raisonnement (`reasoning_effort`)** : nouveau champ (opt-in, vide par défaut) transmis dans le payload pour OpenAI, Groq, DeepSeek, xAI, OpenRouter, Mistral et Perplexity. Champ texte libre car le vocabulaire accepté varie selon le provider / modèle (`low`/`medium`/`high`, `none`/`default`…). Le champ ne s'affiche que pour les providers concernés.
+- **Bouton « Vérifier le catalogue »** (configuration du plugin, admin) : compare en direct les catalogues renvoyés par les providers à `ai_models.json` et affiche un rapport — sans jamais modifier le fichier.
+
+### 🐛 Corrections
+
+- **Ollama — raisonnement forcé** : passage à l'API native `/api/chat` (au lieu de `/v1/chat/completions`) avec `think:false`. L'API de compatibilité ignorait `reasoning_effort` / `think`, laissant les modèles hybrides (Qwen3…) raisonner par défaut — latence ramenée de 18–28 s à ~1–2 s.
+- **Gemini — budget de raisonnement non appliqué** : le `thinkingConfig` / `thinkingBudget` prévu pour plafonner le raisonnement des modèles Gemini 2.5 était présent en commentaire mais jamais envoyé. Corrigé, puis étendu aux modèles Gemini 3.x. Correction également du merge de `generationConfig` qui écrasait la température.
+- **Catalogue de modèles à jour** (vérifié en direct avec les clés API réelles) :
+  - **Groq** : les 4 modèles étaient en 404 → remplacés par `openai/gpt-oss-120b` / `20b` et `qwen/qwen3.6-27b`.
+  - **Mistral** : `open-mistral-nemo` retiré → `ministral-8b-latest` ; ajout de `magistral-small-latest` (reasoning).
+  - **OpenRouter** : `anthropic/claude-haiku-4-5` → `claude-haiku-4.5` ; `google/gemini-2.0-flash-001` retiré → `gemini-3.5-flash`.
+  - **Gemini** : `gemini-2.5-pro` marqué comme retiré (404 côté Google).
+
+## 19/08/2026
+
+### 🐛 Corrections
+
+- **Ollama — modèle configuré ignoré** : l'action `askAi` (et le fallback streaming) envoyait un modèle vide au provider, qui retombait alors sur le défaut codé en dur (`llama3.2`) au lieu du modèle réellement configuré sur l'équipement (ex: `qwen3:1.7b`).
+- **Ollama — URL non héritée du Provider parent** : `askAiProvider`, `streamAiProvider`, `resetHistory`, `listModels` et `testConnection` lisaient l'URL Ollama uniquement sur l'équipement courant, ignorant le Provider parent pour les équipements Assistant / MCP liés (repli silencieux sur `localhost:11434`). Nouveau helper `_resolveOllamaUrl()` (résolution en cascade local → parent → défaut), aligné sur `_resolveApiKey()`.
+
+### ✨ Nouveautés
+
+- **Panel de discussion — liste des modèles Ollama dynamique** : le sélecteur de modèle interroge désormais `/api/tags` en direct sur le serveur Ollama configuré, avec repli sur le catalogue statique si le serveur est injoignable.
+- **Catalogue de modèles** (`ai_models.json`) : ajout de `qwen3`, `llama3.3` et `gpt-oss` pour Ollama.
 
 ## 06/06/2026
 

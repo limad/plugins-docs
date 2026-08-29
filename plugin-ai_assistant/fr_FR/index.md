@@ -184,6 +184,18 @@ Un chat rapide integre a la barre Jeedom :
 - Reponse streaming
 - Pas d options avancees
 
+## 3) PWA (application installable + notifications push)
+
+Une coque applicative installable (`/plugins/ai_assistant/pwa/`) : chat plein ecran sur mobile, ecran de connexion dedie, service worker.
+
+- **Notifications push** (Web Push / VAPID) : recevez une notification meme application fermee.
+  - Abonnement / desabonnement par appareil, gestion multi-appareils.
+  - Cles VAPID generees automatiquement, regenerables depuis la configuration du plugin (les souscriptions sont stockees cote serveur dans `data/push_store.json`, hors depot Git).
+  - Bouton *Tester la notification* dans la configuration.
+- **Push contextuel** :
+  - Option *Notifier* activable **par trigger** (une automatisation Jeedom -> IA peut pousser sa reponse).
+  - Le **resultat d une action planifiee** (succes ou abandon) est pousse au demandeur.
+
 ---
 
 # Types d equipements
@@ -276,7 +288,7 @@ Idem pour les autres providers : le plugin fonctionne en mode API direct.
 
 # Tool calling natif (function calling)
 
-Pour les providers compatibles, l IA utilise le **function calling natif** du modele plutot que le protocole JSON texte. L assistant voit quatre outils et peut en enchainer plusieurs dans une meme reponse :
+Pour les providers compatibles, l IA utilise le **function calling natif** du modele plutot que le protocole JSON texte. L assistant voit six outils et peut en enchainer plusieurs dans une meme reponse :
 
 | Tool | Usage |
 |---|---|
@@ -284,6 +296,8 @@ Pour les providers compatibles, l IA utilise le **function calling natif** du mo
 | `run_jeedom_scenario` | Lance un scenario |
 | `snapshot_camera` | Capture + analyse visuelle d une camera |
 | `schedule_action` | Planifie une action dans N minutes |
+| `list_scheduled_actions` | Liste les actions planifiees en attente (ACL `read`) |
+| `cancel_scheduled_action` | Annule une action planifiee (ACL `execute`) |
 
 ## Boucle agentique
 
@@ -408,6 +422,44 @@ Les actions programmees via `schedule_action` (ex: *"eteins le salon dans 30 min
 - Apres echec final, **notification utilisateur** via le centre de messages Jeedom et audit trace avec statut `abandoned`
 - Un refus **whitelist** (`denied`) n est pas rejoue (c est un choix produit, pas une erreur)
 
+## Lister et annuler
+
+L IA peut aussi **lister** les actions en attente et en **annuler** une, aussi bien en mode MCP (`mcp_client`) qu en assistant Jeedom natif (`jeeAssist`) :
+
+- `list_scheduled_actions` (ACL `read`) / `schedule.list` en protocole legacy
+- `cancel_scheduled_action` (ACL `execute`) / `schedule.cancel` en protocole legacy
+
+La file `scheduled_actions.json` est cloisonnee par equipement : chaque assistant ne voit et n annule que ses propres actions.
+
+## Notification du resultat (PWA)
+
+Si l abonne dispose de la PWA du plugin, le **resultat** d une action planifiee (executee ou abandonnee) lui est **pousse** automatiquement (voir *Interfaces utilisateur → PWA*).
+
+---
+
+# Controle du raisonnement (reasoning / thinking)
+
+Les modeles « thinking » (raisonnement etendu) ameliorent la qualite sur les demandes complexes, mais **gonflent la latence et le cout**. Le plugin permet de plafonner ou desactiver ce raisonnement selon le provider.
+
+## Champ `reasoning_effort` (providers OpenAI-compatibles)
+
+Un champ **`reasoning_effort`** (opt-in, vide par defaut) est disponible pour **OpenAI, Groq, DeepSeek, xAI, OpenRouter, Mistral et Perplexity**. Il n apparait que pour ces providers.
+
+- Champ **texte libre** : le vocabulaire accepte varie selon le provider / modele (`low` / `medium` / `high`, `none` / `default`, `minimal`…). Un select fige serait vite faux.
+- Laisse vide -> comportement par defaut du modele.
+
+## Gemini — budget de raisonnement plafonne
+
+Pour les modeles Gemini « thinking » (2.5 et 3.x), le plugin envoie un `thinkingConfig.thinkingBudget` par defaut pour eviter un raisonnement illimite. La temperature configuree est preservee (merge de `generationConfig`, plus d ecrasement).
+
+## Ollama — raisonnement desactive
+
+Les equipements Ollama utilisent l API native `/api/chat` avec `think:false`. Les modeles hybrides (Qwen3…) ne raisonnent donc plus par defaut : latence ramenee de ~20 s a ~1-2 s.
+
+## Verifier le catalogue de modeles
+
+Bouton **« Verifier le catalogue »** dans la configuration du plugin (admin) : compare en direct les modeles reellement disponibles chez chaque provider a `ai_models.json` et affiche un rapport (modeles manquants / obsoletes). **Ne modifie jamais le fichier** — c est un outil de diagnostic.
+
 ---
 
 # Optimisation des couts (economie de tokens)
@@ -472,6 +524,8 @@ Le plugin supporte les fournisseurs suivants :
 - xAI / Grok
 - OpenRouter
 - Perplexity
+
+Le catalogue des modeles (`core/config/ai_models.json`) est verifie en direct contre les API reelles et tenu a jour ; le bouton *Verifier le catalogue* (config du plugin) signale les ecarts. Pour **Ollama**, le panel liste en plus les modeles reellement installes en interrogeant `/api/tags` en direct.
 
 Cette liste est amennee a evoluer.
 

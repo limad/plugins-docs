@@ -184,6 +184,18 @@ A quick chat integrated into the Jeedom bar:
 - Streaming response
 - No advanced options
 
+## 3) PWA (installable app + push notifications)
+
+An installable app shell (`/plugins/ai_assistant/pwa/`): full-screen chat on mobile, dedicated login screen, service worker.
+
+- **Push notifications** (Web Push / VAPID): get notified even when the app is closed.
+  - Per-device subscribe / unsubscribe, multi-device management.
+  - VAPID keys generated automatically, regeneratable from the plugin config (subscriptions stored server-side in `data/push_store.json`, outside the Git repo).
+  - *Test notification* button in the config.
+- **Contextual push**:
+  - Per-**trigger** *Notify* option (a Jeedom automation → AI can push its answer).
+  - The **result of a scheduled action** (success or abandoned) is pushed to the requester.
+
 ---
 
 # Device types
@@ -276,7 +288,7 @@ Same for other providers: the plugin works in direct API mode.
 
 # Native tool calling (function calling)
 
-For compatible providers, the AI uses the model's **native function calling** rather than the legacy JSON text protocol. The assistant sees four tools and can chain multiple in the same response:
+For compatible providers, the AI uses the model's **native function calling** rather than the legacy JSON text protocol. The assistant sees six tools and can chain multiple in the same response:
 
 | Tool | Usage |
 |---|---|
@@ -284,6 +296,8 @@ For compatible providers, the AI uses the model's **native function calling** ra
 | `run_jeedom_scenario` | Triggers a scenario |
 | `snapshot_camera` | Captures + visually analyzes a camera |
 | `schedule_action` | Schedules an action in N minutes |
+| `list_scheduled_actions` | Lists pending scheduled actions (`read` ACL) |
+| `cancel_scheduled_action` | Cancels a scheduled action (`execute` ACL) |
 
 ## Agentic loop
 
@@ -322,6 +336,44 @@ Actions scheduled via `schedule_action` (e.g. *"turn off the living room in 30 m
 - **3 attempts** with exponential backoff: 60 s, 120 s, 240 s
 - After final failure, **user notification** via Jeedom message center and audit trace with status `abandoned`
 - A **whitelist** refusal (`denied`) is not replayed (a product choice, not an error)
+
+## List and cancel
+
+The AI can also **list** pending actions and **cancel** one, both in MCP mode (`mcp_client`) and in the native Jeedom assistant (`jeeAssist`):
+
+- `list_scheduled_actions` (`read` ACL) / `schedule.list` in the legacy protocol
+- `cancel_scheduled_action` (`execute` ACL) / `schedule.cancel` in the legacy protocol
+
+The `scheduled_actions.json` queue is partitioned per device: each assistant only sees and cancels its own actions.
+
+## Result notification (PWA)
+
+If the subscriber has the plugin PWA installed, the **result** of a scheduled action (executed or abandoned) is **pushed** to them automatically (see *User interfaces → PWA*).
+
+---
+
+# Reasoning control (reasoning / thinking)
+
+"Thinking" models (extended reasoning) improve quality on complex requests but **inflate latency and cost**. The plugin lets you cap or disable that reasoning per provider.
+
+## `reasoning_effort` field (OpenAI-compatible providers)
+
+A **`reasoning_effort`** field (opt-in, empty by default) is available for **OpenAI, Groq, DeepSeek, xAI, OpenRouter, Mistral and Perplexity**. It only appears for those providers.
+
+- **Free-text** field: the accepted vocabulary varies by provider / model (`low` / `medium` / `high`, `none` / `default`, `minimal`…). A fixed select would quickly be wrong.
+- Left empty → the model's default behavior.
+
+## Gemini — capped reasoning budget
+
+For Gemini "thinking" models (2.5 and 3.x), the plugin sends a default `thinkingConfig.thinkingBudget` to avoid unbounded reasoning. The configured temperature is preserved (`generationConfig` is merged, no longer overwritten).
+
+## Ollama — reasoning disabled
+
+Ollama devices use the native `/api/chat` API with `think:false`. Hybrid models (Qwen3…) no longer reason by default: latency cut from ~20 s to ~1–2 s.
+
+## Check the model catalog
+
+**"Check catalog"** button in the plugin config (admin): compares the models actually available at each provider against `ai_models.json` and shows a report (missing / stale models). It **never modifies the file** — it is a diagnostic tool.
 
 ---
 
@@ -386,6 +438,8 @@ The plugin supports the following providers:
 - xAI / Grok
 - OpenRouter
 - Perplexity
+
+The model catalog (`core/config/ai_models.json`) is verified live against the real APIs and kept up to date; the *Check catalog* button (plugin config) reports discrepancies. For **Ollama**, the panel additionally lists the models actually installed by querying `/api/tags` live.
 
 This list is subject to change.
 
