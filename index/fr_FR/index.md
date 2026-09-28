@@ -287,4 +287,19 @@ pluginId: limad44
 	</div>
 </div>
 
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-secposture/{{page.lang}}">
+	<img src="{{site.baseurl}}/plugin-secposture/images/secposture_icon.png" alt="secposture">
+	<div>
+		<h2 class="plugin-card__name">Posture Sécurité</h2>
+		<span class="plugin-card__id">secposture</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Audit quotidien, en lecture seule, de la sécurité de la box Jeedom : comptes, API, mises à jour, SSH, pare-feu, MariaDB, serveur web, sauvegardes et intégrité des fichiers. Score et commandes pour les scénarios.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-secposture/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-secposture/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
 </div><!-- /plugin-grid -->
