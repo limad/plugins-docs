@@ -302,4 +302,19 @@ pluginId: limad44
 	</div>
 </div>
 
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-f2ban/{{page.lang}}">
+	<img src="{{site.baseurl}}/plugin-f2ban/images/f2ban_icon.png" alt="f2ban">
+	<div>
+		<h2 class="plugin-card__name">fail2ban</h2>
+		<span class="plugin-card__id">f2ban</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Supervision de fail2ban en local ou à distance (SSH) : état des jails, compteurs journaliers et par pays des IP bannies, bannissement et débannissement depuis Jeedom.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-f2ban/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-f2ban/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
 </div><!-- /plugin-grid -->
