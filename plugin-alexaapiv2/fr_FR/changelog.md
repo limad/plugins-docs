@@ -43,6 +43,11 @@ Changelog Alexa-Premium
 *   **Reconnexion automatique de la session développeur Amazon expirée** : élimine l'erreur *« Vendor ID is required. »* lors du déploiement de la skill vocale
 *   **Scènes Alexa mieux catégorisées** : les scènes tierces (TaHoma, Somfy…) ainsi que les scènes désactivées s'affichent et se rafraîchissent désormais correctement
 
+### Interface et traductions
+
+*   **Account Linking fonctionne sans jQuery** : les boutons « Vérifier l'état », « Configurer » et « Supprimer » ne renvoient plus « $ is not defined » lorsque Jeedom est en mode sans jQuery (`core::jqueryless`)
+*   **Traductions complétées** : les textes de la configuration (Voice Query, panneau d'authentification, déconnexion des sessions, import P2 → P1) et de la modale de sélection des équipements sont traduits en anglais, allemand, espagnol, italien et portugais
+
 ### Sécurité
 
 *   **`pluginKey` (clé API Jeedom) ne traîne plus dans les logs** : niveau abaissé de `info` à `debug`

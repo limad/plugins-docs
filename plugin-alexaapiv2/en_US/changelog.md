@@ -47,6 +47,11 @@ lang: en_US
 - **Automatic reconnection of the expired Amazon developer session**: removes the *"Vendor ID is required."* error when deploying the voice skill
 - **Better categorization of Alexa scenes**: third-party scenes (TaHoma, Somfy…) and disabled scenes are now displayed and refreshed correctly
 
+### Interface and translations
+
+- **Account Linking works without jQuery**: the "Check status", "Configure" and "Delete" buttons no longer return "$ is not defined" when Jeedom runs in jQuery-less mode (`core::jqueryless`)
+- **Translations completed**: the configuration texts (Voice Query, authentication panel, session logout, P2 → P1 import) and the device selection modal are translated into English, German, Spanish, Italian and Portuguese
+
 ### Security
 
 - **`pluginKey` (Jeedom API key) no longer appears in logs**: level lowered from `info` to `debug`
