@@ -17,6 +17,14 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### Voice Query (IA)
+
+*   **Contexte IA adapté aux grosses installations** : le nombre maximum de commandes (350 par défaut) et la taille maximale du contexte (6 000 caractères par défaut) sont désormais réglables dans la configuration du plugin
+*   **Objets exposés** : nouveau champ pour limiter Voice Query à certaines pièces (ids d'objets Jeedom, vide = tous)
+*   **Pièce de l'Echo prioritaire** : les équipements de la pièce de l'Echo qui reçoit la demande sont traités en premier, ils ne sont plus écartés par la limite de commandes
+*   **Troncature propre** : le contexte est coupé en fin de ligne, plus au milieu d'un équipement
+*   **Plus de doublon avec ai_assistant** : un prompt système dédié évite que la liste d'équipements d'ai_assistant s'ajoute à celle du plugin, et l'exécution des actions reste validée par le plugin
+
 ### Fiabilité et performance
 
 *   **Plus de daemon zombie au démarrage** : le warning « PID actif mais HTTP non joignable » n'apparaît plus pendant les redémarrages légitimes (grace period 30 s avant signalement)
