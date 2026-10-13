@@ -24,10 +24,16 @@ lang: en_US
 ### Voice Query (AI)
 
 - **AI context adapted to large installations**: the maximum number of commands (350 by default) and the maximum context size (6,000 characters by default) can now be set in the plugin configuration
-- **Exposed objects**: new field to restrict Voice Query to some rooms (Jeedom object ids, empty = all)
+- **Exposed devices**: new "Choose devices" modal (search, per-room checkboxes, counters) to select precisely what Voice Query can see and control
 - **Echo room first**: devices in the room of the Echo that receives the request are processed first and are no longer dropped by the command limit
 - **Clean truncation**: the context is cut at the end of a line, no longer in the middle of a device
 - **No more duplication with ai_assistant**: a dedicated system prompt prevents ai_assistant's device list from being added to the plugin's own, and action execution remains validated by the plugin
+- **Selection required**: with no device selected, Voice Query exposes nothing and raises an alert in the message center; the sentence is then handled by the regular Jeedom interactions (no more voice outage)
+- **Sensitive commands never exposed**: alarm, lock, gate, garage and siren (generic type or command name) can no longer be controlled by the AI; a padlock flags them in the modal
+- **Truthful replies**: if execution fails, the reply says so instead of confirming "done"
+- **Checked values**: sliders clamped to the command's min/max, strict command ids, choice-list commands are not controllable
+- **Reliable context**: line breaks and brackets removed from names and values sent to the AI, device order identical from one request to the next, and only commands actually visible in the context can be executed (a truncated command no longer can)
+- **Counter and limits**: the configuration badge only counts truly exposable devices, deleted ids are dropped from the selection; limits of 1,000 commands and 20,000 characters; a warning is logged when the context is truncated
 
 ### Reliability and performance
 
