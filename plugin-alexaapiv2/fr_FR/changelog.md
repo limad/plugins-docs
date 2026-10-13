@@ -20,10 +20,16 @@ Changelog Alexa-Premium
 ### Voice Query (IA)
 
 *   **Contexte IA adapté aux grosses installations** : le nombre maximum de commandes (350 par défaut) et la taille maximale du contexte (6 000 caractères par défaut) sont désormais réglables dans la configuration du plugin
-*   **Objets exposés** : nouveau champ pour limiter Voice Query à certaines pièces (ids d'objets Jeedom, vide = tous)
+*   **Équipements exposés** : nouvelle modale « Choisir les équipements » (recherche, cases par objet, compteurs) pour sélectionner précisément ce que Voice Query peut voir et piloter
 *   **Pièce de l'Echo prioritaire** : les équipements de la pièce de l'Echo qui reçoit la demande sont traités en premier, ils ne sont plus écartés par la limite de commandes
 *   **Troncature propre** : le contexte est coupé en fin de ligne, plus au milieu d'un équipement
 *   **Plus de doublon avec ai_assistant** : un prompt système dédié évite que la liste d'équipements d'ai_assistant s'ajoute à celle du plugin, et l'exécution des actions reste validée par le plugin
+*   **Sélection obligatoire** : sans équipement sélectionné, Voice Query n'expose plus rien et lève une alerte dans le centre de messages ; la phrase est alors traitée par les interactions Jeedom classiques (plus de panne vocale)
+*   **Commandes sensibles jamais exposées** : alarme, serrure, portail, garage et sirène (type générique ou nom de la commande) ne sont plus pilotables par l'IA ; un cadenas les signale dans la modale
+*   **Réponses fidèles** : si l'exécution échoue, la réponse le dit au lieu de confirmer « c'est fait »
+*   **Valeurs contrôlées** : sliders bornés au min/max de la commande, identifiants de commande stricts, commandes à liste de choix non pilotables
+*   **Contexte fiable** : retours ligne et crochets retirés des noms et valeurs envoyés à l'IA, ordre des équipements identique d'une requête à l'autre, et seules les commandes réellement visibles dans le contexte peuvent être exécutées (une commande tronquée ne l'est plus)
+*   **Compteur et plafonds** : le badge de configuration n'affiche que les équipements réellement exposables, les ids supprimés sont retirés de la sélection ; plafonds de 1 000 commandes et 20 000 caractères ; un avertissement est écrit dans les logs lorsque le contexte est tronqué
 
 ### Fiabilité et performance
 
