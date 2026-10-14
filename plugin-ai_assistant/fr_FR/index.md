@@ -408,7 +408,7 @@ Sois concis et précis. Réponds en français.
 ## Personnalisation
 
 - **Par équipement** : champ *Instructions* dans la config de l'équipement → remplace (ou complète) le prompt par défaut.
-- **Conventions globales** (jeeAssist uniquement) : un bloc *Conventions globales* dans la config plugin est prepende au prompt.
+- **Conventions globales** (jeeAssist uniquement) : un bloc *Conventions globales* dans la config plugin est ajouté au début du prompt.
 - **Placeholder** `{{JEEDOM_CONTEXT}}` (jeeAssist) : remplace par la liste des équipements whiteliste + valeurs courantes au moment de l'appel.
 
 Les versions EN et ES sont disponibles dans `core/api/ai_assistantPrompts.php` et sélectionnées automatiquement selon `config::byKey('language', 'core')`.
