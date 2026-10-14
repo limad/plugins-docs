@@ -19,6 +19,59 @@ lang: en_US
 
 ---
 
+## 14/10/2026
+
+### New features
+
+- **Up-to-date model catalog**: GPT-6 (OpenAI), Gemini 3.8 and 4 Argon, Claude 5.5, new OpenRouter, DeepSeek and Mistral models. Retired or outclassed models (o1/o3/o4, Gemini 2.0 and 1.5, Claude 3.5 Sonnet…) are removed: every model kept is recent or has a cost advantage.
+- **Automatic equipment migration**: on update, an equipment configured on a retired model is switched to its successor (explicit table; hand-typed models, Ollama and OpenAI-compatible are left alone). Each replacement is logged.
+- **Filtered "Check catalog"**: dated snapshots, variants (`:free`, `:batch`), older versions and outdated generations are no longer suggested; a line separates each provider. The list drops from hundreds of identifiers to a few dozen.
+- **Plugin description and quick start** rewritten, in six languages.
+
+### Fixes
+
+- **Gemini — 503 error**: with or without streaming, a persistent 429/5xx falls back to the next model (3.8 Flash, then 3.6 Flash) instead of failing; dedicated "model overloaded" message.
+- **Gemini — reasoning while streaming**: the reasoning budget was not applied when streaming; it now matches the non-streaming mode, with a safety net if the model rejects that setting.
+- **Panel and navbar enabled by default**: at install (the panel stayed hidden and the navbar "Enable" box showed unchecked) and on update as long as the choice was never saved.
+
+### Miscellaneous
+
+- Documentation: the Vigie and "subscription instead of an API key" pages join the published documentation.
+
+## 25/09/2026
+
+### New features
+
+- **Stronger generic MCP client**: the `instructions` field returned by an MCP server at `initialize` was captured by the transport (`McpClient`) but never used — it is now injected into the system prompt and cached alongside `tools/list` (same key/TTL). `resources/list` / `resources/read` (already in `McpClient`) are now wired through a new local tool `read_mcp_resource(uri)`, memoized within the agentic turn. Generic to any MCP server (Jeedom, Home Assistant…), not just mcp_jeedom.
+
+### Fixes
+
+- **Failing tool results cached as successes**: `isError` (MCP spec — a tool that fails server-side without raising a JSON-RPC exception) was never checked; the result was audited `'ok'` and memoized, replaying a transient error for the rest of the agentic turn. It now records `status='tool_error'` and is no longer cached.
+- **MCP pagination ignored**: `tools/list` and `resources/list` did not follow `nextCursor` — a paginating MCP server was silently truncated to its first page.
+- 19 obsolete images removed from `core/img/` (badges + `_32x32.png` provider icons, long replaced by the `_96x96.png` variants) — no references in the code.
+
+### Miscellaneous
+
+- CI: PHP floor raised to 8.2 (Debian 12, now the version recommended by Jeedom) — the lint matrix no longer includes PHP 7.4.
+
+## 31/08/2026
+
+### New features
+
+- **Vigie — proactive monitoring**: the plugin no longer just waits for a question, it watches the box and alerts you. Six probes, all deterministic with no AI call at all: the message center (where Jeedom already collects every plugin's errors, deduplicated), system health checks (memory, swap, disk, load, disk errors, database), unstable daemons, predictable failures through trend analysis, log files, and the page you are viewing. **Everything is disabled at install**: nothing turns on without your consent, source by source, and the plugin's emergency trigger kill-switch also stops Vigie.
+- **A filter before anything else**: normalized signature, occurrence threshold, per-pattern cooldown, per-plugin and global quotas, quiet hours. On a real installation, a day's 1,655 error lines boil down to a handful of readable alerts.
+- **Optional AI review**: a model — local or online — can drop an alert, lower its severity or reword it in plain language. It can never add one or raise one. If it is unreachable, alerts go out anyway. Vigie has its own call counter, separate from your conversations, with automatic pause and a single notification when exceeded.
+- **Action buttons in alerts** (disabled by default): restart a daemon, mute a pattern. The browser sends only two identifiers; the server re-checks the alert, the whitelist and your Jeedom rights before acting, and sensitive actions ask for confirmation.
+- **Scenario review**: in the editor, after a long pause, Vigie flags referenced commands that no longer exist, loops where a scenario acts on its own trigger, variables never defined and scenarios triggered without a trigger. Fully local analysis; code only goes to an AI if you ask.
+- **The assistant knows what is wrong**: open alerts and the viewed page enrich the chat context. Asking "why is my box slow?" now goes out with the answer at hand.
+- **Dedicated configuration tab** with a simulation button: it really collects and filters, but sends no alert and uses no quota — the way to tune thresholds without triggering anything.
+
+### Security
+
+- Proactive alerts are reserved for administrators by default, with **server-side** filtering of the notification badge: an alert containing a log excerpt can no longer reach a non-administrator.
+- Secrets found in logs (API keys, tokens, passwords, e-mail addresses, public IP addresses) are masked **before** being stored, not at display time.
+- Running an action re-checks the calling user's Jeedom rights, on top of the plugin whitelist.
+
 ## 29/08/2026
 
 ### New features

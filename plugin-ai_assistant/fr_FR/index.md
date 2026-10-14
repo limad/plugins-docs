@@ -47,11 +47,12 @@ Un client IA generique fait les etapes 7 et 10 seulement.
 
 ## En bref
 
-- **9+ providers** interchangeables : Claude, Gemini, OpenAI, DeepSeek, Mistral, Groq, xAI, OpenRouter, Perplexity, Ollama — avec **fallback automatique**.
+- **9+ providers** interchangeables : Claude, Gemini, OpenAI, DeepSeek, Mistral, Groq, xAI, OpenRouter, Perplexity, Ollama, ou tout serveur compatible OpenAI — avec **fallback optionnel** (autre provider ou second compte, desactive par defaut). Un **abonnement** Claude / ChatGPT peut remplacer la cle API.
 - **Agent domotique MCP** : l IA appelle des outils pour lire l etat reel puis agir (boucle multi-etapes : lire → decider → agir → verifier).
 - **3 modes** : chat pur (`provider`), assistant Jeedom natif (`jeeAssist`), agent MCP (`mcp_client` — jeedom ou tiers comme Home Assistant).
 - **Securite reelle** : ACL read/write/execute, refus des actions destructives par defaut, confirmation des actions sensibles, apercu temps reel, audit complet.
 - **Automatisable** : declenchable depuis scenarios, interactions vocales, evenements, cron.
+- **Proactif (Vigie)** : le plugin observe la box et vous alerte sans appeler de modele d IA ; desactive a l installation, active source par source.
 - **Econome** : cache `tools/list` + cache de prompt, selection d outils, mode sans-outils, contexte domotique filtre, compression d historique, memoire utilisateur.
 - **Local & multimodal** : heberge sur votre Jeedom, analyse d images (cameras) et documents, acces desktop / mobile / PWA.
 
@@ -65,7 +66,7 @@ Le modele d IA est le meme que partout — ce qui change, c est **ou il est bran
 | Comprendre et **piloter votre maison** | **ai_assistant + MCP** |
 | Une IA declenchee par un **scenario / la voix** | **ai_assistant** |
 | Agir sur des equipements **en securite** | **ai_assistant** (ACL + confirmation) |
-| Ne pas dependre d un seul fournisseur | **ai_assistant** (multi-provider + fallback) |
+| Ne pas dependre d un seul fournisseur | **ai_assistant** (multi-provider + fallback optionnel) |
 
 ### Exemples
 
@@ -487,6 +488,48 @@ Mecanismes :
 
 ---
 
+# Vigie — surveillance proactive
+
+Jusqu ici, ai_assistant est **reactif** : vous posez une question, il repond. **Vigie** ajoute une couche **proactive** : le plugin observe la box, filtre ce qu il voit et ne vous derange que si cela en vaut la peine — **sans appeler de modele d IA** pour detecter ou filtrer.
+
+## En bref
+
+- **Six sondes deterministes** : centre de messages, sante du systeme, demons instables, derive (batteries, disque…), fichiers de journaux, page consultee.
+- **Opt-in strict** : tout est desactive a l installation ; chaque source s active separement. Le kill-switch des declencheurs coupe aussi Vigie.
+- **Cout nul par defaut** : une relecture par IA est possible en option, mais elle ne peut qu attenuer ou reformuler une alerte, jamais en inventer.
+- **Boutons d action** (option, administrateurs) : relancer un demon, mettre un motif en sourdine — revalides cote serveur (alerte, liste blanche, droits Jeedom).
+
+## Comment ca marche
+
+1. **Les sondes collectent** ce que Jeedom sait deja dire de lui-meme (centre de messages, `jeedom::health()`), toutes les 15 minutes.
+2. **La porte filtre** : signature normalisee, seuil d occurrences, pas de repetition avant 24 h, quota par plugin et global, heures calmes (22h–07h, les alertes sont restituees au reveil).
+3. **La relecture par IA (optionnelle)** peut retirer une alerte, en baisser la severite ou la reformuler — jamais l inverse. Si le modele est injoignable, l alerte part quand meme.
+4. **La notification** arrive dans la pastille de la barre Jeedom, avec parfois un ou deux boutons d action.
+
+## Les six sondes
+
+| Sonde | Ce qu elle regarde |
+|---|---|
+| **Messages** | Les erreurs de tous les plugins, deja dedoublonnees par le core |
+| **Sante** | `jeedom::health()` : memoire, swap, disque, charge, erreurs disque, base de donnees |
+| **Demons** | Redemarrages repetes d un demon (le core relance deja seul, Vigie ne signale que la recidive) |
+| **Derive** | Tendance des batteries et des commandes suivies : alerte *avant* la panne |
+| **Journaux** *(desactivee par defaut)* | Lecture incrementale des fichiers de log |
+| **Page consultee** | Un identifiant de page pousse par le navigateur, jamais de contenu d ecran |
+
+## Securite et confidentialite
+
+- **Desactive a l installation**, opt-in par source.
+- **Alertes reservees aux administrateurs** par defaut, filtrage cote serveur.
+- **Secrets masques avant stockage** : cles d API, jetons, mots de passe, e-mails, IP publiques.
+- **Rien ne sort de la box** sans relecture par IA ; avec un modele local (Ollama), tout reste local.
+
+## Reglages
+
+Onglet **Vigie** de la configuration du plugin. Le bouton **Simuler une passe** collecte et filtre reellement mais n envoie rien et ne consomme aucun quota : c est la facon de regler les seuils sans rien declencher. **Repartir de zero** efface l historique, les temporisations et les quotas.
+
+---
+
 # Securite
 
 ## Gardes-fous generaux
@@ -524,10 +567,38 @@ Le plugin supporte les fournisseurs suivants :
 - xAI / Grok
 - OpenRouter
 - Perplexity
+- Tout serveur compatible OpenAI (URL de base personnalisee)
 
 Le catalogue des modeles (`core/config/ai_models.json`) est verifie en direct contre les API reelles et tenu a jour ; le bouton *Verifier le catalogue* (config du plugin) signale les ecarts. Pour **Ollama**, le panel liste en plus les modeles reellement installes en interrogeant `/api/tags` en direct.
 
 Cette liste est amennee a evoluer.
+
+---
+
+# Utiliser un abonnement au lieu d une cle API
+
+Dans le champ **Cle API** d un equipement *provider*, vous pouvez coller une cle API classique **ou** des identifiants d abonnement : le plugin les detecte automatiquement.
+
+> ⚠️ Utiliser des identifiants d abonnement hors de l outil officiel (Claude Code / Codex CLI) est en zone grise vis-a-vis des CGU d Anthropic et d OpenAI et peut faire signaler le compte. **A vos risques.**
+
+## Claude — jeton `claude setup-token`
+
+1. Sur un poste ou Claude Code est installe : `claude setup-token`.
+2. Copier le jeton affiche (`sk-ant-oat01-…`).
+3. Le coller dans **Cle API** du provider Claude : rien d autre a faire.
+
+Jeton longue duree (~1 an), sans rafraichissement ; sur `401`, recreer le jeton. Compatible avec chat, streaming, outils et MCP.
+
+## OpenAI — abonnement ChatGPT
+
+Fonctionne y compris avec un compte ChatGPT gratuit. **Chat et streaming uniquement, sans outils.**
+
+- **Recommande** : equipement provider OpenAI → **Se connecter avec ChatGPT** : un code a usage unique s affiche, a saisir sur `auth.openai.com/codex/device`. Le plugin recupere et chiffre les jetons, et les rafraichit seul.
+- **Repli manuel** : coller `~/.codex/auth.json` dans l equipement (utiliser un `CODEX_HOME` dedie : les jetons tournent et une copie partagee avec le CLI `codex` devient vite invalide).
+- **Modeles valides** (backend Codex) : `gpt-5.6-terra` (defaut), `gpt-5.6-luna`, `gpt-5.5`, `gpt-5.4-mini`. Les autres sont refuses par ce backend.
+- Le suivi de cout reste indicatif (base sur les tarifs API). Le bouton **Tester la connexion** verifie le jeton et affiche son echeance.
+
+---
 
 ---
 

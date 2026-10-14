@@ -19,6 +19,9 @@ lang: fr_FR
 
 ## Sommaire
 
+- [14/10/2026](#14102026)
+- [25/09/2026](#25092026)
+- [31/08/2026](#31082026)
 - [29/08/2026](#29082026)
 - [23/08/2026](#23082026)
 - [19/08/2026](#19082026)
@@ -32,6 +35,59 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 14/10/2026
+
+### ✨ Nouveautés
+
+- **Catalogue de modèles à jour** : GPT-6 (OpenAI), Gemini 3.8 et 4 Argon, Claude 5.5, nouveaux modèles OpenRouter, DeepSeek et Mistral. Les modèles fermés ou dominés (o1/o3/o4, Gemini 2.0 et 1.5, Claude 3.5 Sonnet…) sont retirés : chaque modèle conservé est récent ou présente un avantage de coût.
+- **Migration automatique des équipements** : à la mise à jour, un équipement configuré sur un modèle retiré bascule vers son successeur (table explicite ; les modèles saisis à la main, Ollama et OpenAI-compatible ne sont pas touchés). Chaque remplacement est tracé dans le journal.
+- **« Vérifier le catalogue » filtré** : snapshots datés, variantes (`:free`, `:batch`), anciennes versions et générations dépassées ne sont plus proposés ; une ligne sépare chaque provider. La liste passe de plusieurs centaines d'identifiants à quelques dizaines.
+- **Description du plugin et démarrage rapide** réécrits, en six langues.
+
+### 🐛 Corrections
+
+- **Gemini — erreur 503** : en streaming comme hors streaming, un 429/5xx persistant bascule sur le modèle suivant (3.8 Flash, puis 3.6 Flash) au lieu d'échouer ; message dédié « modèle surchargé ».
+- **Gemini — raisonnement en streaming** : le budget de raisonnement n'était pas appliqué en streaming ; il est aligné sur le mode hors streaming, avec un filet de sécurité si le modèle refuse ce réglage.
+- **Panel et navbar activés par défaut** : à l'installation (le panel restait masqué et la case « Activer » de la navbar apparaissait décochée) et à la mise à jour tant que le choix n'a jamais été enregistré.
+
+### 🔧 Divers
+
+- Documentation : les pages Vigie et « abonnement à la place d'une clé API » rejoignent la documentation publiée.
+
+## 25/09/2026
+
+### ✨ Nouveautés
+
+- **Client MCP générique renforcé** : le champ `instructions` renvoyé par un serveur MCP à l'`initialize` était capturé côté transport (`McpClient`) mais jamais exploité — désormais injecté dans le prompt système, mis en cache aux côtés de `tools/list` (même clé/TTL). `resources/list`/`resources/read` (déjà présents dans `McpClient`) sont maintenant branchés via un nouvel outil local `read_mcp_resource(uri)`, avec mémoïsation dans le tour agentique. Générique à tout serveur MCP (Jeedom, Home Assistant…), pas seulement mcp_jeedom.
+
+### 🐛 Corrections
+
+- **Résultats d'outil en erreur mis en cache comme des succès** : `isError` (spec MCP — un outil qui échoue côté serveur sans lever d'exception JSON-RPC) n'était jamais vérifié ; le résultat était audité `'ok'` et mémoïsé dans `_mcpToolCache`, rejouant une erreur transitoire pour le reste du tour agentique. Distingue désormais `status='tool_error'` et ne met plus en cache.
+- **Pagination MCP ignorée** : `tools/list` et `resources/list` ne suivaient pas `nextCursor` — un serveur MCP qui pagine ses réponses était silencieusement tronqué à la première page.
+- 19 images obsolètes supprimées de `core/img/` (badges + icônes provider `_32x32.png`, remplacées de longue date par les variantes `_96x96.png`) — aucune référence dans le code.
+
+### 🔧 Divers
+
+- CI : plancher PHP relevé à 8.2 (Debian 12, désormais la version préconisée par Jeedom) — la matrice de lint n'inclut plus PHP 7.4.
+
+## 31/08/2026
+
+### ✨ Nouveautés
+
+- **Vigie — surveillance proactive** : le plugin ne se contente plus d'attendre une question, il observe la box et vous alerte. Six sondes, toutes déterministes et sans le moindre appel d'IA : le centre de messages (où Jeedom range déjà les erreurs de tous les plugins, dédoublonnées), les contrôles de santé du système (mémoire, swap, disque, charge, erreurs disque, base de données), les démons instables, les pannes prévisibles par analyse de tendance, les fichiers de journaux, et la page que vous consultez. **Tout est désactivé à l'installation** : rien ne s'active sans votre accord, source par source, et le bouton d'arrêt d'urgence des déclencheurs coupe également Vigie.
+- **Un filtre avant tout le reste** : signature normalisée, seuil d'occurrences, temporisation par motif, quota par plugin et quota global, heures calmes. Sur une installation réelle, les 1 655 lignes d'erreur d'une journée se réduisent à une poignée d'alertes lisibles.
+- **Relecture facultative par une IA** : un modèle — local ou en ligne — peut retirer une alerte, en réduire l'importance ou la reformuler en français clair. Il ne peut jamais en ajouter une ni en aggraver une. S'il est injoignable, les alertes partent quand même. Compteur d'appels propre à Vigie, séparé de vos conversations, avec mise en pause automatique et notification unique en cas de dépassement.
+- **Boutons d'action dans les alertes** (désactivés par défaut) : relancer un démon, mettre un motif en sourdine. Le navigateur n'envoie que deux identifiants ; le serveur revérifie l'alerte, la liste blanche et vos droits Jeedom avant d'agir, et les actions sensibles demandent une confirmation.
+- **Relecture de scénario** : sur l'éditeur, après une pause prolongée, Vigie signale les commandes référencées qui n'existent plus, les boucles où un scénario agit sur ce qui le déclenche, les variables jamais définies et les scénarios déclenchés sans déclencheur. Analyse entièrement locale ; le code ne part vers une IA que si vous le demandez.
+- **L'assistant sait ce qui va mal** : les alertes ouvertes et la page consultée enrichissent le contexte du chat. Demander « pourquoi ma box rame ? » part désormais avec la réponse en main.
+- **Onglet de configuration dédié** avec un bouton de simulation : il collecte et filtre réellement, mais n'envoie aucune alerte et ne consomme aucun quota — la façon de régler les seuils sans rien déclencher.
+
+### 🔒 Sécurité
+
+- Les alertes proactives sont réservées aux administrateurs par défaut, avec un filtrage **côté serveur** de la pastille de notification : une alerte contenant un extrait de journal ne peut plus atteindre un utilisateur non administrateur.
+- Les secrets repérés dans les journaux (clés d'API, jetons, mots de passe, adresses e-mail, adresses IP publiques) sont masqués **avant** d'être enregistrés, et non au moment de l'affichage.
+- L'exécution d'une action revérifie les droits Jeedom de l'utilisateur appelant, en plus de la liste blanche du plugin.
 
 ## 29/08/2026
 
