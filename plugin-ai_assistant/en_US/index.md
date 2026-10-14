@@ -47,11 +47,12 @@ A generic AI client does steps 7 and 10 only.
 
 ## At a glance
 
-- **9+ interchangeable providers**: Claude, Gemini, OpenAI, DeepSeek, Mistral, Groq, xAI, OpenRouter, Perplexity, Ollama — with **automatic fallback**.
+- **9+ interchangeable providers**: Claude, Gemini, OpenAI, DeepSeek, Mistral, Groq, xAI, OpenRouter, Perplexity, Ollama, or any OpenAI-compatible server — with **optional fallback** (another provider or a second account, off by default). A Claude / ChatGPT **subscription** can replace the API key.
 - **MCP home-automation agent**: the AI calls tools to read the real state then act (multi-step loop: read → decide → act → verify).
 - **3 modes**: pure chat (`provider`), native Jeedom assistant (`jeeAssist`), MCP agent (`mcp_client` — jeedom or third-party such as Home Assistant).
 - **Real security**: read/write/execute ACL, destructive actions denied by default, confirmation of sensitive actions, real-time preview, full audit.
 - **Automatable**: triggerable from scenarios, voice interactions, events, cron.
+- **Proactive (Vigie)**: the plugin watches the box and alerts you without calling an AI model; disabled at install, enabled source by source.
 - **Cost-efficient**: `tools/list` cache + prompt caching, tool selection, tool-less mode, filtered home context, history compression, user memory.
 - **Local & multimodal**: hosted on your Jeedom, image (camera) and document analysis, desktop / mobile / PWA access.
 
@@ -65,7 +66,7 @@ The AI model is the same as everywhere — what changes is **where it is plugged
 | Understand and **control your home** | **ai_assistant + MCP** |
 | An AI triggered by a **scenario / voice** | **ai_assistant** |
 | Act on devices **safely** | **ai_assistant** (ACL + confirmation) |
-| Avoid depending on a single vendor | **ai_assistant** (multi-provider + fallback) |
+| Avoid depending on a single vendor | **ai_assistant** (multi-provider + optional fallback) |
 
 ### Examples
 
@@ -402,6 +403,48 @@ Mechanisms:
 
 ---
 
+# Vigie — proactive monitoring
+
+Until now, ai_assistant is **reactive**: you ask, it answers. **Vigie** adds a **proactive** layer: the plugin watches the box, filters what it sees and only disturbs you when it is worth it — **without calling an AI model** to detect or filter.
+
+## At a glance
+
+- **Six deterministic probes**: message center, system health, unstable daemons, drift (batteries, disk…), log files, viewed page.
+- **Strict opt-in**: everything is disabled at install; each source is enabled separately. The trigger kill-switch also stops Vigie.
+- **Zero cost by default**: an AI review is optional, and it can only soften or reword an alert, never invent one.
+- **Action buttons** (optional, administrators): restart a daemon, mute a pattern — re-validated server-side (alert, whitelist, Jeedom rights).
+
+## How it works
+
+1. **Probes collect** what Jeedom already knows about itself (message center, `jeedom::health()`), every 15 minutes.
+2. **The gate filters**: normalized signature, occurrence threshold, no repeat within 24 h, per-plugin and global quotas, quiet hours (10 pm–7 am, alerts are released on wake-up).
+3. **Optional AI review** can drop an alert, lower its severity or reword it — never the opposite. If the model is unreachable, the alert goes out anyway.
+4. **The notification** lands in the Jeedom bar badge, sometimes with one or two action buttons.
+
+## The six probes
+
+| Probe | What it watches |
+|---|---|
+| **Messages** | Every plugin's errors, already deduplicated by the core |
+| **Health** | `jeedom::health()`: memory, swap, disk, load, disk errors, database |
+| **Daemons** | Repeated daemon restarts (the core already restarts them; Vigie only flags recurrence) |
+| **Drift** | Trend of batteries and tracked commands: alert *before* the failure |
+| **Logs** *(disabled by default)* | Incremental reading of log files |
+| **Viewed page** | A page identifier pushed by the browser, never screen content |
+
+## Security and privacy
+
+- **Disabled at install**, opt-in per source.
+- **Alerts reserved for administrators** by default, server-side filtering.
+- **Secrets masked before storage**: API keys, tokens, passwords, e-mails, public IPs.
+- **Nothing leaves the box** without AI review; with a local model (Ollama), everything stays local.
+
+## Settings
+
+**Vigie** tab in the plugin configuration. The **Simulate a pass** button really collects and filters but sends nothing and uses no quota: the way to tune thresholds without triggering anything. **Start over** clears history, cooldowns and quotas.
+
+---
+
 # Security
 
 ## General safeguards
@@ -438,10 +481,38 @@ The plugin supports the following providers:
 - xAI / Grok
 - OpenRouter
 - Perplexity
+- Any OpenAI-compatible server (custom base URL)
 
 The model catalog (`core/config/ai_models.json`) is verified live against the real APIs and kept up to date; the *Check catalog* button (plugin config) reports discrepancies. For **Ollama**, the panel additionally lists the models actually installed by querying `/api/tags` live.
 
 This list is subject to change.
+
+---
+
+# Using a subscription instead of an API key
+
+In the **API key** field of a *provider* equipment, you can paste a regular API key **or** subscription credentials: the plugin detects them automatically.
+
+> ⚠️ Using subscription credentials outside the official tool (Claude Code / Codex CLI) is a grey area with regard to Anthropic's and OpenAI's terms and may get the account flagged. **At your own risk.**
+
+## Claude — `claude setup-token` token
+
+1. On a machine where Claude Code is installed: `claude setup-token`.
+2. Copy the displayed token (`sk-ant-oat01-…`).
+3. Paste it into the Claude provider's **API key**: nothing else to do.
+
+Long-lived token (~1 year), no refresh; on `401`, recreate the token. Works with chat, streaming, tools and MCP.
+
+## OpenAI — ChatGPT subscription
+
+Works even with a free ChatGPT account. **Chat and streaming only, no tools.**
+
+- **Recommended**: OpenAI provider equipment → **Sign in with ChatGPT**: a one-time code is shown, to enter at `auth.openai.com/codex/device`. The plugin fetches and encrypts the tokens and refreshes them itself.
+- **Manual fallback**: paste `~/.codex/auth.json` into the equipment (use a dedicated `CODEX_HOME`: tokens rotate and a copy shared with the `codex` CLI quickly becomes invalid).
+- **Valid models** (Codex backend): `gpt-5.6-terra` (default), `gpt-5.6-luna`, `gpt-5.5`, `gpt-5.4-mini`. Others are rejected by this backend.
+- Cost tracking stays indicative (based on API prices). The **Test connection** button checks the token and shows its expiry.
+
+---
 
 ---
 
