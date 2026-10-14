@@ -5,225 +5,225 @@ lang: fr_FR
 pluginId: ai_assistant
 ---
 
-# Presentation
+# Présentation {#presentation}
 
-**ai_assistant** n est pas une interface de chat qui envoie une question a un modele et affiche la reponse.
-C est un **orchestrateur IA embarque dans Jeedom** : entre votre message et la reponse, il se passe beaucoup plus.
+**ai_assistant** n'est pas une interface de chat qui envoie une question à un modèle et affiche la réponse.
+C est un **orchestrateur IA embarque dans Jeedom** : entre votre message et la réponse, il se passe beaucoup plus.
 
-## Ce qui se passe vraiment entre votre message et la reponse
+## Ce qui se passe vraiment entre votre message et la réponse
 
-Quand vous ecrivez *"eteins tout et prepare la maison pour la nuit"*, voici ce qu ai_assistant fait —
-et qu un simple client IA ne peut pas faire :
+Quand vous écrivez *"éteins tout et prépare la maison pour la nuit"*, voici ce qu'ai_assistant fait —
+et qu'un simple client IA ne peut pas faire :
 
 ```
-1. Analyser l intention              → domotique + agent, pas une question de chat
-2. Choisir le profil de cout         → Expert : plus d outils, historique long
-3. Selectionner les outils pertinents → 8 outils sur 61, ceux lies aux lumieres/volets/scenarios
-4. Injecter le contexte Jeedom       → equipements de votre maison, etats actuels, pieces
-5. Injecter vos preferences          → "temp_soir : 19°C" si vous l avez memorise
-6. Verifier le budget                → plafond journalier/mensuel non depasse
-7. Appeler le modele IA              → avec un contexte precis et controle
-8. Executer les outils (multi-etapes)
-   ├── list_devices → inventaire des lumieres
-   ├── execute_action × N → extinction piece par piece
-   ├── trigger_scenario → scenario nuit
-   └── get_command_value → verification volets fermes
-9. Verifier le resultat              → confirmation ou nouvelle iteration
-10. Repondre                         → "Tout est eteint, volets fermes, scenario nuit lance."
-11. Journaliser                      → outils appeles, tokens, cout, duree
-12. Proposer de memoriser            → si vous exprimez une preference en cours de route
+1. Analyser l'intention              → domotique + agent, pas une question de chat
+2. Choisir le profil de cout         → Expert : plus d'outils, historique long
+3. Sélectionner les outils pertinents → 8 outils sur 61, ceux liés aux lumières/volets/scénarios
+4. Injecter le contexte Jeedom       → équipements de votre maison, états actuels, pièces
+5. Injecter vos préférences          → "temp_soir : 19°C" si vous l'avez mémorisé
+6. Vérifier le budget                → plafond journalier/mensuel non dépassé
+7. Appeler le modèle IA              → avec un contexte précis et contrôle
+8. Exécuter les outils (multi-étapes)
+   ├── list_devices → inventaire des lumières
+   ├── execute_action × N → extinction pièce par pièce
+   ├── trigger_scenario → scénario nuit
+   └── get_command_value → vérification volets fermes
+9. Vérifier le résultat              → confirmation ou nouvelle itération
+10. Répondre                         → "Tout est éteint, volets fermes, scénario nuit lance."
+11. Journaliser                      → outils appelés, tokens, coût, durée
+12. Proposer de mémoriser            → si vous exprimez une préférence en cours de route
 ```
 
-Un client IA generique fait les etapes 7 et 10 seulement.
+Un client IA générique fait les étapes 7 et 10 seulement.
 **ai_assistant fait les 12.**
 
-> ## Un plugin, multi roles
+> ## Un plugin, multi rôles
 >
-> - **Agent conversationnel classique :** un dialogue fluide avec l IA pour toutes vos questions generales.
-> - **Assistant specialise Jeedom :** un expert qui connait votre installation sur le bout des doigts.
-> - **Pont MCP (Model Context Protocol) :** le lien direct entre votre serveur MCP et votre modele d IA.
+> - **Agent conversationnel classique :** un dialogue fluide avec l'IA pour toutes vos questions générales.
+> - **Assistant spécialisé Jeedom :** un expert qui connaît votre installation sur le bout des doigts.
+> - **Pont MCP (Model Context Protocol) :** le lien direct entre votre serveur MCP et votre modèle d'IA.
 >
-> Ce dernier usage est une petite revolution. Au dela de l aspect pratique, les possibilites deviennent illimitees : imaginez un scenario Jeedom demandant a l IA de generer et d integrer un script complexe, le tout en interne et de maniere autonome.
+> Ce dernier usage est une petite révolution. Au-delà de l'aspect pratique, les possibilités deviennent illimitées : imaginez un scénario Jeedom demandant à l'IA de générer et d'intégrer un script complexe, le tout en interne et de manière autonome.
 
 ## En bref
 
-- **9+ providers** interchangeables : Claude, Gemini, OpenAI, DeepSeek, Mistral, Groq, xAI, OpenRouter, Perplexity, Ollama, ou tout serveur compatible OpenAI — avec **fallback optionnel** (autre provider ou second compte, desactive par defaut). Un **abonnement** Claude / ChatGPT peut remplacer la cle API.
-- **Agent domotique MCP** : l IA appelle des outils pour lire l etat reel puis agir (boucle multi-etapes : lire → decider → agir → verifier).
+- **9+ providers** interchangeables : Claude, Gemini, OpenAI, DeepSeek, Mistral, Groq, xAI, OpenRouter, Perplexity, Ollama, ou tout serveur compatible OpenAI — avec **fallback optionnel** (autre provider ou second compte, désactivé par défaut). Un **abonnement** Claude / ChatGPT peut remplacer la clé API.
+- **Agent domotique MCP** : l'IA appelle des outils pour lire l'état réel puis agir (boucle multi-étapes : lire → décider → agir → vérifier).
 - **3 modes** : chat pur (`provider`), assistant Jeedom natif (`jeeAssist`), agent MCP (`mcp_client` — jeedom ou tiers comme Home Assistant).
-- **Securite reelle** : ACL read/write/execute, refus des actions destructives par defaut, confirmation des actions sensibles, apercu temps reel, audit complet.
-- **Automatisable** : declenchable depuis scenarios, interactions vocales, evenements, cron.
-- **Proactif (Vigie)** : le plugin observe la box et vous alerte sans appeler de modele d IA ; desactive a l installation, active source par source.
-- **Econome** : cache `tools/list` + cache de prompt, selection d outils, mode sans-outils, contexte domotique filtre, compression d historique, memoire utilisateur.
-- **Local & multimodal** : heberge sur votre Jeedom, analyse d images (cameras) et documents, acces desktop / mobile / PWA.
+- **Sécurité réelle** : ACL read/write/execute, refus des actions destructives par défaut, confirmation des actions sensibles, aperçu temps réel, audit complet.
+- **Automatisable** : déclenchable depuis scénarios, interactions vocales, événements, cron.
+- **Proactif (Vigie)** : le plugin observe la box et vous alerte sans appeler de modèle d'IA ; désactivé à l'installation, active source par source.
+- **Économe** : cache `tools/list` + cache de prompt, sélection d'outils, mode sans-outils, contexte domotique filtre, compression d'historique, mémoire utilisateur.
+- **Local & multimodal** : hébergé sur votre Jeedom, analyse d'images (caméras) et documents, accès desktop / mobile / PWA.
 
-## Quand l utiliser (vs un client IA classique)
+## Quand l'utiliser (vs un client IA classique)
 
-Le modele d IA est le meme que partout — ce qui change, c est **ou il est branche** et **ce qu il peut faire** : la connaissance de votre maison, le pouvoir d agir, et les garde-fous pour le faire sans danger. Ce sont des outils **complementaires**.
+Le modèle d'IA est le même que partout — ce qui change, c'est **où il est branché** et **ce qu'il peut faire** : la connaissance de votre maison, le pouvoir d'agir, et les garde-fous pour le faire sans danger. Ce sont des outils **complémentaires**.
 
 | Vous voulez… | Utilisez |
 |---|---|
-| Coder, taches generalistes longues | Un client dedie (Codex, ChatGPT…) |
+| Coder, taches généralistes longues | Un client dédié (Codex, ChatGPT…) |
 | Comprendre et **piloter votre maison** | **ai_assistant + MCP** |
-| Une IA declenchee par un **scenario / la voix** | **ai_assistant** |
-| Agir sur des equipements **en securite** | **ai_assistant** (ACL + confirmation) |
-| Ne pas dependre d un seul fournisseur | **ai_assistant** (multi-provider + fallback optionnel) |
+| Une IA déclenchée par un **scénario / la voix** | **ai_assistant** |
+| Agir sur des équipements **en sécurité** | **ai_assistant** (ACL + confirmation) |
+| Ne pas dépendre d'un seul fournisseur | **ai_assistant** (multi-provider + fallback optionnel) |
 
 ### Exemples
 
 ```text
 « Pourquoi le chauffage ne chauffe pas dans la chambre ? »
-   → lit consigne + temperature + historique, explique la cause.
+   → lit consigne + température + historique, explique la cause.
 
-« Prepare la maison pour la nuit. »
-   → verifie ouvertures, baisse les consignes, lance le scenario
+« Prépare la maison pour la nuit. »
+   → verifie ouvertures, baisse les consignes, lance le scénario
      (avec confirmation si action sensible).
 
-[Declenche par Jeedom] conso anormale detectee
-   → l IA analyse l equipement fautif et propose une correction.
+[Déclenché par Jeedom] conso anormale détectée
+   → l'IA analyse l'équipement fautif et propose une correction.
 ```
 
 ---
 
 # Pourquoi ajouter mcp_jeedom ?
 
-Le plugin **mcp_jeedom** transforme Jeedom en serveur MCP. Associe a **ai_assistant**, cela apporte :
+Le plugin **mcp_jeedom** transforme Jeedom en serveur MCP. Associe à **ai_assistant**, cela apporte :
 
-- **Outils avances** (MCP) : lecture d etats, statistiques, snapshots camera, actions composites.
-- **Mode Jeedom specialist** : l IA est alimentee par une connaissance riche et structuree de votre maison.
-- **Whitelists et securite** : controle fin des equipements et commandes exposes.
+- **Outils avancés** (MCP) : lecture d'états, statistiques, snapshots caméra, actions composites.
+- **Mode Jeedom specialist** : l'IA est alimentée par une connaissance riche et structurée de votre maison.
+- **Whitelists et sécurité** : contrôle fin des équipements et commandes exposés.
 
 Sans MCP, ai_assistant reste pleinement utilisable en **mode API direct** (Gemini, OpenAI, Claude, Mistral, Groq, Ollama, etc.).
 
 ---
 
-# ai_assistant vs autres clients MCP connectes a mcp_jeedom
+# ai_assistant vs autres clients MCP connectés à mcp_jeedom
 
-Quand plusieurs outils se connectent au meme serveur `mcp_jeedom`, la difference ne vient pas du modele d IA (identique partout) mais de ce que chaque client fait avec les outils exposes.
+Quand plusieurs outils se connectent au même serveur `mcp_jeedom`, la différence ne vient pas du modèle d'IA (identique partout) mais de ce que chaque client fait avec les outils exposés.
 
-`mcp_jeedom` expose typiquement **60+ outils** avec leurs schemas JSON complets, soit environ **7 500 tokens** par message si tout est envoye.
+`mcp_jeedom` expose typiquement **60+ outils** avec leurs schémas JSON complets, soit environ **7 500 tokens** par message si tout est envoyé.
 
-## Tokens de schemas envoyes par message
+## Tokens de schémas envoyés par message
 
-Mesure realisee sur un serveur mcp_jeedom exposant 61 outils (~7 500 tokens de schemas) :
+Mesure réalisée sur un serveur mcp_jeedom exposant 61 outils (~7 500 tokens de schémas) :
 
-| Client MCP | Outils envoyes | Tokens schemas/msg | Cache tools/list |
+| Client MCP | Outils envoyés | Tokens schémas/msg | Cache tools/list |
 |---|---|---|---|
 | Claude Desktop | 61 (tous) | ~7 500 | Non |
 | LibreChat | 61 (tous) | ~7 500 | Non |
 | Open WebUI | 61 (tous) | ~7 500 | Non |
 | Cursor / Cline | 61 (tous) | ~7 500 | Non |
 | **ai_assistant mode domotique** | ~8 pertinents | **~1 500** | Oui (6 h) |
-| **ai_assistant mode chat** | 0 | **0** | Oui (non appele) |
+| **ai_assistant mode chat** | 0 | **0** | Oui (non appelé) |
 
-Reduction mesuree : **-80 % de tokens schemas** sur une demande domotique ciblee,
+Réduction mesurée : **-80 % de tokens schémas** sur une demande domotique ciblée,
 0 token sur une question conversationnelle.
 
-Le cache `tools/list` evite en plus un aller-retour reseau a chaque message — tous les autres clients rappellent le serveur a chaque session.
+Le cache `tools/list` évite en plus un aller-retour réseau à chaque message — tous les autres clients rappellent le serveur à chaque session.
 
-## Fonctionnalites exclusives a ai_assistant
+## Fonctionnalités exclusives à ai_assistant
 
-Ces capacites ne sont pas disponibles dans les autres clients MCP connectes a mcp_jeedom :
+Ces capacités ne sont pas disponibles dans les autres clients MCP connectés à mcp_jeedom :
 
-| Capacite | Claude Desktop | LibreChat | Open WebUI | **ai_assistant** |
+| Capacité | Claude Desktop | LibreChat | Open WebUI | **ai_assistant** |
 |---|---|---|---|---|
-| Selection d outils par intention | Non | Non | Non | Oui (15 familles) |
-| Outils dangereux exclus par defaut | Non | Non | Non | Oui |
+| Sélection d'outils par intention | Non | Non | Non | Oui (15 familles) |
+| Outils dangereux exclus par défaut | Non | Non | Non | Oui |
 | Profil adaptatif eco / normal / expert | Non | Non | Non | Oui |
-| Plafond de cout €/jour ou €/mois | Non | Partiel | Non | Oui |
+| Plafond de coût €/jour ou €/mois | Non | Partiel | Non | Oui |
 | Triggers Jeedom → IA automatiques | Non | Non | Non | Oui |
-| Contexte equipements / pieces Jeedom | Non | Non | Non | Oui (jeeAssist) |
-| Memoire utilisateur persistante | Non | Partiel | Non | Oui |
+| Contexte équipements / pièces Jeedom | Non | Non | Non | Oui (jeeAssist) |
+| Mémoire utilisateur persistante | Non | Partiel | Non | Oui |
 
 ## Ce que les autres clients ne peuvent pas faire
 
-Les clients MCP generiques (Claude Desktop, LibreChat, Open WebUI, Cursor) traitent
+Les clients MCP génériques (Claude Desktop, LibreChat, Open WebUI, Cursor) traitent
 `mcp_jeedom` comme un serveur quelconque : ils envoient tous les outils, sans contexte
-domotique, sans garde-fous, sans controle des couts.
+domotique, sans garde-fous, sans contrôle des coûts.
 
-`ai_assistant` sait que c est de la **domotique** :
+`ai_assistant` sait que c'est de la **domotique** :
 
-- il choisit les outils pertinents selon la question (« allume » → outils d action, « temperature » → outils de lecture) ;
-- il exclut les outils sensibles (`restart_jeedom`, `delete_interaction`, `write_file`…) tant que l utilisateur ne les demande pas explicitement ;
-- il connaît les equipements, les pieces et l etat de la maison (mode jeeAssist) ;
-- il protege le budget avec des plafonds configurables par equipement.
+- il choisit les outils pertinents selon la question (« allume » → outils d'action, « température » → outils de lecture) ;
+- il exclut les outils sensibles (`restart_jeedom`, `delete_interaction`, `write_file`…) tant que l'utilisateur ne les demande pas explicitement ;
+- il connaît les équipements, les pièces et l'état de la maison (mode jeeAssist) ;
+- il protège le budget avec des plafonds configurables par équipement.
 
-Le MCP est un transport — la valeur est dans l orchestration autour.
+Le MCP est un transport — la valeur est dans l'orchestration autour.
 
 ---
 
 # Interfaces utilisateur
 
-## 1) Panel (interface complete)
+## 1) Panel (interface complète)
 
-Le panel est l interface principale :
+Le panel est l'interface principale :
 
-- **Selection d equipement IA** (provider, assistant ou client MCP)
-- **Streaming des reponses**
-- **Options avancees** : modele, temperature, theme
-- **Pieces jointes** (image / pdf / txt / csv / docx)
-- **Affichage des images** renvoyees par l IA directement dans la conversation
-- **Dictee vocale** (Web Speech API) avec selection du microphone
+- **Sélection d'équipement IA** (provider, assistant ou client MCP)
+- **Streaming des réponses**
+- **Options avancées** : modèle, température, thème
+- **Pièces jointes** (image / pdf / txt / csv / docx)
+- **Affichage des images** renvoyées par l'IA directement dans la conversation
+- **Dictée vocale** (Web Speech API) avec sélection du microphone
 - **Affichage adaptatif** : mobile, tablette, ordinateur
-- **Bouton flottant "Defiler vers le bas"** (affichage automatique si vous remontez dans l historique)
+- **Bouton flottant "Défiler vers le bas"** (affichage automatique si vous remontez dans l'historique)
 
 ## 1bis) Pan Light (vue provider)
 
-Interface legere orientee provider direct :
+Interface légère orientée provider direct :
 
-- **Selection provider + modele**
+- **Sélection provider + modèle**
 - **Streaming**
-- **Pieces jointes**
-- **Bouton flottant "Defiler vers le bas"**
+- **Pièces jointes**
+- **Bouton flottant "Défiler vers le bas"**
 - **Toggle menu Jeedom**
 
 ## 2) Mini chat (navbar)
 
-Un chat rapide integre a la barre Jeedom :
+Un chat rapide intégré à la barre Jeedom :
 
 - Simple et discret
-- Selection d equipement
-- Reponse streaming
-- Pas d options avancees
+- Sélection d'équipement
+- Réponse streaming
+- Pas d'options avancées
 
 ## 3) PWA (application installable + notifications push)
 
-Une coque applicative installable (`/plugins/ai_assistant/pwa/`) : chat plein ecran sur mobile, ecran de connexion dedie, service worker.
+Une coque applicative installable (`/plugins/ai_assistant/pwa/`) : chat plein écran sur mobile, écran de connexion dédié, service worker.
 
-- **Notifications push** (Web Push / VAPID) : recevez une notification meme application fermee.
-  - Abonnement / desabonnement par appareil, gestion multi-appareils.
-  - Cles VAPID generees automatiquement, regenerables depuis la configuration du plugin (les souscriptions sont stockees cote serveur dans `data/push_store.json`, hors depot Git).
+- **Notifications push** (Web Push / VAPID) : recevez une notification même application fermée.
+  - Abonnement / désabonnement par appareil, gestion multi-appareils.
+  - Clés VAPID générées automatiquement, régénérables depuis la configuration du plugin (les souscriptions sont stockées côté serveur dans `data/push_store.json`, hors dépôt Git).
   - Bouton *Tester la notification* dans la configuration.
 - **Push contextuel** :
-  - Option *Notifier* activable **par trigger** (une automatisation Jeedom -> IA peut pousser sa reponse).
-  - Le **resultat d une action planifiee** (succes ou abandon) est pousse au demandeur.
+  - Option *Notifier* activable **par trigger** (une automatisation Jeedom -> IA peut pousser sa réponse).
+  - Le **résultat d'une action planifiée** (succès ou abandon) est poussé au demandeur.
 
 ---
 
-# Types d equipements
+# Types d'équipements
 
-## Assistant general (Provider)
-- Connexion directe a votre fournisseur IA
-- Sert de base a d autres equipements
+## Assistant général (Provider)
+- Connexion directe à votre fournisseur IA
+- Sert de base à d'autres équipements
 
 ## Assistant Jeedom
-- **Lie a un Provider**
-- Specialise pour Jeedom
+- **Lié à un Provider**
+- Spécialisé pour Jeedom
 - Recommande pour piloter la maison
 
 ## Client MCP
-- **Lie a un Provider**
-- Sert d interface entre ai_assistant et un serveur MCP HTTP
-- Associe a `mcp_jeedom` pour un controle domotique avance
-- Supporte les headers HTTP personnalises (champ *Options HTTP avancees*)
+- **Lié à un Provider**
+- Sert d'interface entre ai_assistant et un serveur MCP HTTP
+- Associé à `mcp_jeedom` pour un contrôle domotique avancé
+- Supporte les headers HTTP personnalisés (champ *Options HTTP avancées*)
 
 ---
 
 # Serveurs MCP compatibles
 
 Le client MCP de **ai_assistant** supporte uniquement le **transport HTTP** (Streamable HTTP ou SSE).
-Le transport STDIO n est pas pris en charge : seuls les serveurs exposant un endpoint HTTP sont compatibles.
+Le transport STDIO n'est pas pris en charge : seuls les serveurs exposant un endpoint HTTP sont compatibles.
 
-## Transport supporte
+## Transport supporté
 
 | Transport | Compatible |
 |---|:---:|
@@ -235,18 +235,18 @@ Le transport STDIO n est pas pris en charge : seuls les serveurs exposant un end
 
 | Serveur | URL type | Notes |
 |---|---|---|
-| **mcp_jeedom** | `http://127.0.0.1:8765/mcp` | Plugin Jeedom dedie, recommande |
+| **mcp_jeedom** | `http://127.0.0.1:8765/mcp` | Plugin Jeedom dédié, recommande |
 | **mcp_jeedom (SSE)** | `http://127.0.0.1:8765/sse` | Mode SSE alternatif |
-| **mcp_jeedom (proxy)** | `https://VOTRE_DOMAINE/plugins/mcp_jeedom/core/php/jeemcp_proxy.php` | Acces externe avec token |
+| **mcp_jeedom (proxy)** | `https://VOTRE_DOMAINE/plugins/mcp_jeedom/core/php/jeemcp_proxy.php` | Accès externe avec token |
 | Tout serveur MCP HTTP | `http://hote:port/mcp` | Standard MCP 2025-03-26 |
 
-## Configuration d un serveur MCP externe
+## Configuration d'un serveur MCP externe
 
-Dans l equipement *Client MCP* :
+Dans l'équipement *Client MCP* :
 
 - **URL** : endpoint HTTP du serveur (ex: `http://192.168.1.50:3000/mcp`)
-- **Token** : Bearer token si le serveur l exige
-- **Options HTTP avancees** : headers supplementaires au format JSON
+- **Token** : Bearer token si le serveur l'exige
+- **Options HTTP avancées** : headers supplémentaires au format JSON
 
 ```json
 {
@@ -257,21 +257,21 @@ Dans l equipement *Client MCP* :
 }
 ```
 
-> **Note :** Les serveurs qui ne fonctionnent qu en STDIO (subprocess local) ne sont pas compatibles directement.
-> Certains serveurs STDIO disposent d un mode HTTP activable (ex: `--transport streamable-http`).
-> Dans ce cas, demarrez-les en mode HTTP et renseignez leur URL.
+> **Note :** Les serveurs qui ne fonctionnent qu'en STDIO (subprocess local) ne sont pas compatibles directement.
+> Certains serveurs STDIO disposent d'un mode HTTP activable (ex: `--transport streamable-http`).
+> Dans ce cas, démarrez-les en mode HTTP et renseignez leur URL.
 
 ---
 
 # Mise en place rapide
 
-1. **Obtenir une cle API** (Gemini, OpenAI, Claude, etc.)
-2. **Renseigner la cle** dans la configuration du plugin
-3. **Creer un equipement** "Assistant general"
-4. **Creer un equipement** "Assistant Jeedom" lie au precedent
+1. **Obtenir une clé API** (Gemini, OpenAI, Claude, etc.)
+2. **Renseigner la clé** dans la configuration du plugin
+3. **Créer un équipement** "Assistant général"
+4. **Créer un équipement** "Assistant Jeedom" lié au précédent
 5. (Optionnel) **Installer `mcp_jeedom`** pour activer le pont MCP
 
-Le client MCP se cree automatiquement si le serveur MCP est detecte.
+Le client MCP se crée automatiquement si le serveur MCP est détecté.
 
 ---
 
@@ -280,7 +280,7 @@ Le client MCP se cree automatiquement si le serveur MCP est detecte.
 Pour Gemini, vous pouvez activer le **mode API only** :
 
 - Pas de daemon
-- Pas de dependances Node
+- Pas de dépendances Node
 - Connexion directe API
 
 Idem pour les autres providers : le plugin fonctionne en mode API direct.
@@ -289,24 +289,24 @@ Idem pour les autres providers : le plugin fonctionne en mode API direct.
 
 # Tool calling natif (function calling)
 
-Pour les providers compatibles, l IA utilise le **function calling natif** du modele plutot que le protocole JSON texte. L assistant voit six outils et peut en enchainer plusieurs dans une meme reponse :
+Pour les providers compatibles, l'IA utilise le **function calling natif** du modèle plutôt que le protocole JSON texte. L assistant voit six outils et peut en enchaîner plusieurs dans une même réponse :
 
 | Tool | Usage |
 |---|---|
-| `execute_jeedom_command` | Execute une commande Jeedom (cmd_id + valeur optionnelle) |
-| `run_jeedom_scenario` | Lance un scenario |
-| `snapshot_camera` | Capture + analyse visuelle d une camera |
+| `execute_jeedom_command` | Exécute une commande Jeedom (cmd_id + valeur optionnelle) |
+| `run_jeedom_scenario` | Lance un scénario |
+| `snapshot_camera` | Capture + analyse visuelle d'une caméra |
 | `schedule_action` | Planifie une action dans N minutes |
-| `list_scheduled_actions` | Liste les actions planifiees en attente (ACL `read`) |
-| `cancel_scheduled_action` | Annule une action planifiee (ACL `execute`) |
+| `list_scheduled_actions` | Liste les actions planifiées en attente (ACL `read`) |
+| `cancel_scheduled_action` | Annule une action planifiée (ACL `execute`) |
 
 ## Boucle agentique
 
-Quand l IA demande un outil, ai_assistant l execute, re-injecte le resultat dans la conversation, puis redemande au modele de conclure. La boucle tourne jusqu a **5 tours consecutifs** (`MAX_AGENTIC_TURNS`) avec un budget total de **180 s** — suffisant pour enchainer lecture d etat + decision + execution sans blocage.
+Quand l'IA demande un outil, ai_assistant l'exécute, réinjecte le résultat dans la conversation, puis redemande au modèle de conclure. La boucle tourne jusqu'à **5 tours consécutifs** (`MAX_AGENTIC_TURNS`) avec un budget total de **180 s** — suffisant pour enchaîner lecture d'état + décision + exécution sans blocage.
 
-Exemple : *"lis la temperature du salon et coupe le chauffage si > 22°"* → tool_call `execute_jeedom_command` (lecture) → resultat 23° → tool_call `execute_jeedom_command` (coupe chauffage) → reponse finale.
+Exemple : *"lis la température du salon et coupe le chauffage si > 22°"* → tool_call `execute_jeedom_command` (lecture) → résultat 23° → tool_call `execute_jeedom_command` (coupe chauffage) → réponse finale.
 
-## Providers supportes en natif
+## Providers supportés en natif
 
 | Provider | Tool calling natif |
 |---|:---:|
@@ -314,61 +314,61 @@ Exemple : *"lis la temperature du salon et coupe le chauffage si > 22°"* → to
 | Claude (Anthropic) | ✅ |
 | Perplexity, Gemini, Ollama | ❌ (fallback protocole JSON legacy) |
 
-Le fallback legacy reste actif si la config **strictToolCalling** est desactivee, garantissant la retro-compatibilite complete.
+Le fallback legacy reste actif si la config **strictToolCalling** est désactivée, garantissant la rétrocompatibilité complète.
 
 ---
 
-# Prompts systeme par defaut
+# Prompts système par défaut
 
-Chaque type d equipement est livre avec un prompt systeme par defaut (FR / EN / ES selon la langue Jeedom). Ils sont definis dans `core/api/ai_assistantPrompts.php` et peuvent etre **override par equipement** via le champ *Instructions* de la configuration.
+Chaque type d'équipement est livré avec un prompt système par défaut (FR / EN / ES selon la langue Jeedom). Ils sont définis dans `core/api/ai_assistantPrompts.php` et peuvent être **override par équipement** via le champ *Instructions* de la configuration.
 
 ## Assistant Jeedom (jeeAssist) — FR
 
 Pilote la maison via un protocole JSON *tool_call v1* inline (pas de function calling natif).
 
 ```text
-Tu es un assistant domotique Jeedom. Tu reponds toujours en francais.
-Tu as acces aux equipements de la maison listes dans {{JEEDOM_CONTEXT}}.
-Ton objectif : aider vite, clairement, et de facon fiable pour piloter la maison.
+Tu es un assistant domotique Jeedom. Tu réponds toujours en français.
+Tu as accès aux équipements de la maison listes dans {{JEEDOM_CONTEXT}}.
+Ton objectif : aider vite, clairement, et de façon fiable pour piloter la maison.
 
 === COMPORTEMENT ATTENDU ===
 - Sois concis, concret et oriente action.
-- Quand la demande est ambigue, pose UNE question de clarification utile.
-- Si plusieurs equipements correspondent, propose un choix court (piece/equipement).
+- Quand la demande est ambiguë, pose UNE question de clarification utile.
+- Si plusieurs équipements correspondent, propose un choix court (pièce/équipement).
 
 === LIRE LES VALEURS ===
-Les valeurs actuelles sont indiquees apres → dans la liste des equipements.
-Cite la valeur et l unite quand tu la mentionnes.
+Les valeurs actuelles sont indiquées après → dans la liste des équipements.
+Cite la valeur et l'unité quand tu la mentionnes.
 
-=== EXECUTER DES COMMANDES ===
-Quand l utilisateur demande une action, inclus dans ta reponse un bloc JSON STRICT tool_call v1 sur sa propre ligne :
+=== EXÉCUTER DES COMMANDES ===
+Quand l'utilisateur demande une action, inclus dans ta réponse un bloc JSON STRICT tool_call v1 sur sa propre ligne :
 
 {"tool_call":{"version":"1","actions":[{"type":"cmd","id":<CMD_ID>},{"type":"cmd","id":<CMD_ID>,"value":"<valeur>"}]}}
-{"tool_call":{"version":"1","actions":[{"type":"scenario","id":<SCENARIO_ID>}]}}
+{"tool_call":{"version":"1","actions":[{"type":"scénario","id":<SCENARIO_ID>}]}}
 {"tool_call":{"version":"1","actions":[{"type":"snapshot","id":<CAMERA_EQ_ID>,"question":"<question optionnelle>"}]}}
 {"tool_call":{"version":"1","actions":[{"name":"device.by_generic","args":{"generic_type":"LIGHT_ON","object_name":"Salon","device_name":"Lampe","value":"1"}}]}}
 {"tool_call":{"version":"1","actions":[{"name":"schedule.in","args":{"minutes":20,"action":{"type":"cmd","id":<CMD_ID>}}}]}}
 {"tool_call":{"version":"1","actions":[{"name":"plan.preview"}]}}
-{"tool_call":{"version":"1","actions":[{"name":"camera.analyze","args":{"camera_eq_id":<CAMERA_EQ_ID>,"question":"<question optionnelle>"}}]}}
+{"tool_call":{"version":"1","actions":[{"name":"caméra.analyze","args":{"camera_eq_id":<CAMERA_EQ_ID>,"question":"<question optionnelle>"}}]}}
 
-Regles :
-- Utilise UNIQUEMENT les cmd_id listes dans les equipements disponibles.
+Règles :
+- Utilise UNIQUEMENT les cmd_id listes dans les équipements disponibles.
 - Le JSON doit contenir exactement : tool_call.version="1" et tool_call.actions=[...].
-- Types supportes dans actions : cmd, scenario, snapshot, by_generic, schedule.in, plan.preview.
-- Apres le JSON, confirme l action en langage naturel.
+- Types supportes dans actions : cmd, scénario, snapshot, by_generic, schedule.in, plan.preview.
+- Après le JSON, confirme l'action en langage naturel.
 - Si la demande est purement informative, ne mets pas de bloc tool_call.
-- Si l equipement demande est absent, dis-le clairement.
-- Si tu n es pas sur de la commande a utiliser, pose une question.
-- N execute jamais plusieurs fois la meme commande dans une reponse.
+- Si l'équipement demandé est absent, dis-le clairement.
+- Si tu n'es pas sur de la commande à utiliser, pose une question.
+- N execute jamais plusieurs fois la même commande dans une réponse.
 
-- Utilise UNIQUEMENT les scenario_id listes dans les scenarios disponibles.
-- Pour un snapshot camera, utilise UNIQUEMENT les IDs [camera:...] listes dans le contexte.
-- Pour un by_generic ambigu (plusieurs equipements), demande une clarification.
-- Pour schedule.in, limite-toi a des delais raisonnables (1 a 720 minutes).
+- Utilise UNIQUEMENT les scenario_id listés dans les scénarios disponibles.
+- Pour un snapshot caméra, utilise UNIQUEMENT les IDs [caméra:...] listes dans le contexte.
+- Pour un by_generic ambigu (plusieurs équipements), demande une clarification.
+- Pour schedule.in, limite-toi à des délais raisonnables (1 à 720 minutes).
 
-=== SECURITE & BON SENS ===
-- Pour les actions sensibles (alarme, serrure, portail), demande confirmation explicite si l intention n est pas claire.
-- N invente jamais d ID, de valeur ou d etat.
+=== SÉCURITÉ & BON SENS ===
+- Pour les actions sensibles (alarme, serrure, portail), demande confirmation explicite si l'intention n'est pas claire.
+- N invente jamais d'ID, de valeur ou d'état.
 ```
 
 ## Client MCP Jeedom (mcp_client_jeedom) — FR
@@ -376,184 +376,184 @@ Regles :
 Pilote la maison via le function calling natif expose par le serveur `mcp_jeedom`.
 
 ```text
-Assistant domotique Jeedom via outils MCP (function calling). Reponds en francais, phrases courtes.
+Assistant domotique Jeedom via outils MCP (function calling). Réponds en français, phrases courtes.
 
-REGLES :
-- Zero invention. Un cmd_id/eq_id/scenario_id n est valide que s il vient d un retour d outil MCP de la conversation courante.
-- Sans l ID : appeler d abord search_devices(query) ou find_command(generic_type=...).
-- Hors whitelist ou introuvable → le dire, ne pas deviner. Plusieurs resultats → choisir selon contexte (piece, derniere mention), sinon UNE question courte.
-- Ne jamais afficher d IDs techniques (cmd_id, eq_id, object_id, logicalId) ou de noms bruts ; utiliser les noms lisibles.
-- Sur erreur ou "ACCES REFUSE" : signaler, ne pas essayer d autres IDs au hasard.
+RÈGLES :
+- Zéro invention. Un cmd_id/eq_id/scenario_id n'est valide que s'il vient d'un retour d'outil MCP de la conversation courante.
+- Sans l'ID : appeler d'abord search_devices(query) ou find_command(generic_type=...).
+- Hors whitelist ou introuvable → le dire, ne pas deviner. Plusieurs résultats → choisir selon contexte (pièce, dernière mention), sinon UNE question courte.
+- Ne jamais afficher d'IDs techniques (cmd_id, eq_id, object_id, logicalId) ou de noms bruts ; utiliser les noms lisibles.
+- Sur erreur ou "ACCÈS REFUSE" : signaler, ne pas essayer d'autres IDs au hasard.
 
-EXECUTION :
-- Workflow : search_devices/find_command → execute_action(cmd_id). Pas d appel intermediaire (get_device_info) si search_devices a deja les cmd_id.
-- search_devices accepte les termes partiels ; si echec, essayer variantes (sans accents, termes partiels).
-- Executer directement, SAUF confirmation requise pour : alarme/securite, portail, serrure, desactivation, suppression, acquittement, sauvegardes, mises a jour, modif scenarios.
+EXÉCUTION :
+- Workflow : search_devices/find_command → execute_action(cmd_id). Pas d'appel intermédiaire (get_device_info) si search_devices à déjà les cmd_id.
+- search_devices accepte les termes partiels ; si échec, essayer variantes (sans accents, termes partiels).
+- Exécuter directement, SAUF confirmation requise pour : alarme/sécurité, portail, serrure, désactivation, suppression, acquittement, sauvegardes, mises à jour, modif scénarios.
 - Confirmer en une phrase courte avec le nom lisible.
 
 RETOURS :
-- Retour vide/null/0 apres execute_action = ordre transmis, PAS action physique terminee. Pour verifier, relire via get_command_value ou search_devices.
+- Retour vide/null/0 après execute_action = ordre transmis, PAS action physique terminée. Pour vérifier, relire via get_command_value ou search_devices.
 ```
 
 ## Client MCP externe (mcp_client_other) — FR
 
-Prompt minimal, a personnaliser selon le serveur MCP tiers.
+Prompt minimal, à personnaliser selon le serveur MCP tiers.
 
 ```text
-Tu es un assistant connecte a un serveur MCP externe.
-Utilise les outils (function calling) fournis pour repondre aux demandes.
-Sois concis et precis. Reponds en francais.
+Tu es un assistant connecte à un serveur MCP externe.
+Utilise les outils (function calling) fournis pour répondre aux demandes.
+Sois concis et précis. Réponds en français.
 ```
 
 ## Personnalisation
 
-- **Par equipement** : champ *Instructions* dans la config de l equipement → remplace (ou complete) le prompt par defaut.
+- **Par équipement** : champ *Instructions* dans la config de l'équipement → remplace (ou complète) le prompt par défaut.
 - **Conventions globales** (jeeAssist uniquement) : un bloc *Conventions globales* dans la config plugin est prepende au prompt.
-- **Placeholder** `{{JEEDOM_CONTEXT}}` (jeeAssist) : remplace par la liste des equipements whiteliste + valeurs courantes au moment de l appel.
+- **Placeholder** `{{JEEDOM_CONTEXT}}` (jeeAssist) : remplace par la liste des équipements whiteliste + valeurs courantes au moment de l'appel.
 
-Les versions EN et ES sont disponibles dans `core/api/ai_assistantPrompts.php` et selectionnees automatiquement selon `config::byKey('language', 'core')`.
+Les versions EN et ES sont disponibles dans `core/api/ai_assistantPrompts.php` et sélectionnées automatiquement selon `config::byKey('language', 'core')`.
 
 ---
 
-# Actions planifiees — retry automatique
+# Actions planifiées — retry automatique
 
-Les actions programmees via `schedule_action` (ex: *"eteins le salon dans 30 min"*) sont persistees dans `scheduled_actions.json` et executees par le cron 1 min du plugin. En cas d erreur transitoire (commande indisponible, reseau) :
+Les actions programmées via `schedule_action` (ex: *"éteins le salon dans 30 min"*) sont persistées dans `scheduled_actions.json` et exécutées par le cron 1 min du plugin. En cas d'erreur transitoire (commande indisponible, réseau) :
 
 - **3 tentatives** avec backoff exponentiel : 60 s, 120 s, 240 s
-- Apres echec final, **notification utilisateur** via le centre de messages Jeedom et audit trace avec statut `abandoned`
-- Un refus **whitelist** (`denied`) n est pas rejoue (c est un choix produit, pas une erreur)
+- Après échec final, **notification utilisateur** via le centre de messages Jeedom et audit trace avec statut `abandoned`
+- Un refus **whitelist** (`denied`) n'est pas rejoué (c'est un choix produit, pas une erreur)
 
 ## Lister et annuler
 
-L IA peut aussi **lister** les actions en attente et en **annuler** une, aussi bien en mode MCP (`mcp_client`) qu en assistant Jeedom natif (`jeeAssist`) :
+L IA peut aussi **lister** les actions en attente et en **annuler** une, aussi bien en mode MCP (`mcp_client`) qu'en assistant Jeedom natif (`jeeAssist`) :
 
 - `list_scheduled_actions` (ACL `read`) / `schedule.list` en protocole legacy
 - `cancel_scheduled_action` (ACL `execute`) / `schedule.cancel` en protocole legacy
 
-La file `scheduled_actions.json` est cloisonnee par equipement : chaque assistant ne voit et n annule que ses propres actions.
+La file `scheduled_actions.json` est cloisonnée par équipement : chaque assistant ne voit et n'annule que ses propres actions.
 
-## Notification du resultat (PWA)
+## Notification du résultat (PWA)
 
-Si l abonne dispose de la PWA du plugin, le **resultat** d une action planifiee (executee ou abandonnee) lui est **pousse** automatiquement (voir *Interfaces utilisateur → PWA*).
+Si l'abonné dispose de la PWA du plugin, le **résultat** d'une action planifiée (exécutée ou abandonnée) lui est **poussé** automatiquement (voir *Interfaces utilisateur → PWA*).
 
 ---
 
-# Controle du raisonnement (reasoning / thinking)
+# Contrôle du raisonnement (reasoning / thinking)
 
-Les modeles « thinking » (raisonnement etendu) ameliorent la qualite sur les demandes complexes, mais **gonflent la latence et le cout**. Le plugin permet de plafonner ou desactiver ce raisonnement selon le provider.
+Les modèles « thinking » (raisonnement étendu) améliorent la qualité sur les demandes complexes, mais **gonflent la latence et le coût**. Le plugin permet de plafonner ou désactiver ce raisonnement selon le provider.
 
 ## Champ `reasoning_effort` (providers OpenAI-compatibles)
 
-Un champ **`reasoning_effort`** (opt-in, vide par defaut) est disponible pour **OpenAI, Groq, DeepSeek, xAI, OpenRouter, Mistral et Perplexity**. Il n apparait que pour ces providers.
+Un champ **`reasoning_effort`** (opt-in, vide par défaut) est disponible pour **OpenAI, Groq, DeepSeek, xAI, OpenRouter, Mistral et Perplexity**. Il n'apparaît que pour ces providers.
 
-- Champ **texte libre** : le vocabulaire accepte varie selon le provider / modele (`low` / `medium` / `high`, `none` / `default`, `minimal`…). Un select fige serait vite faux.
-- Laisse vide -> comportement par defaut du modele.
+- Champ **texte libre** : le vocabulaire accepté varie selon le provider / modèle (`low` / `medium` / `high`, `none` / `default`, `minimal`…). Un select figé serait vite faux.
+- Laisse vide -> comportement par défaut du modèle.
 
 ## Gemini — budget de raisonnement plafonne
 
-Pour les modeles Gemini « thinking » (2.5 et 3.x), le plugin envoie un `thinkingConfig.thinkingBudget` par defaut pour eviter un raisonnement illimite. La temperature configuree est preservee (merge de `generationConfig`, plus d ecrasement).
+Pour les modèles Gemini « thinking » (2.5 et 3.x), le plugin envoie un `thinkingConfig.thinkingBudget` par défaut pour éviter un raisonnement illimité. La température configurée est préservée (merge de `generationConfig`, plus d'écrasement).
 
-## Ollama — raisonnement desactive
+## Ollama — raisonnement désactivé
 
-Les equipements Ollama utilisent l API native `/api/chat` avec `think:false`. Les modeles hybrides (Qwen3…) ne raisonnent donc plus par defaut : latence ramenee de ~20 s a ~1-2 s.
+Les équipements Ollama utilisent l'API native `/api/chat` avec `think:false`. Les modèles hybrides (Qwen3…) ne raisonnent donc plus par défaut : latence ramenée de ~20 s à ~1-2 s.
 
-## Verifier le catalogue de modeles
+## Vérifier le catalogue de modèles
 
-Bouton **« Verifier le catalogue »** dans la configuration du plugin (admin) : compare en direct les modeles reellement disponibles chez chaque provider a `ai_models.json` et affiche un rapport (modeles manquants / obsoletes). **Ne modifie jamais le fichier** — c est un outil de diagnostic.
+Bouton **« Vérifier le catalogue »** dans la configuration du plugin (admin) : compare en direct les modèles réellement disponibles chez chaque provider à `ai_models.json` et affiche un rapport (modèles manquants / obsolètes). **Ne modifie jamais le fichier** — c'est un outil de diagnostic.
 
 ---
 
-# Optimisation des couts (economie de tokens)
+# Optimisation des coûts (économie de tokens)
 
-Le plugin reduit automatiquement le nombre de tokens envoyes a chaque message, sans degrader les usages domotiques. Ces optimisations sont actives par defaut et reglables par equipement (le cache `tools/list` est global).
+Le plugin réduit automatiquement le nombre de tokens envoyés à chaque message, sans dégrader les usages domotiques. Ces optimisations sont actives par défaut et réglables par équipement (le cache `tools/list` est global).
 
-| Option | Role | Valeurs | Defaut |
+| Option | Rôle | Valeurs | Défaut |
 |---|---|---|---|
 | `mcp_tools_prompt_mode` | Injection des outils MCP dans le prompt | `auto` / `always` / `never` | `auto` |
-| `mcpMaxTools` | Nb max d outils MCP envoyes au modele (selection par pertinence) | entier (`0` = illimite) | `28` |
-| `mcp_tools_cache_ttl` | Duree du cache de la liste `tools/list` par serveur MCP (secondes) | entier (`0` = desactive) | `21600` (6 h) |
-| `jeedom_context_mode` | Contexte Jeedom injecte (jeeAssist) | `auto` (filtre par la question) / `full` | `auto` |
+| `mcpMaxTools` | Nb max d'outils MCP envoyés au modèle (sélection par pertinence) | entier (`0` = illimité) | `28` |
+| `mcp_tools_cache_ttl` | Durée du cache de la liste `tools/list` par serveur MCP (secondes) | entier (`0` = désactivé) | `21600` (6 h) |
+| `jeedom_context_mode` | Contexte Jeedom injecté (jeeAssist) | `auto` (filtre par la question) / `full` | `auto` |
 
-Mecanismes :
+Mécanismes :
 
-- **Cache `tools/list`** : la liste des outils d un serveur MCP n est plus rechargee a chaque message. Bouton *Actualiser tools/list* dans le modal MCP pour forcer le refresh.
-- **Catalogue compact + selection d outils** : seuls les outils pertinents (mots-cles de la question) sont envoyes, descriptions tronquees — au lieu de dizaines de schemas complets.
-- **Mode sans-outils** : une question conversationnelle (*"resume notre discussion"*, *"explique cette option"*) n envoie aucun outil ni appel `tools/list` ; une demande domotique (*"allume le salon"*) garde les outils.
-- **Contexte Jeedom filtre** : en jeeAssist, seuls les equipements lies a la question sont injectes. Une demande globale (*"liste tous mes equipements"*, *"recapitulatif de la maison"*) recoit le contexte complet.
-- **Compression d historique** : au-dela d un seuil, les anciens echanges sont resumes par un mini-modele.
-- **Memoire utilisateur** : les faits utiles (preferences) sont stockes a part (`dataStore`) et injectes de facon ciblee, pas via tout l historique.
-- **Cache de prompt** : exploite le prompt caching des fournisseurs (Claude, OpenAI/DeepSeek, Gemini). La part de tokens servie depuis le cache est tracee (`cached_tokens`) dans les logs debug `[tokens]`.
+- **Cache `tools/list`** : la liste des outils d'un serveur MCP n'est plus rechargée à chaque message. Bouton *Actualiser tools/list* dans le modal MCP pour forcer le refresh.
+- **Catalogue compact + sélection d'outils** : seuls les outils pertinents (mots-clés de la question) sont envoyés, descriptions tronquées — au lieu de dizaines de schémas complets.
+- **Mode sans-outils** : une question conversationnelle (*"résume notre discussion"*, *"explique cette option"*) n'envoie aucun outil ni appel `tools/list` ; une demande domotique (*"allume le salon"*) garde les outils.
+- **Contexte Jeedom filtre** : en jeeAssist, seuls les équipements liés à la question sont injectés. Une demande globale (*"liste tous mes équipements"*, *"récapitulatif de la maison"*) reçoit le contexte complet.
+- **Compression d'historique** : au-delà d'un seuil, les anciens échanges sont résumés par un mini-modèle.
+- **Mémoire utilisateur** : les faits utiles (préférences) sont stockés à part (`dataStore`) et injectés de façon ciblée, pas via tout l'historique.
+- **Cache de prompt** : exploite le prompt caching des fournisseurs (Claude, OpenAI/DeepSeek, Gemini). La part de tokens servie depuis le cache est tracée (`cached_tokens`) dans les logs debug `[tokens]`.
 
-> Les echappatoires `always` / `full` / TTL `0` restaurent integralement le comportement d origine si besoin.
+> Les échappatoires `always` / `full` / TTL `0` restaurent intégralement le comportement d'origine si besoin.
 
 ---
 
 # Vigie — surveillance proactive
 
-Jusqu ici, ai_assistant est **reactif** : vous posez une question, il repond. **Vigie** ajoute une couche **proactive** : le plugin observe la box, filtre ce qu il voit et ne vous derange que si cela en vaut la peine — **sans appeler de modele d IA** pour detecter ou filtrer.
+Jusqu'ici, ai_assistant est **réactif** : vous posez une question, il répond. **Vigie** ajoute une couche **proactive** : le plugin observe la box, filtre ce qu'il voit et ne vous dérange que si cela en vaut la peine — **sans appeler de modèle d'IA** pour détecter ou filtrer.
 
 ## En bref
 
-- **Six sondes deterministes** : centre de messages, sante du systeme, demons instables, derive (batteries, disque…), fichiers de journaux, page consultee.
-- **Opt-in strict** : tout est desactive a l installation ; chaque source s active separement. Le kill-switch des declencheurs coupe aussi Vigie.
-- **Cout nul par defaut** : une relecture par IA est possible en option, mais elle ne peut qu attenuer ou reformuler une alerte, jamais en inventer.
-- **Boutons d action** (option, administrateurs) : relancer un demon, mettre un motif en sourdine — revalides cote serveur (alerte, liste blanche, droits Jeedom).
+- **Six sondes déterministes** : centre de messages, santé du système, démons instables, dérive (batteries, disque…), fichiers de journaux, page consultée.
+- **Opt-in strict** : tout est désactivé à l'installation ; chaque source s'active séparément. Le kill-switch des déclencheurs coupe aussi Vigie.
+- **Cout nul par défaut** : une relecture par IA est possible en option, mais elle ne peut qu'atténuer ou reformuler une alerte, jamais en inventer.
+- **Boutons d'action** (option, administrateurs) : relancer un démon, mettre un motif en sourdine — revalidés côté serveur (alerte, liste blanche, droits Jeedom).
 
 ## Comment ca marche
 
-1. **Les sondes collectent** ce que Jeedom sait deja dire de lui-meme (centre de messages, `jeedom::health()`), toutes les 15 minutes.
-2. **La porte filtre** : signature normalisee, seuil d occurrences, pas de repetition avant 24 h, quota par plugin et global, heures calmes (22h–07h, les alertes sont restituees au reveil).
-3. **La relecture par IA (optionnelle)** peut retirer une alerte, en baisser la severite ou la reformuler — jamais l inverse. Si le modele est injoignable, l alerte part quand meme.
-4. **La notification** arrive dans la pastille de la barre Jeedom, avec parfois un ou deux boutons d action.
+1. **Les sondes collectent** ce que Jeedom sait déjà dire de lui-même (centre de messages, `jeedom::health()`), toutes les 15 minutes.
+2. **La porte filtre** : signature normalisée, seuil d'occurrences, pas de répétition avant 24 h, quota par plugin et global, heures calmes (22h–07h, les alertes sont restituées au réveil).
+3. **La relecture par IA (optionnelle)** peut retirer une alerte, en baisser la sévérité ou la reformuler — jamais l'inverse. Si le modèle est injoignable, l'alerte part quand même.
+4. **La notification** arrive dans la pastille de la barre Jeedom, avec parfois un ou deux boutons d'action.
 
 ## Les six sondes
 
-| Sonde | Ce qu elle regarde |
+| Sonde | Ce qu'elle regarde |
 |---|---|
-| **Messages** | Les erreurs de tous les plugins, deja dedoublonnees par le core |
-| **Sante** | `jeedom::health()` : memoire, swap, disque, charge, erreurs disque, base de donnees |
-| **Demons** | Redemarrages repetes d un demon (le core relance deja seul, Vigie ne signale que la recidive) |
-| **Derive** | Tendance des batteries et des commandes suivies : alerte *avant* la panne |
-| **Journaux** *(desactivee par defaut)* | Lecture incrementale des fichiers de log |
-| **Page consultee** | Un identifiant de page pousse par le navigateur, jamais de contenu d ecran |
+| **Messages** | Les erreurs de tous les plugins, déjà dédoublonnées par le core |
+| **Santé** | `jeedom::health()` : mémoire, swap, disque, charge, erreurs disque, base de données |
+| **Démons** | Redémarrages répétés d'un démon (le core relance déjà seul, Vigie ne signale que la récidive) |
+| **Dérive** | Tendance des batteries et des commandes suivies : alerte *avant* la panne |
+| **Journaux** *(désactivée par défaut)* | Lecture incrémentale des fichiers de log |
+| **Page consultée** | Un identifiant de page pousse par le navigateur, jamais de contenu d'écran |
 
-## Securite et confidentialite
+## Sécurité et confidentialité
 
-- **Desactive a l installation**, opt-in par source.
-- **Alertes reservees aux administrateurs** par defaut, filtrage cote serveur.
-- **Secrets masques avant stockage** : cles d API, jetons, mots de passe, e-mails, IP publiques.
-- **Rien ne sort de la box** sans relecture par IA ; avec un modele local (Ollama), tout reste local.
+- **Désactivé à l'installation**, opt-in par source.
+- **Alertes réservées aux administrateurs** par défaut, filtrage côté serveur.
+- **Secrets masqués avant stockage** : clés d'API, jetons, mots de passe, e-mails, IP publiques.
+- **Rien ne sort de la box** sans relecture par IA ; avec un modèle local (Ollama), tout reste local.
 
-## Reglages
+## Réglages
 
-Onglet **Vigie** de la configuration du plugin. Le bouton **Simuler une passe** collecte et filtre reellement mais n envoie rien et ne consomme aucun quota : c est la facon de regler les seuils sans rien declencher. **Repartir de zero** efface l historique, les temporisations et les quotas.
+Onglet **Vigie** de la configuration du plugin. Le bouton **Simuler une passe** collecte et filtre réellement mais n'envoie rien et ne consomme aucun quota : c'est la façon de régler les seuils sans rien déclencher. **Repartir de zéro** efface l'historique, les temporisations et les quotas.
 
 ---
 
-# Securite
+# Sécurité
 
-## Gardes-fous generaux
+## Gardes-fous généraux
 
-- **Whitelists** : controle fin des commandes autorisees — les tools natifs passent par les memes `_execAllowed*` que le protocole legacy
+- **Whitelists** : contrôle fin des commandes autorisées — les tools natifs passent par les mêmes `_execAllowed*` que le protocole legacy
 - **Mode lecture seule** recommande pour tests
-- **Confirmations d actions sensibles** (selon configuration)
-- **Ecritures atomiques** (tmp + rename) sur `scheduled_actions.json`, `whitelist.json`, `tool_call_audit.json` pour resister a un crash mid-write
-- **Source de verite unique** : les modeles et endpoints sont lus depuis `core/config/ai_models.json` et `ai_assistant::PROVIDER_ENDPOINTS` — plus de divergence entre le code et le catalogue
+- **Confirmations d'actions sensibles** (selon configuration)
+- **Écritures atomiques** (tmp + rename) sur `scheduled_actions.json`, `whitelist.json`, `tool_call_audit.json` pour résister à un crash mid-write
+- **Source de vérité unique** : les modèles et endpoints sont lus depuis `core/config/ai_models.json` et `ai_assistant::PROVIDER_ENDPOINTS` — plus de divergence entre le code et le catalogue
 
 ## ACL des outils MCP
 
-Chaque equipement client MCP applique un controle d acces par niveau, independamment du serveur connecte :
+Chaque équipement client MCP applique un contrôle d'accès par niveau, indépendamment du serveur connecté :
 
-- **Niveaux `read` / `write` / `execute`** : actives separement par equipement. Un outil est classe automatiquement d apres son nom (`get_`/`list_`/`read_` = read ; `set_`/`create_`/`update_` = write ; `exec_`/`run_`/`trigger_`/`send_` = execute).
-- **Garde-fou destructif** : les outils de suppression / purge / execution shell (`delete_`, `purge_`, `exec_shell`...) sont **refuses par defaut** — activation explicite requise par equipement (*Autoriser actions destructives*).
-- **Confirmation** des actions sensibles avant execution (serrure, alarme, portail...).
-- **Apercu temps reel** (SSE) des actions a effet de bord, affiche avant leur execution.
-- **Audit complet** : chaque appel d outil (objectif, arguments, decision, statut) est trace dans `tool_call_audit.json`.
-- **Refus explicite renvoye au modele** : si un outil est bloque par l ACL, l IA recoit l erreur et peut s adapter plutot que d echouer.
+- **Niveaux `read` / `write` / `execute`** : activés séparément par équipement. Un outil est classé automatiquement d'après son nom (`get_`/`list_`/`read_` = read ; `set_`/`create_`/`update_` = write ; `exec_`/`run_`/`trigger_`/`send_` = execute).
+- **Garde-fou destructif** : les outils de suppression / purge / exécution shell (`delete_`, `purge_`, `exec_shell`...) sont **refusés par défaut** — activation explicite requise par équipement (*Autoriser actions destructives*).
+- **Confirmation** des actions sensibles avant exécution (serrure, alarme, portail...).
+- **Aperçu temps réel** (SSE) des actions à effet de bord, affiche avant leur exécution.
+- **Audit complet** : chaque appel d'outil (objectif, arguments, décision, statut) est tracé dans `tool_call_audit.json`.
+- **Refus explicite renvoyé au modèle** : si un outil est bloqué par l'ACL, l'IA reçoit l'erreur et peut s'adapter plutôt que d'échouer.
 
 ---
 
-# Modeles compatibles
+# Modèles compatibles
 
 Le plugin supporte les fournisseurs suivants :
 
@@ -567,36 +567,36 @@ Le plugin supporte les fournisseurs suivants :
 - xAI / Grok
 - OpenRouter
 - Perplexity
-- Tout serveur compatible OpenAI (URL de base personnalisee)
+- Tout serveur compatible OpenAI (URL de base personnalisée)
 
-Le catalogue des modeles (`core/config/ai_models.json`) est verifie en direct contre les API reelles et tenu a jour ; le bouton *Verifier le catalogue* (config du plugin) signale les ecarts. Pour **Ollama**, le panel liste en plus les modeles reellement installes en interrogeant `/api/tags` en direct.
+Le catalogue des modèles (`core/config/ai_models.json`) est vérifié en direct contre les API réelles et tenu à jour ; le bouton *Vérifier le catalogue* (config du plugin) signale les écarts. Pour **Ollama**, le panel liste en plus les modèles réellement installés en interrogeant `/api/tags` en direct.
 
-Cette liste est amennee a evoluer.
+Cette liste est amenée à évoluer.
 
 ---
 
-# Utiliser un abonnement au lieu d une cle API
+# Utiliser un abonnement au lieu d'une clé API
 
-Dans le champ **Cle API** d un equipement *provider*, vous pouvez coller une cle API classique **ou** des identifiants d abonnement : le plugin les detecte automatiquement.
+Dans le champ **Clé API** d'un équipement *provider*, vous pouvez coller une clé API classique **ou** des identifiants d'abonnement : le plugin les détecte automatiquement.
 
-> ⚠️ Utiliser des identifiants d abonnement hors de l outil officiel (Claude Code / Codex CLI) est en zone grise vis-a-vis des CGU d Anthropic et d OpenAI et peut faire signaler le compte. **A vos risques.**
+> ⚠️ Utiliser des identifiants d'abonnement hors de l'outil officiel (Claude Code / Codex CLI) est en zone grise vis-à-vis des CGU d'Anthropic et d'OpenAI et peut faire signaler le compte. **À vos risques.**
 
 ## Claude — jeton `claude setup-token`
 
-1. Sur un poste ou Claude Code est installe : `claude setup-token`.
-2. Copier le jeton affiche (`sk-ant-oat01-…`).
-3. Le coller dans **Cle API** du provider Claude : rien d autre a faire.
+1. Sur un poste ou Claude Code est installé : `claude setup-token`.
+2. Copier le jeton affiché (`sk-ant-oat01-…`).
+3. Le coller dans **Clé API** du provider Claude : rien d'autre à faire.
 
-Jeton longue duree (~1 an), sans rafraichissement ; sur `401`, recreer le jeton. Compatible avec chat, streaming, outils et MCP.
+Jeton longue durée (~1 an), sans rafraîchissement ; sur `401`, recréer le jeton. Compatible avec chat, streaming, outils et MCP.
 
 ## OpenAI — abonnement ChatGPT
 
 Fonctionne y compris avec un compte ChatGPT gratuit. **Chat et streaming uniquement, sans outils.**
 
-- **Recommande** : equipement provider OpenAI → **Se connecter avec ChatGPT** : un code a usage unique s affiche, a saisir sur `auth.openai.com/codex/device`. Le plugin recupere et chiffre les jetons, et les rafraichit seul.
-- **Repli manuel** : coller `~/.codex/auth.json` dans l equipement (utiliser un `CODEX_HOME` dedie : les jetons tournent et une copie partagee avec le CLI `codex` devient vite invalide).
-- **Modeles valides** (backend Codex) : `gpt-5.6-terra` (defaut), `gpt-5.6-luna`, `gpt-5.5`, `gpt-5.4-mini`. Les autres sont refuses par ce backend.
-- Le suivi de cout reste indicatif (base sur les tarifs API). Le bouton **Tester la connexion** verifie le jeton et affiche son echeance.
+- **Recommande** : équipement provider OpenAI → **Se connecter avec ChatGPT** : un code à usage unique s'affiche, à saisir sur `auth.openai.com/codex/device`. Le plugin récupère et chiffre les jetons, et les rafraîchit seul.
+- **Repli manuel** : coller `~/.codex/auth.json` dans l'équipement (utiliser un `CODEX_HOME` dédié : les jetons tournent et une copie partagée avec le CLI `codex` devient vite invalide).
+- **Modèles valides** (backend Codex) : `gpt-5.6-terra` (défaut), `gpt-5.6-luna`, `gpt-5.5`, `gpt-5.4-mini`. Les autres sont refusés par ce backend.
+- Le suivi de coût reste indicatif (basé sur les tarifs API). Le bouton **Tester la connexion** vérifie le jeton et affiche son échéance.
 
 ---
 
@@ -604,7 +604,7 @@ Fonctionne y compris avec un compte ChatGPT gratuit. **Chat et streaming uniquem
 
 # API inter-plugins
 
-D autres plugins Jeedom peuvent interroger l IA configuree dans ai_assistant via une API PHP statique :
+D autres plugins Jeedom peuvent interroger l'IA configurée dans ai_assistant via une API PHP statique :
 
 ```php
 if (class_exists('ai_assistant') && method_exists('ai_assistant', 'askDefault')) {
@@ -612,15 +612,15 @@ if (class_exists('ai_assistant') && method_exists('ai_assistant', 'askDefault'))
 }
 ```
 
-Methodes exposees :
+Méthodes exposées :
 - `ai_assistant::askDefault($message, $options)` — IA pure (sans outils MCP)
 - `ai_assistant::askDefaultMcp($message, $options)` — IA + outils MCP
-- `ai_assistant::getDefaultProvider()` / `getDefaultMcp()` — retourne l equipement par defaut
+- `ai_assistant::getDefaultProvider()` / `getDefaultMcp()` — retourne l'équipement par défaut
 - `ai_assistant::getMcpJeedomStatus()` — diagnostic serveur MCP
 
-[**Documentation complete de l API inter-plugins →**](inter_plugin_api.md)
+[**Documentation complète de l'API inter-plugins →**](inter_plugin_api.md)
 
-Le plugin `mcp_jeedom` utilise cette API pour 5 features (generation profil maison, suggestions labels/aliases/generic_type, planning modes).
+Le plugin `mcp_jeedom` utilise cette API pour 5 features (génération profil maison, suggestions labels/aliases/generic_type, planning modes).
 
 ---
 
@@ -630,9 +630,9 @@ Le plugin `mcp_jeedom` utilise cette API pour 5 features (generation profil mais
 Oui. Le plugin fonctionne en mode API direct (sans MCP).
 
 **Pourquoi ajouter mcp_jeedom ?**
-Pour les fonctions avancees : outils domotiques riches, analyses, controle multi equipements.
+Pour les fonctions avancées : outils domotiques riches, analyses, contrôle multi équipements.
 
-**Est ce securise ?**
+**Est-ce sécurisé ?**
 Le plugin propose des gardes fous (whitelist, confirmations). L utilisateur reste responsable de la configuration.
 
 ---
