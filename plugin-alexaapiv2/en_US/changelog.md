@@ -50,6 +50,8 @@ lang: en_US
 ### Interface and translations
 
 - **Account Linking works without jQuery**: the "Check status", "Configure" and "Delete" buttons no longer return "$ is not defined" when Jeedom runs in jQuery-less mode (`core::jqueryless`)
+- **Skill modals and interactions wizard without jQuery**: "Deploy skill", "Manage skills", "Skill health" and the interactions wizard work in jQuery-less mode (`core::jqueryless`); an HTTP error is now reported instead of leaving the spinner running
+- **Dashboard widgets without jQuery**: the Bluetooth and mute icons update and the "speak" widget button works in jQuery-less mode
 - **Translations completed**: the configuration texts (Voice Query, authentication panel, session logout, P2 → P1 import) and the device selection modal are translated into English, German, Spanish, Italian and Portuguese
 
 ### Security

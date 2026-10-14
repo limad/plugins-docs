@@ -46,6 +46,8 @@ Changelog Alexa-Premium
 ### Interface et traductions
 
 *   **Account Linking fonctionne sans jQuery** : les boutons « Vérifier l'état », « Configurer » et « Supprimer » ne renvoient plus « $ is not defined » lorsque Jeedom est en mode sans jQuery (`core::jqueryless`)
+*   **Modales du skill et assistant d'interactions sans jQuery** : « Déployer le skill », « Gérer les skills », « Santé du skill » et l'assistant d'interactions fonctionnent en mode sans jQuery (`core::jqueryless`) ; une erreur HTTP est maintenant signalée au lieu de laisser le chargement tourner
+*   **Widgets du dashboard sans jQuery** : les icônes Bluetooth et muet se mettent à jour et le bouton du widget « speak » fonctionne en mode sans jQuery
 *   **Traductions complétées** : les textes de la configuration (Voice Query, panneau d'authentification, déconnexion des sessions, import P2 → P1) et de la modale de sélection des équipements sont traduits en anglais, allemand, espagnol, italien et portugais
 
 ### Sécurité
