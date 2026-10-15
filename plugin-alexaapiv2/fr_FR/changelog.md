@@ -17,36 +17,16 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
-### Voice Query (IA) — 14/10/2026
+### 15/10/2026
 
-*   **Choix des équipements** : nouvelle fenêtre « Choisir les équipements » (recherche, regroupement par objet) pour décider précisément ce que l'IA peut voir et piloter
-*   **Adapté aux grosses installations** : le nombre de commandes et la taille du contexte sont réglables dans la configuration ; les équipements de la pièce de l'Echo sont traités en premier
-*   **Plus sûr** : alarme, serrure, portail, garage et sirène ne sont jamais pilotables par l'IA
-*   **Réponses fidèles** : si l'action échoue, la réponse le dit au lieu de confirmer « c'est fait »
-*   **Sans équipement sélectionné**, Voice Query n'agit pas et vous prévient dans le centre de messages ; la phrase est alors traitée par les interactions Jeedom classiques
+*   **Nouveautés et corrections** : états SmartHome (prises, lumières, capteurs, thermostats) mis à jour en temps réel en quelques secondes ; connexion Alexa plus stable (les coupures sont rattrapées automatiquement) ; historique vocal : moins de phrases manquantes ; fenêtre Historique sans doublons et jusqu'à 80 entrées affichées (au lieu de 10) ; fin des alertes répétées quand les playlists Amazon Music sont indisponibles
+*   **Sécurité et fiabilité** : équipements injoignables désactivés automatiquement après 7 jours sans réponse (réglable, 7 minimum) et réactivés dès qu'ils répondent de nouveau
 
-### Nouveautés et corrections — 15/10/2026
+### 14/10/2026
 
-*   **États SmartHome en temps réel** : prises, lumières, capteurs et thermostats se mettent à jour en quelques secondes
-*   **Connexion Alexa plus stable** : les coupures sont rattrapées automatiquement
-*   **Historique vocal** : moins de phrases manquantes
-*   **Fenêtre Historique** : plus de lignes en double et jusqu'à 80 entrées affichées (au lieu de 10)
-*   **Équipements injoignables** : désactivés automatiquement après 7 jours sans réponse (réglable, 7 minimum) et réactivés dès qu'ils répondent de nouveau
-*   **Journaux** : fin des alertes répétées quand les playlists Amazon Music sont indisponibles
-
-### Fiabilité — 14/10/2026
-
-*   **Authentification** : renouvellement automatique plus robuste, moins de coupures et d'erreurs « 429 »
-*   **Bouton « Parler »** plus fiable (fini les erreurs de délai dépassé)
-*   **Déploiement de la skill vocale** : l'erreur « Vendor ID is required » disparaît
-*   **Démarrage** : plus de fausses alertes au redémarrage ; messages plus clairs *(merci Neurall)*
-*   **Scènes Alexa** : les scènes tierces (TaHoma, Somfy…) et les scènes désactivées s'affichent correctement
-*   **Jeedom sans jQuery** : Account Linking, gestion de la skill, assistant d'interactions et widgets fonctionnent
-*   **Traductions** complétées (anglais, allemand, espagnol, italien, portugais)
-
-### Sécurité — 14/10/2026
-
-*   Informations sensibles (clé API, cookies de session) masquées dans les journaux et protections renforcées
+*   **Voice Query (IA)** : nouvelle fenêtre « Choisir les équipements » pour décider ce que l'IA peut voir et piloter ; nombre de commandes et taille du contexte réglables pour les grosses installations ; alarme, serrure, portail, garage et sirène jamais pilotables par l'IA ; réponses fidèles (une action qui échoue n'est plus confirmée) ; sans équipement sélectionné, Voice Query n'agit pas et vous prévient dans le centre de messages
+*   **Nouveautés et corrections** : scènes tierces (TaHoma, Somfy…) et scènes désactivées correctement affichées ; fonctionnement sur les installations Jeedom sans jQuery (Account Linking, gestion de la skill, assistant d'interactions, widgets) ; traductions complétées (anglais, allemand, espagnol, italien, portugais)
+*   **Sécurité et fiabilité** : authentification renouvelée plus sûrement (moins de coupures et d'erreurs « 429 ») ; bouton « Parler » plus fiable ; erreur « Vendor ID is required » corrigée ; plus de fausses alertes au redémarrage *(merci Neurall)* ; clé API et cookies de session masqués dans les journaux
 
 ### 06/06/2026
 

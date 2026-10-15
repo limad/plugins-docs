@@ -21,36 +21,16 @@ lang: en_US
 
 ## Version in development
 
-### Voice Query (AI) — 14/10/2026
+### 15/10/2026
 
-- **Device selection**: new "Choose devices" window (search, grouped by object) to decide exactly what the AI can see and control
-- **Suited to large installations**: the number of commands and the context size can be set in the plugin settings; devices in the Echo's room are handled first
-- **Safer**: alarm, lock, gate, garage and siren can never be controlled by the AI
-- **Faithful answers**: if the action fails, the answer says so instead of confirming "done"
-- **With no device selected**, Voice Query does nothing and warns you in the message center; the sentence is then handled by regular Jeedom interactions
+- **New features and fixes**: SmartHome states (plugs, lights, sensors, thermostats) updated in real time within seconds; more stable Alexa connection (interruptions are recovered automatically); voice history: fewer missing sentences; History window without duplicates and up to 80 entries displayed (instead of 10); no more repeated alerts when Amazon Music playlists are unavailable
+- **Security and reliability**: unreachable devices automatically disabled after 7 days without any answer (configurable, 7 minimum) and re-enabled as soon as they answer again
 
-### New features and fixes — 15/10/2026
+### 14/10/2026
 
-- **Real-time SmartHome states**: plugs, lights, sensors and thermostats update within seconds
-- **More stable Alexa connection**: interruptions are recovered automatically
-- **Voice history**: fewer missing sentences
-- **History window**: no more duplicated rows and up to 80 entries displayed (instead of 10)
-- **Unreachable devices**: automatically disabled after 7 days without any answer (configurable, 7 minimum) and re-enabled as soon as they answer again
-- **Logs**: no more repeated alerts when Amazon Music playlists are unavailable
-
-### Reliability — 14/10/2026
-
-- **Authentication**: more robust automatic renewal, fewer interruptions and "429" errors
-- **"Speak" button** more reliable (no more timeout errors)
-- **Voice skill deployment**: the "Vendor ID is required" error is gone
-- **Startup**: no more false alerts on restart; clearer messages *(thanks Neurall)*
-- **Alexa scenes**: third-party scenes (TaHoma, Somfy…) and disabled scenes are displayed correctly
-- **Jeedom without jQuery**: Account Linking, skill management, interaction wizard and widgets work
-- **Translations** completed (English, German, Spanish, Italian, Portuguese)
-
-### Security — 14/10/2026
-
-- Sensitive information (API key, session cookies) hidden from logs and protections strengthened
+- **Voice Query (AI)**: new "Choose devices" window to decide what the AI can see and control; number of commands and context size adjustable for large installations; alarm, lock, gate, garage and siren can never be controlled by the AI; faithful answers (a failed action is no longer confirmed); with no device selected, Voice Query does nothing and warns you in the message center
+- **New features and fixes**: third-party scenes (TaHoma, Somfy…) and disabled scenes displayed correctly; works on Jeedom installations without jQuery (Account Linking, skill management, interaction wizard, widgets); translations completed (English, German, Spanish, Italian, Portuguese)
+- **Security and reliability**: authentication renewed more safely (fewer interruptions and "429" errors); "Speak" button more reliable; "Vendor ID is required" error fixed; no more false alerts on restart *(thanks Neurall)*; API key and session cookies hidden from logs
 
 ### 06/06/2026
 
