@@ -23,64 +23,34 @@ lang: en_US
 
 ### Voice Query (AI) — 14/10/2026
 
-- **AI context adapted to large installations**: the maximum number of commands (350 by default) and the maximum context size (6,000 characters by default) can now be set in the plugin configuration
-- **Exposed devices**: new "Choose devices" modal (search, per-room checkboxes, counters) to select precisely what Voice Query can see and control
-- **Echo room first**: devices in the room of the Echo that receives the request are processed first and are no longer dropped by the command limit
-- **Clean truncation**: the context is cut at the end of a line, no longer in the middle of a device
-- **No more duplication with ai_assistant**: a dedicated system prompt prevents ai_assistant's device list from being added to the plugin's own, and action execution remains validated by the plugin
-- **Selection required**: with no device selected, Voice Query exposes nothing and raises an alert in the message center; the sentence is then handled by the regular Jeedom interactions (no more voice outage)
-- **Sensitive commands never exposed**: alarm, lock, gate, garage and siren (generic type or command name) can no longer be controlled by the AI; a padlock flags them in the modal
-- **Truthful replies**: if execution fails, the reply says so instead of confirming "done"
-- **Checked values**: sliders clamped to the command's min/max, strict command ids, choice-list commands are not controllable
-- **Reliable context**: line breaks and brackets removed from names and values sent to the AI, device order identical from one request to the next, and only commands actually visible in the context can be executed (a truncated command no longer can)
-- **Counter and limits**: the configuration badge only counts truly exposable devices, deleted ids are dropped from the selection; limits of 1,000 commands and 20,000 characters; a warning is logged when the context is truncated
+- **Device selection**: new "Choose devices" window (search, grouped by object) to decide exactly what the AI can see and control
+- **Suited to large installations**: the number of commands and the context size can be set in the plugin settings; devices in the Echo's room are handled first
+- **Safer**: alarm, lock, gate, garage and siren can never be controlled by the AI
+- **Faithful answers**: if the action fails, the answer says so instead of confirming "done"
+- **With no device selected**, Voice Query does nothing and warns you in the message center; the sentence is then handled by regular Jeedom interactions
 
-### Reliability and performance — 14/10/2026
+### New features and fixes — 15/10/2026
 
-- **No more zombie daemon at startup**: the "PID active but HTTP unreachable" warning no longer appears during legitimate restarts (30 s grace period before reporting)
-- **End of hourly 429 errors** on `/homegroups/{id}/devices`: the SIP device cache goes from 1 h to 7 days, with automatic invalidation on a manual scan
-- **Atomic cookie refresh**: no more concurrent double refresh on simultaneous 401s (avoids failed authentication cascades)
-- **Targeted daemon listeners**: no more listener memory leak at each daemon restart
-- **"Speak" modal now uses direct PHP**: the "Speak" button uses the 4-way round-robin (P1/P2/com/actor) instead of the daemon, ending curl error(28) timeouts
-- **Gradual daemon decommissioning**: the `addList`, `addItem`, `modifyItem`, `deleteItem`, `getPlayerInfo` and `getMedia` commands now go directly through PHP — lower latency and better resilience
-- **`comCookie` no longer stays frozen indefinitely**: automatic renewal every hour (previously it only happened by chance depending on routine execution)
-- **Automatic reconnection of the expired Amazon developer session**: removes the *"Vendor ID is required."* error when deploying the voice skill
-- **Better categorization of Alexa scenes**: third-party scenes (TaHoma, Somfy…) and disabled scenes are now displayed and refreshed correctly
+- **Real-time SmartHome states**: plugs, lights, sensors and thermostats update within seconds
+- **More stable Alexa connection**: interruptions are recovered automatically
+- **Voice history**: fewer missing sentences
+- **History window**: no more duplicated rows and up to 80 entries displayed (instead of 10)
+- **Unreachable devices**: automatically disabled after 7 days without any answer (configurable, 7 minimum) and re-enabled as soon as they answer again
+- **Logs**: no more repeated alerts when Amazon Music playlists are unavailable
 
-### Real-time push, voice history and SmartHome — 15/10/2026
+### Reliability — 14/10/2026
 
-- **More reliable HTTP/2 push**: no more giving up after 100 failures (retry every 10 min), token forcibly renewed on 401/403, AVS application-level ping (`/ping`) and endpoint aligned with the reference library; a lost push is now visible in the log (`warning`)
-- **Real-time SmartHome state**: plugs, lights, sensors and thermostats update within seconds thanks to the `FDAL_UPDATE` push, without waiting for the SmartHome cron
-- **Capabilities declared at every start**: the daemon registers 35 Alexa interfaces with Amazon (14 before)
-- **Voice history**: a phrase now gets 30 s and 3 attempts before being dropped (18 s and 2 attempts before)
-- **History modal**: no more duplicated rows, and up to 80 records displayed instead of 10
-- **Automatic disabling of SmartHome devices**: after x consecutive days without any answer (7 by default, 7 minimum, configurable in the plugin settings); a device re-enabled by hand is monitored again
-- **Playlists**: no more hourly warning when the Amazon Music sources are unavailable
-
-### Interface and translations — 14/10/2026
-
-- **Account Linking works without jQuery**: the "Check status", "Configure" and "Delete" buttons no longer return "$ is not defined" when Jeedom runs in jQuery-less mode (`core::jqueryless`)
-- **Skill modals and interactions wizard without jQuery**: "Deploy skill", "Manage skills", "Skill health" and the interactions wizard work in jQuery-less mode (`core::jqueryless`); an HTTP error is now reported instead of leaving the spinner running
-- **Dashboard widgets without jQuery**: the Bluetooth and mute icons update and the "speak" widget button works in jQuery-less mode
-- **Translations completed**: the configuration texts (Voice Query, authentication panel, session logout, P2 → P1 import) and the device selection modal are translated into English, German, Spanish, Italian and Portuguese
+- **Authentication**: more robust automatic renewal, fewer interruptions and "429" errors
+- **"Speak" button** more reliable (no more timeout errors)
+- **Voice skill deployment**: the "Vendor ID is required" error is gone
+- **Startup**: no more false alerts on restart; clearer messages *(thanks Neurall)*
+- **Alexa scenes**: third-party scenes (TaHoma, Somfy…) and disabled scenes are displayed correctly
+- **Jeedom without jQuery**: Account Linking, skill management, interaction wizard and widgets work
+- **Translations** completed (English, German, Spanish, Italian, Portuguese)
 
 ### Security — 14/10/2026
 
-- **`pluginKey` (Jeedom API key) no longer appears in logs**: level lowered from `info` to `debug`
-- **Session cookies (`at-main`) masked in debug logs**
-- **Daemon forwarder blocks private IPs**: SSRF hardening
-- **Controlled recursion** on `setCookie`: protection against malformed cookies with infinite structure
-
-### Compatibility — 14/10/2026
-
-- PHP 7.4.33 compatibility: `match()` expressions (PHP 8.0+) and `str_contains()` (PHP 8.0+) replaced with PHP 7.4 equivalents
-- Startup log message adjustments *(thanks Neurall)*
-
-### Cleanup — 14/10/2026
-
-- `.gitignore` rewritten (153 → 66 rules, -57%), organized by category
-- Sprint D SmartHome Skill files removed from the public repo (parked pending Amazon Lambda changes) — code kept locally
-- Obsolete native "SmartHome Skill" deployment code removed (moved to a dedicated plugin)
+- Sensitive information (API key, session cookies) hidden from logs and protections strengthened
 
 ### 06/06/2026
 

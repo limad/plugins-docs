@@ -19,64 +19,34 @@ Changelog Alexa-Premium
 
 ### Voice Query (IA) — 14/10/2026
 
-*   **Contexte IA adapté aux grosses installations** : le nombre maximum de commandes (350 par défaut) et la taille maximale du contexte (6 000 caractères par défaut) sont désormais réglables dans la configuration du plugin
-*   **Équipements exposés** : nouvelle modale « Choisir les équipements » (recherche, cases par objet, compteurs) pour sélectionner précisément ce que Voice Query peut voir et piloter
-*   **Pièce de l'Echo prioritaire** : les équipements de la pièce de l'Echo qui reçoit la demande sont traités en premier, ils ne sont plus écartés par la limite de commandes
-*   **Troncature propre** : le contexte est coupé en fin de ligne, plus au milieu d'un équipement
-*   **Plus de doublon avec ai_assistant** : un prompt système dédié évite que la liste d'équipements d'ai_assistant s'ajoute à celle du plugin, et l'exécution des actions reste validée par le plugin
-*   **Sélection obligatoire** : sans équipement sélectionné, Voice Query n'expose plus rien et lève une alerte dans le centre de messages ; la phrase est alors traitée par les interactions Jeedom classiques (plus de panne vocale)
-*   **Commandes sensibles jamais exposées** : alarme, serrure, portail, garage et sirène (type générique ou nom de la commande) ne sont plus pilotables par l'IA ; un cadenas les signale dans la modale
-*   **Réponses fidèles** : si l'exécution échoue, la réponse le dit au lieu de confirmer « c'est fait »
-*   **Valeurs contrôlées** : sliders bornés au min/max de la commande, identifiants de commande stricts, commandes à liste de choix non pilotables
-*   **Contexte fiable** : retours ligne et crochets retirés des noms et valeurs envoyés à l'IA, ordre des équipements identique d'une requête à l'autre, et seules les commandes réellement visibles dans le contexte peuvent être exécutées (une commande tronquée ne l'est plus)
-*   **Compteur et plafonds** : le badge de configuration n'affiche que les équipements réellement exposables, les ids supprimés sont retirés de la sélection ; plafonds de 1 000 commandes et 20 000 caractères ; un avertissement est écrit dans les logs lorsque le contexte est tronqué
+*   **Choix des équipements** : nouvelle fenêtre « Choisir les équipements » (recherche, regroupement par objet) pour décider précisément ce que l'IA peut voir et piloter
+*   **Adapté aux grosses installations** : le nombre de commandes et la taille du contexte sont réglables dans la configuration ; les équipements de la pièce de l'Echo sont traités en premier
+*   **Plus sûr** : alarme, serrure, portail, garage et sirène ne sont jamais pilotables par l'IA
+*   **Réponses fidèles** : si l'action échoue, la réponse le dit au lieu de confirmer « c'est fait »
+*   **Sans équipement sélectionné**, Voice Query n'agit pas et vous prévient dans le centre de messages ; la phrase est alors traitée par les interactions Jeedom classiques
 
-### Fiabilité et performance — 14/10/2026
+### Nouveautés et corrections — 15/10/2026
 
-*   **Plus de daemon zombie au démarrage** : le warning « PID actif mais HTTP non joignable » n'apparaît plus pendant les redémarrages légitimes (grace period 30 s avant signalement)
-*   **Fin des erreurs 429 horaires** sur `/homegroups/{id}/devices` : le cache des appareils SIP passe de 1 h à 7 jours, avec invalidation automatique lors d'un scan manuel
-*   **Cookie refresh atomique** : plus de double-refresh concurrent en cas de 401 simultanés (évite les cascades d'authentification ratées)
-*   **Listeners daemon ciblés** : plus de fuite mémoire de listeners à chaque redémarrage du daemon
-*   **Modal « Speak » passe en PHP direct** : le bouton « Parler » utilise désormais le round-robin 4 voies (P1/P2/com/actor) au lieu du daemon, fini les timeouts curl error(28)
-*   **Décommissionnement progressif du daemon** : les commandes `addList`, `addItem`, `modifyItem`, `deleteItem`, `getPlayerInfo`, `getMedia` passent désormais directement par PHP — gain de latence et résilience accrue
-*   **`comCookie` ne reste plus figé indéfiniment** : renouvellement automatique toutes les heures (auparavant, ça ne se déclenchait que par hasard selon l'exécution des routines)
-*   **Reconnexion automatique de la session développeur Amazon expirée** : élimine l'erreur *« Vendor ID is required. »* lors du déploiement de la skill vocale
-*   **Scènes Alexa mieux catégorisées** : les scènes tierces (TaHoma, Somfy…) ainsi que les scènes désactivées s'affichent et se rafraîchissent désormais correctement
+*   **États SmartHome en temps réel** : prises, lumières, capteurs et thermostats se mettent à jour en quelques secondes
+*   **Connexion Alexa plus stable** : les coupures sont rattrapées automatiquement
+*   **Historique vocal** : moins de phrases manquantes
+*   **Fenêtre Historique** : plus de lignes en double et jusqu'à 80 entrées affichées (au lieu de 10)
+*   **Équipements injoignables** : désactivés automatiquement après 7 jours sans réponse (réglable, 7 minimum) et réactivés dès qu'ils répondent de nouveau
+*   **Journaux** : fin des alertes répétées quand les playlists Amazon Music sont indisponibles
 
-### Push temps réel, historique vocal et SmartHome — 15/10/2026
+### Fiabilité — 14/10/2026
 
-*   **Push HTTP/2 plus fiable** : plus d'abandon après 100 échecs (nouvelle tentative toutes les 10 min), jeton renouvelé de force sur 401/403, ping applicatif AVS (`/ping`) et endpoint aligné sur la bibliothèque de référence ; une perte de push est désormais visible dans le log (`warning`)
-*   **État SmartHome en temps réel** : prises, lumières, capteurs et thermostats se mettent à jour en quelques secondes grâce au push `FDAL_UPDATE`, sans attendre le cron SmartHome
-*   **Capacités déclarées à chaque démarrage** : le daemon enregistre 35 interfaces Alexa auprès d'Amazon (14 auparavant)
-*   **Historique vocal** : une phrase dispose de 30 s et 3 essais avant d'être abandonnée (18 s et 2 essais auparavant)
-*   **Modale Historique** : plus de lignes en double, et jusqu'à 80 enregistrements affichés au lieu de 10
-*   **Désactivation automatique des équipements SmartHome** : après x jours consécutifs sans réponse (7 par défaut, 7 minimum, réglable dans la configuration) ; un équipement réactivé à la main est de nouveau surveillé
-*   **Playlists** : plus de warning toutes les heures quand les sources Amazon Music sont indisponibles
-
-### Interface et traductions — 14/10/2026
-
-*   **Account Linking fonctionne sans jQuery** : les boutons « Vérifier l'état », « Configurer » et « Supprimer » ne renvoient plus « $ is not defined » lorsque Jeedom est en mode sans jQuery (`core::jqueryless`)
-*   **Modales du skill et assistant d'interactions sans jQuery** : « Déployer le skill », « Gérer les skills », « Santé du skill » et l'assistant d'interactions fonctionnent en mode sans jQuery (`core::jqueryless`) ; une erreur HTTP est maintenant signalée au lieu de laisser le chargement tourner
-*   **Widgets du dashboard sans jQuery** : les icônes Bluetooth et muet se mettent à jour et le bouton du widget « speak » fonctionne en mode sans jQuery
-*   **Traductions complétées** : les textes de la configuration (Voice Query, panneau d'authentification, déconnexion des sessions, import P2 → P1) et de la modale de sélection des équipements sont traduits en anglais, allemand, espagnol, italien et portugais
+*   **Authentification** : renouvellement automatique plus robuste, moins de coupures et d'erreurs « 429 »
+*   **Bouton « Parler »** plus fiable (fini les erreurs de délai dépassé)
+*   **Déploiement de la skill vocale** : l'erreur « Vendor ID is required » disparaît
+*   **Démarrage** : plus de fausses alertes au redémarrage ; messages plus clairs *(merci Neurall)*
+*   **Scènes Alexa** : les scènes tierces (TaHoma, Somfy…) et les scènes désactivées s'affichent correctement
+*   **Jeedom sans jQuery** : Account Linking, gestion de la skill, assistant d'interactions et widgets fonctionnent
+*   **Traductions** complétées (anglais, allemand, espagnol, italien, portugais)
 
 ### Sécurité — 14/10/2026
 
-*   **`pluginKey` (clé API Jeedom) ne traîne plus dans les logs** : niveau abaissé de `info` à `debug`
-*   **Cookies de session (`at-main`) masqués dans les logs de debug**
-*   **Forwarder daemon bloque les IP privées** : durcissement contre SSRF
-*   **Récursion contrôlée** sur `setCookie` : protection contre cookies malformés à structure infinie
-
-### Compatibilité — 14/10/2026
-
-*   Compatibilité PHP 7.4.33 : remplacement des expressions `match()` (PHP 8.0+) et de `str_contains()` (PHP 8.0+) par des équivalents PHP 7.4
-*   Ajustements de messages de log au démarrage *(merci Neurall)*
-
-### Nettoyage — 14/10/2026
-
-*   `.gitignore` réécrit (153 → 66 règles, -57 %), réorganisé par catégorie
-*   Fichiers Sprint D Skill SmartHome retirés du repo public (parking en attendant l'évolution Amazon Lambda) — code conservé localement
-*   Code de déploiement natif « Skill SmartHome » obsolète retiré (déplacé vers un plugin dédié)
+*   Informations sensibles (clé API, cookies de session) masquées dans les journaux et protections renforcées
 
 ### 06/06/2026
 
