@@ -21,7 +21,7 @@ lang: en_US
 
 ## Version in development
 
-### Voice Query (AI)
+### Voice Query (AI) — 14/10/2026
 
 - **AI context adapted to large installations**: the maximum number of commands (350 by default) and the maximum context size (6,000 characters by default) can now be set in the plugin configuration
 - **Exposed devices**: new "Choose devices" modal (search, per-room checkboxes, counters) to select precisely what Voice Query can see and control
@@ -35,7 +35,7 @@ lang: en_US
 - **Reliable context**: line breaks and brackets removed from names and values sent to the AI, device order identical from one request to the next, and only commands actually visible in the context can be executed (a truncated command no longer can)
 - **Counter and limits**: the configuration badge only counts truly exposable devices, deleted ids are dropped from the selection; limits of 1,000 commands and 20,000 characters; a warning is logged when the context is truncated
 
-### Reliability and performance
+### Reliability and performance — 14/10/2026
 
 - **No more zombie daemon at startup**: the "PID active but HTTP unreachable" warning no longer appears during legitimate restarts (30 s grace period before reporting)
 - **End of hourly 429 errors** on `/homegroups/{id}/devices`: the SIP device cache goes from 1 h to 7 days, with automatic invalidation on a manual scan
@@ -47,7 +47,7 @@ lang: en_US
 - **Automatic reconnection of the expired Amazon developer session**: removes the *"Vendor ID is required."* error when deploying the voice skill
 - **Better categorization of Alexa scenes**: third-party scenes (TaHoma, Somfy…) and disabled scenes are now displayed and refreshed correctly
 
-### Real-time push, voice history and SmartHome
+### Real-time push, voice history and SmartHome — 15/10/2026
 
 - **More reliable HTTP/2 push**: no more giving up after 100 failures (retry every 10 min), token forcibly renewed on 401/403, AVS application-level ping (`/ping`) and endpoint aligned with the reference library; a lost push is now visible in the log (`warning`)
 - **Real-time SmartHome state**: plugs, lights, sensors and thermostats update within seconds thanks to the `FDAL_UPDATE` push, without waiting for the SmartHome cron
@@ -57,26 +57,26 @@ lang: en_US
 - **Automatic disabling of SmartHome devices**: after x consecutive days without any answer (7 by default, 7 minimum, configurable in the plugin settings); a device re-enabled by hand is monitored again
 - **Playlists**: no more hourly warning when the Amazon Music sources are unavailable
 
-### Interface and translations
+### Interface and translations — 14/10/2026
 
 - **Account Linking works without jQuery**: the "Check status", "Configure" and "Delete" buttons no longer return "$ is not defined" when Jeedom runs in jQuery-less mode (`core::jqueryless`)
 - **Skill modals and interactions wizard without jQuery**: "Deploy skill", "Manage skills", "Skill health" and the interactions wizard work in jQuery-less mode (`core::jqueryless`); an HTTP error is now reported instead of leaving the spinner running
 - **Dashboard widgets without jQuery**: the Bluetooth and mute icons update and the "speak" widget button works in jQuery-less mode
 - **Translations completed**: the configuration texts (Voice Query, authentication panel, session logout, P2 → P1 import) and the device selection modal are translated into English, German, Spanish, Italian and Portuguese
 
-### Security
+### Security — 14/10/2026
 
 - **`pluginKey` (Jeedom API key) no longer appears in logs**: level lowered from `info` to `debug`
 - **Session cookies (`at-main`) masked in debug logs**
 - **Daemon forwarder blocks private IPs**: SSRF hardening
 - **Controlled recursion** on `setCookie`: protection against malformed cookies with infinite structure
 
-### Compatibility
+### Compatibility — 14/10/2026
 
 - PHP 7.4.33 compatibility: `match()` expressions (PHP 8.0+) and `str_contains()` (PHP 8.0+) replaced with PHP 7.4 equivalents
 - Startup log message adjustments *(thanks Neurall)*
 
-### Cleanup
+### Cleanup — 14/10/2026
 
 - `.gitignore` rewritten (153 → 66 rules, -57%), organized by category
 - Sprint D SmartHome Skill files removed from the public repo (parked pending Amazon Lambda changes) — code kept locally

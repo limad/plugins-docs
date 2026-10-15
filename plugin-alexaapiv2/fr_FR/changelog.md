@@ -17,7 +17,7 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
-### Voice Query (IA)
+### Voice Query (IA) — 14/10/2026
 
 *   **Contexte IA adapté aux grosses installations** : le nombre maximum de commandes (350 par défaut) et la taille maximale du contexte (6 000 caractères par défaut) sont désormais réglables dans la configuration du plugin
 *   **Équipements exposés** : nouvelle modale « Choisir les équipements » (recherche, cases par objet, compteurs) pour sélectionner précisément ce que Voice Query peut voir et piloter
@@ -31,7 +31,7 @@ Changelog Alexa-Premium
 *   **Contexte fiable** : retours ligne et crochets retirés des noms et valeurs envoyés à l'IA, ordre des équipements identique d'une requête à l'autre, et seules les commandes réellement visibles dans le contexte peuvent être exécutées (une commande tronquée ne l'est plus)
 *   **Compteur et plafonds** : le badge de configuration n'affiche que les équipements réellement exposables, les ids supprimés sont retirés de la sélection ; plafonds de 1 000 commandes et 20 000 caractères ; un avertissement est écrit dans les logs lorsque le contexte est tronqué
 
-### Fiabilité et performance
+### Fiabilité et performance — 14/10/2026
 
 *   **Plus de daemon zombie au démarrage** : le warning « PID actif mais HTTP non joignable » n'apparaît plus pendant les redémarrages légitimes (grace period 30 s avant signalement)
 *   **Fin des erreurs 429 horaires** sur `/homegroups/{id}/devices` : le cache des appareils SIP passe de 1 h à 7 jours, avec invalidation automatique lors d'un scan manuel
@@ -43,7 +43,7 @@ Changelog Alexa-Premium
 *   **Reconnexion automatique de la session développeur Amazon expirée** : élimine l'erreur *« Vendor ID is required. »* lors du déploiement de la skill vocale
 *   **Scènes Alexa mieux catégorisées** : les scènes tierces (TaHoma, Somfy…) ainsi que les scènes désactivées s'affichent et se rafraîchissent désormais correctement
 
-### Push temps réel, historique vocal et SmartHome
+### Push temps réel, historique vocal et SmartHome — 15/10/2026
 
 *   **Push HTTP/2 plus fiable** : plus d'abandon après 100 échecs (nouvelle tentative toutes les 10 min), jeton renouvelé de force sur 401/403, ping applicatif AVS (`/ping`) et endpoint aligné sur la bibliothèque de référence ; une perte de push est désormais visible dans le log (`warning`)
 *   **État SmartHome en temps réel** : prises, lumières, capteurs et thermostats se mettent à jour en quelques secondes grâce au push `FDAL_UPDATE`, sans attendre le cron SmartHome
@@ -53,26 +53,26 @@ Changelog Alexa-Premium
 *   **Désactivation automatique des équipements SmartHome** : après x jours consécutifs sans réponse (7 par défaut, 7 minimum, réglable dans la configuration) ; un équipement réactivé à la main est de nouveau surveillé
 *   **Playlists** : plus de warning toutes les heures quand les sources Amazon Music sont indisponibles
 
-### Interface et traductions
+### Interface et traductions — 14/10/2026
 
 *   **Account Linking fonctionne sans jQuery** : les boutons « Vérifier l'état », « Configurer » et « Supprimer » ne renvoient plus « $ is not defined » lorsque Jeedom est en mode sans jQuery (`core::jqueryless`)
 *   **Modales du skill et assistant d'interactions sans jQuery** : « Déployer le skill », « Gérer les skills », « Santé du skill » et l'assistant d'interactions fonctionnent en mode sans jQuery (`core::jqueryless`) ; une erreur HTTP est maintenant signalée au lieu de laisser le chargement tourner
 *   **Widgets du dashboard sans jQuery** : les icônes Bluetooth et muet se mettent à jour et le bouton du widget « speak » fonctionne en mode sans jQuery
 *   **Traductions complétées** : les textes de la configuration (Voice Query, panneau d'authentification, déconnexion des sessions, import P2 → P1) et de la modale de sélection des équipements sont traduits en anglais, allemand, espagnol, italien et portugais
 
-### Sécurité
+### Sécurité — 14/10/2026
 
 *   **`pluginKey` (clé API Jeedom) ne traîne plus dans les logs** : niveau abaissé de `info` à `debug`
 *   **Cookies de session (`at-main`) masqués dans les logs de debug**
 *   **Forwarder daemon bloque les IP privées** : durcissement contre SSRF
 *   **Récursion contrôlée** sur `setCookie` : protection contre cookies malformés à structure infinie
 
-### Compatibilité
+### Compatibilité — 14/10/2026
 
 *   Compatibilité PHP 7.4.33 : remplacement des expressions `match()` (PHP 8.0+) et de `str_contains()` (PHP 8.0+) par des équivalents PHP 7.4
 *   Ajustements de messages de log au démarrage *(merci Neurall)*
 
-### Nettoyage
+### Nettoyage — 14/10/2026
 
 *   `.gitignore` réécrit (153 → 66 règles, -57 %), réorganisé par catégorie
 *   Fichiers Sprint D Skill SmartHome retirés du repo public (parking en attendant l'évolution Amazon Lambda) — code conservé localement
