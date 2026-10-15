@@ -47,6 +47,16 @@ lang: en_US
 - **Automatic reconnection of the expired Amazon developer session**: removes the *"Vendor ID is required."* error when deploying the voice skill
 - **Better categorization of Alexa scenes**: third-party scenes (TaHoma, Somfy…) and disabled scenes are now displayed and refreshed correctly
 
+### Real-time push, voice history and SmartHome
+
+- **More reliable HTTP/2 push**: no more giving up after 100 failures (retry every 10 min), token forcibly renewed on 401/403, AVS application-level ping (`/ping`) and endpoint aligned with the reference library; a lost push is now visible in the log (`warning`)
+- **Real-time SmartHome state**: plugs, lights, sensors and thermostats update within seconds thanks to the `FDAL_UPDATE` push, without waiting for the SmartHome cron
+- **Capabilities declared at every start**: the daemon registers 35 Alexa interfaces with Amazon (14 before)
+- **Voice history**: a phrase now gets 30 s and 3 attempts before being dropped (18 s and 2 attempts before)
+- **History modal**: no more duplicated rows, and up to 80 records displayed instead of 10
+- **Automatic disabling of SmartHome devices**: after x consecutive days without any answer (7 by default, 7 minimum, configurable in the plugin settings); a device re-enabled by hand is monitored again
+- **Playlists**: no more hourly warning when the Amazon Music sources are unavailable
+
 ### Interface and translations
 
 - **Account Linking works without jQuery**: the "Check status", "Configure" and "Delete" buttons no longer return "$ is not defined" when Jeedom runs in jQuery-less mode (`core::jqueryless`)
