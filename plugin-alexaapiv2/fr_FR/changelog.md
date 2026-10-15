@@ -43,6 +43,15 @@ Changelog Alexa-Premium
 *   **Reconnexion automatique de la session développeur Amazon expirée** : élimine l'erreur *« Vendor ID is required. »* lors du déploiement de la skill vocale
 *   **Scènes Alexa mieux catégorisées** : les scènes tierces (TaHoma, Somfy…) ainsi que les scènes désactivées s'affichent et se rafraîchissent désormais correctement
 
+### Push temps réel, historique vocal et SmartHome
+
+*   **Push HTTP/2 plus fiable** : plus d'abandon après 100 échecs (nouvelle tentative toutes les 10 min), jeton renouvelé de force sur 401/403, ping applicatif AVS (`/ping`) et endpoint aligné sur la bibliothèque de référence ; une perte de push est désormais visible dans le log (`warning`)
+*   **Capacités déclarées à chaque démarrage** : le daemon enregistre 35 interfaces Alexa auprès d'Amazon (14 auparavant)
+*   **Historique vocal** : une phrase dispose de 30 s et 3 essais avant d'être abandonnée (18 s et 2 essais auparavant)
+*   **Modale Historique** : plus de lignes en double, et jusqu'à 80 enregistrements affichés au lieu de 10
+*   **Désactivation automatique des équipements SmartHome** : après x jours consécutifs sans réponse (7 par défaut, 7 minimum, réglable dans la configuration) ; un équipement réactivé à la main est de nouveau surveillé
+*   **Playlists** : plus de warning toutes les heures quand les sources Amazon Music sont indisponibles
+
 ### Interface et traductions
 
 *   **Account Linking fonctionne sans jQuery** : les boutons « Vérifier l'état », « Configurer » et « Supprimer » ne renvoient plus « $ is not defined » lorsque Jeedom est en mode sans jQuery (`core::jqueryless`)
