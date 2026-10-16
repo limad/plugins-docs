@@ -17,6 +17,10 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 16/10/2026
+
+*   **Nouveautés et corrections** : « Dernier dialogue » et « Dernière réponse » se mettent de nouveau à jour après chaque échange avec Alexa (ils pouvaient rester figés) ; la fenêtre Historique affiche maintenant la réponse d'Alexa, et une réponse manquante est récupérée automatiquement quand Amazon l'a enregistrée
+
 ### 15/10/2026
 
 *   **Nouveautés et corrections** : états SmartHome (prises, lumières, capteurs, thermostats) mis à jour en temps réel en quelques secondes ; connexion Alexa plus stable (les coupures sont rattrapées automatiquement) ; historique vocal : moins de phrases manquantes ; fenêtre Historique sans doublons et jusqu'à 80 entrées affichées (au lieu de 10) ; fin des alertes répétées quand les playlists Amazon Music sont indisponibles
