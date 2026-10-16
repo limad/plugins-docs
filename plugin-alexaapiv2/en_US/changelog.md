@@ -21,6 +21,10 @@ lang: en_US
 
 ## Version in development
 
+### 16/10/2026
+
+- **New features and fixes**: "Last dialog" and "Last response" update again after every exchange with Alexa (they could stay frozen)
+
 ### 15/10/2026
 
 - **New features and fixes**: SmartHome states (plugs, lights, sensors, thermostats) updated in real time within seconds; more stable Alexa connection (interruptions are recovered automatically); voice history: fewer missing sentences; History window without duplicates and up to 80 entries displayed (instead of 10); no more repeated alerts when Amazon Music playlists are unavailable
