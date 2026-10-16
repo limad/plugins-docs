@@ -23,7 +23,7 @@ lang: en_US
 
 ### 16/10/2026
 
-- **New features and fixes**: "Last dialog" and "Last response" update again after every exchange with Alexa (they could stay frozen)
+- **New features and fixes**: "Last dialog" and "Last response" update again after every exchange with Alexa (they could stay frozen); the History window now shows Alexa's answer, and a missing answer is fetched automatically when Amazon has recorded it
 
 ### 15/10/2026
 

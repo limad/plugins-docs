@@ -19,7 +19,7 @@ Changelog Alexa-Premium
 
 ### 16/10/2026
 
-*   **Nouveautés et corrections** : « Dernier dialogue » et « Dernière réponse » se mettent de nouveau à jour après chaque échange avec Alexa (ils pouvaient rester figés)
+*   **Nouveautés et corrections** : « Dernier dialogue » et « Dernière réponse » se mettent de nouveau à jour après chaque échange avec Alexa (ils pouvaient rester figés) ; la fenêtre Historique affiche maintenant la réponse d'Alexa, et une réponse manquante est récupérée automatiquement quand Amazon l'a enregistrée
 
 ### 15/10/2026
 
