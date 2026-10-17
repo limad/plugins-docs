@@ -198,17 +198,41 @@ Vous  : « Oui »
 
 ### Utilisation dans un scénario Jeedom
 
-Dans votre scénario, utilisez la commande **QuestionAsk** d'AlexaSys pour poser une question et récupérer la réponse dans une variable :
+La réponse à une question posée via **Ask** arrive de façon **asynchrone** (Alexa répond à Jeedom après coup). Elle n'est jamais stockée dans une variable de scénario, mais dans les commandes info de l'**équipement Echo qui a posé la question** :
+
+- `Réponse à la question (Ask)` — la valeur lisible ("oui", "non", un nombre, du texte…)
+- `Type de réponse (Ask)` — le type détecté (`yes`, `no`, `numeric`, `string`…)
+- `Dialogue (Ask)` — événement combiné au format `question::réponse`, utilisable comme déclencheur
+
+Il ne faut donc **jamais enchaîner directement** `Poser une question (Ask)` puis tester la réponse dans la même foulée : à cet instant elle est encore vide. Deux approches fonctionnent :
+
+**Option A — un seul scénario avec un bloc Attente (Wait)**
 
 ```
-[AlexaSys][QuestionAsk] → "Confirmez-vous l'extinction de tous les volets ?"
-
-SI #variable(reponse)# = "oui"
+Action    : #[Salon][Echo salon][Poser une question (Ask)]# → "Confirmez-vous l'extinction de tous les volets ?"
+Attente   : #[Salon][Echo salon][Réponse à la question (Ask)]# != ""   (timeout 60s)
+SI #[Salon][Echo salon][Réponse à la question (Ask)]# = "oui"
 ALORS
   Fermer tous les volets
 ```
 
-> Cette approche permet de conditionner n'importe quelle action Jeedom à une **confirmation vocale**, rendant vos automatisations plus sûres et interactives.
+Le bloc **Attente** (natif Jeedom) patiente jusqu'à ce que la réponse soit non vide ou que le délai expire. Simple, mais le scénario reste bloqué pendant l'attente.
+
+**Option B — deux scénarios, déclenchés par l'événement**
+
+```
+Scénario "Question" :
+  Action : #[Salon][Echo salon][Poser une question (Ask)]# → "Confirmez-vous l'extinction de tous les volets ?"
+
+Scénario "Réponse" (déclenché par) : #[Salon][Echo salon][Dialogue (Ask)]#
+  SI #[Salon][Echo salon][Type de réponse (Ask)]# = "yes"
+  ALORS
+    Fermer tous les volets
+```
+
+Plus robuste (pas de blocage, pas de timeout à régler), au prix de deux scénarios à maintenir.
+
+> Dans les deux cas, remplacez `[Salon][Echo salon]` par le nom réel de votre équipement Echo — la commande n'existe que si l'équipement a la capability nécessaire (visible après un scan).
 
 ---
 
