@@ -19,6 +19,61 @@ lang: en_US
 
 ---
 
+## 26/10/2026
+
+**New token role model: Operator, Administrator, Super-administrator**
+
+- Tokens now have 3 roles: **Operator** (view and control the home), **Administrator** (plus: scenarios, files, system, updates) and **Super-administrator** (plus: shell on the server and restarts). See the documentation, "Tokens and roles" section.
+- The former "guest" and "read-only" roles are removed. On update, such tokens become Operator and are **disabled**: re-enable them if needed. An administrator token that had the shell becomes Super-administrator, and its list of allowed commands is kept.
+- New **Maximum allowed level** setting (State only, Control, Advanced, Full): it caps what tokens can do on the box, whatever their role. Capabilities can still be set one by one ("Custom" level).
+- A role change or a disabled token takes effect immediately, including for clients connected through OAuth, without a restart.
+- Each AI client now only sees the tools allowed for its role.
+- A request without a valid token is now refused, even when sent directly to the MCP server.
+- Redesigned token management: rights table per role, enable/disable switch on each card, All/Active/Disabled filter, up-to-date "Used … ago" for OAuth sessions.
+- Reorganised configuration page: "Global capabilities" (maximum level) and "Role capabilities" tabs; the "restart the daemon" banner no longer shows up wrongly when the page opens.
+
+**Security: each role strictly stays within its limits**
+
+- Only a Jeedom administrator can now authorize an AI client through OAuth (Claude, ChatGPT, Le Chat…). A regular Jeedom account can no longer grant administrator or super-administrator access.
+- Shell commands limited to a list (on a token or in the configuration) can no longer be abused to run another command: chaining characters (`;`, `&&`, `|`, `$(…)`…) are refused.
+- An Operator token can no longer run administrator maintenance actions (database cleanup, file permissions, cache flush…) by bypassing the intended tools.
+- Read-only mode also blocks these maintenance actions and message acknowledgement.
+- The advanced call tool (`rpc`) now honours the plugin options (camera, logs, file writing) and can no longer restart the server or create scenarios without the usual checks.
+- Scenarios containing PHP code or a box restart/shutdown action are reserved to Super-administrator tokens. Other scenarios are created as before.
+- An Operator token now only manages devices of the whitelist (enable, rename, move…), and presence simulation only switches on allowed lights. Administrators still manage all devices.
+- Browsing server folders is now reserved to administrators, like reading files.
+- Fix: the "token unused for 30 days" alert was never sent.
+- Fix: deleting a device through the AI always failed, even when confirmed; conversely, deleting an object went through even with `confirm=false`.
+- Fix: after a restart requested by the AI, the server refused every connection.
+- Fix: the "active only" filter of the scenario list, and unknown IDs in grouped updates.
+
+## 25/10/2026
+
+**Secret files protected and cleaner logs**
+
+- No AI client, not even an administrator, can read or modify the box's secret files anymore (database credentials, OAuth tokens, private keys…).
+- The server log no longer shows a "connection" for every tool call, and follows the log level set in Jeedom.
+- One audit log line always matches one action.
+- Fix: in "individual tools" mode, the instructions sent to the AI mentioned tools that do not exist in that mode.
+
+## 23/10/2026
+
+**Hardened security: direct access, file reading, logs, and a new diagnostic guide**
+
+- Log search no longer returns the passwords, tokens or cookies it comes across — they are masked before being displayed.
+- Internal connections (from the box itself) are no longer rate-limited like external ones.
+- New internal guide to produce a reliable security report, without depending on optional extensions that may not be installed.
+- Fix: the server restart tool was missing in one of the two tool modes.
+
+## 25/09/2026
+
+**MCP best practices guide and public skill**
+
+- New resource `jeedom://best_practices`: token savings (`state find` vs `full`, `format=summary|compact`, `etag` reuse, bulk read/execute, avoid `full_map` unless really needed) and scenario syntax pitfalls (`trigger_tags`, quotes, the old `#cmdId#` notation deprecated since Jeedom ≥ 4.5). Also published as a public skill for Claude Code / Codex: [github.com/limad/mcp_jeedom_skills](https://github.com/limad/mcp_jeedom_skills)
+- Daily alert when the Python dependencies drift from `requirements.txt`.
+- Python `mcp` SDK updated to 2.2.0 (MCP spec revision 2025-11-25).
+- Fix: the documented folder for third-party MCP extensions did not match the one actually scanned (`plugin_info/mcp_extension/`).
+
 ## 29/08/2026
 
 **History analysis across several commands at once**

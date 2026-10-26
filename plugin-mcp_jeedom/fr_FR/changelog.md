@@ -19,6 +19,65 @@ lang: fr_FR
 
 ---
 
+## 26/10/2026
+
+**Nouveau modèle de rôles des tokens : Opérateur, Administrateur, Super-administrateur**
+
+- Les tokens ont désormais 3 rôles : **Opérateur** (consulter et piloter la maison), **Administrateur** (en plus : scénarios, fichiers, système, mises à jour) et **Super-administrateur** (en plus : shell sur le serveur et redémarrages). Voir la documentation, section « Tokens et rôles ».
+- Les anciens rôles « invité » et « lecture seule » sont supprimés. À la mise à jour, les tokens concernés passent Opérateur et sont **désactivés** : réactivez-les si besoin. Un token administrateur qui avait le shell devient Super-administrateur, sa liste de commandes autorisées est conservée.
+- Nouveau réglage **Niveau maximum autorisé** (État seulement, Pilotage, Avancé, Complet) : il plafonne ce que les tokens peuvent faire sur la box, quel que soit leur rôle. Les capacités restent réglables une par une (niveau « Personnalisé »).
+- Un changement de rôle ou la désactivation d'un token s'applique immédiatement, y compris aux clients connectés par OAuth, sans redémarrage.
+- Chaque client IA ne voit plus que les outils autorisés pour son rôle.
+- Une requête sans token valide est désormais refusée, même en direct sur le serveur MCP.
+- Gestion des tokens repensée : tableau des droits par rôle, interrupteur activer/désactiver sur chaque carte, filtre Tous/Actifs/Désactivés, « Utilisé il y a » à jour pour les sessions OAuth.
+- Page de configuration réorganisée : onglets « Capacités globales » (niveau maximum) et « Capacités des rôles » ; la bannière « redémarrer le daemon » ne s'affiche plus à tort à l'ouverture.
+
+**Sécurité : chaque rôle reste strictement dans ses limites**
+
+- Seul un administrateur Jeedom peut désormais autoriser un client IA par OAuth (Claude, ChatGPT, Le Chat…). Un compte Jeedom simple ne peut plus accorder un accès administrateur ou superadmin.
+- Les commandes shell limitées à une liste (sur un token ou dans la configuration) ne peuvent plus être détournées pour lancer une autre commande : les caractères d'enchaînement (`;`, `&&`, `|`, `$(…)`…) sont refusés.
+- Un token « operator » ne peut plus lancer d'actions de maintenance réservées aux administrateurs (nettoyage de la base, droits des fichiers, vidage du cache…) en contournant les outils prévus.
+- Le mode lecture seule bloque aussi ces actions de maintenance et l'acquittement des messages.
+- L'outil d'appel avancé (`rpc`) respecte maintenant les options du plugin (caméra, journaux, écriture de fichiers) et ne permet plus de redémarrer le serveur ni de créer des scénarios sans les contrôles habituels.
+- Les scénarios contenant du code PHP ou une action de redémarrage/arrêt de la box sont réservés aux tokens superadmin. Les autres scénarios se créent comme avant.
+- Un token « operator » ne gère plus que les équipements de la whitelist (activer, renommer, déplacer…), et la simulation de présence n'allume que les lumières autorisées. Les administrateurs gardent la main sur tous les équipements.
+- Correction : l'alerte « token inutilisé depuis 30 jours » n'était jamais envoyée.
+- Correction : la suppression d'un équipement par l'IA échouait toujours, même confirmée ; à l'inverse, la suppression d'un objet passait même avec `confirm=false`.
+- Explorer les dossiers du serveur est maintenant réservé aux administrateurs, comme la lecture de fichiers.
+- Correction : après un redémarrage demandé par l'IA, le serveur refusait toutes les connexions.
+- Correction : le filtre « actifs seulement » de la liste des scénarios, et les identifiants inconnus dans les mises à jour groupées.
+
+## 25/10/2026
+
+**Fichiers de secrets protégés et journaux plus lisibles**
+
+- Aucun client IA, même administrateur, ne peut plus lire ni modifier les fichiers de secrets de la box (identifiants de base de données, jetons OAuth, clés privées…).
+- Le journal du serveur n'affiche plus une « connexion » à chaque appel d'outil, et suit le niveau de log réglé dans Jeedom.
+- Une ligne du journal d'audit correspond toujours à une seule action.
+- Correction : en mode « outils unitaires », les instructions envoyées à l'IA citaient des outils qui n'existent pas dans ce mode.
+
+## 23/10/2026
+
+**Sécurité renforcée : accès direct, lecture de fichiers, journaux, et nouveau guide de diagnostic**
+
+- Une connexion directe au serveur MCP (sans passer par le proxy sécurisé) n'a plus un accès large par défaut : elle est maintenant limitée à la lecture, sans exécution.
+- La lecture de fichiers reste réservée aux comptes administrateurs ; lister un dossier reste accessible à tous.
+- Les connexions internes (depuis la box elle-même) ne sont plus limitées en fréquence comme les connexions externes.
+- La recherche dans les journaux ne restitue plus les mots de passe, jetons ou cookies qu'elle croiserait — ils sont masqués avant d'être affichés.
+- Nouveau guide interne pour produire un rapport de sécurité fiable, sans dépendre d'extensions optionnelles qui ne seraient pas installées.
+- Correction : le redémarrage du serveur manquait dans l'un des deux modes de fonctionnement des outils.
+
+## 25/09/2026
+
+**Guide de bonnes pratiques MCP et publication d'un skill public**
+
+- Nouvelle resource `jeedom://best_practices` : économie de tokens (`state find` vs `full`, `format=summary|compact`, réutilisation d'`etag`, lecture/exécution en masse, éviter `full_map` sauf besoin réel) et pièges de syntaxe des scénarios (`trigger_tags`, guillemets, mise en garde sur l'ancienne notation `#cmdId#` dépréciée depuis Jeedom ≥ 4.5). Contenu servi aussi via `mcp_jeedom::getMcpBestPracticesGuide()` (consommé par `ai_assistant`) et publié comme skill public pour Claude Code / Codex : [github.com/limad/mcp_jeedom_skills](https://github.com/limad/mcp_jeedom_skills)
+- Suppression de `resources/data/ai_skills/*.md` (4 fichiers) : code mort jamais référencé, contenu obsolète (mentionnait PHP 8.1+, ignorait les trigger_tags)
+- Correction de `EXTENSION_GUIDE.md` : le chemin documenté pour les extensions MCP tierces (`resources/mcp_extension/`) ne correspondait pas au chemin réellement scanné par le code (`plugin_info/mcp_extension/`) — un développeur tiers suivant la doc à la lettre n'était jamais découvert
+- CI : plancher PHP relevé à 8.2 (Debian 12, désormais la version préconisée par Jeedom) — la matrice de lint n'inclut plus PHP 7.4
+- **Alerte cron si les dépendances Python dérivent** : `requirements.txt` peut déclarer une version qu'un `pip install` n'a jamais réellement appliquée au venv (constaté : `mcp==2.1.0` déclaré depuis le 29/08 sans jamais réinstaller, resté en 2.0.0 pendant 4 semaines sans que personne ne le remarque). La détection existait déjà (`pythonRequirementsInstalled()`) mais n'était recalculée que si un admin ouvrait la modale santé/assistant ; `cronDaily()` pousse désormais un message Jeedom quotidien si l'état est `nok`
+- **SDK Python `mcp` mis à jour 2.0.0 → 2.2.0**, déployé et testé en direct (pas seulement en venv jetable) : `initialize`, `tools/list`, `resources/read` vérifiés fonctionnels après redémarrage du daemon, aucune régression. Conséquence positive : le daemon négocie désormais la révision de spec MCP **2025-11-25** (vérifié empiriquement), ce qui répondait à un point resté en attente dans les notes d'intégration Alexa+ (`ALEXAPLUS_MCP.md`)
+
 ## 29/08/2026
 
 **Analyse d'historique sur plusieurs commandes à la fois**

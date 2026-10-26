@@ -28,7 +28,7 @@ Your favorite AI assistants — **Claude Desktop, Cursor, Continue** and any com
 - ⚡ `jeedom_api` tool for advanced composite operations (health report, virtual devices, action sequences…)
 - 🔍 Semantic search by command type (`LIGHT_ON`, `TEMPERATURE`…)
 - ⚙️ Whitelist of devices and commands exposed to the AI
-- 🔐 Bearer token for external access, **read-only mode** available
+- 🔐 Tokens with **3 roles** (Operator, Administrator, Super-administrator), OAuth, adjustable **maximum level** and **read-only mode**
 - 📸 Visual analysis of **camera snapshots** (Camera plugin)
 - 📋 Timestamped **audit log** of all AI actions
 - 🗂️ MCP contextual resources: ID map, home profile, operational guide
@@ -331,14 +331,16 @@ Example: a weather plugin exposes `ext__meteo__get_forecast` — the AI can call
 | Option | Description |
 |---|---|
 | **Transport** | Streamable HTTP (recommended) or SSE |
-| **Port** | Daemon listening port (default: 8765) |
-| **Read-only mode** | Blocks all write actions |
-| **Bearer token** | Authentication token for external access |
+| **Port** | Daemon port (default: 8765), listening on the box only |
+| **Tokens** | One token per AI client, each with a role — see [Tokens and roles](#tokens-and-roles) |
+| **Maximum allowed level** | Caps what every token can do on the box (State only, Control, Advanced, Full) |
+| **Read-only mode** | Blocks all actions, for every token |
 | **Scenarios** | Authorize the AI to create/modify scenarios |
 | **Notifications** | Authorize the AI to send notifications |
 | **Cameras** | Authorize the AI to read camera snapshots |
 | **File reading** | Authorize reading server files |
 | **File writing** | Authorize writing files (dangerous) |
+| **Local execution / Restart** | Shell on the server and Jeedom restart (Super-administrator only) |
 
 ## Home profile
 
@@ -362,31 +364,54 @@ The whitelist precisely defines what the AI can see and do:
 
 ## Recommended architecture
 
-For local (LAN) use only:
+Every connection goes through the plugin's PHP proxy with a token (or OAuth). The daemon only listens on the box (`127.0.0.1`) and refuses any request that does not come from the proxy.
+
+For local (LAN) use:
 ```
-Claude Desktop → HTTP → mcp_jeedom (port 8765, local only)
+Claude Desktop → HTTP + token → http://JEEDOM_IP/plugins/mcp_jeedom/core/php/jeemcp_proxy.php → mcp_jeedom
 ```
 
-For external access (strongly secured):
+For external access:
 ```
-Claude Desktop → HTTPS → Cloudflare Tunnel → reverse proxy → jeemcp_proxy.php → mcp_jeedom
+Claude Desktop → HTTPS + token/OAuth → (Cloudflare Tunnel / reverse proxy) → jeemcp_proxy.php → mcp_jeedom
 ```
 
 ## Cloudflare Tunnel
 
-The recommended method for external access:
+The recommended method for external access without opening a port:
 1. Create a free Cloudflare Tunnel account
-2. Configure the tunnel to point to `http://127.0.0.1:8765`
-3. Use the proxy URL with Bearer token in your AI client
+2. Point the tunnel to the Jeedom web server (e.g. `http://localhost`), not to the daemon port
+3. Use `https://YOUR_TUNNEL_HOST/plugins/mcp_jeedom/core/php/jeemcp_proxy.php` with your token in your AI client
 
-Never directly expose port 8765 on the Internet.
+Never expose port 8765 directly: the daemon refuses direct connections anyway.
 
-## Token Bearer
+## Tokens and roles
 
-The Bearer token secures access to the external endpoint:
-- Generate a strong token (at least 32 characters)
-- Configure it in the plugin
-- Set it in your AI client as an HTTP header: `Authorization: Bearer YOUR_TOKEN`
+Each AI client connects with its own **token**, created in **Token management** (plugin configuration page, "Tokens & roles" tab) and sent as an HTTP header: `Authorization: Bearer YOUR_TOKEN`. The token's **role** defines what the client can do:
+
+| Role | What the token can do |
+|---|---|
+| **Operator** | Read the home state, control the whitelisted devices and variables, run scenarios, read logs, send notifications, view cameras. |
+| **Administrator** | Plus: create and modify scenarios, read and write files, fetch Jeedom pages, system maintenance, backups, updates and plugins. |
+| **Super-administrator** | Plus: shell on the server and restarts. Keep it for a trusted client. |
+
+**Effective rights = the token's role, within the box's maximum allowed level.** An Administrator token cannot write files if file writing is disabled on the box.
+
+| Maximum allowed level | Enabled capabilities |
+|---|---|
+| **State only** | Read the state and control devices. No logs, notifications, cameras or files. |
+| **Control** | + logs, notifications, cameras (everything the Operator role uses). |
+| **Advanced** | + scenario writing, file reading and writing, Jeedom pages (Administrator role). |
+| **Full** | + shell and restart (Super-administrator role). |
+
+Good to know:
+- Each client only sees the tools allowed for its role. A role change, a disabled or a deleted token takes effect **immediately**, without restarting the daemon.
+- An Operator only manages devices of the whitelist; administrators manage all devices.
+- Scenarios containing PHP code or a box restart/shutdown are reserved to Super-administrators.
+- A Super-administrator's shell can be limited to a list of commands (`|`-separated, `*` wildcard). Command-chaining characters (`;`, `&`, `|`, `` ` ``, `$`, `<`, `>`…) are then refused.
+- **OAuth** (claude.ai, ChatGPT, Le Chat…): a **Jeedom administrator** picks, during authorization, the token whose role the client takes over. Changing or disabling that token applies right away to the OAuth client.
+- Secret files (database credentials, OAuth tokens, private keys) are never readable, whatever the role.
+- Former "guest" and "read-only" roles no longer exist: for a consultation-only access, use an Operator token with the **State only** level, and possibly the **read-only mode**.
 
 ---
 

@@ -28,7 +28,7 @@ Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout c
 - ⚡ Outil `jeedom_api` pour les opérations composites avancées (bilan de santé, équipements virtuels, séquences d'actions…)
 - 🔍 Recherche sémantique par type de commande (`LIGHT_ON`, `TEMPERATURE`…)
 - ⚙️ Whitelist des équipements et commandes exposés à l'IA
-- 🔐 Token Bearer pour l'accès externe, **mode lecture seule** disponible
+- 🔐 Tokens à **3 rôles** (Opérateur, Administrateur, Super-administrateur), OAuth, **niveau maximum** réglable et **mode lecture seule**
 - 📸 Analyse visuelle des **snapshots caméra** (plugin Camera)
 - 📋 **Journal d'audit** horodaté de toutes les actions de l'IA
 - 🗂️ Ressources contextuelles MCP : carte des IDs, profil maison, guide opérationnel
@@ -402,9 +402,9 @@ Le guide complet pour les développeurs se trouve dans `plugins/mcp_jeedom/resou
 Dès la première ouverture de la page du plugin (tant qu'elle n'a pas été terminée), un **assistant de configuration** s'ouvre automatiquement en 5 étapes :
 
 1. **Santé** — vérifie que le daemon Python est démarré (bloquant tant qu'il ne l'est pas, avec un bouton pour le lancer).
-2. **Profil d'usage** — choisissez un des 3 préréglages (Consultation lecture seule, Pilotage, Avancé avec écriture de scénarios) ; le préréglage détecté correspondant à votre configuration actuelle est présélectionné.
+2. **Profil d'usage** — choisissez un des 3 préréglages (Consultation = mode lecture seule, Pilotage, Avancé avec écriture de scénarios) ; le préréglage détecté correspondant à votre configuration actuelle est présélectionné.
 3. **Whitelist** — génère automatiquement la liste des équipements autorisés depuis votre installation Jeedom.
-4. **Premier token** — crée un jeton d'accès avec le rôle adapté au préréglage choisi.
+4. **Premier token** — crée un token avec le rôle choisi : **Opérateur** (par défaut) ou **Administrateur**. Voir [Tokens et rôles](#tokens-et-rôles).
 5. **Connexion client** — récupère l'URL à donner à votre IA et teste l'accessibilité externe si configurée.
 
 Vous pouvez ignorer une étape (`Passer cette étape`) ou rouvrir l'assistant à tout moment depuis la vignette **Assistant** de la page du plugin. Les réglages sensibles (`allow_local_exec`, `allow_write_file`, `allow_restart`) ne sont **jamais** modifiés par l'assistant, quel que soit le préréglage choisi — ils restent à activer manuellement dans la configuration avancée si besoin.
@@ -414,8 +414,8 @@ Vous pouvez ignorer une étape (`Passer cette étape`) ou rouvrir l'assistant à
 
 Prérequis côté client
 
-- Le port **8765** (ou celui configuré) doit être accessible depuis le poste client (éxecutant l'IA).
-- Pour le transport **Streamable HTTP** (défaut) : aucun outil supplémentaire requis — connexion directe.
+- Le poste client (qui exécute l'IA) doit joindre Jeedom par son adresse web habituelle. Le port du daemon (**8765** par défaut) n'écoute que sur la box elle-même : toute connexion passe par le proxy du plugin, avec un token.
+- Pour le transport **Streamable HTTP** (défaut) : aucun outil supplémentaire requis si le client sait envoyer un en-tête `Authorization`.
 - Pour le transport **SSE** (legacy) : `uvx` ou `npx` pour lancer `mcp-proxy`.
 
 ## Configuration des clients IA
@@ -436,7 +436,7 @@ Pour la configuration complète de tous les clients IA supportés (Claude Deskto
 
 ### Méthode 1 — Accès local LAN (Streamable HTTP — recommandé)
 
-Connexion directe sans outil intermédiaire. Nécessite que le poste client soit sur le même réseau que Jeedom.
+Le poste client est sur le même réseau que Jeedom. La connexion passe par le proxy du plugin avec un token (voir [Tokens et rôles](#tokens-et-rôles)) : le daemon n'accepte aucune connexion directe.
 
 ```json
 {
@@ -445,14 +445,16 @@ Connexion directe sans outil intermédiaire. Nécessite que le poste client soit
       "command": "uvx",
       "args": [
         "mcp-remote@latest",
-        "http://192.168.1.79:8765/mcp"
+        "http://192.168.1.79/plugins/mcp_jeedom/core/php/jeemcp_proxy.php",
+        "--allow-http",
+        "--header", "Authorization: Bearer VOTRE_TOKEN_ICI"
       ]
     }
   }
 }
 ```
 
-> Remplacez `192.168.1.79` par l'IP de votre serveur Jeedom et `8765` par le port configuré.
+> Remplacez `192.168.1.79` par l'IP de votre serveur Jeedom. L'URL exacte est affichée dans la page de configuration du plugin (onglet « Tokens & rôles », « Accès LAN »).
 
 ---
 
@@ -466,8 +468,9 @@ Si vous utilisez encore le transport SSE (non recommandé pour les nouveaux dép
     "jeedom_mcp": {
       "command": "uvx",
       "args": [
-        "mcp-remote@latest",
-        "http://192.168.1.79:8765/sse"
+        "mcp-proxy",
+        "--sse-url", "http://192.168.1.79/plugins/mcp_jeedom/core/php/jeemcp_proxy.php",
+        "--headers", "{\"Authorization\": \"Bearer VOTRE_TOKEN_ICI\"}"
       ]
     }
   }
@@ -481,7 +484,7 @@ Si vous utilisez encore le transport SSE (non recommandé pour les nouveaux dép
 Le proxy PHP intégré au plugin gère l'authentification par token et supporte les deux transports. C'est la méthode recommandée pour tout accès depuis l'extérieur du réseau local.
 
 **Prérequis :**
-1. Générer un token dans la page de configuration du plugin (*Token d'accès externe → Générer*).
+1. Créer un token dans **Gestion des tokens** (page de configuration du plugin) en choisissant son rôle — voir [Tokens et rôles](#tokens-et-rôles). Les clients cloud (claude.ai, ChatGPT, Le Chat…) peuvent aussi se connecter par **OAuth**.
 2. Votre Jeedom doit être accessible depuis l'extérieur via HTTPS (DNS Jeedom, reverse proxy, Cloudflare Tunnel…).
 
 **Pour Streamable HTTP :**
@@ -536,22 +539,20 @@ Une fois le tunnel configuré, utilisez la Méthode 3 avec l'URL Cloudflare Tunn
 
 ### Méthode 5 — Accès externe via reverse proxy nginx/Apache
 
-Si vous gérez déjà un serveur web sur votre réseau, vous pouvez proxifier directement le daemon MCP :
+Si vous gérez déjà un serveur web devant Jeedom, faites-le pointer vers le **proxy du plugin** (le daemon refuse toute connexion qui ne vient pas de ce proxy). Le client IA envoie toujours son token dans l'en-tête `Authorization` :
 
 ```nginx
 # Streamable HTTP
 location /jeedom-mcp {
-    proxy_pass http://127.0.0.1:8765/mcp;
+    proxy_pass http://IP_JEEDOM/plugins/mcp_jeedom/core/php/jeemcp_proxy.php;
     proxy_http_version 1.1;
     proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
     proxy_buffering off;
     proxy_cache off;
-    auth_basic "MCP Jeedom";
-    auth_basic_user_file /etc/nginx/.htpasswd;
+    proxy_read_timeout 300s;
 }
 ```
-
-Voir §7.3 pour la configuration complète.
 
 ---
 
@@ -559,31 +560,77 @@ Voir §7.3 pour la configuration complète.
 
 | Méthode | Réseau requis | Auth | Complexité | Recommandé |
 |---|---|---|---|---|
-| 1 — LAN Streamable HTTP direct | Local uniquement | Aucune | ⭐ | ✅ Usage quotidien local |
-| 2 — LAN SSE direct | Local uniquement | Aucune | ⭐ | Legacy uniquement |
-| 3 — Proxy PHP + token | Internet | Bearer token | ⭐⭐ | ✅ Accès externe simple |
-| 4 — Cloudflare Tunnel | Internet | Bearer token | ⭐⭐ | ✅ Sans ouverture de port |
-| 5 — Reverse proxy nginx | Internet | Basic Auth | ⭐⭐⭐ | Infra existante |
+| 1 — LAN Streamable HTTP (proxy) | Local uniquement | Token Bearer | ⭐ | ✅ Usage quotidien local |
+| 2 — LAN SSE (proxy) | Local uniquement | Token Bearer | ⭐ | Legacy uniquement |
+| 3 — Proxy PHP + token | Internet | Token Bearer ou OAuth | ⭐⭐ | ✅ Accès externe simple |
+| 4 — Cloudflare Tunnel | Internet | Token Bearer ou OAuth | ⭐⭐ | ✅ Sans ouverture de port |
+| 5 — Reverse proxy nginx | Internet | Token Bearer ou OAuth | ⭐⭐⭐ | Infra existante |
 
-## Options de sécurité et permissions
+## Tokens et rôles
 
-Dans la page de configuration du plugin :
+Chaque client IA se connecte avec son propre **token**, créé dans **Gestion des tokens** (page de configuration du plugin, onglet « Tokens & rôles »). Le token porte un **rôle** qui définit ce que le client peut faire.
 
-**Accès fichiers**
-- **Lecture des logs** — activée par défaut, recommandée pour le diagnostic.
-- **Lecture de fichiers** — accès limité à `/plugins`, `/core`, `/var/log`.
-- **Écriture de fichiers** — accès limité à `/plugins` et `/tmp/mcp_jeedom`. À n'activer que si nécessaire.
-- **Redémarrage Jeedom** — risque élevé, désactivé par défaut.
+| Rôle | Ce que le token peut faire |
+|---|---|
+| **Opérateur** | Lire l'état de la maison, piloter les équipements et variables de la whitelist, lancer des scénarios, consulter les journaux, envoyer des notifications, voir les caméras. |
+| **Administrateur** | En plus : créer et modifier des scénarios, lire et écrire des fichiers, récupérer des pages Jeedom, maintenance du système, sauvegardes, mises à jour et plugins. |
+| **Super-administrateur** | En plus : shell sur le serveur et redémarrages. À réserver à un client de confiance. |
 
-**Caméras** — active `list_cameras` et `get_camera_snapshot`. Nécessite le plugin Camera.
+**Droits effectifs = rôle du token, dans la limite du niveau maximum de la box.** Un token Administrateur ne peut pas écrire de fichiers si l'écriture de fichiers est désactivée sur la box.
 
-**Notifications sortantes** — active `list_notification_commands` et `send_notification`.
+### Détail des capacités
 
-**Mode lecture seule** — désactive toutes les actions (`execute_action`, `bulk_execute`, `set_variable`, `send_notification`…) sans toucher aux permissions de lecture. Utile pour un accès consultation uniquement.
+| Capacité | Opérateur | Administrateur | Super-admin | Case de la box qui la plafonne |
+|---|:-:|:-:|:-:|---|
+| Lire l'état, rechercher, historiques, analyses, infos système | ✅ | ✅ | ✅ | — |
+| Piloter les commandes de la whitelist, variables, modes, présence | ✅ | ✅ | ✅ | — |
+| Lancer, arrêter, activer des scénarios ; lire leur code | ✅ | ✅ | ✅ | — |
+| Vues et designs (créer, modifier) | ✅ | ✅ | ✅ | — |
+| Gérer les équipements (activer, renommer, déplacer) | Whitelist seulement | ✅ | ✅ | — |
+| Journaux Jeedom | ✅ | ✅ | ✅ | Lecture des logs |
+| Notifications | ✅ | ✅ | ✅ | Activer l'envoi de notifications |
+| Caméras | ✅ | ✅ | ✅ | Activer les snapshots caméra |
+| Créer et modifier des scénarios | ❌ | ✅ | ✅ | Activer l'écriture de scénarios |
+| Lire et lister des fichiers | ❌ | ✅ | ✅ | Lecture de fichiers |
+| Écrire des fichiers | ❌ | ✅ | ✅ | Écriture de fichiers |
+| Récupérer des pages Jeedom | ❌ | ✅ | ✅ | Activer la récupération de pages HTML |
+| Maintenance, sauvegardes, mises à jour, plugins, interactions, appels avancés (`rpc`) | ❌ | ✅ | ✅ | — |
+| Shell sur le serveur | ❌ | ❌ | ✅ | Exécution locale |
+| Redémarrer Jeedom | ❌ | ❌ | ✅ | Redémarrage Jeedom |
+| Scénarios contenant du code PHP ou un redémarrage/arrêt de la box | ❌ | ❌ | ✅ | Activer l'écriture de scénarios |
 
-**Audit des actions** — journal horodaté de chaque appel d'outil par l'IA (nom, arguments, résultat). Consultable et effaçable depuis la page de configuration.
+Chaque client ne voit que les outils autorisés pour son rôle. Un changement de rôle, une désactivation ou une suppression de token s'applique **immédiatement**, sans redémarrer le daemon.
 
-> ℹ️ Après toute modification des options, **sauvegarder et redémarrez le daemon** pour appliquer les changements.
+### Niveau maximum autorisé
+
+Dans l'onglet **Capacités globales**, le **Niveau maximum autorisé** plafonne toute la box, quel que soit le rôle des tokens :
+
+| Niveau | Capacités activées |
+|---|---|
+| **État seulement** | Lecture de l'état et pilotage des équipements. Ni journaux, ni notifications, ni caméras, ni fichiers. |
+| **Pilotage** | + journaux, notifications, caméras (de quoi utiliser pleinement le rôle Opérateur). |
+| **Avancé** | + écriture de scénarios, lecture et écriture de fichiers, pages Jeedom (rôle Administrateur). |
+| **Complet** | + shell et redémarrage (rôle Super-administrateur). |
+
+Les capacités restent réglables une par une (onglets « Capacités globales » et « Capacités des rôles ») ; le niveau affiche alors « Personnalisé ».
+
+> ℹ️ Après une modification des capacités, **sauvegardez et redémarrez le daemon**. Les changements de rôle des tokens, eux, sont immédiats.
+
+### Shell (Super-administrateur)
+
+Le shell est réservé au rôle Super-administrateur et à la case **Exécution locale**. Pour un token donné, vous pouvez limiter le shell à une liste de commandes (option avancée du token, séparées par `|`, `*` comme joker : `systemctl status *|df -h`). Dans ce cas, les caractères qui enchaînent une autre commande (`;`, `&`, `|`, `` ` ``, `$`, `<`, `>`, parenthèses, accolades, retour à la ligne) sont refusés. Une liste noire permanente bloque en plus les commandes destructrices (formatage, `rm -rf`, reverse shell…).
+
+### OAuth
+
+Les clients cloud (claude.ai, ChatGPT, Le Chat…) peuvent se connecter par OAuth (à activer dans la configuration). Lors de l'autorisation, un **administrateur Jeedom** choisit le token dont le client reprendra le rôle. Le rôle est relu à chaque requête : changer le rôle de ce token ou le désactiver agit aussitôt sur le client OAuth.
+
+### Autres réglages
+
+**Mode lecture seule** (« Désactiver toutes les actions ») — bloque toutes les actions pour tous les tokens (pilotage, variables, notifications, écritures, maintenance…) ; la consultation reste complète.
+
+**Fichiers** — la lecture est limitée à `/var/www/html/plugins`, `/var/www/html/core` et `/var/log`, l'écriture à `/var/www/html/plugins` et aux dossiers temporaires du plugin. Les fichiers de secrets (identifiants de base de données, jetons OAuth, clés privées) ne sont jamais accessibles, quel que soit le rôle.
+
+**Audit des actions** — journal horodaté de chaque appel d'outil par l'IA (token, nom, arguments, résultat). Consultable et effaçable depuis l'onglet « Sécurité / Audit ».
 
 ## Profil maison
 
@@ -780,7 +827,7 @@ Claude va :
 
 **Situation :** vous voulez qu'une autre personne puisse consulter l'état de la maison sans risque d'action accidentelle.
 
-Activez le **mode lecture seule** dans la configuration — toutes les actions sont bloquées, la consultation reste complète.
+Créez-lui un token **Opérateur** avec une whitelist limitée aux équipements utiles, et choisissez le niveau maximum **État seulement**. Pour une consultation stricte, activez en plus le **mode lecture seule** : toutes les actions sont alors bloquées, pour tous les tokens de la box.
 
 ---
 
@@ -790,45 +837,43 @@ Activez le **mode lecture seule** dans la configuration — toutes les actions s
 
 Le serveur MCP s'exécute en local sur votre serveur Jeedom avec les droits de l'utilisateur `www-data`. Les mesures de sécurité en place :
 
-- **API Key Jeedom** — toutes les requêtes sont authentifiées avec la clé API core.
-- **Token Bearer externe** — tout accès via `jeemcp_proxy.php` exige un token généré explicitement.
-- **Accès réseau local** — le daemon écoute sur `0.0.0.0` mais est conçu pour un réseau local. Ne pas exposer directement sur Internet sans proxy authentifié.
-- **Sandboxing fichiers** — `read_file` et `write_file` sont limités à des répertoires whitelistés. Path traversal impossible (`Path.resolve()` vérifié).
-- **Permissions granulaires** — chaque capacité sensible est désactivée par défaut et doit être explicitement activée.
-- **Double vérification** — la permission est vérifiée à deux niveaux : liste des outils exposés ET dispatch.
-- **Mode lecture seule** — désactive toutes les actions en une option, sans modifier les permissions individuelles.
-- **Audit log** — traçabilité complète de chaque action IA avec arguments et résultat. Arguments sensibles masqués automatiquement.
-- **Garde-fous exécution locale** — blocklist permanente de commandes dangereuses (rm -rf, mkfs, fork bomb, reverse shell…) + options configurables.
+- **Token obligatoire** — toute connexion passe par le proxy `jeemcp_proxy.php` avec un token (ou une session OAuth). Le daemon n'écoute que sur `127.0.0.1` et refuse toute requête qui ne vient pas du proxy.
+- **Rôles et niveau maximum** — le rôle du token (Opérateur, Administrateur, Super-administrateur) décide de ce que le client peut faire, dans la limite du niveau maximum de la box. Voir [Tokens et rôles](#tokens-et-rôles).
+- **Whitelist** — l'IA ne voit et ne pilote que les équipements et commandes autorisés.
+- **Capacités sensibles désactivées par défaut** — fichiers, shell, redémarrage, écriture de scénarios doivent être activés explicitement.
+- **Fichiers** — accès limité à des dossiers autorisés ; les fichiers de secrets sont toujours refusés.
+- **Double vérification** — un client ne voit que les outils de son rôle, et le droit est revérifié à chaque appel.
+- **Mode lecture seule** — désactive toutes les actions en une option, sans modifier les autres réglages.
+- **Audit log** — traçabilité de chaque action IA (token, arguments, résultat). Arguments sensibles masqués automatiquement.
+- **Garde-fous du shell** — liste noire permanente de commandes dangereuses (rm -rf, mkfs, fork bomb, reverse shell…) et liste de commandes autorisées par token.
 
 ## Recommandations
 
 > ⚠️ **Bonnes pratiques**
-> - N'activez jamais l'écriture de fichiers sauf besoin explicite et temporaire.
-> - `restart_jeedom` et `execute_local` doivent rester désactivés en usage quotidien.
-> - Pour un accès tiers en consultation : activez le **mode lecture seule**.
+> - Un token par client IA, avec le rôle le plus bas suffisant : **Opérateur** pour l'usage quotidien.
+> - Réservez **Super-administrateur** à un client de confiance, et limitez si possible son shell à une liste de commandes.
+> - Gardez le niveau maximum sur **Pilotage** sauf besoin ; n'activez l'écriture de fichiers que temporairement.
+> - Pour un accès tiers en consultation : token Opérateur + niveau **État seulement**, voire **mode lecture seule**.
 > - Consultez régulièrement l'**audit log** pour détecter des usages anormaux.
-> - Pour un accès externe, utilisez le proxy PHP + token plutôt qu'une exposition directe du port daemon.
 > - Utilisez HTTPS pour tout accès externe (Cloudflare Tunnel, reverse proxy, DNS avec TLS).
-> - Révoquez et régénérez le token externe si vous suspectez une compromission.
+> - En cas de doute, désactivez ou régénérez le token concerné : l'effet est immédiat.
 
 ## Accès externe sécurisé (nginx)
 
-Pour proxifier directement le daemon depuis l'extérieur via nginx :
+Pour exposer le serveur MCP via nginx, pointez vers le proxy du plugin (jamais vers le port du daemon, qui refuse les connexions directes). L'authentification reste celle du token :
 
 ```nginx
 # /etc/nginx/sites-available/jeedom-mcp
 # Streamable HTTP
 location /jeedom-mcp/mcp {
-    proxy_pass http://127.0.0.1:8765/mcp;
+    proxy_pass http://IP_JEEDOM/plugins/mcp_jeedom/core/php/jeemcp_proxy.php;
     proxy_http_version 1.1;
     proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-For $remote_addr;
     proxy_buffering off;
     proxy_cache off;
     proxy_read_timeout 300s;
-
-    auth_basic "MCP Jeedom";
-    auth_basic_user_file /etc/nginx/.htpasswd;
 }
 ```
 

@@ -13,19 +13,21 @@ Ce guide explique comment connecter les principaux clients IA au serveur **mcp_j
 
 ## Architecture de connexion
 
-Deux modes de connexion sont disponibles selon la situation réseau du client IA.
+Toute connexion passe par le proxy PHP du plugin, avec un **token** (ou OAuth pour les clients cloud). Le daemon n'écoute que sur la box et refuse les connexions directes. Le rôle du token (Opérateur, Administrateur, Super-administrateur) fixe ce que le client peut faire : voir [Tokens et rôles](index.md#tokens-et-rôles).
+
+> ⚠️ Les exemples « Accès local LAN » ci-dessous qui pointent vers `http://IP_JEEDOM:PORT/mcp` sont **obsolètes** : utilisez la configuration « Accès externe » du même client, avec l'URL LAN du proxy à la place de l'URL externe. Le plus simple : le bouton **Configurer un client IA** de la page du plugin génère la configuration exacte, token compris.
 
 ### Accès local (réseau LAN)
 
-Connexion directe sans authentification. Le client IA contacte le daemon sur son port (défaut : 8765).
+Le client IA contacte le proxy par l'IP locale de Jeedom, avec le token dans l'en-tête `Authorization`.
 
 ```
-Client IA (poste local)  →  http://IP_JEEDOM:8765/mcp  →  Daemon mcp_jeedom  →  API Jeedom
+Client IA (poste local)  →  http://IP_JEEDOM/plugins/mcp_jeedom/core/php/jeemcp_proxy.php  →  Daemon mcp_jeedom  →  API Jeedom
 ```
 
 ### Accès externe (Internet)
 
-Connexion via le proxy PHP intégré avec authentification Bearer. Nécessite un token généré dans la page de configuration.
+Même proxy, par l'URL publique de Jeedom en HTTPS, avec un token ou OAuth.
 
 ```
 Client IA (n'importe où)  →  HTTPS  →  jeemcp_proxy.php  →  Daemon mcp_jeedom  →  API Jeedom
@@ -69,8 +71,7 @@ Dans tous les exemples ci-dessous :
 | Placeholder | Valeur réelle |
 |---|---|
 | `IP_JEEDOM` | IP locale de votre serveur Jeedom (ex : `192.168.1.79`) |
-| `PORT` | Port du daemon (défaut : `8765`) |
-| `VOTRE_TOKEN` | Token généré dans *Plugins → mcp_jeedom → Token d'accès externe* |
+| `VOTRE_TOKEN` | Token créé dans *Plugins → mcp_jeedom → Gestion des tokens* (choisissez son rôle) |
 | `VOTRE_URL_EXTERNE` | URL publique de votre Jeedom (ex : `https://jeedom.exemple.fr`) |
 
 ---
