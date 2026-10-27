@@ -46,6 +46,7 @@ lang: fr_FR
 - Explorer les dossiers du serveur est maintenant réservé aux administrateurs, comme la lecture de fichiers.
 - Correction : après un redémarrage demandé par l'IA, le serveur refusait toutes les connexions.
 - Correction : le filtre « actifs seulement » de la liste des scénarios, et les identifiants inconnus dans les mises à jour groupées.
+- Journaux allégés : en niveau « info », le serveur n'écrit plus qu'une ligne au démarrage et les événements utiles (shell exécuté, sessions OAuth ouvertes, actions d'administration, erreurs). Le détail des appels d'outils, des requêtes HTTP vers Jeedom et du démarrage passe en « debug ».
 
 ## 25/10/2026
 

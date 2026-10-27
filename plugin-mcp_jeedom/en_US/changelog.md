@@ -46,6 +46,7 @@ lang: en_US
 - Fix: deleting a device through the AI always failed, even when confirmed; conversely, deleting an object went through even with `confirm=false`.
 - Fix: after a restart requested by the AI, the server refused every connection.
 - Fix: the "active only" filter of the scenario list, and unknown IDs in grouped updates.
+- Lighter logs: at "info" level, the server now only writes one line at startup plus the useful events (shell commands run, OAuth sessions opened, administration actions, errors). Details of tool calls, HTTP requests to Jeedom and startup move to "debug".
 
 ## 25/10/2026
 
