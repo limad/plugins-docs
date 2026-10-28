@@ -23,7 +23,7 @@ Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout c
 
 ## Fonctionnalités
 
-- 🤖 Transport **Streamable HTTP** (standard MCP 2025) et SSE legacy
+- 🤖 Transport **Streamable HTTP** (standard MCP 2025)
 - 🏠 Plus de **40 outils** couvrant l'ensemble de l'API Jeedom
 - ⚡ Outil `jeedom_api` pour les opérations composites avancées (bilan de santé, équipements virtuels, séquences d'actions…)
 - 🔍 Recherche sémantique par type de commande (`LIGHT_ON`, `TEMPERATURE`…)
@@ -96,7 +96,7 @@ MCP repose sur trois composants :
 
 - **Client MCP** — l'application hébergeant le LLM (ex : Claude Desktop). Il initie la connexion et envoie les requêtes d'outils.
 - **Serveur MCP** — un processus exposant des capacités via le protocole (outils, ressources, prompts). C'est le rôle de `mcp_jeedom`.
-- **Transport** — le canal de communication. Deux modes : **Streamable HTTP** (recommandé, standard 2025) et **SSE** (legacy) pour le réseau, **STDIO** pour un pipe local.
+- **Transport** — le canal de communication : **Streamable HTTP** (standard MCP 2025). Les transports SSE (legacy) et STDIO ont été retirés : une configuration qui les utilisait passe automatiquement en Streamable HTTP à la mise à jour.
 
 > ℹ️ **Important**  
 > Le LLM ne s'exécute jamais sur votre serveur Jeedom — il tourne chez Anthropic (ou en local).  
@@ -416,7 +416,6 @@ Prérequis côté client
 
 - Le poste client (qui exécute l'IA) doit joindre Jeedom par son adresse web habituelle. Le port du daemon (**8765** par défaut) n'écoute que sur la box elle-même : toute connexion passe par le proxy du plugin, avec un token.
 - Pour le transport **Streamable HTTP** (défaut) : aucun outil supplémentaire requis si le client sait envoyer un en-tête `Authorization`.
-- Pour le transport **SSE** (legacy) : `uvx` ou `npx` pour lancer `mcp-proxy`.
 
 ## Configuration des clients IA
 
@@ -458,30 +457,15 @@ Le poste client est sur le même réseau que Jeedom. La connexion passe par le p
 
 ---
 
-### Méthode 2 — Accès local LAN (SSE legacy)
+### Méthode 2 — SSE legacy *(retirée)*
 
-Si vous utilisez encore le transport SSE (non recommandé pour les nouveaux déploiements) :
-
-```json
-{
-  "mcpServers": {
-    "jeedom_mcp": {
-      "command": "uvx",
-      "args": [
-        "mcp-proxy",
-        "--sse-url", "http://192.168.1.79/plugins/mcp_jeedom/core/php/jeemcp_proxy.php",
-        "--headers", "{\"Authorization\": \"Bearer VOTRE_TOKEN_ICI\"}"
-      ]
-    }
-  }
-}
-```
+Le transport SSE legacy n'est plus proposé. Si votre client utilisait `mcp-proxy --sse-url …jeemcp_proxy.php`, remplacez cette configuration par celle de la méthode 1 (ou de la méthode 3 depuis l'extérieur). Les clients qui ne savent pas parler Streamable HTTP peuvent passer par un pont : `mcp-proxy --transport streamablehttp` ou `mcp-remote` (configurations prêtes dans la fenêtre **Clients** du plugin).
 
 ---
 
 ### Méthode 3 — Accès externe via `jeemcp_proxy.php` + token Bearer
 
-Le proxy PHP intégré au plugin gère l'authentification par token et supporte les deux transports. C'est la méthode recommandée pour tout accès depuis l'extérieur du réseau local.
+Le proxy PHP intégré au plugin gère l'authentification par token. C'est la méthode recommandée pour tout accès depuis l'extérieur du réseau local.
 
 **Prérequis :**
 1. Créer un token dans **Gestion des tokens** (page de configuration du plugin) en choisissant son rôle — voir [Tokens et rôles](#tokens-et-rôles). Les clients cloud (claude.ai, ChatGPT, Le Chat…) peuvent aussi se connecter par **OAuth**.
@@ -498,23 +482,6 @@ Le proxy PHP intégré au plugin gère l'authentification par token et supporte 
         "mcp-remote@latest",
         "https://votre-jeedom.exemple.fr/plugins/mcp_jeedom/core/php/jeemcp_proxy.php",
         "--header", "Authorization: Bearer VOTRE_TOKEN_ICI"
-      ]
-    }
-  }
-}
-```
-
-**Pour SSE legacy (si votre client ne supporte pas encore Streamable HTTP) :**
-
-```json
-{
-  "mcpServers": {
-    "jeedom_mcp": {
-      "command": "uvx",
-      "args": [
-        "mcp-proxy",
-        "--sse-url", "https://votre-jeedom.exemple.fr/plugins/mcp_jeedom/core/php/jeemcp_proxy.php",
-        "--headers", "{\"Authorization\": \"Bearer VOTRE_TOKEN_ICI\"}"
       ]
     }
   }
@@ -561,7 +528,6 @@ location /jeedom-mcp {
 | Méthode | Réseau requis | Auth | Complexité | Recommandé |
 |---|---|---|---|---|
 | 1 — LAN Streamable HTTP (proxy) | Local uniquement | Token Bearer | ⭐ | ✅ Usage quotidien local |
-| 2 — LAN SSE (proxy) | Local uniquement | Token Bearer | ⭐ | Legacy uniquement |
 | 3 — Proxy PHP + token | Internet | Token Bearer ou OAuth | ⭐⭐ | ✅ Accès externe simple |
 | 4 — Cloudflare Tunnel | Internet | Token Bearer ou OAuth | ⭐⭐ | ✅ Sans ouverture de port |
 | 5 — Reverse proxy nginx | Internet | Token Bearer ou OAuth | ⭐⭐⭐ | Infra existante |

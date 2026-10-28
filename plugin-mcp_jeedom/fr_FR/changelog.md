@@ -19,6 +19,70 @@ lang: fr_FR
 
 ---
 
+## 28/10/2026
+
+**Sécurité : transports SSE (legacy) et STDIO retirés**
+
+- **Corrigé (grave), installations réglées en transport SSE uniquement** : les rôles des tokens n'y étaient pas appliqués, et tout token agissait comme un Super-administrateur. Le transport Streamable HTTP, réglage par défaut, n'était pas concerné.
+- **Les transports SSE (legacy) et STDIO sont retirés.** Seul Streamable HTTP reste. À la mise à jour, une configuration en SSE ou en STDIO passe automatiquement en Streamable HTTP et un message vous prévient. Le démon est relancé par Jeedom si sa gestion automatique est activée ; sinon, il reste arrêté comme vous l'avez choisi.
+- **Mise à jour du plugin** : c'est Jeedom qui relance le démon, selon votre réglage de gestion automatique. Le plugin ne force plus de redémarrage (ce qu'annonçait l'entrée du 23/10).
+- **Clients configurés avec `mcp-proxy --sse-url …`** : remplacez leur configuration par celle de la fenêtre **Clients** du plugin (Streamable HTTP, ou pont `mcp-proxy --transport streamablehttp` / `mcp-remote`).
+- Défense en profondeur : une requête dont le rôle n'est pas connu n'a plus aucun droit (aucun outil listé, tout appel refusé).
+- Un refus lié à la liste blanche (équipement ou commande non autorisé) est maintenant signalé comme une erreur au client IA. `execute_action_by_name` ne révèle plus l'existence d'un équipement hors liste blanche.
+
+**Auto-diagnostic et corrections trouvées par les nouveaux tests**
+
+- **Nouveau : auto-diagnostic** (bouton « Auto-diagnostic » de la fenêtre Santé, et action `system` → `selftest` pour un token Administrateur). Il vérifie la version du SDK MCP, la cohérence des rôles, les droits, les schémas des outils, les extensions des plugins tiers, le daemon et les dossiers de sauvegarde et de journaux.
+- **Corrigé : liste des sauvegardes vide** (`system` → `backup_list`) quand le dossier des sauvegardes est relatif (cas par défaut). La restauration par nom de fichier était refusée pour la même raison.
+- **Corrigé : journal d'exécution d'un scénario toujours vide.**
+- **Corrigé : la simulation de présence n'éteignait pas les lumières** à l'arrêt.
+- **Corrigé : taille du journal d'audit toujours à 0** dans la fenêtre Santé.
+- **Sécurité, extensions de plugins tiers** : un outil qui déclare `readOnlyHint` autrement que par le booléen `true` (par exemple la chaîne `"false"`) est traité comme une écriture, donc réservé à l'Administrateur. Les outils mal déclarés sont écartés ou corrigés, avec un avertissement dans le journal.
+- Les erreurs internes qui passaient inaperçues sont maintenant journalisées.
+
+**Rôles recentrés : l'Opérateur pilote, l'Administrateur configure**
+
+- **Opérateur** : consulte et pilote la maison (équipements autorisés, scénarios lancer/arrêter, modes, présence, notifications, variables). Il ne modifie plus la configuration de Jeedom.
+- Passent **Administrateur** : pièces et équipements (créer, renommer, déplacer, désactiver, supprimer), crons, activer/désactiver un scénario, supprimer une variable, acquitter les messages, vues et designs, planning des modes.
+- Passent **Super-administrateur** (équivalents au shell) : écriture de fichiers et nettoyage des journaux, restauration d'une sauvegarde, appels API bruts (`rpc`) en écriture.
+- Les variables internes du plugin (`home_mode`, `mcp_…`) ne sont modifiables que par un Administrateur ; l'Opérateur change de mode par `home` → `mode`.
+- **Vérifiez vos tokens Opérateur** : s'ils servaient à ces actions de configuration, passez-les Administrateur.
+
+**Retour du rôle « Lecture seule »**
+
+- Nouveau rôle de token **Lecture seule** : le client consulte la maison (états, historiques, journaux et caméras si autorisés) mais ne peut rien piloter ni modifier. Idéal pour un assistant vocal économique à côté d'un assistant Opérateur.
+- La restriction est appliquée par le plugin, pas par l'IA, et vaut aussi pour les clients connectés par OAuth (rôle relu à chaque requête).
+- Un ancien token « lecture seule » désactivé par la mise à jour du 26/10 peut maintenant repasser en Lecture seule depuis son menu, **avant** d'être réactivé (le changement de rôle est possible sur un token désactivé).
+
+**Chaque client ne voit que ce qu'il peut faire**
+
+- La liste des outils envoyée à l'IA ne contient plus les actions refusées à son rôle (ni en mode lecture seule) : actions, description et paramètres sont réduits. Moins de tokens consommés, plus de tentatives inutiles. Reconnectez le client après un changement de rôle pour actualiser sa liste.
+
+**Sécurité**
+
+- `interactions` → `test` exécute réellement l'interaction : réservé à l'Administrateur et bloqué en lecture seule.
+- `notify` → `send` n'accepte plus que les commandes de notification des équipements autorisés (whitelist).
+- `camera` → `send`, `execute_action_by_name`, `devices` → `refresh` et les outils d'extension en écriture sont bloqués en lecture seule, côté daemon et côté PHP.
+
+**Outils d'extension (autres plugins, ex. Alexa)**
+
+- Ils n'étaient plus chargés : c'est corrigé.
+- Les outils qui ne font que lire (ex. lister les appareils Alexa) sont ouverts à tous les rôles. Ceux qui agissent (faire parler, annoncer, commande vocale, routine…) sont **réservés à l'Administrateur** : ils échappent à la liste des équipements autorisés.
+
+**Intégration AI Assistant : autorisation explicite**
+
+- Nouvelle section « Intégration AI Assistant » (onglet Personnalisation IA) : case **Autoriser le plugin MCP à utiliser AI Assistant**, **désactivée par défaut**, et choix de l'**équipement AI Assistant** (par défaut : le provider par défaut d'AI Assistant).
+- Tant qu'elle n'est pas cochée, rien n'est envoyé à AI Assistant : description des caméras, génération du profil maison, des libellés, alias, types génériques et du planning des modes. **Après la mise à jour, cochez-la si vous utilisiez ces générations.**
+
+**Description texte des caméras (mode vocal de Claude)**
+
+- En mode vocal, l'app Claude ne montre pas au modèle les images renvoyées par un outil : Claude reçoit la capture mais n'en voit pas le contenu. Nouvelle action `camera` → `describe` (outil `describe_camera` en mode legacy) : l'image est décrite côté Jeedom et Claude reçoit un texte qu'il peut lire à voix haute.
+- Fonctionne pour toutes les caméras déjà prises en charge, Netatmo compris.
+- Nécessite le plugin **AI Assistant** et un équipement qui lit les images. Chaque description est facturée par ce provider.
+- Réglage « Description texte des caméras », activé par défaut, sous l'option Caméras de la configuration.
+- Le mode texte ne change pas : `snapshot` renvoie toujours l'image.
+- Les générations via AI Assistant (profil maison, libellés, alias, types génériques, planning des modes) ne gardent plus d'historique entre deux appels et ne peuvent plus déclencher de commande Jeedom.
+
 ## 26/10/2026
 
 **Nouveau modèle de rôles des tokens : Opérateur, Administrateur, Super-administrateur**

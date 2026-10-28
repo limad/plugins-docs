@@ -23,7 +23,7 @@ Your favorite AI assistants — **Claude Desktop, Cursor, Continue** and any com
 
 ## Features
 
-- 🤖 **Streamable HTTP** transport (MCP standard 2025) and legacy SSE
+- 🤖 **Streamable HTTP** transport (MCP standard 2025)
 - 🏠 Over **40 tools** covering the entire Jeedom API
 - ⚡ `jeedom_api` tool for advanced composite operations (health report, virtual devices, action sequences…)
 - 🔍 Semantic search by command type (`LIGHT_ON`, `TEMPERATURE`…)
@@ -94,7 +94,7 @@ MCP relies on three components:
 
 - **MCP Client** — the application hosting the LLM (e.g. Claude Desktop). It initiates the connection and sends tool requests.
 - **MCP Server** — a process exposing capabilities via the protocol (tools, resources, prompts). This is the role of `mcp_jeedom`.
-- **Transport** — the communication channel. Two modes: **Streamable HTTP** (recommended, 2025 standard) and **SSE** (legacy) for network, **STDIO** for a local pipe.
+- **Transport** — the communication channel: **Streamable HTTP** (MCP 2025 standard). The SSE (legacy) and STDIO transports have been removed: a configuration that used them switches to Streamable HTTP automatically on update.
 
 > ℹ️ **Important**
 > The LLM never runs on your Jeedom server — it runs at Anthropic (or locally).
@@ -330,7 +330,7 @@ Example: a weather plugin exposes `ext__meteo__get_forecast` — the AI can call
 
 | Option | Description |
 |---|---|
-| **Transport** | Streamable HTTP (recommended) or SSE |
+| **Transport** | Streamable HTTP |
 | **Port** | Daemon port (default: 8765), listening on the box only |
 | **Tokens** | One token per AI client, each with a role — see [Tokens and roles](#tokens-and-roles) |
 | **Maximum allowed level** | Caps what every token can do on the box (State only, Control, Advanced, Full) |
@@ -419,7 +419,7 @@ Good to know:
 
 | Client | Transport | Notes |
 |---|---|---|
-| **Claude Desktop** | Streamable HTTP or SSE | Configuration in `claude_desktop_config.json` |
+| **Claude Desktop** | Streamable HTTP | Configuration in `claude_desktop_config.json` |
 | **Cursor** | Streamable HTTP | MCP Tools section |
 | **Continue** | Streamable HTTP | `.continue/config.json` |
 | **Cline** | Streamable HTTP | VS Code extension |

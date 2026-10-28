@@ -19,6 +19,70 @@ lang: en_US
 
 ---
 
+## 28/10/2026
+
+**Security: SSE (legacy) and STDIO transports removed**
+
+- **Fixed (serious), installations set to the SSE transport only**: token roles were not enforced there, and every token acted as a Super-administrator. The Streamable HTTP transport, the default setting, was not affected.
+- **The SSE (legacy) and STDIO transports are removed.** Only Streamable HTTP remains. On update, a configuration set to SSE or STDIO automatically switches to Streamable HTTP and a message lets you know. Jeedom restarts the daemon if its automatic management is enabled; otherwise it stays stopped, as you chose.
+- **Plugin update**: Jeedom restarts the daemon according to your automatic management setting. The plugin no longer forces a restart (as the 23/10 entry stated).
+- **Clients set up with `mcp-proxy --sse-url …`**: replace their configuration with the one from the plugin's **Clients** window (Streamable HTTP, or the `mcp-proxy --transport streamablehttp` / `mcp-remote` bridge).
+- Defense in depth: a request whose role is unknown no longer has any right (no tool listed, every call refused).
+- A whitelist refusal (device or command not allowed) is now reported as an error to the AI client. `execute_action_by_name` no longer reveals that a device outside the whitelist exists.
+
+**Self-test and fixes found by the new tests**
+
+- **New: self-test** ("Auto-diagnostic" button in the Health window, and `system` → `selftest` action for an Administrator token). It checks the MCP SDK version, role consistency, permissions, tool schemas, third-party plugin extensions, the daemon, and the backup and log folders.
+- **Fixed: empty backup list** (`system` → `backup_list`) when the backup folder is relative (the default). Restoring by file name was refused for the same reason.
+- **Fixed: a scenario's execution log was always empty.**
+- **Fixed: presence simulation did not turn the lights off** when stopped.
+- **Fixed: audit log size always 0** in the Health window.
+- **Security, third-party plugin extensions**: a tool that declares `readOnlyHint` other than as the boolean `true` (for example the string `"false"`) is treated as a write, so reserved to the Administrator. Badly declared tools are dropped or fixed, with a warning in the log.
+- Internal errors that went unnoticed are now logged.
+
+**Refocused roles: the Operator controls, the Administrator configures**
+
+- **Operator**: views and controls the home (allowed devices, start/stop scenarios, modes, presence, notifications, variables). It no longer changes the Jeedom configuration.
+- Now **Administrator**: rooms and devices (create, rename, move, disable, delete), crons, enable/disable a scenario, delete a variable, acknowledge messages, views and designs, mode schedule.
+- Now **Super-administrator** (shell equivalents): writing files and cleaning logs, restoring a backup, raw API calls (`rpc`) that write.
+- The plugin's internal variables (`home_mode`, `mcp_…`) can only be changed by an Administrator; the Operator changes mode through `home` → `mode`.
+- **Check your Operator tokens**: if they were used for these configuration actions, switch them to Administrator.
+
+**The "Read-only" role is back**
+
+- New **Read-only** token role: the client views the home (states, history, logs and cameras if allowed) but cannot control or change anything. Ideal for a low-cost voice assistant next to an Operator assistant.
+- The restriction is enforced by the plugin, not by the AI, and also applies to clients connected through OAuth (role read again on every request).
+- An old "read-only" token disabled by the 26/10 update can now be switched back to Read-only from its menu, **before** being re-enabled (the role can be changed on a disabled token).
+
+**Each client only sees what it can do**
+
+- The tool list sent to the AI no longer contains the actions refused to its role (nor in read-only mode): actions, description and parameters are trimmed. Fewer tokens used, no more useless attempts. Reconnect the client after a role change to refresh its list.
+
+**Security**
+
+- `interactions` → `test` really runs the interaction: reserved to the Administrator and blocked in read-only mode.
+- `notify` → `send` only accepts the notification commands of allowed devices (whitelist).
+- `camera` → `send`, `execute_action_by_name`, `devices` → `refresh` and write extension tools are blocked in read-only mode, on both the daemon and PHP sides.
+
+**Extension tools (other plugins, e.g. Alexa)**
+
+- They were no longer loaded: fixed.
+- Tools that only read (e.g. listing Alexa devices) are open to every role. Those that act (speak, announce, voice command, routine…) are **reserved to the Administrator**: they bypass the list of allowed devices.
+
+**AI Assistant integration: explicit permission**
+
+- New "Intégration AI Assistant" section (AI customization tab): **Autoriser le plugin MCP à utiliser AI Assistant** checkbox (allow the MCP plugin to use AI Assistant), **off by default**, and choice of the **AI Assistant device** (default: AI Assistant's default provider).
+- As long as it is unchecked, nothing is sent to AI Assistant: camera descriptions, generation of the home profile, labels, aliases, generic types and mode schedule. **After the update, check it if you used these generations.**
+
+**Text description of cameras (Claude voice mode)**
+
+- In voice mode, the Claude app does not show the model the images returned by a tool: Claude receives the snapshot but does not see its content. New `camera` → `describe` action (`describe_camera` tool in legacy mode): the image is described on the Jeedom side and Claude receives a text it can read aloud.
+- Works for every camera already supported, Netatmo included.
+- Requires the **AI Assistant** plugin and a device that reads images. Each description is billed by that provider.
+- "Description texte des caméras" setting (text description of cameras), on by default, under the Cameras option of the configuration.
+- Text mode does not change: `snapshot` still returns the image.
+- Generations through AI Assistant (home profile, labels, aliases, generic types, mode schedule) no longer keep history between two calls and can no longer trigger a Jeedom command.
+
 ## 26/10/2026
 
 **New token role model: Operator, Administrator, Super-administrator**
