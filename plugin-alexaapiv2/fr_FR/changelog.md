@@ -17,6 +17,10 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 28/10/2026
+
+*   **Nouveautés et corrections** : les commandes « Exécuter la scène » et « Arrêter la scène » des scènes Alexa déclenchent de nouveau réellement la scène (elles pouvaient indiquer un succès sans effet) ; en cas d'échec, une erreur est désormais signalée
+
 ### 16/10/2026
 
 *   **Nouveautés et corrections** : « Dernier dialogue » et « Dernière réponse » se mettent de nouveau à jour après chaque échange avec Alexa (ils pouvaient rester figés) ; la fenêtre Historique affiche maintenant la réponse d'Alexa, et une réponse manquante est récupérée automatiquement quand Amazon l'a enregistrée
