@@ -23,7 +23,7 @@ lang: en_US
 
 ### 28/10/2026
 
-- **New features and fixes**: the "Run scene" and "Stop scene" commands of Alexa scenes actually trigger the scene again (they could report success without any effect); a failure is now reported as an error
+- **New features and fixes**: the "Run scene" and "Stop scene" commands of Alexa scenes actually trigger the scene again (they could report success without any effect); a failure is now reported as an error; voice history is retrieved reliably (it failed every other time)
 
 ### 16/10/2026
 

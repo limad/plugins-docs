@@ -19,7 +19,7 @@ Changelog Alexa-Premium
 
 ### 28/10/2026
 
-*   **Nouveautés et corrections** : les commandes « Exécuter la scène » et « Arrêter la scène » des scènes Alexa déclenchent de nouveau réellement la scène (elles pouvaient indiquer un succès sans effet) ; en cas d'échec, une erreur est désormais signalée
+*   **Nouveautés et corrections** : les commandes « Exécuter la scène » et « Arrêter la scène » des scènes Alexa déclenchent de nouveau réellement la scène (elles pouvaient indiquer un succès sans effet) ; en cas d'échec, une erreur est désormais signalée ; l'historique vocal est récupéré de façon fiable (il échouait une fois sur deux)
 
 ### 16/10/2026
 
