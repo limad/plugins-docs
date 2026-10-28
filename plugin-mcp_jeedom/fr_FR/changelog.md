@@ -19,6 +19,24 @@ lang: fr_FR
 
 ---
 
+## 29/10/2026
+
+**Configuration requise : Jeedom 4.6 et Debian 12**
+
+- Le plugin nécessite désormais **Jeedom 4.6** ou plus récent.
+- **Debian 11 n'est plus pris en charge** (fin de vie) : passez à **Debian 12** ou plus récent. Sur Debian 11, l'installation des dépendances peut échouer, car les paquets de sécurité de Debian 11 ne sont plus sur les dépôts habituels. Un message vous prévient à l'installation et à la mise à jour ; le plugin continue de fonctionner.
+
+**Accès externe : codes d'erreur standard**
+
+- Un token invalide, désactivé ou expiré reçoit maintenant une réponse **401** avec `error="invalid_token"` (au lieu de 403), comme le prévoit la norme OAuth. Un client connecté par OAuth (Claude, ChatGPT, Le Chat…) dont le jeton a expiré ou dont le token Jeedom a été désactivé sait ainsi qu'il doit se réautoriser.
+- Le 403 reste réservé aux cas où l'accès externe n'est pas configuré (aucun token, ou OAuth désactivé).
+- **Corrigé** : sur une box sans accès externe configuré, l'adresse de découverte OAuth envoyée aux clients en réseau local était incomplète (`http:/plugins/…`, sans le nom de la box).
+
+**Traductions**
+
+- Interface entièrement traduite en anglais, allemand, espagnol, italien et portugais (environ 170 textes s'affichaient en français).
+- La durée « il y a … » (dernière utilisation d'un token) et l'aide « Entrée pour ajouter » de la whitelist se traduisent correctement.
+
 ## 28/10/2026
 
 **Sécurité : transports SSE (legacy) et STDIO retirés**

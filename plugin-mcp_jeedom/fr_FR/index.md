@@ -131,12 +131,13 @@ La communication suit **JSON-RPC 2.0** sur le transport choisi. Un échange typi
 
 | Composant | Technologie |
 |---|---|
-| Daemon | Python 3.11 + anyio |
-| Protocole | MCP SDK officiel Anthropic v1.26 |
+| Daemon | Python 3.11+ + anyio |
+| Protocole | SDK MCP officiel (Python) 2.3 |
 | Serveur HTTP | uvicorn + ASGI pur |
 | Transport par défaut | Streamable HTTP (MCP spec 2025) |
 | API Jeedom | JSON-RPC interne |
-| Plugin PHP | Jeedom Core 4.4+ |
+| Plugin PHP | Jeedom Core 4.6+ |
+| Système | Debian 12 ou plus récent (Debian 11 n'est plus pris en charge) |
 
 ---
 

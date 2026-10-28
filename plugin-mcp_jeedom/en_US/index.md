@@ -129,12 +129,13 @@ Communication follows **JSON-RPC 2.0** on the chosen transport. A typical exchan
 
 | Component | Technology |
 |---|---|
-| Daemon | Python 3.11 + anyio |
-| Protocol | Official Anthropic MCP SDK v1.26 |
+| Daemon | Python 3.11+ + anyio |
+| Protocol | Official MCP SDK (Python) 2.3 |
 | HTTP server | uvicorn + pure ASGI |
 | Default transport | Streamable HTTP (MCP spec 2025) |
 | Jeedom API | Internal JSON-RPC |
-| PHP plugin | Jeedom Core 4.4+ |
+| PHP plugin | Jeedom Core 4.6+ |
+| System | Debian 12 or later (Debian 11 is no longer supported) |
 
 ---
 

@@ -19,6 +19,24 @@ lang: en_US
 
 ---
 
+## 29/10/2026
+
+**Requirements: Jeedom 4.6 and Debian 12**
+
+- The plugin now requires **Jeedom 4.6** or later.
+- **Debian 11 is no longer supported** (end of life): upgrade to **Debian 12** or later. On Debian 11, installing the dependencies may fail, because Debian 11 security packages are no longer on the usual repositories. A message warns you on install and update; the plugin keeps working.
+
+**External access: standard error codes**
+
+- An invalid, disabled or expired token now gets a **401** response with `error="invalid_token"` (instead of 403), as the OAuth standard requires. A client connected through OAuth (Claude, ChatGPT, Le Chat…) whose token expired, or whose Jeedom token was disabled, now knows it must re-authorize.
+- 403 is kept for when external access is not set up (no token, or OAuth disabled).
+- **Fixed**: on a box without external access configured, the OAuth discovery address sent to LAN clients was incomplete (`http:/plugins/…`, without the box name).
+
+**Translations**
+
+- Interface fully translated into English, German, Spanish, Italian and Portuguese (about 170 texts were shown in French).
+- The "… ago" duration (last use of a token) and the whitelist "Enter to add" hint are now translated correctly.
+
 ## 28/10/2026
 
 **Security: SSE (legacy) and STDIO transports removed**
