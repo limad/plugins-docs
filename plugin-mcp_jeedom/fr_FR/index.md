@@ -28,7 +28,7 @@ Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout c
 - ⚡ Outil `jeedom_api` pour les opérations composites avancées (bilan de santé, équipements virtuels, séquences d'actions…)
 - 🔍 Recherche sémantique par type de commande (`LIGHT_ON`, `TEMPERATURE`…)
 - ⚙️ Whitelist des équipements et commandes exposés à l'IA
-- 🔐 Tokens à **3 rôles** (Opérateur, Administrateur, Super-administrateur), OAuth, **niveau maximum** réglable et **mode lecture seule**
+- 🔐 Tokens à **4 rôles** (Utilisateur limité, Opérateur, Administrateur, Super-administrateur), OAuth, **niveau maximum** réglable et **mode lecture seule**
 - 📸 Analyse visuelle des **snapshots caméra** (plugin Camera)
 - 📋 **Journal d'audit** horodaté de toutes les actions de l'IA
 - 🗂️ Ressources contextuelles MCP : carte des IDs, profil maison, guide opérationnel
@@ -539,9 +539,12 @@ Chaque client IA se connecte avec son propre **token**, créé dans **Gestion de
 
 | Rôle | Ce que le token peut faire |
 |---|---|
+| **Utilisateur limité** | Consulter la maison (états, historiques, analyses, journaux et caméras si autorisés) sans rien piloter ni modifier. Idéal pour un assistant vocal ou un accès tiers en consultation. |
 | **Opérateur** | Lire l'état de la maison, piloter les équipements et variables de la whitelist, lancer des scénarios, consulter les journaux, envoyer des notifications, voir les caméras. |
 | **Administrateur** | En plus : créer et modifier des scénarios, lire et écrire des fichiers, récupérer des pages Jeedom, maintenance du système, sauvegardes, mises à jour et plugins. |
 | **Super-administrateur** | En plus : shell sur le serveur et redémarrages. À réserver à un client de confiance. |
+
+> ℹ️ Ne confondez pas le rôle **Utilisateur limité** (propre à un token) avec le **mode lecture seule** de la box, qui bloque toutes les actions de tous les tokens. Dans la page de configuration, l'onglet « Capacités des rôles » propose, pour chaque rôle, un bouton **Voir les capacités** qui liste les outils et actions autorisés, en tenant compte de vos réglages.
 
 **Droits effectifs = rôle du token, dans la limite du niveau maximum de la box.** Un token Administrateur ne peut pas écrire de fichiers si l'écriture de fichiers est désactivée sur la box.
 

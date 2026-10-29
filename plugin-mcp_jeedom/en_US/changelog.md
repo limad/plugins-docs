@@ -32,6 +32,19 @@ lang: en_US
 - 403 is kept for when external access is not set up (no token, or OAuth disabled).
 - **Fixed**: on a box without external access configured, the OAuth discovery address sent to LAN clients was incomplete (`http:/plugins/…`, without the box name).
 
+- **Fixed**: right after the box starts, the daemon could ignore other plugins' extension tools for 30 seconds.
+
+**Configuration page**
+
+- Tabs now appear in the page address (`#tab-…`): you can bookmark or share a direct link to a tab, and the tab stays open after a reload.
+- "Role capabilities" tab: each role's **View capabilities** button opens the list of tools and actions that role can use. It reflects your settings: an action blocked by a disabled option or by read-only mode is struck through, with the reason.
+- The "Read-only" role is now called **Limited user**, so it is no longer confused with the box's **read-only mode** (which blocks all actions for all tokens). Its permissions are unchanged.
+- The "Advanced" tab is merged into "Startup" (transport, port, tools mode).
+- OAuth MCP: a warning reminds you that a remote client can reach your home at any time and that its token is stored by the provider. Keep it for trusted clients and real needs.
+- AI Assistant integration: the options stay visible but greyed out, with a message, when the AI Assistant plugin is missing or disabled.
+- Tokens, Clients and Whitelist windows are wider; token switches are easier to read, including when off.
+- Plugin page: the Documentation and Community tiles now come last.
+
 **Translations**
 
 - Interface fully translated into English, German, Spanish, Italian and Portuguese (about 170 texts were shown in French).

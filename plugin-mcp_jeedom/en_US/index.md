@@ -28,7 +28,7 @@ Your favorite AI assistants — **Claude Desktop, Cursor, Continue** and any com
 - ⚡ `jeedom_api` tool for advanced composite operations (health report, virtual devices, action sequences…)
 - 🔍 Semantic search by command type (`LIGHT_ON`, `TEMPERATURE`…)
 - ⚙️ Whitelist of devices and commands exposed to the AI
-- 🔐 Tokens with **3 roles** (Operator, Administrator, Super-administrator), OAuth, adjustable **maximum level** and **read-only mode**
+- 🔐 Tokens with **4 roles** (Limited user, Operator, Administrator, Super-administrator), OAuth, adjustable **maximum level** and **read-only mode**
 - 📸 Visual analysis of **camera snapshots** (Camera plugin)
 - 📋 Timestamped **audit log** of all AI actions
 - 🗂️ MCP contextual resources: ID map, home profile, operational guide
@@ -392,9 +392,12 @@ Each AI client connects with its own **token**, created in **Token management** 
 
 | Role | What the token can do |
 |---|---|
+| **Limited user** | Look at the home (states, history, analytics, and logs and cameras if allowed) without controlling or changing anything. Ideal for a voice assistant or third-party read access. |
 | **Operator** | Read the home state, control the whitelisted devices and variables, run scenarios, read logs, send notifications, view cameras. |
 | **Administrator** | Plus: create and modify scenarios, read and write files, fetch Jeedom pages, system maintenance, backups, updates and plugins. |
 | **Super-administrator** | Plus: shell on the server and restarts. Keep it for a trusted client. |
+
+> ℹ️ Do not confuse the **Limited user** role (set per token) with the box's **read-only mode**, which blocks all actions for all tokens. In the configuration page, the "Role capabilities" tab has a **View capabilities** button for each role that lists the allowed tools and actions, according to your settings.
 
 **Effective rights = the token's role, within the box's maximum allowed level.** An Administrator token cannot write files if file writing is disabled on the box.
 
@@ -412,7 +415,7 @@ Good to know:
 - A Super-administrator's shell can be limited to a list of commands (`|`-separated, `*` wildcard). Command-chaining characters (`;`, `&`, `|`, `` ` ``, `$`, `<`, `>`…) are then refused.
 - **OAuth** (claude.ai, ChatGPT, Le Chat…): a **Jeedom administrator** picks, during authorization, the token whose role the client takes over. Changing or disabling that token applies right away to the OAuth client.
 - Secret files (database credentials, OAuth tokens, private keys) are never readable, whatever the role.
-- Former "guest" and "read-only" roles no longer exist: for a consultation-only access, use an Operator token with the **State only** level, and possibly the **read-only mode**.
+- The former "guest" role no longer exists. For a consultation-only access, use a **Limited user** token.
 
 ---
 

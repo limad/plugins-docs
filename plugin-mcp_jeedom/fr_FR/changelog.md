@@ -32,6 +32,19 @@ lang: fr_FR
 - Le 403 reste réservé aux cas où l'accès externe n'est pas configuré (aucun token, ou OAuth désactivé).
 - **Corrigé** : sur une box sans accès externe configuré, l'adresse de découverte OAuth envoyée aux clients en réseau local était incomplète (`http:/plugins/…`, sans le nom de la box).
 
+- **Corrigé** : juste après le démarrage de la box, le daemon pouvait ignorer les outils d'extension des autres plugins pendant 30 secondes.
+
+**Page de configuration**
+
+- Les onglets apparaissent dans l'adresse de la page (`#tab-…`) : vous pouvez enregistrer ou partager un lien direct vers un onglet, et l'onglet reste affiché après un rechargement.
+- Onglet « Capacités des rôles » : le bouton **Voir les capacités** de chaque rôle ouvre la liste des outils et actions que ce rôle peut utiliser. Elle tient compte de vos réglages : une action bloquée par une option désactivée ou par le mode lecture seule est barrée, avec la raison.
+- Le rôle « Lecture seule » devient **Utilisateur limité**, pour ne plus le confondre avec le **mode lecture seule** de la box (qui bloque toutes les actions de tous les tokens). Ses droits ne changent pas.
+- L'onglet « Avancé » est fusionné dans « Démarrage » (transport, port, mode d'outils).
+- OAuth MCP : un avertissement rappelle qu'un client distant peut accéder à votre maison à tout moment et que son token est stocké chez le fournisseur. À réserver aux clients de confiance et aux vrais besoins.
+- Intégration AI Assistant : les options restent visibles mais grisées, avec un message, quand le plugin AI Assistant est absent ou désactivé.
+- Fenêtres Tokens, Clients et Whitelist plus larges ; interrupteurs des tokens plus lisibles, y compris à l'état désactivé.
+- Page du plugin : les tuiles Documentation et Community passent en dernier.
+
 **Traductions**
 
 - Interface entièrement traduite en anglais, allemand, espagnol, italien et portugais (environ 170 textes s'affichaient en français).
