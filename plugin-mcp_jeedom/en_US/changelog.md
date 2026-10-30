@@ -19,6 +19,15 @@ lang: en_US
 
 ---
 
+## 30/10/2026
+
+**Getting ready for Alexa+**
+
+- The plugin is ready for the upcoming Alexa+ add-ons (an Amazon preview program, currently limited to selected partners). Alexa will be able to discover your box's tools before you link your account, then ask you to link it on first use.
+- Until the account is linked, Alexa sees the list of tools but cannot read or control anything in the home.
+- **Fixed**: one of the OAuth discovery addresses used by some clients answered "not found" on a standard Jeedom box.
+- Nothing changes for clients already connected (Claude, ChatGPT, Le Chat…).
+
 ## 29/10/2026
 
 **Requirements: Jeedom 4.6 and Debian 12**

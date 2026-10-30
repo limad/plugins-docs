@@ -19,6 +19,15 @@ lang: fr_FR
 
 ---
 
+## 30/10/2026
+
+**Préparation pour Alexa+**
+
+- Le plugin est prêt pour les futurs modules complémentaires d'Alexa+ (programme Amazon en avant-première, pour l'instant réservé à des partenaires sélectionnés). Alexa pourra découvrir les outils de votre box avant que vous liiez votre compte, puis vous demander de le lier au premier usage.
+- Tant que le compte n'est pas lié, Alexa voit la liste des outils mais ne peut rien lire ni piloter dans la maison.
+- **Corrigé** : une des adresses de découverte OAuth utilisées par certains clients répondait « introuvable » sur une box Jeedom standard.
+- Rien ne change pour les clients déjà connectés (Claude, ChatGPT, Le Chat…).
+
 ## 29/10/2026
 
 **Configuration requise : Jeedom 4.6 et Debian 12**
