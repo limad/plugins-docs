@@ -19,7 +19,7 @@ Changelog Alexa-Premium
 
 ### 30/10/2026
 
-*   **Skill Alexa (contrôle vocal)** : en français, la skill s'appelle désormais « mon jeedom » (« Alexa, demande à mon jeedom… ») ; les questions libres sont bien mieux comprises et transmises à l'IA, y compris les questions d'heure ou de durée ; réponses dans la langue de l'Echo (français, anglais, espagnol) ; quand Alexa n'est pas sûre de la commande comprise, elle demande confirmation avant d'agir (« Veux-tu dire… ? ») ; une commande n'est plus exécutée deux fois quand Jeedom répond lentement ; réponses des interactions Jeedom plus lisibles. Redéployez la skill depuis le plugin pour en profiter
+*   **Skill Alexa (contrôle vocal)** : en français, la skill s'appelle désormais « ma jeebox » (« Alexa, demande à ma jeebox… ») ; les questions libres sont bien mieux comprises et transmises à l'IA, y compris les questions d'heure ou de durée ; réponses dans la langue de l'Echo (français, anglais, espagnol) ; quand Alexa n'est pas sûre de la commande comprise, elle demande confirmation avant d'agir (« Veux-tu dire… ? ») ; une commande n'est plus exécutée deux fois quand Jeedom répond lentement ; réponses des interactions Jeedom plus lisibles. Redéployez la skill depuis le plugin pour en profiter
 *   **Sécurité et fiabilité** : l'IA n'est plus mise de côté à tort après une réponse un peu lente ; clé API masquée dans les journaux des commandes
 
 ### 28/10/2026
