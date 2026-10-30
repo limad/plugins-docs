@@ -23,12 +23,12 @@ Your favorite AI assistants — **Claude Desktop, Cursor, Continue** and any com
 
 ## Features
 
-- 🤖 **Streamable HTTP** transport (MCP standard 2025) and legacy SSE
+- 🤖 **Streamable HTTP** transport (MCP standard 2025)
 - 🏠 Over **40 tools** covering the entire Jeedom API
 - ⚡ `jeedom_api` tool for advanced composite operations (health report, virtual devices, action sequences…)
 - 🔍 Semantic search by command type (`LIGHT_ON`, `TEMPERATURE`…)
 - ⚙️ Whitelist of devices and commands exposed to the AI
-- 🔐 Tokens with **3 roles** (Operator, Administrator, Super-administrator), OAuth, adjustable **maximum level** and **read-only mode**
+- 🔐 Tokens with **4 roles** (Limited user, Operator, Administrator, Super-administrator), OAuth, adjustable **maximum level** and **read-only mode**
 - 📸 Visual analysis of **camera snapshots** (Camera plugin)
 - 📋 Timestamped **audit log** of all AI actions
 - 🗂️ MCP contextual resources: ID map, home profile, operational guide
@@ -94,7 +94,7 @@ MCP relies on three components:
 
 - **MCP Client** — the application hosting the LLM (e.g. Claude Desktop). It initiates the connection and sends tool requests.
 - **MCP Server** — a process exposing capabilities via the protocol (tools, resources, prompts). This is the role of `mcp_jeedom`.
-- **Transport** — the communication channel. Two modes: **Streamable HTTP** (recommended, 2025 standard) and **SSE** (legacy) for network, **STDIO** for a local pipe.
+- **Transport** — the communication channel: **Streamable HTTP** (MCP 2025 standard). The SSE (legacy) and STDIO transports have been removed: a configuration that used them switches to Streamable HTTP automatically on update.
 
 > ℹ️ **Important**
 > The LLM never runs on your Jeedom server — it runs at Anthropic (or locally).
@@ -129,12 +129,13 @@ Communication follows **JSON-RPC 2.0** on the chosen transport. A typical exchan
 
 | Component | Technology |
 |---|---|
-| Daemon | Python 3.11 + anyio |
-| Protocol | Official Anthropic MCP SDK v1.26 |
+| Daemon | Python 3.11+ + anyio |
+| Protocol | Official MCP SDK (Python) 2.3 |
 | HTTP server | uvicorn + pure ASGI |
 | Default transport | Streamable HTTP (MCP spec 2025) |
 | Jeedom API | Internal JSON-RPC |
-| PHP plugin | Jeedom Core 4.4+ |
+| PHP plugin | Jeedom Core 4.6+ |
+| System | Debian 12 or later (Debian 11 is no longer supported) |
 
 ---
 
@@ -330,7 +331,7 @@ Example: a weather plugin exposes `ext__meteo__get_forecast` — the AI can call
 
 | Option | Description |
 |---|---|
-| **Transport** | Streamable HTTP (recommended) or SSE |
+| **Transport** | Streamable HTTP |
 | **Port** | Daemon port (default: 8765), listening on the box only |
 | **Tokens** | One token per AI client, each with a role — see [Tokens and roles](#tokens-and-roles) |
 | **Maximum allowed level** | Caps what every token can do on the box (State only, Control, Advanced, Full) |
@@ -391,9 +392,12 @@ Each AI client connects with its own **token**, created in **Token management** 
 
 | Role | What the token can do |
 |---|---|
+| **Limited user** | Look at the home (states, history, analytics, and logs and cameras if allowed) without controlling or changing anything. Ideal for a voice assistant or third-party read access. |
 | **Operator** | Read the home state, control the whitelisted devices and variables, run scenarios, read logs, send notifications, view cameras. |
 | **Administrator** | Plus: create and modify scenarios, read and write files, fetch Jeedom pages, system maintenance, backups, updates and plugins. |
 | **Super-administrator** | Plus: shell on the server and restarts. Keep it for a trusted client. |
+
+> ℹ️ Do not confuse the **Limited user** role (set per token) with the box's **read-only mode**, which blocks all actions for all tokens. In the configuration page, the "Role capabilities" tab has a **View capabilities** button for each role that lists the allowed tools and actions, according to your settings.
 
 **Effective rights = the token's role, within the box's maximum allowed level.** An Administrator token cannot write files if file writing is disabled on the box.
 
@@ -411,7 +415,7 @@ Good to know:
 - A Super-administrator's shell can be limited to a list of commands (`|`-separated, `*` wildcard). Command-chaining characters (`;`, `&`, `|`, `` ` ``, `$`, `<`, `>`…) are then refused.
 - **OAuth** (claude.ai, ChatGPT, Le Chat…): a **Jeedom administrator** picks, during authorization, the token whose role the client takes over. Changing or disabling that token applies right away to the OAuth client.
 - Secret files (database credentials, OAuth tokens, private keys) are never readable, whatever the role.
-- Former "guest" and "read-only" roles no longer exist: for a consultation-only access, use an Operator token with the **State only** level, and possibly the **read-only mode**.
+- The former "guest" role no longer exists. For a consultation-only access, use a **Limited user** token.
 
 ---
 
@@ -419,7 +423,7 @@ Good to know:
 
 | Client | Transport | Notes |
 |---|---|---|
-| **Claude Desktop** | Streamable HTTP or SSE | Configuration in `claude_desktop_config.json` |
+| **Claude Desktop** | Streamable HTTP | Configuration in `claude_desktop_config.json` |
 | **Cursor** | Streamable HTTP | MCP Tools section |
 | **Continue** | Streamable HTTP | `.continue/config.json` |
 | **Cline** | Streamable HTTP | VS Code extension |

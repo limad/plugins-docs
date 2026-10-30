@@ -23,12 +23,12 @@ Vos assistants IA préférés — **Claude Desktop, Cursor, Continue** et tout c
 
 ## Fonctionnalités
 
-- 🤖 Transport **Streamable HTTP** (standard MCP 2025) et SSE legacy
+- 🤖 Transport **Streamable HTTP** (standard MCP 2025)
 - 🏠 Plus de **40 outils** couvrant l'ensemble de l'API Jeedom
 - ⚡ Outil `jeedom_api` pour les opérations composites avancées (bilan de santé, équipements virtuels, séquences d'actions…)
 - 🔍 Recherche sémantique par type de commande (`LIGHT_ON`, `TEMPERATURE`…)
 - ⚙️ Whitelist des équipements et commandes exposés à l'IA
-- 🔐 Tokens à **3 rôles** (Opérateur, Administrateur, Super-administrateur), OAuth, **niveau maximum** réglable et **mode lecture seule**
+- 🔐 Tokens à **4 rôles** (Utilisateur limité, Opérateur, Administrateur, Super-administrateur), OAuth, **niveau maximum** réglable et **mode lecture seule**
 - 📸 Analyse visuelle des **snapshots caméra** (plugin Camera)
 - 📋 **Journal d'audit** horodaté de toutes les actions de l'IA
 - 🗂️ Ressources contextuelles MCP : carte des IDs, profil maison, guide opérationnel
@@ -96,7 +96,7 @@ MCP repose sur trois composants :
 
 - **Client MCP** — l'application hébergeant le LLM (ex : Claude Desktop). Il initie la connexion et envoie les requêtes d'outils.
 - **Serveur MCP** — un processus exposant des capacités via le protocole (outils, ressources, prompts). C'est le rôle de `mcp_jeedom`.
-- **Transport** — le canal de communication. Deux modes : **Streamable HTTP** (recommandé, standard 2025) et **SSE** (legacy) pour le réseau, **STDIO** pour un pipe local.
+- **Transport** — le canal de communication : **Streamable HTTP** (standard MCP 2025). Les transports SSE (legacy) et STDIO ont été retirés : une configuration qui les utilisait passe automatiquement en Streamable HTTP à la mise à jour.
 
 > ℹ️ **Important**  
 > Le LLM ne s'exécute jamais sur votre serveur Jeedom — il tourne chez Anthropic (ou en local).  
@@ -131,12 +131,13 @@ La communication suit **JSON-RPC 2.0** sur le transport choisi. Un échange typi
 
 | Composant | Technologie |
 |---|---|
-| Daemon | Python 3.11 + anyio |
-| Protocole | MCP SDK officiel Anthropic v1.26 |
+| Daemon | Python 3.11+ + anyio |
+| Protocole | SDK MCP officiel (Python) 2.3 |
 | Serveur HTTP | uvicorn + ASGI pur |
 | Transport par défaut | Streamable HTTP (MCP spec 2025) |
 | API Jeedom | JSON-RPC interne |
-| Plugin PHP | Jeedom Core 4.4+ |
+| Plugin PHP | Jeedom Core 4.6+ |
+| Système | Debian 12 ou plus récent (Debian 11 n'est plus pris en charge) |
 
 ---
 
@@ -416,7 +417,6 @@ Prérequis côté client
 
 - Le poste client (qui exécute l'IA) doit joindre Jeedom par son adresse web habituelle. Le port du daemon (**8765** par défaut) n'écoute que sur la box elle-même : toute connexion passe par le proxy du plugin, avec un token.
 - Pour le transport **Streamable HTTP** (défaut) : aucun outil supplémentaire requis si le client sait envoyer un en-tête `Authorization`.
-- Pour le transport **SSE** (legacy) : `uvx` ou `npx` pour lancer `mcp-proxy`.
 
 ## Configuration des clients IA
 
@@ -458,30 +458,15 @@ Le poste client est sur le même réseau que Jeedom. La connexion passe par le p
 
 ---
 
-### Méthode 2 — Accès local LAN (SSE legacy)
+### Méthode 2 — SSE legacy *(retirée)*
 
-Si vous utilisez encore le transport SSE (non recommandé pour les nouveaux déploiements) :
-
-```json
-{
-  "mcpServers": {
-    "jeedom_mcp": {
-      "command": "uvx",
-      "args": [
-        "mcp-proxy",
-        "--sse-url", "http://192.168.1.79/plugins/mcp_jeedom/core/php/jeemcp_proxy.php",
-        "--headers", "{\"Authorization\": \"Bearer VOTRE_TOKEN_ICI\"}"
-      ]
-    }
-  }
-}
-```
+Le transport SSE legacy n'est plus proposé. Si votre client utilisait `mcp-proxy --sse-url …jeemcp_proxy.php`, remplacez cette configuration par celle de la méthode 1 (ou de la méthode 3 depuis l'extérieur). Les clients qui ne savent pas parler Streamable HTTP peuvent passer par un pont : `mcp-proxy --transport streamablehttp` ou `mcp-remote` (configurations prêtes dans la fenêtre **Clients** du plugin).
 
 ---
 
 ### Méthode 3 — Accès externe via `jeemcp_proxy.php` + token Bearer
 
-Le proxy PHP intégré au plugin gère l'authentification par token et supporte les deux transports. C'est la méthode recommandée pour tout accès depuis l'extérieur du réseau local.
+Le proxy PHP intégré au plugin gère l'authentification par token. C'est la méthode recommandée pour tout accès depuis l'extérieur du réseau local.
 
 **Prérequis :**
 1. Créer un token dans **Gestion des tokens** (page de configuration du plugin) en choisissant son rôle — voir [Tokens et rôles](#tokens-et-rôles). Les clients cloud (claude.ai, ChatGPT, Le Chat…) peuvent aussi se connecter par **OAuth**.
@@ -498,23 +483,6 @@ Le proxy PHP intégré au plugin gère l'authentification par token et supporte 
         "mcp-remote@latest",
         "https://votre-jeedom.exemple.fr/plugins/mcp_jeedom/core/php/jeemcp_proxy.php",
         "--header", "Authorization: Bearer VOTRE_TOKEN_ICI"
-      ]
-    }
-  }
-}
-```
-
-**Pour SSE legacy (si votre client ne supporte pas encore Streamable HTTP) :**
-
-```json
-{
-  "mcpServers": {
-    "jeedom_mcp": {
-      "command": "uvx",
-      "args": [
-        "mcp-proxy",
-        "--sse-url", "https://votre-jeedom.exemple.fr/plugins/mcp_jeedom/core/php/jeemcp_proxy.php",
-        "--headers", "{\"Authorization\": \"Bearer VOTRE_TOKEN_ICI\"}"
       ]
     }
   }
@@ -561,7 +529,6 @@ location /jeedom-mcp {
 | Méthode | Réseau requis | Auth | Complexité | Recommandé |
 |---|---|---|---|---|
 | 1 — LAN Streamable HTTP (proxy) | Local uniquement | Token Bearer | ⭐ | ✅ Usage quotidien local |
-| 2 — LAN SSE (proxy) | Local uniquement | Token Bearer | ⭐ | Legacy uniquement |
 | 3 — Proxy PHP + token | Internet | Token Bearer ou OAuth | ⭐⭐ | ✅ Accès externe simple |
 | 4 — Cloudflare Tunnel | Internet | Token Bearer ou OAuth | ⭐⭐ | ✅ Sans ouverture de port |
 | 5 — Reverse proxy nginx | Internet | Token Bearer ou OAuth | ⭐⭐⭐ | Infra existante |
@@ -572,9 +539,12 @@ Chaque client IA se connecte avec son propre **token**, créé dans **Gestion de
 
 | Rôle | Ce que le token peut faire |
 |---|---|
+| **Utilisateur limité** | Consulter la maison (états, historiques, analyses, journaux et caméras si autorisés) sans rien piloter ni modifier. Idéal pour un assistant vocal ou un accès tiers en consultation. |
 | **Opérateur** | Lire l'état de la maison, piloter les équipements et variables de la whitelist, lancer des scénarios, consulter les journaux, envoyer des notifications, voir les caméras. |
 | **Administrateur** | En plus : créer et modifier des scénarios, lire et écrire des fichiers, récupérer des pages Jeedom, maintenance du système, sauvegardes, mises à jour et plugins. |
 | **Super-administrateur** | En plus : shell sur le serveur et redémarrages. À réserver à un client de confiance. |
+
+> ℹ️ Ne confondez pas le rôle **Utilisateur limité** (propre à un token) avec le **mode lecture seule** de la box, qui bloque toutes les actions de tous les tokens. Dans la page de configuration, l'onglet « Capacités des rôles » propose, pour chaque rôle, un bouton **Voir les capacités** qui liste les outils et actions autorisés, en tenant compte de vos réglages.
 
 **Droits effectifs = rôle du token, dans la limite du niveau maximum de la box.** Un token Administrateur ne peut pas écrire de fichiers si l'écriture de fichiers est désactivée sur la box.
 

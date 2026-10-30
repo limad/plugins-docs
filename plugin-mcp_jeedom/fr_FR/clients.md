@@ -489,6 +489,9 @@ Ajouter `--allow-insecure` à `mcp-remote`, ou utiliser Cloudflare Tunnel qui g�
 
 ## Token refusé (401 / 403)
 
+- **401** : token absent ou invalide (inconnu, désactivé, révoqué ou jeton OAuth expiré). Avec un token invalide, la réponse porte `error="invalid_token"` : un client OAuth se réautorise de lui-même.
+- **403** : aucun token n'est configuré dans le plugin, ou OAuth est désactivé.
+
 1. Vérifier que le token est copié sans espace ni retour à la ligne
 2. Ne pas encadrer le token de guillemets dans les variables d'environnement
 3. Régénérer le token depuis *Plugins → mcp_jeedom → Token d'accès externe* si nécessaire
