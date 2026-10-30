@@ -21,6 +21,11 @@ lang: en_US
 
 ## Version in development
 
+### 30/10/2026
+
+- **Alexa skill (voice control)**: in French, the skill is now called "mon jeedom" ("Alexa, demande à mon jeedom…"); free-form questions are much better understood and passed to the AI, including questions about times or durations; answers in the Echo's language (French, English, Spanish); when Alexa is not sure which command it understood, it asks for confirmation before acting ("Did you mean…?"); a command is no longer run twice when Jeedom answers slowly; Jeedom interaction answers are easier to understand. Redeploy the skill from the plugin to benefit from these changes
+- **Security and reliability**: the AI is no longer wrongly set aside after a slightly slow answer; API key hidden in command logs
+
 ### 28/10/2026
 
 - **New features and fixes**: the "Run scene" and "Stop scene" commands of Alexa scenes actually trigger the scene again (they could report success without any effect); a failure is now reported as an error; voice history is retrieved reliably (it failed every other time)
