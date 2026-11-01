@@ -23,11 +23,11 @@ lang: en_US
 
 **New: daily anomaly digest**
 
-- AI customisation tab ("Personnalisation IA"): the plugin can send you the box's anomalies every day (low or critical batteries, devices in alert, out-of-range values). Disabled by default.
+- AI customization tab: the plugin can send you the box's anomalies every day (low or critical batteries, devices in alert, out-of-range values). Disabled by default.
 - Free and AI-free: the list is computed by Jeedom. Nothing is sent when there is no anomaly and, if you wish, only when the list has changed since the last one.
 - Sent through the notification command of your choice, or to the Jeedom message center.
 - Optionally, an AI summary groups the anomalies by likely cause (for example several sensors of the same plugin offline: gateway down). At most one call per day, only when there are new anomalies (about 1 to 2 k tokens), through the AI Assistant integration. The names of the rooms and devices involved are sent to the chosen provider.
-- New setting **Daily cap on automatic AI calls** ("Plafond d'appels IA automatiques par jour", 20 by default, 0 = none): it limits every AI feature that runs without an action from you. Generations started from the configuration page are not counted.
+- New setting **Daily cap on automatic AI calls** (20 by default, 0 = none): it limits every AI feature that runs without an action from you. Generations started from the configuration page are not counted.
 
 **More tolerant device search**
 
@@ -50,6 +50,11 @@ Tool responses cost fewer tokens for every AI client, with no answer lost on the
 **Tokens**
 
 - Token creation dialog: the role's permission details are collapsed by default; click the role description to show them.
+
+**Translations**
+
+- **Fixed**: in English, the AI customization tab showed the description of the shell option instead of its name, and three nearby texts were shifted the same way.
+- About 40 recent texts (anomaly digest, AI call cap, role capabilities, OAuth warnings) are now translated in all languages.
 
 ## 30/10/2026
 

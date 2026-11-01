@@ -51,6 +51,11 @@ Les réponses des outils coûtent moins de tokens à chaque client IA, sans rép
 
 - Fenêtre de création d'un token : le détail des permissions du rôle est replié par défaut ; un clic sur la description du rôle l'affiche.
 
+**Traductions**
+
+- **Corrigé** : en anglais, l'onglet « Personnalisation IA » affichait la description de l'option shell au lieu de son nom, et trois textes voisins étaient décalés de la même façon.
+- Une quarantaine de textes récents (digest des anomalies, plafond d'appels IA, capacités des rôles, avertissements OAuth) sont maintenant traduits dans toutes les langues.
+
 ## 30/10/2026
 
 **Préparation pour Alexa+**
