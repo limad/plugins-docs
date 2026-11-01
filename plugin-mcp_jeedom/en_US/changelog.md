@@ -32,6 +32,9 @@ lang: en_US
 **More tolerant device search**
 
 - When an AI looks up a command by device name (`find_command`) and the exact search finds nothing, the plugin tries an approximate match: accents, plurals and small typos are tolerated ("lumieres salon" finds "Lumière Salon"). No AI involved, nothing to configure.
+- A temperature search also finds thermostat probes, the outdoor temperature and weather data (same for humidity and pressure).
+- When nothing matches a device name, the words are also looked up in command and room names: "outdoor temperature" finds the command of that name even if the device is called something else.
+- The camera list shows each camera's last event (for example the last person seen). A question about the past no longer forces the AI to analyse the image, which only shows the present moment.
 
 **Lighter responses for AI clients**
 

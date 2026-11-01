@@ -32,6 +32,9 @@ lang: fr_FR
 **Recherche d'équipements plus tolérante**
 
 - Quand une IA cherche une commande par nom d'équipement (`find_command`) et que la recherche exacte ne trouve rien, le plugin tente une correspondance approchée : accents, pluriels et petites fautes de frappe sont tolérés (« lumieres salon » trouve « Lumière Salon »). Sans IA, rien à configurer.
+- Une recherche de température trouve aussi les sondes de thermostat, la température extérieure et la météo (même chose pour l'humidité et la pression).
+- Si rien ne correspond au nom d'un équipement, les mots sont aussi cherchés dans les noms des commandes et des pièces : « température extérieure » trouve la commande du même nom, même si l'équipement s'appelle autrement.
+- La liste des caméras indique le dernier événement de chacune (par exemple la dernière personne vue). Une question sur le passé n'oblige plus l'IA à analyser l'image, qui ne montre que l'instant présent.
 
 **Réponses plus légères pour les IA**
 
