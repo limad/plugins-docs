@@ -8,14 +8,12 @@
 
 - [1. Présentation](#1-présentation)
 - [2. Créer un compte développeur Amazon](#2-créer-un-compte-développeur-amazon)
-- [3. Créer le Skill](#3-créer-le-skill)
-- [4. Importer le code](#4-importer-le-code)
-- [5. Configurer les paramètres Jeedom](#5-configurer-les-paramètres-jeedom)
-- [6. Importer le modèle d'interaction](#6-importer-le-modèle-dinteraction)
-- [7. Déployer et activer le Skill](#7-déployer-et-activer-le-skill)
-- [8. Renseigner l'ID du Skill dans le plugin](#8-renseigner-lid-du-skill-dans-le-plugin)
-- [9. Consulter les logs du Skill](#9-consulter-les-logs-du-skill)
-- [10. Exemples d'utilisation](#10-exemples-dutilisation)
+- [3. Créer le Skill par import GitHub](#3-créer-le-skill-par-import-github)
+- [4. Configurer les paramètres Jeedom](#4-configurer-les-paramètres-jeedom)
+- [5. Activer le Skill](#5-activer-le-skill)
+- [6. Renseigner l'ID du Skill dans le plugin](#6-renseigner-lid-du-skill-dans-le-plugin)
+- [7. Consulter les logs du Skill](#7-consulter-les-logs-du-skill)
+- [8. Exemples d'utilisation](#8-exemples-dutilisation)
 
 ---
 
@@ -39,7 +37,7 @@ Rendez-vous sur [developer.amazon.com](https://developer.amazon.com/) et connect
 
 ---
 
-## 3. Créer le Skill
+## 3. Créer le Skill par import GitHub
 
 Accédez à la console ASK : [developer.amazon.com/alexa/console/ask](https://developer.amazon.com/alexa/console/ask)
 
@@ -50,7 +48,7 @@ Cliquez sur **Créer un Skill** :
 ![Bouton Créer un Skill](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/1.png)
 
 Renseignez les informations du Skill :
-- **Nom** : `ask Jeedom`
+- **Nom** : `ask Jeedom` (au choix : c'est le nom affiché dans l'application Alexa)
 - **Langue** : Français (FR)
 
 Cliquez sur **Next** en haut à droite.
@@ -68,87 +66,64 @@ Sélectionnez les options suivantes :
 - **Service d'hébergement** → `Alexa-hosted (Python)`
 - **Région d'hébergement** → `EU (Ireland)`
 
-Cliquez sur **Next** puis sélectionnez **Start from Scratch**.
+Cliquez sur **Next**, choisissez **Import skill** (et non *Start from Scratch*), puis renseignez l'URL GitHub :
 
-![Sélection Start from Scratch](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/5.png)
+```
+https://github.com/limad/alexaSkill_premiumAsk.git
+```
+
+Validez et **patientez** environ 3 minutes. Amazon crée le Skill et importe tout depuis GitHub : le code, la fiche, les icônes et le modèle vocal de la langue choisie (Français (FR), avec Français (CA) recopié automatiquement), puis le compile. Il n'y a **rien à coller** dans le *JSON Editor*.
 
 ### Nom d'invocation
 
-Dans la section **Invocation Name**, saisissez le mot ou la phrase qui permettra d'activer votre Skill à la voix :
+Le nom d'invocation importé est :
 
 ```
-pose question
+ma jeebox
 ```
 
-> Vous pouvez choisir un autre nom d'invocation, mais il doit être **simple et mémorisable**. C'est ce que vous direz à Alexa : *« Alexa, ouvre pose question »*.
-
-Cliquez sur **Enregistrer**.
+C'est ce que vous direz à Alexa : *« Alexa, demande à ma jeebox… »*. Pour le changer : onglet **Build** → **Invocations** → **Skill Invocation Name**, puis **Save** et **Build skill**.
 
 ---
 
-## 4. Importer le code
+## 4. Configurer les paramètres Jeedom
 
-Cliquez sur l'onglet **Code** puis sur **Import skill** en haut à droite :
-
-![Import du code](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.png)
-
-Dans le formulaire qui s'ouvre, renseignez l'URL GitHub :
-
-```
-https://github.com/limad/premiumAsk_skill.git
-```
-
-Validez et **patientez** pendant la génération du Skill (cela peut prendre plusieurs minutes).
-
----
-
-## 5. Configurer les paramètres Jeedom
-
-Une fois le code importé, ouvrez le fichier **`lambda/config.py`** dans l'onglet Code et renseignez les paramètres suivants :
+Ouvrez l'onglet **Code**, puis le fichier **`lambda/config.py`**, et renseignez les paramètres suivants :
 
 ![Configuration lambda/config.py](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.1.png)
 
 | Paramètre | Description |
 |---|---|
-| `JEEDOM_URL` | URL externe de votre Jeedom (ex. : `https://votre-jeedom.fr`) |
-| `APIKEY` | Clé API du plugin Alexa Premium |
+| `JEEDOM_URL` | URL externe de votre Jeedom (ex. : `"https://votre-jeedom.fr"`) |
+| `JEEDOM_APIKEY` | Clé API du plugin Alexa Premium (jamais celle du core Jeedom) |
 | `VERIFY_SSL` | `True` si votre URL externe est en HTTPS avec certificat valide, sinon `False` |
+| `DEBUG` | `False` en usage normal ; `True` pour des journaux détaillés |
+
+Les textes s'écrivent entre guillemets, `True` / `False` sans guillemets.
 
 **Où trouver ces paramètres ?**
 Dans la configuration du plugin Alexa Premium, cliquez sur le bouton **Params** :
 
 ![Bouton Params dans la configuration](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.1.png)
 
-Une fois les paramètres renseignés, cliquez sur **Save** puis sur **Deploy** :
+Une fois les paramètres renseignés, cliquez sur **Save** puis sur **Deploy** (une vingtaine de secondes) :
 
 ![Boutons Save et Deploy](https://limad.github.io/plugins-docs/plugin-alexaapiv2/images/ask/6.2.png)
 
 ---
 
-## 6. Importer le modèle d'interaction
+## 5. Activer le Skill
 
-1. Cliquez sur **Interaction Model** dans le menu de gauche
-2. Ouvrez **JSON Editor**
-3. Importez le fichier `skill.json` fourni avec le code
-4. Cliquez sur **Enregistrer**
-5. Cliquez sur **Build Model** et attendez la fin de la compilation
-
-> Le Build est indispensable — sans lui, le Skill ne fonctionnera pas même si le code est déployé.
-
----
-
-## 7. Déployer et activer le Skill
-
-Une fois le Build terminé :
-
-1. **Activez le Skill** depuis l'application **Alexa** sur votre smartphone (section *Vos Skills* → *Skills développeur*)
-2. Vérifiez que le Skill apparaît bien en mode **Development** dans la console ASK
+1. Onglet **Test** de la console : passez de *Off* à **Development**.
+2. Dans l'application **Alexa** sur votre smartphone, le Skill apparaît dans *Vos Skills* → *Skills développeur*.
 
 > Le Skill restera en mode Development tant qu'il n'est pas soumis à la certification Amazon — ce mode est **suffisant** pour une utilisation personnelle avec Jeedom.
 
+**Autre langue que le français** : l'import ne crée que la langue choisie à la création. Pour en ajouter une : onglet **Build** → **Language settings** → ajoutez-la, collez le fichier `skill-package/interactionModels/custom/<langue>.json` du dépôt GitHub dans le *JSON Editor*, puis **Build skill**.
+
 ---
 
-## 8. Renseigner l'ID du Skill dans le plugin
+## 6. Renseigner l'ID du Skill dans le plugin
 
 La dernière étape consiste à informer le plugin Alexa Premium de l'ID de votre Skill.
 
@@ -166,7 +141,7 @@ Collez cet ID dans la page de **Configuration** du plugin Alexa Premium, dans le
 
 ---
 
-## 9. Consulter les logs du Skill
+## 7. Consulter les logs du Skill
 
 En cas de problème, les logs du Skill sont disponibles via :
 
@@ -176,14 +151,14 @@ Onglet Code → CloudWatch Logs
 
 Les erreurs les plus fréquentes sont :
 - `JEEDOM_URL` incorrecte ou inaccessible depuis Internet
-- `APIKEY` invalide ou expirée
+- `JEEDOM_APIKEY` invalide (clé du plugin Alexa Premium)
 - `VERIFY_SSL` à `True` avec un certificat HTTPS invalide
 - Jeedom non accessible depuis Internet
-- Build non effectué après une modification du code
+- **Deploy** non fait après une modification de `config.py`, ou **Build skill** non fait après une modification du modèle vocal
 
 ---
 
-## 10. Exemples d'utilisation
+## 8. Exemples d'utilisation
 
 ### Conditionner une action à une réponse vocale
 
