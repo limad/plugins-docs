@@ -54,6 +54,7 @@ lang: fr_FR
 ### 🐛 Corrections
 
 - **Abonnement ChatGPT perdu** : enregistrer la configuration du plugin remplaçait l'abonnement (et toute clé propre à un équipement) par la clé API globale du fournisseur. La clé globale ne remplace plus que la clé d'un équipement qui n'en a pas. Si l'abonnement a été perdu, reconnectez-vous une fois.
+- **Connecteurs IA** : un Connecteur IA pouvait piloter la maison dès qu'une question contenait un mot domotique. Il ne fait maintenant que converser, comme prévu ; l'Assistant Jeedom et les clients MCP restent chargés de la maison. Ses réponses coûtent aussi moins de tokens.
 - **Sécurité des actions** : l'IA pouvait lancer sans valeur une action qui en attend une (consigne, curseur, message…), par exemple pour « lire » une température. Une telle action est maintenant refusée et l'IA est prévenue qu'elle ne peut pas lire un état de cette façon.
 - **DeepSeek** : une réponse pouvait arriver vide quand le modèle passait tout son temps de réponse à réfléchir. Pire, les questions domotiques suivantes échouaient ensuite avec une erreur. Le plugin relance maintenant la question sans réflexion, et ces erreurs disparaissent.
 - **Panel** : une erreur d'un autre plugin pendant une réponse s'affiche maintenant, au lieu d'une réponse vide.

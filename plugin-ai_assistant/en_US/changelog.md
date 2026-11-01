@@ -32,6 +32,7 @@ lang: en_US
 ### Fixes
 
 - **ChatGPT subscription lost**: saving the plugin configuration replaced the subscription (and any equipment-specific key) with the provider's global API key. The global key now only fills an equipment that has no key. If your subscription was lost, sign in once again.
+- **AI connectors**: an AI connector could control the home as soon as a question contained a home automation word. It now only converses, as intended; the Jeedom assistant and MCP clients remain in charge of the home. Its answers also use fewer tokens.
 - **Action safety**: the AI could run, with no value, an action that expects one (setpoint, slider, message…), for instance to "read" a temperature. Such an action is now refused and the AI is told it cannot read a state this way.
 - **DeepSeek**: an answer could come back empty when the model spent all its answer time thinking. Worse, the following home automation questions then failed with an error. The plugin now asks again without thinking, and these errors are gone.
 - **Panel**: an error from another plugin during an answer is now shown, instead of an empty answer.
