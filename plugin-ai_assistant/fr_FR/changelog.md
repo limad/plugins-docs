@@ -48,11 +48,13 @@ lang: fr_FR
 - **Réponses plus justes de l'Assistant Jeedom** : il ne reçoit plus que les équipements concernés par la question. Il répond mieux (batteries, consommation de gaz, dernière détection d'une caméra) et coûte environ un tiers de moins par question.
 - **Questions de relance** : « Et dans la chambre ? » ou « Et sa consigne ? » après une question domotique relisent de nouveau les équipements, au lieu d'une réponse de mémoire.
 - **Mode « Auto » des clients MCP** : une question de diagnostic (panne, logs, scénario, script…) passe en mode Agent.
+- **Vigie — mises à jour disponibles** : les mises à jour ordinaires sont signalées comme les autres alertes, dès la première (au plus une fois par jour). Avant, rien n'apparaissait sous 21 paquets en attente.
 - **PWA** : la confirmation d'une action d'alerte s'affiche dans l'alerte elle-même (Confirmer / Annuler), sans fenêtre du navigateur.
 
 ### 🐛 Corrections
 
 - **Abonnement ChatGPT perdu** : enregistrer la configuration du plugin remplaçait l'abonnement (et toute clé propre à un équipement) par la clé API globale du fournisseur. La clé globale ne remplace plus que la clé d'un équipement qui n'en a pas. Si l'abonnement a été perdu, reconnectez-vous une fois.
+- **Sécurité des actions** : l'IA pouvait lancer sans valeur une action qui en attend une (consigne, curseur, message…), par exemple pour « lire » une température. Une telle action est maintenant refusée et l'IA est prévenue qu'elle ne peut pas lire un état de cette façon.
 - **DeepSeek** : une réponse pouvait arriver vide quand le modèle passait tout son temps de réponse à réfléchir. Pire, les questions domotiques suivantes échouaient ensuite avec une erreur. Le plugin relance maintenant la question sans réflexion, et ces erreurs disparaissent.
 - **Panel** : une erreur d'un autre plugin pendant une réponse s'affiche maintenant, au lieu d'une réponse vide.
 - **Bouton « Arrêter »** : la réponse continuait d'être générée (et facturée) jusqu'au bout. L'arrêt coupe maintenant la demande, sans relance ni action après coup.

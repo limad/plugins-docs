@@ -26,11 +26,13 @@ lang: en_US
 - **More accurate Jeedom Assistant answers**: it now only receives the devices the question is about. Answers are better (batteries, gas consumption, last camera detection) and each question costs about a third less.
 - **Follow-up questions**: "And in the bedroom?" or "And its setpoint?" after a home automation question read the devices again, instead of answering from memory.
 - **"Auto" mode of MCP clients**: a diagnosis question (failure, logs, scenario, script…) switches to Agent mode.
+- **Vigie — available updates**: ordinary updates are reported like the other alerts, from the first one (at most once a day). Before, nothing showed below 21 pending packages.
 - **PWA**: confirming an alert action happens inside the alert itself (Confirm / Cancel), without a browser dialog.
 
 ### Fixes
 
 - **ChatGPT subscription lost**: saving the plugin configuration replaced the subscription (and any equipment-specific key) with the provider's global API key. The global key now only fills an equipment that has no key. If your subscription was lost, sign in once again.
+- **Action safety**: the AI could run, with no value, an action that expects one (setpoint, slider, message…), for instance to "read" a temperature. Such an action is now refused and the AI is told it cannot read a state this way.
 - **DeepSeek**: an answer could come back empty when the model spent all its answer time thinking. Worse, the following home automation questions then failed with an error. The plugin now asks again without thinking, and these errors are gone.
 - **Panel**: an error from another plugin during an answer is now shown, instead of an empty answer.
 - **"Stop" button**: the answer kept being generated (and billed) to the end. Stopping now cancels the request, with no retry or action afterwards.
