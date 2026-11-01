@@ -53,6 +53,8 @@ lang: fr_FR
 ### 🐛 Corrections
 
 - **Abonnement ChatGPT perdu** : enregistrer la configuration du plugin remplaçait l'abonnement (et toute clé propre à un équipement) par la clé API globale du fournisseur. La clé globale ne remplace plus que la clé d'un équipement qui n'en a pas. Si l'abonnement a été perdu, reconnectez-vous une fois.
+- **DeepSeek** : une réponse pouvait arriver vide quand le modèle passait tout son temps de réponse à réfléchir. Pire, les questions domotiques suivantes échouaient ensuite avec une erreur. Le plugin relance maintenant la question sans réflexion, et ces erreurs disparaissent.
+- **Panel** : une erreur d'un autre plugin pendant une réponse s'affiche maintenant, au lieu d'une réponse vide.
 - **Bouton « Arrêter »** : la réponse continuait d'être générée (et facturée) jusqu'au bout. L'arrêt coupe maintenant la demande, sans relance ni action après coup.
 - **Vigie — « Ce que Vigie surveille »** : les sources enregistrées s'affichaient décochées, et cocher une case effaçait les autres. Les cases reflètent maintenant le réglage enregistré. Même correction pour « Où envoyer les alertes ».
 - **Vigie — alertes de sécurité** : un compte administrateur identifié par une adresse e-mail apparaissait illisible. Il s'affiche maintenant en partie (« l…@gmail.com »). L'alerte « nouvel appareil mémorisé » regroupe les appareils d'une même connexion, donne une date lisible, dit si l'adresse est déjà connue et où supprimer l'appareil.
