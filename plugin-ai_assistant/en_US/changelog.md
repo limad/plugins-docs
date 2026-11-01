@@ -39,6 +39,8 @@ lang: en_US
 - **"Stop" button**: the answer kept being generated (and billed) to the end. Stopping now cancels the request, with no retry or action afterwards.
 - **Vigie — "What Vigie watches"**: saved sources were shown unchecked, and checking a box erased the others. The boxes now show the saved setting. Same fix for "Where to send alerts".
 - **Vigie — security alerts**: an administrator account named by an e-mail address was unreadable. It is now partly shown ("l…@gmail.com"). The "new remembered device" alert groups the devices of one sign-in, gives a readable date, says whether the address is already known and where to remove the device.
+- **MCP clients — checking a scenario**: "check whether this scenario is valid" never offered the AI mcp_jeedom's validation tool (until now kept for create or edit requests), so the AI judged the scenario itself. It is now offered to check a scenario, without saving anything.
+- **"Test connection" button**: it now comes after all connection settings (model, ai_proxy gateway, server URL), no longer under the API key.
 - **MCP clients**: the word "Array" could appear in the instructions sent to the model. Fixed.
 - **Panel**: the token counter matches real usage in a long conversation, and the history is summarized correctly again.
 - **Panel**: the conversation follows the answer to the end, even when it arrives fast.

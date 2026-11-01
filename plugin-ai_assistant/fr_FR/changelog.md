@@ -61,6 +61,8 @@ lang: fr_FR
 - **Bouton « Arrêter »** : la réponse continuait d'être générée (et facturée) jusqu'au bout. L'arrêt coupe maintenant la demande, sans relance ni action après coup.
 - **Vigie — « Ce que Vigie surveille »** : les sources enregistrées s'affichaient décochées, et cocher une case effaçait les autres. Les cases reflètent maintenant le réglage enregistré. Même correction pour « Où envoyer les alertes ».
 - **Vigie — alertes de sécurité** : un compte administrateur identifié par une adresse e-mail apparaissait illisible. Il s'affiche maintenant en partie (« l…@gmail.com »). L'alerte « nouvel appareil mémorisé » regroupe les appareils d'une même connexion, donne une date lisible, dit si l'adresse est déjà connue et où supprimer l'appareil.
+- **Clients MCP — vérifier un scénario** : « vérifie si ce scénario est valide » ne proposait jamais à l'IA l'outil de validation de mcp_jeedom (réservé jusque-là aux demandes de création ou de modification), et elle jugeait le scénario elle-même. Il est maintenant proposé pour vérifier un scénario, sans rien enregistrer.
+- **Bouton « Tester la connexion »** : il apparaît après tous les réglages de connexion (modèle, passerelle ai_proxy, URL du serveur), et non plus sous la clé API.
 - **Clients MCP** : le mot « Array » pouvait apparaître dans les instructions envoyées au modèle. Corrigé.
 - **Panel** : le compteur de tokens correspond à la consommation réelle dans une longue conversation, et l'historique est de nouveau résumé correctement.
 - **Panel** : la conversation suit la réponse jusqu'au bout, même quand elle arrive vite.
