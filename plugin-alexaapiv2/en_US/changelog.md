@@ -21,6 +21,10 @@ lang: en_US
 
 ## Version in development
 
+### 31/10/2026
+
+- **JeeViewer skill (Echo Show screen)**: the screen shows the Jeedom dashboard again (it stopped on an alert); new "Default page" setting in the plugin configuration to choose which object dashboard, view or design opens with "Alexa, ouvre afficheur jeedom"
+
 ### 30/10/2026
 
 - **Alexa skill (voice control)**: in French, the skill is now called "ma jeebox" ("Alexa, demande à ma jeebox…"); free-form questions are much better understood and passed to the AI, including questions about times or durations; answers in the Echo's language (French, English, Spanish); when Alexa is not sure which command it understood, it asks for confirmation before acting ("Did you mean…?"); a command is no longer run twice when Jeedom answers slowly; Jeedom interaction answers are easier to understand. Redeploy the skill from the plugin to benefit from these changes
