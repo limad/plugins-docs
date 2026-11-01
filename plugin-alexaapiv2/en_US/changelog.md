@@ -21,6 +21,12 @@ lang: en_US
 
 ## Version in development
 
+### 01/11/2026
+
+- **New features and fixes**: plugin configuration page reorganised into tabs (General, Skills and AI, SmartHome, Repairs); shutters, blinds, Velux and lamps with modes: position and mode commands now work and no longer cause an error when created; the AI assistant can set the Echo volume again; the delay before unreachable devices are disabled is pre-filled with 7 days on a new installation
+- **Alexa skills**: deployment installs your Jeedom language (and its variants); a skill deleted in the Amazon console is recreated instead of a deployment wrongly reported as successful; Frida: an Echo can be disabled (Frida then refuses its requests); "Account Linking" section removed from the configuration
+- **Security and reliability**: lighter logs (a repeated SmartHome error is reported only once)
+
 ### 31/10/2026
 
 - **JeeViewer skill (Echo Show screen)**: the screen shows the Jeedom dashboard again (it stopped on an alert); new "Default page" setting in the plugin configuration to choose which object dashboard, view or design opens with "Alexa, ouvre afficheur jeedom"

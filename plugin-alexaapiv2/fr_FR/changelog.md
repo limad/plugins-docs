@@ -17,6 +17,12 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 01/11/2026
+
+*   **Nouveautés et corrections** : page de configuration du plugin réorganisée en onglets (Général, Skills et IA, SmartHome, Réparations) ; volets, stores, Velux et lampes à modes : les commandes de position et de mode fonctionnent et ne provoquent plus d'erreur à la création ; l'assistant IA règle de nouveau le volume des Echo ; délai de désactivation des équipements injoignables prérempli à 7 jours sur une nouvelle installation
+*   **Skills Alexa** : le déploiement installe la langue de votre Jeedom (et ses variantes) ; un skill supprimé dans la console Amazon est recréé au lieu d'un déploiement annoncé réussi à tort ; Frida : un Echo peut être désactivé (Frida refuse alors ses demandes) ; section « Account Linking » retirée de la configuration
+*   **Sécurité et fiabilité** : journaux plus légers (une erreur SmartHome répétée n'est signalée qu'une fois)
+
 ### 31/10/2026
 
 *   **Skill JeeViewer (écran Echo Show)** : l'écran affiche de nouveau le tableau de bord Jeedom (il s'arrêtait sur une alerte) ; nouveau réglage « Page affichée par défaut » dans la configuration du plugin pour choisir le tableau de bord d'un objet, une vue ou un design ouvert par « Alexa, ouvre afficheur jeedom »
