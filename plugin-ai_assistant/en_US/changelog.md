@@ -19,6 +19,100 @@ lang: en_US
 
 ---
 
+## 01/11/2026
+
+### New features
+
+- **More accurate Jeedom Assistant answers**: it now only receives the devices the question is about. Answers are better (batteries, gas consumption, last camera detection) and each question costs about a third less.
+- **Follow-up questions**: "And in the bedroom?" or "And its setpoint?" after a home automation question read the devices again, instead of answering from memory.
+- **"Auto" mode of MCP clients**: a diagnosis question (failure, logs, scenario, script…) switches to Agent mode.
+- **PWA**: confirming an alert action happens inside the alert itself (Confirm / Cancel), without a browser dialog.
+
+### Fixes
+
+- **ChatGPT subscription lost**: saving the plugin configuration replaced the subscription (and any equipment-specific key) with the provider's global API key. The global key now only fills an equipment that has no key. If your subscription was lost, sign in once again.
+- **"Stop" button**: the answer kept being generated (and billed) to the end. Stopping now cancels the request, with no retry or action afterwards.
+- **Vigie — "What Vigie watches"**: saved sources were shown unchecked, and checking a box erased the others. The boxes now show the saved setting. Same fix for "Where to send alerts".
+- **Vigie — security alerts**: an administrator account named by an e-mail address was unreadable. It is now partly shown ("l…@gmail.com"). The "new remembered device" alert groups the devices of one sign-in, gives a readable date, says whether the address is already known and where to remove the device.
+- **MCP clients**: the word "Array" could appear in the instructions sent to the model. Fixed.
+- **Panel**: the token counter matches real usage in a long conversation, and the history is summarized correctly again.
+- **Panel**: the conversation follows the answer to the end, even when it arrives fast.
+- **Plugin configuration**: two lists ("Action when exceeded", mini-chat interval) were blank until saved once.
+
+### Miscellaneous
+
+- Panel: clearer mode menu with an explanation of each mode, sidebar button highlighted correctly, more compact header.
+- PWA on large screens: the conversation is as wide as the header, with no empty band under the input.
+
+## 29/10/2026
+
+### Fixes
+
+- **Jeedom Assistant**: scenarios placed in a group could not be started or scheduled. Fixed.
+- **"Confirm before execution"**: with some providers (OpenAI, Claude, OpenAI-compatible), the command ran without a confirmation card. The card now shows, in the mini-chat too. An authorized non-admin user can approve it, and it shows the device concerned ("Gate — on").
+- **MCP clients with mcp_jeedom**: in the default tools mode, the equipment rights and the confirmation of sensitive targets (gate, alarm, lock) were not applied. They are now. Two clients on the same server with different rights no longer mix up their tools.
+- **MCP clients**: "Retry with account 2" really uses account 2; "Tools mode: Never" sends no tools at all; mcp_jeedom house conventions are passed to the AI.
+- **Fallback to another AI connector**: the fallback used the address and key of the original equipment. It now uses its own.
+- **Response cache**: a request that controlled a device could be served from the cache, and then do nothing. Only answers without an action are cached, and never a question with an image.
+- **AI connector page**: opening the page replaced the saved model with the default one. Fixed. Settings inherited from the parent AI connector are locked on linked equipment.
+- **"Chat model (panel)"** now applies when the panel model selector is on "Auto".
+- **Whitelist**: if mcp_jeedom is disabled or uninstalled, ai_assistant uses the last mcp_jeedom list instead of allowing unchecked devices.
+- **Vigie**: "Analyze" is reserved for administrators; passwords and tokens in watched logs are hidden in more formats; an alert meant for specific users can only be acted on by them or an administrator.
+- **AI connectors**: the model knows today's date; the equipment instructions are read correctly.
+
+### Miscellaneous
+
+- Panel and PWA: lighter header, "Export conversation" and "Notifications" in the Options menu (export available on mobile).
+- Phone and tablet: Options menu easier to tap, no more automatic iOS zoom on fields.
+- PWA: content centered on large screens; "Remove this device from notifications" moved to the notifications pane, with a confirmation, and the removal is lasting.
+- Panel: message times ("3 minutes ago") update when you come back to the tab.
+
+## 28/10/2026
+
+### New features
+
+- **Images sent to every provider**: OpenAI, Mistral, Groq, DeepSeek, xAI, OpenRouter, Perplexity, Ollama and OpenAI-compatible servers now receive attached images. They used to be ignored silently.
+- **Camera analysis**: also works with Netatmo and Eufy cameras and any camera providing a snapshot or an image URL.
+
+### Fixes
+
+- Calls outside the panel (scenarios, other plugins, camera analysis) to recent Claude models failed. Fixed.
+- Temporary image analysis files are always deleted.
+
+## 27/10/2026
+
+### New features
+
+- **Vigie — system updates**: reports pending packages, uninstalled security fixes, stopped automatic updates and a required reboot. Nothing is ever installed.
+- **Vigie — security**: reports repeated failed sign-ins, banned addresses, a new administrator, two-factor authentication removed, a new remembered device on an administrator account and a new open port on the network.
+- **Vigie — simpler settings**: an enable switch, one explanation per source, advanced settings folded. Options that call an AI are flagged.
+- **Vigie — AI choice**: "Review alerts with" and "Analyze an alert with" list your active equipment.
+- **ChatGPT subscription**: model list read live, plan and quota shown by the connection test, Free plan recognized.
+- **MCP clients**: tools forbidden by the equipment rights are no longer offered to the AI.
+
+### Fixes
+
+- **Vigie**: several alerts (trend, correlation, logs) were never sent; a charging battery no longer raises an alert.
+- **ChatGPT subscription**: no more error on "Available models"; the chosen reasoning effort is passed on; clear message for a model that is not accepted.
+- **Chat**: non-streamed answers and the confirmation card work again; "turn on" / "turn off" always sends the command.
+- **Models**: the "Available models" list follows your selection; changing provider picks its default model.
+
+### Security
+
+- The AI can no longer use a tool it was not offered, and "confirm" no longer unlocks dangerous tools.
+- Panel for non-admin users: only whitelisted values can be read.
+
+## 25/10/2026
+
+### New features
+
+- **Always up-to-date model list**: it comes from a shared catalog updated every week and downloaded automatically, without waiting for a new plugin version.
+- **Choose the offered models**: in the plugin configuration, "Choose models" lists models per provider with context, price and capabilities. New models can be added automatically or left for you to check.
+
+### Fixes
+
+- "List models" no longer offers models that cannot be used for chat (voice, images, transcription…).
+
 ## 14/10/2026
 
 ### New features
