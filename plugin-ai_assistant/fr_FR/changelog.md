@@ -19,6 +19,11 @@ lang: fr_FR
 
 ## Sommaire
 
+- [01/11/2026](#01112026)
+- [29/10/2026](#29102026)
+- [28/10/2026](#28102026)
+- [27/10/2026](#27102026)
+- [25/10/2026](#25102026)
 - [14/10/2026](#14102026)
 - [25/09/2026](#25092026)
 - [31/08/2026](#31082026)
@@ -35,6 +40,100 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 01/11/2026
+
+### ✨ Nouveautés
+
+- **Réponses plus justes de l'Assistant Jeedom** : il ne reçoit plus que les équipements concernés par la question. Il répond mieux (batteries, consommation de gaz, dernière détection d'une caméra) et coûte environ un tiers de moins par question.
+- **Questions de relance** : « Et dans la chambre ? » ou « Et sa consigne ? » après une question domotique relisent de nouveau les équipements, au lieu d'une réponse de mémoire.
+- **Mode « Auto » des clients MCP** : une question de diagnostic (panne, logs, scénario, script…) passe en mode Agent.
+- **PWA** : la confirmation d'une action d'alerte s'affiche dans l'alerte elle-même (Confirmer / Annuler), sans fenêtre du navigateur.
+
+### 🐛 Corrections
+
+- **Abonnement ChatGPT perdu** : enregistrer la configuration du plugin remplaçait l'abonnement (et toute clé propre à un équipement) par la clé API globale du fournisseur. La clé globale ne remplace plus que la clé d'un équipement qui n'en a pas. Si l'abonnement a été perdu, reconnectez-vous une fois.
+- **Bouton « Arrêter »** : la réponse continuait d'être générée (et facturée) jusqu'au bout. L'arrêt coupe maintenant la demande, sans relance ni action après coup.
+- **Vigie — « Ce que Vigie surveille »** : les sources enregistrées s'affichaient décochées, et cocher une case effaçait les autres. Les cases reflètent maintenant le réglage enregistré. Même correction pour « Où envoyer les alertes ».
+- **Vigie — alertes de sécurité** : un compte administrateur identifié par une adresse e-mail apparaissait illisible. Il s'affiche maintenant en partie (« l…@gmail.com »). L'alerte « nouvel appareil mémorisé » regroupe les appareils d'une même connexion, donne une date lisible, dit si l'adresse est déjà connue et où supprimer l'appareil.
+- **Clients MCP** : le mot « Array » pouvait apparaître dans les instructions envoyées au modèle. Corrigé.
+- **Panel** : le compteur de tokens correspond à la consommation réelle dans une longue conversation, et l'historique est de nouveau résumé correctement.
+- **Panel** : la conversation suit la réponse jusqu'au bout, même quand elle arrive vite.
+- **Configuration du plugin** : deux listes (« Action en cas de dépassement », intervalle du mini-chat) s'affichaient vides avant tout enregistrement.
+
+### 🔧 Divers
+
+- Panel : menu des modes plus lisible avec une explication de chaque mode, bouton de la barre latérale correctement mis en évidence, en-tête plus compact.
+- PWA sur grand écran : la conversation a la largeur de l'en-tête, sans bande vide sous la zone de saisie.
+
+## 29/10/2026
+
+### 🐛 Corrections
+
+- **Assistant Jeedom** : les scénarios rangés dans un groupe ne pouvaient être ni lancés ni planifiés. Corrigé.
+- **« Confirmer avant exécution »** : avec certains fournisseurs (OpenAI, Claude, compatibles OpenAI), la commande partait sans carte de confirmation. La carte s'affiche maintenant, aussi dans le mini-chat. Un utilisateur non administrateur autorisé peut la valider, et elle affiche l'équipement concerné (« Portail — on »).
+- **Clients MCP avec mcp_jeedom** : dans le mode d'outils par défaut, les droits de l'équipement et la confirmation des cibles sensibles (portail, alarme, serrure) n'étaient pas appliqués. Ils le sont. Deux clients sur le même serveur avec des droits différents ne se mélangent plus leurs outils.
+- **Clients MCP** : « Réessayer avec le compte 2 » utilise bien le compte 2 ; « Mode outils : Jamais » n'envoie plus aucun outil ; les conventions maison de mcp_jeedom sont transmises à l'IA.
+- **Secours vers un autre Connecteur IA** : le secours utilisait l'adresse et la clé de l'équipement d'origine. Il utilise maintenant les siennes.
+- **Cache des réponses** : une demande qui pilotait un équipement pouvait être servie depuis le cache, donc ne plus rien faire. Seules les réponses sans action sont mises en cache, et jamais une question avec une image.
+- **Fiche d'un Connecteur IA** : l'ouverture de la fiche remplaçait le modèle enregistré par le modèle par défaut. Corrigé. Les réglages hérités du Connecteur IA parent sont verrouillés sur les équipements liés.
+- **« Modèle chat (panel) »** s'applique maintenant quand le choix du modèle du panel est sur « Auto ».
+- **Liste blanche** : si mcp_jeedom est désactivé ou désinstallé, ai_assistant reprend la dernière liste de mcp_jeedom au lieu d'autoriser des équipements non cochés.
+- **Vigie** : « Analyser » est réservé aux administrateurs ; mots de passe et jetons des journaux surveillés sont masqués dans plus de formats ; une alerte destinée à des utilisateurs précis ne peut être actionnée que par eux ou un administrateur.
+- **Connecteurs IA** : le modèle connaît la date du jour ; les instructions de l'équipement sont lues correctement.
+
+### 🔧 Divers
+
+- Panel et PWA : en-tête allégé, « Exporter la conversation » et « Notifications » dans le menu Options (export accessible sur mobile).
+- Téléphone et tablette : menu Options plus facile à toucher, plus de zoom automatique d'iOS sur les champs.
+- PWA : contenu centré sur grand écran ; « Retirer cet appareil des notifications » déplacé dans le volet des notifications, avec confirmation, et le retrait est durable.
+- Panel : l'heure des messages (« il y a 3 minutes ») se met à jour au retour sur l'onglet.
+
+## 28/10/2026
+
+### ✨ Nouveautés
+
+- **Images envoyées à tous les fournisseurs** : OpenAI, Mistral, Groq, DeepSeek, xAI, OpenRouter, Perplexity, Ollama et les serveurs compatibles OpenAI reçoivent maintenant les images jointes. Avant, elles étaient ignorées sans message.
+- **Analyse de caméra** : fonctionne aussi avec les caméras Netatmo, Eufy et toute caméra qui fournit une capture ou une URL d'image.
+
+### 🐛 Corrections
+
+- Les appels hors panel (scénarios, autres plugins, analyse de caméra) vers les modèles Claude récents échouaient. Corrigé.
+- Les fichiers temporaires d'analyse d'image sont toujours supprimés.
+
+## 27/10/2026
+
+### ✨ Nouveautés
+
+- **Vigie — mises à jour du système** : signale les paquets en attente, les correctifs de sécurité non installés, les mises à jour automatiques arrêtées et un redémarrage requis. Rien n'est jamais installé.
+- **Vigie — sécurité** : signale les connexions ratées répétées, les adresses bannies, un nouvel administrateur, une double authentification retirée, un nouvel appareil mémorisé sur un compte administrateur et un nouveau port ouvert sur le réseau.
+- **Vigie — configuration simplifiée** : un interrupteur d'activation, une explication par source, des réglages avancés repliés. Les options qui appellent une IA sont signalées.
+- **Vigie — choix de l'IA** : « Relire les alertes avec » et « Analyser une alerte avec » proposent vos équipements actifs.
+- **Abonnement ChatGPT** : liste des modèles lue en direct, plan et quota affichés au test de connexion, plan Free reconnu.
+- **Clients MCP** : les outils interdits par les droits de l'équipement ne sont plus proposés à l'IA.
+
+### 🐛 Corrections
+
+- **Vigie** : plusieurs alertes (tendance, corrélation, journaux) ne partaient jamais ; une batterie en charge ne déclenche plus d'alerte.
+- **Abonnement ChatGPT** : plus d'erreur sur « Modèles disponibles » ; l'effort de réflexion choisi est transmis ; message clair pour un modèle non accepté.
+- **Chat** : la réponse non streamée et la carte de confirmation fonctionnent de nouveau ; « allume » / « éteins » envoie toujours la commande.
+- **Modèles** : la liste « Modèles disponibles » suit votre sélection ; changer de fournisseur reprend son modèle par défaut.
+
+### 🔒 Sécurité
+
+- L'IA ne peut plus utiliser un outil qui ne lui a pas été proposé, et « confirme » ne débloque plus les outils dangereux.
+- Panel des non-administrateurs : seules les valeurs de la liste blanche sont lisibles.
+
+## 25/10/2026
+
+### ✨ Nouveautés
+
+- **Liste de modèles toujours à jour** : elle vient d'un catalogue commun mis à jour chaque semaine, téléchargé automatiquement, sans attendre une nouvelle version du plugin.
+- **Choisir les modèles proposés** : dans la configuration du plugin, « Choisir les modèles » liste les modèles par fournisseur avec contexte, prix et capacités. Les nouveaux modèles peuvent être ajoutés automatiquement ou laissés à cocher.
+
+### 🐛 Corrections
+
+- « Lister les modèles » ne propose plus de modèles inutilisables pour le chat (voix, images, transcription…).
 
 ## 14/10/2026
 
