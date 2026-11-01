@@ -33,6 +33,7 @@ lang: en_US
 
 - When an AI looks up a command by device name (`find_command`) and the exact search finds nothing, the plugin tries an approximate match: accents, plurals and small typos are tolerated ("lumieres salon" finds "Lumière Salon"). No AI involved, nothing to configure.
 - A temperature search also finds thermostat probes, the outdoor temperature and weather data (same for humidity and pressure).
+- When the AI looks for a command type that does not exist (for example "GAS_CONSUMPTION"), it is told so and gets the closest existing types ("CONSUMPTION") instead of a bare "no command".
 - When nothing matches a device name, the words are also looked up in command and room names: "outdoor temperature" finds the command of that name even if the device is called something else.
 - The camera list shows each camera's last event (for example the last person seen). A question about the past no longer forces the AI to analyse the image, which only shows the present moment.
 
@@ -43,6 +44,7 @@ Tool responses cost fewer tokens for every AI client, with no answer lost on the
 - `get_full_state`: the `compact` format keeps only useful information (8.7 k → 3.3 k tokens on a test box); the `summary` format includes thermostat setpoints.
 - Text format (full state, room state, device sheet, device lists): up to 57 % less text (40 % for the full state). A command type's hint appears once per response, and very long values (camera history, JSON, signed URLs) are truncated, with their size and the call that returns the full value.
 - System messages (`get_system_messages`): repeated messages from the same plugin (same text apart from a date or error code) appear once, with their count; almost half the text on a test box.
+- The tool list sent at each connection is 1 to 5 % lighter depending on the role (redundant parameter descriptions removed), with no measured quality loss on Haiku and DeepSeek, including for creating a view, a design or an interaction.
 - The `get_full_state` description points AI clients to targeted tools (`find_command`, `search_devices`) for a specific question, instead of loading the whole home state.
 - Faster client connection: the session-opening response drops from 136 KB to 4 KB (the server icon is given by URL instead of being embedded).
 - **Fixed**: in `get_full_state` (`summary` and `compact` formats), AI clients sometimes took a device ID for a command ID, causing an error and a wasted tool call. It is now labelled `eq_id`.

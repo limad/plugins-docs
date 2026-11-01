@@ -33,6 +33,7 @@ lang: fr_FR
 
 - Quand une IA cherche une commande par nom d'équipement (`find_command`) et que la recherche exacte ne trouve rien, le plugin tente une correspondance approchée : accents, pluriels et petites fautes de frappe sont tolérés (« lumieres salon » trouve « Lumière Salon »). Sans IA, rien à configurer.
 - Une recherche de température trouve aussi les sondes de thermostat, la température extérieure et la météo (même chose pour l'humidité et la pression).
+- Quand l'IA cherche un type de commande qui n'existe pas (par exemple « GAS_CONSUMPTION »), elle est prévenue et reçoit les types proches existants (« CONSUMPTION ») au lieu d'un simple « aucune commande ».
 - Si rien ne correspond au nom d'un équipement, les mots sont aussi cherchés dans les noms des commandes et des pièces : « température extérieure » trouve la commande du même nom, même si l'équipement s'appelle autrement.
 - La liste des caméras indique le dernier événement de chacune (par exemple la dernière personne vue). Une question sur le passé n'oblige plus l'IA à analyser l'image, qui ne montre que l'instant présent.
 
@@ -43,6 +44,7 @@ Les réponses des outils coûtent moins de tokens à chaque client IA, sans rép
 - `get_full_state` : le format `compact` ne garde que les informations utiles (8,7 k → 3,3 k tokens sur une box de test) ; le format `summary` inclut la consigne des thermostats.
 - Format texte (état complet, état d'une pièce, fiche d'un équipement, listes d'équipements) : jusqu'à 57 % de texte en moins (40 % pour l'état complet). L'aide d'un type de commande n'apparaît qu'une fois par réponse, et les valeurs très longues (historique caméra, JSON, adresses signées) sont tronquées, avec leur taille et l'appel qui donne la valeur complète.
 - Messages système (`get_system_messages`) : les messages répétés d'un même plugin (même texte à la date ou au code d'erreur près) n'apparaissent qu'une fois, avec leur nombre ; près de deux fois moins de texte sur une box de test.
+- La liste des outils envoyée à chaque connexion est 1 à 5 % plus légère selon le rôle (descriptions de paramètres redondantes retirées), sans perte de qualité mesurée sur Haiku et DeepSeek, y compris pour créer une vue, un design ou une interaction.
 - La description de `get_full_state` oriente les IA vers les outils ciblés (`find_command`, `search_devices`) pour une question précise, au lieu de charger tout l'état de la maison.
 - Connexion d'un client plus rapide : la réponse d'ouverture de session passe de 136 Ko à 4 Ko (l'icône du serveur est fournie par une adresse au lieu d'être incluse).
 - **Corrigé** : dans `get_full_state` (formats `summary` et `compact`), les IA prenaient parfois l'identifiant d'un équipement pour celui d'une commande, d'où une erreur et un appel d'outil inutile. Il est maintenant étiqueté `eq_id`.
