@@ -19,6 +19,43 @@ lang: en_US
 
 ---
 
+## 01/11/2026
+
+**New: daily anomaly digest**
+
+- AI customization tab: the plugin can send you the box's anomalies every day (low or critical batteries, devices in alert, out-of-range values). Disabled by default.
+- Free and AI-free: the list is computed by Jeedom. Nothing is sent when there is no anomaly and, if you wish, only when the list has changed since the last one.
+- Sent through the notification command of your choice, or to the Jeedom message center.
+- Optionally, an AI summary groups the anomalies by likely cause (for example several sensors of the same plugin offline: gateway down). At most one call per day, only when there are new anomalies (about 1 to 2 k tokens), through the AI Assistant integration. The names of the rooms and devices involved are sent to the chosen provider.
+- New setting **Daily cap on automatic AI calls** (20 by default, 0 = none): it limits every AI feature that runs without an action from you. Generations started from the configuration page are not counted.
+
+**More tolerant device search**
+
+- When an AI looks up a command by device name (`find_command`) and the exact search finds nothing, the plugin tries an approximate match: accents, plurals and small typos are tolerated ("lumieres salon" finds "Lumière Salon"). No AI involved, nothing to configure.
+
+**Lighter responses for AI clients**
+
+Tool responses cost fewer tokens for every AI client, with no answer lost on the 22-question reference set (11 % fewer tokens used on that set).
+
+- `get_full_state`: the `compact` format keeps only useful information (8.7 k → 3.3 k tokens on a test box); the `summary` format includes thermostat setpoints.
+- Text format (full state, room state, device sheet, device lists): up to 57 % less text (40 % for the full state). A command type's hint appears once per response, and very long values (camera history, JSON, signed URLs) are truncated, with their size and the call that returns the full value.
+- The `get_full_state` description points AI clients to targeted tools (`find_command`, `search_devices`) for a specific question, instead of loading the whole home state.
+- Faster client connection: the session-opening response drops from 136 KB to 4 KB (the server icon is given by URL instead of being embedded).
+- **Fixed**: in `get_full_state` (`summary` and `compact` formats), AI clients sometimes took a device ID for a command ID, causing an error and a wasted tool call. It is now labelled `eq_id`.
+
+**OAuth MCP**
+
+- **Fixed**: Claude (`claude.ai`), Le Chat (`callback.mistral.ai`, and `console.mistral.ai` for the Mistral connector debugger) and ChatGPT (`chatgpt.com`) are always accepted as OAuth redirect addresses. A configuration saved before one of these clients was added could block its registration. The **Redirect hosts autorises** field is now only for other clients' hosts.
+
+**Tokens**
+
+- Token creation dialog: the role's permission details are collapsed by default; click the role description to show them.
+
+**Translations**
+
+- **Fixed**: in English, the AI customization tab showed the description of the shell option instead of its name, and three nearby texts were shifted the same way.
+- About 40 recent texts (anomaly digest, AI call cap, role capabilities, OAuth warnings) are now translated in all languages.
+
 ## 30/10/2026
 
 **Getting ready for Alexa+**
