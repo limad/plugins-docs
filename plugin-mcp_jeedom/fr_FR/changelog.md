@@ -19,6 +19,38 @@ lang: fr_FR
 
 ---
 
+## 01/11/2026
+
+**Nouveau : digest quotidien des anomalies**
+
+- Onglet « Personnalisation IA » : le plugin peut vous envoyer chaque jour la liste des anomalies de la box (batteries faibles ou critiques, équipements en alerte, valeurs hors plage). Désactivé par défaut.
+- Gratuit et sans IA : la liste est calculée par Jeedom. Rien n'est envoyé s'il n'y a aucune anomalie et, si vous le souhaitez, seulement quand la liste a changé depuis le dernier envoi.
+- Envoi par la commande de notification de votre choix, ou dans le centre de messages Jeedom.
+- En option, une synthèse IA regroupe les anomalies par cause probable (par exemple plusieurs capteurs d'un même plugin hors ligne : passerelle en panne). Un appel par jour au maximum, uniquement s'il y a des anomalies nouvelles (environ 1 à 2 k tokens), via l'intégration AI Assistant. Les noms des pièces et des équipements concernés sont transmis au provider choisi.
+- Nouveau réglage **Plafond d'appels IA automatiques par jour** (20 par défaut, 0 = aucun) : il limite toutes les fonctions IA qui se déclenchent sans action de votre part. Les générations lancées depuis la page de configuration ne sont pas comptées.
+
+**Recherche d'équipements plus tolérante**
+
+- Quand une IA cherche une commande par nom d'équipement (`find_command`) et que la recherche exacte ne trouve rien, le plugin tente une correspondance approchée : accents, pluriels et petites fautes de frappe sont tolérés (« lumieres salon » trouve « Lumière Salon »). Sans IA, rien à configurer.
+
+**Réponses plus légères pour les IA**
+
+Les réponses des outils coûtent moins de tokens à chaque client IA, sans réponse perdue sur le jeu de 22 questions de référence (11 % de tokens consommés en moins sur ce jeu).
+
+- `get_full_state` : le format `compact` ne garde que les informations utiles (8,7 k → 3,3 k tokens sur une box de test) ; le format `summary` inclut la consigne des thermostats.
+- Format texte (état complet, état d'une pièce, fiche d'un équipement, listes d'équipements) : jusqu'à 57 % de texte en moins (40 % pour l'état complet). L'aide d'un type de commande n'apparaît qu'une fois par réponse, et les valeurs très longues (historique caméra, JSON, adresses signées) sont tronquées, avec leur taille et l'appel qui donne la valeur complète.
+- La description de `get_full_state` oriente les IA vers les outils ciblés (`find_command`, `search_devices`) pour une question précise, au lieu de charger tout l'état de la maison.
+- Connexion d'un client plus rapide : la réponse d'ouverture de session passe de 136 Ko à 4 Ko (l'icône du serveur est fournie par une adresse au lieu d'être incluse).
+- **Corrigé** : dans `get_full_state` (formats `summary` et `compact`), les IA prenaient parfois l'identifiant d'un équipement pour celui d'une commande, d'où une erreur et un appel d'outil inutile. Il est maintenant étiqueté `eq_id`.
+
+**OAuth MCP**
+
+- **Corrigé** : Claude (`claude.ai`), Le Chat (`callback.mistral.ai`, et `console.mistral.ai` pour le débogueur de connecteurs Mistral) et ChatGPT (`chatgpt.com`) sont toujours acceptés comme adresses de retour OAuth. Une configuration enregistrée avant l'ajout de l'un de ces clients pouvait bloquer son enregistrement. Le champ **Redirect hosts autorises** ne sert plus qu'aux hôtes d'autres clients.
+
+**Tokens**
+
+- Fenêtre de création d'un token : le détail des permissions du rôle est replié par défaut ; un clic sur la description du rôle l'affiche.
+
 ## 30/10/2026
 
 **Préparation pour Alexa+**
