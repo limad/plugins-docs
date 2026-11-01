@@ -17,6 +17,10 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 31/10/2026
+
+*   **Skill JeeViewer (écran Echo Show)** : l'écran affiche de nouveau le tableau de bord Jeedom (il s'arrêtait sur une alerte) ; nouveau réglage « Page affichée par défaut » dans la configuration du plugin pour choisir le tableau de bord d'un objet, une vue ou un design ouvert par « Alexa, ouvre afficheur jeedom »
+
 ### 30/10/2026
 
 *   **Skill Alexa (contrôle vocal)** : en français, la skill s'appelle désormais « ma jeebox » (« Alexa, demande à ma jeebox… ») ; les questions libres sont bien mieux comprises et transmises à l'IA, y compris les questions d'heure ou de durée ; réponses dans la langue de l'Echo (français, anglais, espagnol) ; quand Alexa n'est pas sûre de la commande comprise, elle demande confirmation avant d'agir (« Veux-tu dire… ? ») ; une commande n'est plus exécutée deux fois quand Jeedom répond lentement ; réponses des interactions Jeedom plus lisibles. Redéployez la skill depuis le plugin pour en profiter
