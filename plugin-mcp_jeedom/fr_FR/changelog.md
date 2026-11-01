@@ -42,6 +42,7 @@ Les réponses des outils coûtent moins de tokens à chaque client IA, sans rép
 
 - `get_full_state` : le format `compact` ne garde que les informations utiles (8,7 k → 3,3 k tokens sur une box de test) ; le format `summary` inclut la consigne des thermostats.
 - Format texte (état complet, état d'une pièce, fiche d'un équipement, listes d'équipements) : jusqu'à 57 % de texte en moins (40 % pour l'état complet). L'aide d'un type de commande n'apparaît qu'une fois par réponse, et les valeurs très longues (historique caméra, JSON, adresses signées) sont tronquées, avec leur taille et l'appel qui donne la valeur complète.
+- Messages système (`get_system_messages`) : les messages répétés d'un même plugin (même texte à la date ou au code d'erreur près) n'apparaissent qu'une fois, avec leur nombre ; près de deux fois moins de texte sur une box de test.
 - La description de `get_full_state` oriente les IA vers les outils ciblés (`find_command`, `search_devices`) pour une question précise, au lieu de charger tout l'état de la maison.
 - Connexion d'un client plus rapide : la réponse d'ouverture de session passe de 136 Ko à 4 Ko (l'icône du serveur est fournie par une adresse au lieu d'être incluse).
 - **Corrigé** : dans `get_full_state` (formats `summary` et `compact`), les IA prenaient parfois l'identifiant d'un équipement pour celui d'une commande, d'où une erreur et un appel d'outil inutile. Il est maintenant étiqueté `eq_id`.
