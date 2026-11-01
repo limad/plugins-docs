@@ -46,6 +46,16 @@ Les réponses des outils coûtent moins de tokens à chaque client IA, sans rép
 - Connexion d'un client plus rapide : la réponse d'ouverture de session passe de 136 Ko à 4 Ko (l'icône du serveur est fournie par une adresse au lieu d'être incluse).
 - **Corrigé** : dans `get_full_state` (formats `summary` et `compact`), les IA prenaient parfois l'identifiant d'un équipement pour celui d'une commande, d'où une erreur et un appel d'outil inutile. Il est maintenant étiqueté `eq_id`.
 
+**Corrections de filtres**
+
+Cinq outils perdaient le filtre demandé par l'IA :
+
+- **Statut des équipements** (`get_devices_status`) : renvoyait tous les équipements de la box, y compris ceux hors liste blanche, au lieu de ceux demandés. Il ne renvoie plus que les équipements autorisés, et refuse les autres.
+- **Mises à jour par lot** : demandées pour quelques plugins, elles étaient appliquées à **tous** les plugins (après confirmation).
+- **Simulation de présence** et **résumé des pièces** : agissaient sur toutes les pièces au lieu de celles demandées.
+- **Planning des modes** : le planning envoyé n'était pas transmis au scénario.
+- Effet de bord : une question comme « y a-t-il des alertes SMART ? » coûte nettement moins de tokens et ne tourne plus en boucle.
+
 **OAuth MCP**
 
 - **Corrigé** : Claude (`claude.ai`), Le Chat (`callback.mistral.ai`, et `console.mistral.ai` pour le débogueur de connecteurs Mistral) et ChatGPT (`chatgpt.com`) sont toujours acceptés comme adresses de retour OAuth. Une configuration enregistrée avant l'ajout de l'un de ces clients pouvait bloquer son enregistrement. Le champ **Redirect hosts autorises** ne sert plus qu'aux hôtes d'autres clients.

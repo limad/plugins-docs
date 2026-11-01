@@ -46,6 +46,16 @@ Tool responses cost fewer tokens for every AI client, with no answer lost on the
 - Faster client connection: the session-opening response drops from 136 KB to 4 KB (the server icon is given by URL instead of being embedded).
 - **Fixed**: in `get_full_state` (`summary` and `compact` formats), AI clients sometimes took a device ID for a command ID, causing an error and a wasted tool call. It is now labelled `eq_id`.
 
+**Filter fixes**
+
+Five tools lost the filter requested by the AI:
+
+- **Device status** (`get_devices_status`): returned every device on the box, including those outside the whitelist, instead of the requested ones. It now only returns authorised devices and refuses the others.
+- **Batch updates**: requested for a few plugins, they were applied to **all** plugins (after confirmation).
+- **Presence simulation** and **room summary**: acted on every room instead of the requested ones.
+- **Mode schedule**: the schedule sent was not passed on to the scenario.
+- Side effect: a question like "any SMART alerts?" costs far fewer tokens and no longer loops.
+
 **OAuth MCP**
 
 - **Fixed**: Claude (`claude.ai`), Le Chat (`callback.mistral.ai`, and `console.mistral.ai` for the Mistral connector debugger) and ChatGPT (`chatgpt.com`) are always accepted as OAuth redirect addresses. A configuration saved before one of these clients was added could block its registration. The **Redirect hosts autorises** field is now only for other clients' hosts.
