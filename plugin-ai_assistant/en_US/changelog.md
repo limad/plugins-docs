@@ -31,6 +31,8 @@ lang: en_US
 ### Fixes
 
 - **ChatGPT subscription lost**: saving the plugin configuration replaced the subscription (and any equipment-specific key) with the provider's global API key. The global key now only fills an equipment that has no key. If your subscription was lost, sign in once again.
+- **DeepSeek**: an answer could come back empty when the model spent all its answer time thinking. Worse, the following home automation questions then failed with an error. The plugin now asks again without thinking, and these errors are gone.
+- **Panel**: an error from another plugin during an answer is now shown, instead of an empty answer.
 - **"Stop" button**: the answer kept being generated (and billed) to the end. Stopping now cancels the request, with no retry or action afterwards.
 - **Vigie — "What Vigie watches"**: saved sources were shown unchecked, and checking a box erased the others. The boxes now show the saved setting. Same fix for "Where to send alerts".
 - **Vigie — security alerts**: an administrator account named by an e-mail address was unreadable. It is now partly shown ("l…@gmail.com"). The "new remembered device" alert groups the devices of one sign-in, gives a readable date, says whether the address is already known and where to remove the device.
