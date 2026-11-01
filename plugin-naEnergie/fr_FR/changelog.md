@@ -22,6 +22,11 @@ pluginId: naEnergie
 >*Liste non exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
 
+### Version 01/11/2026
+
+#### Corrections
+* Réglage de consigne ou de mode lancé sans valeur (depuis un scénario ou un assistant IA) : la commande plantait sur une erreur interne. Elle s'arrête maintenant avec un message clair (« indiquez une température ou une durée ») et n'envoie rien au thermostat.
+
 ### Version 29/03/2026 (Beta)
 
 #### Architecture/Fiabilité
