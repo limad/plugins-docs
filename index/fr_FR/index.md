@@ -317,4 +317,19 @@ pluginId: limad44
 	</div>
 </div>
 
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-jee2matter/{{page.lang}}">
+	<img src="{{site.baseurl}}/plugin-jee2matter/images/jee2matter_icon.png" alt="jee2matter">
+	<div>
+		<h2 class="plugin-card__name">Jee2Matter</h2>
+		<span class="plugin-card__id">jee2matter</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Pont Matter local : expose les équipements Jeedom (lumières, prises, volets, capteurs, thermostats) à Alexa, Apple Maison et Google Home, sans cloud ni Docker.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-jee2matter/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-jee2matter/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
 </div><!-- /plugin-grid -->
