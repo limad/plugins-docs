@@ -22,6 +22,9 @@ pluginId: netatmoSecurity
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
 
+### Version 06/11/2026
+  * Types génériques : la surveillance des caméras est reconnue comme un armement (Alexa peut l'activer ou la désactiver) ; « Connecté », batterie, fumée, CO, sabotage et présence reconnus sur les modèles concernés (le détecteur de fumée apparaît dans Matter) ; types trompeurs retirés (liste d'événements, état d'alarme en texte, URL du snapshot, mouvement des détecteurs d'ouverture) ; un choix manuel n'est plus écrasé à la synchronisation. Correction automatique à la mise à jour.
+
 ### Version 15/11/2024
   * Amélioration de la compatibilité PHP8
   * Ajout de commandes Projecteur(On-Off-Auto) de type bouton pour une meilleure interopérabilité.
