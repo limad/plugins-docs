@@ -19,6 +19,12 @@ lang: en_US
 
 ---
 
+## 06/11/2026
+
+- **Fixed**: security report for inverted virtual devices.
+- Requests refused to the AI are logged as warnings instead of errors.
+- Various improvements.
+
 ## 01/11/2026
 
 **New: daily anomaly digest**
