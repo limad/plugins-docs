@@ -21,6 +21,10 @@ lang: en_US
 
 ## Version in development
 
+### 06/11/2026
+
+- **Generic types**: plugs and switches are recognised as plugs (no longer as lamps) by apps and Matter / Alexa bridges; thermostats: heating on / off; on / off states and detections (motion, smoke, glass break, presence) as 0 / 1, temperature and setpoint as numbers in °C; "Set colour" becomes a colour picker; "Connected" and "Volume" use Jeedom's types, and the plugin's own types are offered in the command configuration; a type chosen by hand is no longer overwritten by the synchronisation. Automatic migration on update
+
 ### 01/11/2026
 
 - **New features and fixes**: plugin configuration page reorganised into tabs (General, Skills and AI, SmartHome, Repairs); shutters, blinds, Velux and lamps with modes: position and mode commands now work and no longer cause an error when created; the AI assistant can set the Echo volume again; the delay before unreachable devices are disabled is pre-filled with 7 days on a new installation
