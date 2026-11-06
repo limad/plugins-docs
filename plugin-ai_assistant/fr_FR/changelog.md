@@ -19,6 +19,7 @@ lang: fr_FR
 
 ## Sommaire
 
+- [06/11/2026](#06112026)
 - [01/11/2026](#01112026)
 - [29/10/2026](#29102026)
 - [28/10/2026](#28102026)
@@ -40,6 +41,24 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 06/11/2026
+
+### ✨ Nouveautés
+
+- **Panel — choix du modèle** : avec ai_proxy, un serveur compatible OpenAI ou Ollama, le menu affiche les modèles du serveur avec un nom lisible, groupés par compte (Claude, Codex, Gemini…), et signale ceux sans outils ou dont le quota est épuisé. L'effort de raisonnement n'est plus proposé pour un modèle qui ne raisonne pas.
+- **Panel — « Afficher uniquement les providers IA »** : nouvelle option du menu Options, à côté de « Afficher uniquement les clients MCP », pour ne lister que les Connecteurs IA dans le choix de l'équipement.
+
+### 🐛 Corrections
+
+- **Panel — modèle choisi perdu** : un modèle choisi dans la liste du serveur revenait à « Automatique » au clic ou au rechargement. Il est conservé.
+- **Panel et PWA — largeurs** : l'en-tête, la conversation et la zone de saisie ont maintenant les mêmes bords, à toutes les largeurs d'écran. La zone de saisie est limitée à 800 px et centrée.
+- **Création d'un équipement** : un double clic sur « Créer » créait deux équipements. Le bouton est verrouillé pendant l'enregistrement.
+- **Vigie** : naviguer vite entre les pages (ou avec plusieurs onglets) remplissait le journal d'erreurs « Trop de requêtes ». Seule la page où l'on s'arrête est signalée, sans erreur.
+
+### 🔧 Divers
+
+- Messages d'erreur réseau plus lisibles (le même message n'est plus répété deux fois).
 
 ## 01/11/2026
 

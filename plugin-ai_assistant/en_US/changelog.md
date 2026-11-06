@@ -19,6 +19,26 @@ lang: en_US
 
 ---
 
+## 06/11/2026
+
+### New features
+
+- **Panel — model choice**: with ai_proxy, an OpenAI-compatible server or Ollama, the menu shows the server's models with a readable name, grouped by account (Claude, Codex, Gemini…), and flags those without tools or with an exhausted quota. Reasoning effort is no longer offered for a model that does not reason.
+- **Panel — "Show AI providers only"**: new option in the Options menu, next to "Show MCP clients only", to list only AI connectors in the equipment choice.
+
+### Fixes
+
+- **Panel — chosen model lost**: a model picked from the server's list went back to "Automatic" on click or reload. It is now kept.
+- **Panel and PWA — widths**: the header, the conversation and the input area now share the same edges at every screen width. The input area is capped at 800 px and centered.
+- **Creating an equipment**: a double click on "Create" created two equipments. The button is locked while saving.
+- **Vigie**: browsing pages quickly (or with several tabs) filled the error log with "Too many requests". Only the page you stop on is reported, without error.
+
+### Miscellaneous
+
+- Clearer network error messages (the same message is no longer repeated twice).
+
+---
+
 ## 01/11/2026
 
 ### New features
