@@ -9,6 +9,11 @@ pluginId: f2ban
 
 # Changelog — f2ban
 
+## 2026-11-06
+
+- Generic types: the *Refresh*, *Banip*, *Unbanip* commands, the counters, IP lists, *Ban time* and per-country counters no longer have the *Generic info/action* types (they brought nothing to apps and voice assistants); *Online* keeps *Connected*. Applied on update, unless the type was changed by hand
+- *Ban time* now has the `s` (seconds) unit, including on existing commands without a unit; the *Default config* button also sets the unit when it is empty
+
 ## 2026-09-20
 
 - All commands use a widget from the iso widget set, downloaded from GitHub when the plugin is installed and updated (Jeedom default widget if missing): **iso_line** for infos, **iso_btn** for *Refresh*, *Banip* and *Unbanip*. Existing commands still using the default widget, the old *line* widget, a widget that does not exist or *iso_msg_dialogue* (reserved for "chat" commands with a linked info) are migrated once on update; other widgets are not changed

@@ -9,6 +9,11 @@ pluginId: f2ban
 
 # Changelog — f2ban
 
+## 2026-11-06
+
+- Types génériques : les commandes *Rafraichir*, *Banip*, *Unbanip*, les compteurs, listes d'IP, *Durée de ban* et compteurs par pays n'ont plus les types *Générique info/action* (ils n'apportaient rien aux applications ni aux ponts Alexa/Matter). Seul *En ligne* garde son type (*Connecté*). Les commandes existantes sont corrigées une fois à la mise à jour, uniquement si elles ont encore le type posé par le plugin (un type que vous avez choisi est conservé)
+- *Durée de ban* a maintenant l'unité `s` (secondes), y compris sur les commandes existantes sans unité ; le bouton *Défaut config* pose aussi l'unité quand elle est vide
+
 ## 2026-09-20
 
 - Toutes les commandes utilisent un widget du jeu de widgets iso, téléchargé depuis GitHub à l'installation et à la mise à jour du plugin (widget par défaut de Jeedom s'il est absent): **iso_line** pour les infos, **iso_btn** pour *Rafraichir*, *Banip* et *Unbanip*. Les commandes existantes qui utilisent encore le widget par défaut, l'ancien widget *line*, un widget qui n'existe pas ou *iso_msg_dialogue* (réservé aux commandes de type « chat » avec une info liée) sont migrées une fois à la mise à jour; les autres widgets ne sont pas modifiés
