@@ -10,6 +10,10 @@ pluginId: grdfConnect
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne prbablement la mise à jour de documentation, de bugs mineur ou alors j'ai pas le temps !!!.
 
+# 06/11/2026
+- Types génériques : la température extérieure est une température météo (le compteur n'apparaît plus comme une sonde de température dans Alexa ou Matter) ; consommation du jour en « consommation journalière », plus de type sur les autres consommations ; index en m³ ; plus de famille « Électricité » sur le compteur gaz
+- Un type ou une unité choisis à la main ne sont plus écrasés. Correction automatique à la mise à jour
+
 # 15-11-2024
 - Remplacement de la class guzzle par une class interne
 - Améliration de la compatibilité PHP8
