@@ -7,6 +7,17 @@ pluginId: jee2matter
 
 # Changelog
 
+## Version en développement
+
+- **Lumières couleur et blanc réglable** (`LIGHT_SET_COLOR` couleur, `LIGHT_SET_COLOR_TEMP` en Kelvin, mireds ou %) : « Alexa, mets Lyra en rouge », « … en blanc chaud ». Lumière à bascule seule (`LIGHT_TOGGLE` + état) reconnue.
+- **Ventilateurs** (`FAN_SPEED`), **prises variables** (`ENERGY_SLIDER`), **chauffage marche / arrêt** (`HEATING_ON` / `HEATING_OFF`).
+- **Détecteurs de fuite** (`WATER_LEAK`, `FLOOD`), **de fumée** (`SMOKE`) **et de CO** (`CO`).
+- **Capteurs de qualité de l'air** (`AIR_QUALITY`, `CO2`), **de pression** (`PRESSURE`) **et de luminosité** (`BRIGHTNESS`). Les types météo (`WEATHER_TEMPERATURE`, `WEATHER_HUMIDITY`, `WEATHER_PRESSURE`) servent de repli. Ce repli est ignoré sur un compteur d'énergie (consommation, puissance, production) : un compteur Gazpar ou Linky qui affiche la météo du jour n'apparaît plus comme une sonde de température.
+- Plusieurs mesures d'un même équipement (température, humidité, CO₂, pression...) regroupées dans un seul appareil.
+- **Niveau de batterie** transmis pour tous les types ; **chauffe en cours** des thermostats (`THERMOSTAT_STATE`).
+- **Capteurs température + humidité** : un équipement qui a les deux mesures apparaît comme un seul appareil avec les deux valeurs (auparavant, seule la température était exposée). S'il était déjà exposé, l'ancien capteur de température est remplacé.
+- **Serrures** (`LOCK_STATE`, `LOCK_CLOSE`, `LOCK_OPEN`) : verrouillage et déverrouillage depuis les applications ; option Inverser pour une serrure dont 1 = déverrouillée.
+
 ## 0.2.0 (2026-11-05)
 
 - **Thermostats et climatisations** : consigne, température mesurée et modes (arrêt, chauffage, froid) pilotables depuis Alexa, Apple Maison et Google Home. Les équipements qui ont une commande de consigne (`THERMOSTAT_SET_SETPOINT` ou `AC_SET_TEMPERATURE`) sont désormais exposés comme thermostats ; s'ils étaient exposés comme capteurs de température, l'ancien capteur disparaît des applications et un thermostat le remplace.

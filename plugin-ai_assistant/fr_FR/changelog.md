@@ -55,6 +55,7 @@ lang: fr_FR
 - **Panel et PWA — largeurs** : l'en-tête, la conversation et la zone de saisie ont maintenant les mêmes bords, à toutes les largeurs d'écran. La zone de saisie est limitée à 800 px et centrée.
 - **Création d'un équipement** : un double clic sur « Créer » créait deux équipements. Le bouton est verrouillé pendant l'enregistrement.
 - **Vigie** : naviguer vite entre les pages (ou avec plusieurs onglets) remplissait le journal d'erreurs « Trop de requêtes ». Seule la page où l'on s'arrête est signalée, sans erreur.
+- **Type générique de « Statut »** : la commande utilise maintenant le type « Connecté », reconnu par Jeedom et les applications, au lieu d'une valeur inconnue. Les anciens équipements perdent la famille « Électricité » et la catégorie Énergie, posées à tort. Correction automatique à la mise à jour.
 
 ### 🔧 Divers
 

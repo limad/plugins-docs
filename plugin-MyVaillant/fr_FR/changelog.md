@@ -19,6 +19,10 @@ pluginId: MyVaillant
 
 >*Liste non-exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 
+### Version 06/11/2026
+
+* **Types génériques** : la consigne pilotée par Alexa ou Matter est bien celle de la zone (et non plus la courbe de chauffe ou l'absence) ; la température extérieure n'est plus lue comme la température de la maison ; eau chaude : mode, consigne et température reconnus ; humidité et puissance reconnues ; bornes des consignes alignées sur les réglages ; le type générique se choisit dans une liste dans le tableau des commandes ; un choix manuel n'est plus écrasé à la synchronisation. Correction automatique à la mise à jour.
+
 ### Version 13/07/2026
 
 * Nouvelle vue **Consommations** sur l'équipement Home : conso électrique/gaz/environnementale par usage, COP et tendance sur 12 mois, corrélation COP/température extérieure, codes défaut, téléchargement du rapport annuel.

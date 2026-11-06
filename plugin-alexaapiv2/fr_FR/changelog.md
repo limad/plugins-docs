@@ -17,6 +17,10 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 06/11/2026
+
+*   **Types génériques** : prises et interrupteurs reconnus comme des prises (et non plus des lampes) par les applications et les ponts Matter / Alexa ; thermostats : marche / arrêt du chauffage ; états marche / arrêt et détections (mouvement, fumée, bris de verre, présence) en 0 / 1, température et consigne numériques en °C ; « Définir Couleur » devient un sélecteur de couleur ; « Connecté » et « Réglage Volume » utilisent les types de Jeedom, et les types propres au plugin sont proposés dans la configuration des commandes ; un type choisi à la main n'est plus écrasé à la synchronisation. Migration automatique à la mise à jour
+
 ### 01/11/2026
 
 *   **Nouveautés et corrections** : page de configuration du plugin réorganisée en onglets (Général, Skills et IA, SmartHome, Réparations) ; volets, stores, Velux et lampes à modes : les commandes de position et de mode fonctionnent et ne provoquent plus d'erreur à la création ; l'assistant IA règle de nouveau le volume des Echo ; délai de désactivation des équipements injoignables prérempli à 7 jours sur une nouvelle installation

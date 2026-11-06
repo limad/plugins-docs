@@ -22,6 +22,7 @@ lang: fr_FR
 ## 06/11/2026
 
 - **Corrigé** : bilan sécurité des virtuels inversés.
+- **Corrigé** : le type générique donné par l'IA à la création d'une commande est bien enregistré (et refusé s'il n'existe pas dans Jeedom), et les outils de lecture l'affichent. « Etat daemon » utilise le type « Connecté ».
 - Les refus de l'IA sont journalisés en avertissement, et non plus en erreur.
 - Améliorations diverses.
 

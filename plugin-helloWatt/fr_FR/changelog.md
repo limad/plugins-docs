@@ -10,6 +10,10 @@ pluginId: helloWatt
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne probablement la mise à jour de documentation, de bugs mineurs ou alors j'ai pas le temps !!!.
 
+# 06/11/2026
+- Types génériques : consommation et production du jour en « consommation / production journalière », plus de type sur les cumuls mensuels et annuels ; température en °C, de type météo ; plus de famille « Électricité » sur les compteurs gaz
+- Un type ou une unité choisis à la main ne sont plus écrasés. Correction automatique à la mise à jour
+
 # 08/04/2026
 - Correction du cron qui ne fonctionnait qu'une heure sur deux au lieu d'alterner correctement
 - Correction du widget custom qui ne s'affichait pas (dead code)

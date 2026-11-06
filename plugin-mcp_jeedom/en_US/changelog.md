@@ -22,6 +22,7 @@ lang: en_US
 ## 06/11/2026
 
 - **Fixed**: security report for inverted virtual devices.
+- **Fixed**: the generic type given by the AI when creating a command is now saved (and refused if it does not exist in Jeedom), and the reading tools show it. "Daemon state" uses the "Connected" type.
 - Requests refused to the AI are logged as warnings instead of errors.
 - Various improvements.
 

@@ -17,6 +17,10 @@ lang: fr_FR
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la
 >mise à jour de documentation, de traduction ou de texte.
 
+# 06/11/2026
+
+- **Types génériques** : la température interne des modules n'est plus vue comme une température de pièce par Alexa ou Matter ; compteurs d'énergie (Pro 3EM, PM Mini…) : puissance, consommation et tension reconnues ; détecteur de fuite et bascule reconnus ; famille d'équipement renseignée ; volets calibrés liés à leur position ; un choix manuel n'est plus écrasé à chaque sauvegarde. Correction automatique à la mise à jour
+
 # 21/08/2026
 
 - Ajout d'un outil de **migration depuis l'ancien plugin Shelly** (lunarok) : bouton **Migration**

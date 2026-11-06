@@ -22,6 +22,21 @@ pluginId: naEnergie
 >*Liste non exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
 
+### Version 06/11/2026
+
+#### Types génériques
+* Température des pièces en `THERMOSTAT_TEMPERATURE` (clé en double dans la configuration), `TEMPERATURE` pour les modules météo.
+* Prévisions : symbole météo courant en `WEATHER_CONDITION`, J+1 à J+4 en `WEATHER_TEMPERATURE_MIN_n` / `_MAX_n` / `WEATHER_CONDITION_n` ; plus de type sur les autres prévisions J+1 à J+6 (doublons), ni sur la durée d'ensoleillement (`WEATHER_SUN` et `WEATHER_SYMBOL` n'existent pas dans le core).
+* Plus de type sur « Réglage Consigne » (message), « Set-Mode Absent » / « Set-Mode Hors-gel » (message), « Allumer Ecs » et « Write data ».
+* Les types choisis à la main ne sont plus écrasés à chaque synchronisation ; migration automatique des anciennes valeurs posées par le plugin à la mise à jour.
+* Famille d'équipement : « Weather » pour les modules météo et les prévisions ; la mise à jour du plugin ne remet plus tout en « Thermostat ».
+* Pièces : « Fenetre ouverte » en `OPENING_WINDOW`, « Set-RoomMode » (Home / Hors-gel / Max) en `THERMOSTAT_SET_MODE` (le mode hors-gel devient pilotable par Alexa / Matter), humidité des climatiseurs et thermostats Smarther en `THERMOSTAT_HUMIDITY`.
+* Consigne : bornes 7-30 °C (au lieu de 0 et sans maximum).
+* Station météo : pression en `hPa` (au lieu de `Pa`, la valeur Netatmo étant en millibars), sonomètre en `dB`.
+* Pluviomètre : pluie courante en `RAIN_CURRENT` ; prévision du jour : cumul de pluie en `RAIN_TOTAL` (les deux étaient inversés).
+* Prévisions : rafale courante en `WIND_SPEED`, plus de type sur la vitesse du vent du jour (doublon), ni sur le lever / coucher du soleil (texte `H:i`, le core attend un nombre), ni sur le polluant principal et le statut AQI (texte).
+* Unités et bornes corrigées sur les commandes existantes seulement si elles avaient encore la valeur posée par le plugin.
+
 ### Version 01/11/2026
 
 #### Corrections
