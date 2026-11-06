@@ -32,6 +32,7 @@ lang: en_US
 - **Panel and PWA — widths**: the header, the conversation and the input area now share the same edges at every screen width. The input area is capped at 800 px and centered.
 - **Creating an equipment**: a double click on "Create" created two equipments. The button is locked while saving.
 - **Vigie**: browsing pages quickly (or with several tabs) filled the error log with "Too many requests". Only the page you stop on is reported, without error.
+- **"Status" generic type**: the command now uses the "Connected" type, known to Jeedom and apps, instead of an unknown value. Older equipments lose the "Electricity" family and the Energy category, set by mistake. Fixed automatically on update.
 
 ### Miscellaneous
 
