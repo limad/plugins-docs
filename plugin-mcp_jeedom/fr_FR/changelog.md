@@ -19,6 +19,12 @@ lang: fr_FR
 
 ---
 
+## 06/11/2026
+
+- **Corrigé** : bilan sécurité des virtuels inversés.
+- Les refus de l'IA sont journalisés en avertissement, et non plus en erreur.
+- Améliorations diverses.
+
 ## 01/11/2026
 
 **Nouveau : digest quotidien des anomalies**
