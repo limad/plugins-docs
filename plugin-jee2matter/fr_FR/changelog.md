@@ -11,8 +11,8 @@ pluginId: jee2matter
 
 - **Lumières couleur et blanc réglable** (`LIGHT_SET_COLOR` couleur, `LIGHT_SET_COLOR_TEMP` en Kelvin, mireds ou %) : « Alexa, mets Lyra en rouge », « … en blanc chaud ». Lumière à bascule seule (`LIGHT_TOGGLE` + état) reconnue.
 - **Ventilateurs** (`FAN_SPEED`), **prises variables** (`ENERGY_SLIDER`), **chauffage marche / arrêt** (`HEATING_ON` / `HEATING_OFF`).
-- **Détecteurs de fuite** (`WATER_LEAK`, `FLOOD`), **de fumée** (`SMOKE`) **et de CO** (`CO`).
-- **Capteurs de qualité de l'air** (`AIR_QUALITY`, `CO2`), **de pression** (`PRESSURE`) **et de luminosité** (`BRIGHTNESS`). Les types météo (`WEATHER_TEMPERATURE`, `WEATHER_HUMIDITY`, `WEATHER_PRESSURE`) servent de repli. Ce repli est ignoré sur un compteur d'énergie (consommation, puissance, production) : un compteur Gazpar ou Linky qui affiche la météo du jour n'apparaît plus comme une sonde de température.
+- **Détecteurs de fuite** (`WATER_LEAK`, `FLOOD`), **de fumée** (`SMOKE`) **et de CO** (`CO`). Une mesure de CO en ppm ne déclenche l'alarme qu'à partir de 50 ppm (avant : dès 1 ppm).
+- **Capteurs de qualité de l'air** (`AIR_QUALITY`, `CO2`), **de pression** (`PRESSURE`) **et de luminosité** (`BRIGHTNESS`). Les types météo (`WEATHER_TEMPERATURE`, `WEATHER_HUMIDITY`, `WEATHER_PRESSURE`) servent de repli. Ce repli est ignoré sur un compteur d'énergie (consommation, puissance, production) : un compteur Gazpar ou Linky qui affiche la météo du jour n'apparaît plus comme une sonde de température. Les particules fines en µg/m³ (PM2.5, PM10) sont converties selon l'indice européen de qualité de l'air (avant : une faible valeur comme 5 µg/m³ était lue comme « très mauvais »).
 - Plusieurs mesures d'un même équipement (température, humidité, CO₂, pression...) regroupées dans un seul appareil.
 - **Niveau de batterie** transmis pour tous les types ; **chauffe en cours** des thermostats (`THERMOSTAT_STATE`).
 - **Capteurs température + humidité** : un équipement qui a les deux mesures apparaît comme un seul appareil avec les deux valeurs (auparavant, seule la température était exposée). S'il était déjà exposé, l'ancien capteur de température est remplacé.
