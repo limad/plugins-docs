@@ -21,6 +21,11 @@ lang: en_US
 
 ## Version in development
 
+### 07/11/2026
+
+- **Alexa skills**: the deployment window (voice skill, JeeViewer, Frida) no longer reports success before Amazon has actually finished deploying; deploying and managing skills no longer stops on an Amazon authorisation error ("Unauthorized") seen on some accounts
+- **Security and reliability**: lighter deployment logs
+
 ### 06/11/2026
 
 - **Generic types**: plugs and switches are recognised as plugs (no longer as lamps) by apps and Matter / Alexa bridges; thermostats: heating on / off; on / off states and detections (motion, smoke, glass break, presence) as 0 / 1, temperature and setpoint as numbers in °C; "Set colour" becomes a colour picker; "Connected" and "Volume" use Jeedom's types, and the plugin's own types are offered in the command configuration; a type chosen by hand is no longer overwritten by the synchronisation. Automatic migration on update
