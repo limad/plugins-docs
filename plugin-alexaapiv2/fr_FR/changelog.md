@@ -17,6 +17,11 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 07/11/2026
+
+*   **Skills Alexa** : la fenêtre de déploiement (skill vocal, JeeViewer, Frida) n'annonce plus la réussite avant la fin réelle du déploiement chez Amazon ; le déploiement et la gestion des skills ne s'arrêtent plus sur une erreur d'autorisation Amazon (« Unauthorized ») rencontrée chez certains comptes
+*   **Sécurité et fiabilité** : journaux de déploiement plus légers
+
 ### 06/11/2026
 
 *   **Types génériques** : prises et interrupteurs reconnus comme des prises (et non plus des lampes) par les applications et les ponts Matter / Alexa ; thermostats : marche / arrêt du chauffage ; états marche / arrêt et détections (mouvement, fumée, bris de verre, présence) en 0 / 1, température et consigne numériques en °C ; « Définir Couleur » devient un sélecteur de couleur ; « Connecté » et « Réglage Volume » utilisent les types de Jeedom, et les types propres au plugin sont proposés dans la configuration des commandes ; un type choisi à la main n'est plus écrasé à la synchronisation. Migration automatique à la mise à jour
