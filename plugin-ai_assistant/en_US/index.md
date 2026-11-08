@@ -163,6 +163,8 @@ The panel is the main interface:
 - **Attachments** (image / pdf / txt / csv / docx)
 - **Image display** returned by the AI directly in the conversation
 - **Voice dictation** (Web Speech API) with microphone selection
+- **Conversation mode** (headset button): speak, the question is sent when you stop talking, the answer is read while it is written, then the assistant listens again. Answer "yes" or "no" to a confirmation request. Free (browser dictation and voice); Chrome, Edge, Android.
+- **Read answers aloud**: 🔊 button under each answer, optional automatic reading (Options ⚙: voice, speed). Free, using the browser or phone voice; Esc or a new question stops reading. Without built-in dictation (iPhone installed app, Firefox), use your device's dictation: keyboard microphone on mobile, `Win+H` on Windows, macOS dictation.
 - **Adaptive display**: mobile, tablet, computer
 - **Floating "Scroll to bottom" button** (auto-display when scrolling up in history)
 
