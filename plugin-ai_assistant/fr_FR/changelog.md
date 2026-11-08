@@ -19,6 +19,8 @@ lang: fr_FR
 
 ## Sommaire
 
+- [08/11/2026](#08112026)
+- [07/11/2026](#07112026)
 - [06/11/2026](#06112026)
 - [01/11/2026](#01112026)
 - [29/10/2026](#29102026)
@@ -41,6 +43,39 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 08/11/2026
+
+### ✨ Nouveautés
+
+- **Mode conversation vocal (panel et PWA)** : bouton casque à côté du micro. Parlez : la question part seule quand vous vous taisez, la réponse est lue pendant qu'elle s'écrit, puis l'assistant vous réécoute. L'écran se réduit à une pastille d'état (« Je vous écoute… » avec le texte entendu, « Réflexion… », « Je réponds ») et un bouton « Terminer » : pas de zone de saisie, donc pas de clavier qui recouvre l'écran du téléphone. Toucher la pastille coupe la lecture. Une demande de confirmation se valide en disant « oui » ou « non ». Gratuit (dictée et voix du navigateur) ; Chrome, Edge, Android. Non proposé dans l'application iPhone/iPad installée, où la dictée du navigateur ne fonctionne pas.
+- **Réponses courtes à l'oral** : quand la réponse sera lue, l'assistant est prévenu et répond court, sans mise en forme. Mesuré sur l'Assistant Jeedom : réponses 2 à 3 fois plus courtes, sans perte de qualité.
+- **L'assistant connaît le contexte de la question** : jour et heure, appareil (téléphone, PC, navigateur), page d'où vous écrivez. « Quelle heure est-il ? » ne reçoit plus « je n'ai pas d'outil pour ça ». En option (désactivée par défaut), la distance à la maison, jamais votre position exacte.
+- **Rappels et actions à heure fixe** : « rappelle-moi à 18h de fermer le portail » envoie une notification à l'heure dite ; « allume le séjour à 18h chaque jour » propose de créer un scénario programmé.
+
+### 🐛 Corrections
+
+- **Lecture vocale sur Android** : une réponse pouvait rester muette. Corrigé.
+
+### 🔧 Divers
+
+- **Claude moins cher** : le cache Anthropic couvre aussi les étapes de la boucle d'outils et les appels passant par ai_proxy ou OpenRouter.
+- **Serveurs compatibles OpenAI** : un modèle qui refuse le réglage de température n'est plus relancé à chaque question (une requête perdue de moins).
+
+## 07/11/2026
+
+### ✨ Nouveautés
+
+- **Lecture vocale des réponses (panel et PWA)** : bouton 🔊 sous chaque réponse, lecture automatique en option (menu Options : voix, vitesse). Le texte lu est nettoyé (pas de symboles, unités dites en toutes lettres) et une longue réponse s'arrête proprement (« La suite est à l'écran »). Voix Google ou « naturelle » choisie d'abord quand elle existe. Gratuit, par la voix du navigateur ou du téléphone ; Échap ou une nouvelle question arrête la lecture.
+- **Nouvelle commande « Tâche IA » pour les scénarios** : donnez une consigne (avec les tags du scénario), récupérez un texte ou un choix parmi une liste (`choix:oui,non`) dans « Résultat tâche », à tester dans une condition. Un seul appel court, sans historique ni contexte maison : environ 50 fois moins de tokens qu'une question à l'assistant.
+- **Boutons « Oui / Non »** : quand l'assistant termine par une question fermée (« Voulez-vous que je… ? »), deux boutons permettent de répondre d'un clic (panel, PWA, mini-chat). Aucun token en plus.
+
+### 🐛 Corrections
+
+- **Gemini — réponse coupée** : une réponse pouvait s'arrêter au milieu d'une phrase (« La température de la cuisine est actuellement de »). La réponse complète est récupérée.
+- **Mini-chat** : la carte de confirmation, le résultat d'une action et la suggestion de mémoriser un fait n'apparaissaient pas. Corrigé.
+- **Fiche d'équipement** : les boutons « choisir une commande » (commande TTS, commandes du résumé) ne faisaient rien. Ils ouvrent maintenant le choix de commande.
+- **Carte de confirmation** : un message d'erreur pouvait s'afficher avec du code HTML. Texte seul.
 
 ## 06/11/2026
 

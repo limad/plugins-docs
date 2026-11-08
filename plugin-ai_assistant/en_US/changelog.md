@@ -19,6 +19,39 @@ lang: en_US
 
 ---
 
+## 08/11/2026
+
+### New features
+
+- **Voice conversation mode (panel and PWA)**: headset button next to the microphone. Speak: the question is sent when you stop talking, the answer is read while it is written, then the assistant listens again. The screen shrinks to a status pill ("Listening…" with what was heard, "Thinking…", "Answering") and an "End" button: no input area, so no keyboard covering the phone screen. Tapping the pill stops the reading. A confirmation request is answered by saying "yes" or "no". Free (browser dictation and voice); Chrome, Edge, Android. Not offered in the installed iPhone/iPad app, where browser dictation does not work.
+- **Short spoken answers**: when the answer will be read aloud, the assistant is told and answers briefly, without formatting. Measured on the Jeedom Assistant: answers 2 to 3 times shorter, with no quality loss.
+- **The assistant knows the context of the question**: day and time, device (phone, PC, browser), page you are writing from. "What time is it?" no longer gets "I have no tool for that". As an option (off by default), the distance to home, never your exact position.
+- **Reminders and actions at a set time**: "remind me at 6 pm to close the gate" sends a notification at that time; "turn on the living room at 6 pm every day" offers to create a scheduled scenario.
+
+### Fixes
+
+- **Voice reading on Android**: an answer could stay silent. Fixed.
+
+### Miscellaneous
+
+- **Cheaper Claude**: the Anthropic cache now also covers the steps of the tool loop and calls going through ai_proxy or OpenRouter.
+- **OpenAI-compatible servers**: a model that refuses the temperature setting is no longer retried on every question (one wasted request less).
+
+## 07/11/2026
+
+### New features
+
+- **Read answers aloud (panel and PWA)**: 🔊 button under each answer, optional automatic reading (Options menu: voice, speed). The text read is cleaned (no symbols, units spoken in words) and a long answer stops cleanly ("The rest is on screen"). A Google or "natural" voice is picked first when available. Free, using the browser or phone voice; Esc or a new question stops reading.
+- **New "AI task" command for scenarios**: give an instruction (with scenario tags), get back a text or a choice from a list (`choix:oui,non`) in "Task result", ready to test in a condition. A single short call, without history or home context: about 50 times fewer tokens than a question to the assistant.
+- **"Yes / No" buttons**: when the assistant ends with a closed question ("Do you want me to…?"), two buttons let you answer in one click (panel, PWA, mini-chat). No extra tokens.
+
+### Fixes
+
+- **Gemini — truncated answer**: an answer could stop mid-sentence ("The kitchen temperature is currently"). The full answer is now received.
+- **Mini-chat**: the confirmation card, the result of an action and the suggestion to remember a fact did not appear. Fixed.
+- **Equipment page**: the "choose a command" buttons (TTS command, summary commands) did nothing. They now open the command picker.
+- **Confirmation card**: an error message could show HTML code. Plain text only.
+
 ## 06/11/2026
 
 ### New features

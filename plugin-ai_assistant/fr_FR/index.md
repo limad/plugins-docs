@@ -163,6 +163,8 @@ Le panel est l'interface principale :
 - **Pièces jointes** (image / pdf / txt / csv / docx)
 - **Affichage des images** renvoyées par l'IA directement dans la conversation
 - **Dictée vocale** (Web Speech API) avec sélection du microphone
+- **Mode conversation** (bouton casque) : parlez, la question part seule quand vous vous taisez, la réponse est lue pendant qu'elle s'écrit, puis l'assistant vous réécoute. Répondez « oui » ou « non » à une demande de confirmation. Gratuit (dictée et voix du navigateur) ; Chrome, Edge, Android.
+- **Lecture vocale des réponses** : bouton 🔊 sous chaque réponse, lecture automatique en option (Options ⚙ : voix, vitesse). Gratuit, par la voix du navigateur ou du téléphone ; Échap ou une nouvelle question arrête la lecture. Sans dictée intégrée (iPhone en application installée, Firefox), utilisez la dictée de votre appareil : micro du clavier sur mobile, `Win+H` sous Windows, dictée macOS.
 - **Affichage adaptatif** : mobile, tablette, ordinateur
 - **Bouton flottant "Défiler vers le bas"** (affichage automatique si vous remontez dans l'historique)
 
