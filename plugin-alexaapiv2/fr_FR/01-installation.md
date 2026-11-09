@@ -63,6 +63,21 @@ Attendez que l'installation des dépendances se termine avant de passer à l'ét
 
 ## 4. Générer le cookie Amazon — Méthode Auth (recommandée)
 
+### Conseillé avant la première authentification : un profil Alexa « Jeedom »
+
+À la connexion, le plugin choisit de préférence un profil du foyer nommé **Jeedom** (en prénom ou en nom). Ce profil lui sert :
+- d'identité séparée pour une partie des requêtes, ce qui limite les refus d'Amazon (« trop de requêtes ») ;
+- de profil pour les appels et messages Alexa, sans passer par le vôtre.
+
+Sans ce profil, le plugin prend un autre profil adulte du foyer, et à défaut le profil principal.
+
+**Créer et compléter le profil (app Alexa sur smartphone)**
+
+1. Ouvrez la gestion des profils du foyer (**Plus › Paramètres › Profils et famille**, selon la version de l'app) et ajoutez un **adulte** géré depuis votre compte.
+2. Nommez-le **Jeedom**.
+3. **Complétez-le** : ouvrez ce profil, terminez sa configuration (acceptation des conditions d'Alexa) et activez **Appels et messages** si l'app le propose.
+4. Lancez ensuite l'authentification **Auth** ci-dessous. Si le plugin est déjà authentifié, refaites-la : le profil n'est pris en compte qu'à la connexion.
+
 Le plugin communique avec les serveurs Amazon via un cookie d'authentification. **La méthode recommandée est le bouton Auth**, sans proxy.
 
 **Pourquoi privilégier le bouton Auth ?**
