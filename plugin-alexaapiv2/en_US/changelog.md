@@ -24,6 +24,17 @@ lang: en_US
 ### 09/11/2026
 
 - **New features and fixes**: Alexa messages: as soon as you sign in to Amazon, the plugin automatically picks a household profile where "Communicate" is enabled (the main account does not always have it); no more Alexa identities error repeated every 11 minutes, the actual cause is now shown in the logs; an error reading the account information no longer prevents the Amazon connection from being renewed
+- **Security and reliability**: the iso widget pack is only installed if it exactly matches the published version
+
+### 08/11/2026
+
+- **New features and fixes**: Repairs tab: list of the "Alexa app" connections registered on the Amazon account, to remove old ones together with their Jeedom device (connections in use are protected); the connections window shows the serial number, phone type, linked device and role of each connection, and lets you rename it; disabled devices keep an up-to-date connection status; faster ASK skill test
+- **Security and reliability**: iso widgets downloaded only once when several plugins are updated, with a fallback if GitHub does not respond, and your custom files are never overwritten
+
+### 07/11/2026
+
+- **New features and fixes**: generating the Amazon cookie no longer logs you out of Jeedom; the end-of-authentication page shows a countdown before closing; "Your skills" list in the account's country and language; skill deployment: the window no longer shows the result of a previous deployment; skills managed without an extra token (it failed for some users)
+- **Security and reliability**: fewer Amazon refusals, the skills list is read every 6 hours instead of every 11 minutes
 
 ### 06/11/2026
 

@@ -20,6 +20,17 @@ Changelog Alexa-Premium
 ### 09/11/2026
 
 *   **Nouveautés et corrections** : messages Alexa : dès la connexion à Amazon, le plugin choisit tout seul un profil du foyer où « Communiquer » est activé (le compte principal ne l'a pas toujours) ; fin de l'erreur sur les identités Alexa répétée toutes les 11 minutes, la vraie cause est maintenant indiquée dans les logs ; une erreur de lecture des informations du compte n'empêche plus le renouvellement de la connexion Amazon
+*   **Sécurité et fiabilité** : le pack de widgets iso n'est installé que s'il correspond exactement à la version publiée
+
+### 08/11/2026
+
+*   **Nouveautés et corrections** : onglet Réparations : liste des connexions « app Alexa » enregistrées sur le compte Amazon, pour supprimer les anciennes avec leur équipement Jeedom (les connexions en service sont protégées) ; la fenêtre des connexions affiche le numéro de série, le type de téléphone, l'équipement lié et le rôle de chaque connexion, et permet de la renommer ; les équipements désactivés gardent un statut de connexion à jour ; test du skill ASK plus rapide
+*   **Sécurité et fiabilité** : widgets iso téléchargés une seule fois lors d'une mise à jour de plusieurs plugins, avec une solution de secours si GitHub ne répond pas, et sans jamais écraser vos fichiers personnalisés
+
+### 07/11/2026
+
+*   **Nouveautés et corrections** : la génération du cookie Amazon ne déconnecte plus de Jeedom ; la page de fin d'authentification affiche un décompte avant de se fermer ; liste « Vos skills » dans le pays et la langue du compte ; déploiement des skills : la fenêtre n'affiche plus le résultat d'un déploiement précédent ; gestion des skills sans jeton supplémentaire (il échouait chez certains utilisateurs)
+*   **Sécurité et fiabilité** : moins de refus d'Amazon, la liste des skills est lue toutes les 6 heures au lieu de toutes les 11 minutes
 
 ### 06/11/2026
 
