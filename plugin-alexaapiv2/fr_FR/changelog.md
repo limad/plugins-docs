@@ -17,6 +17,23 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 09/11/2026
+
+*   **Corrections** : les appels et messages Alexa utilisent automatiquement un profil du foyer où Alexa Communication est active
+*   **Sécurité et fiabilité** : le pack de widgets iso est vérifié avant d'être installé
+
+### 08/11/2026
+
+*   **Nouveautés** : onglet Réparations, fenêtre « Anciennes connexions Amazon » pour retrouver les connexions laissées sur le compte par les authentifications successives, les renommer, les désenregistrer et supprimer les équipements correspondants
+*   **Corrections** : test du skill vocal plus fiable ; la liste de vos skills suit le pays du compte ; l'état (en ligne, dernière communication) des équipements désactivés est mis à jour
+*   **Sécurité et fiabilité** : installation des widgets iso plus fiable
+
+### 07/11/2026
+
+*   **Skills Alexa** : la fenêtre de déploiement (skill vocal, JeeViewer, Frida) n'annonce plus la réussite avant la fin réelle du déploiement chez Amazon ; le déploiement et la gestion des skills ne s'arrêtent plus sur une erreur d'autorisation Amazon (« Unauthorized ») rencontrée chez certains comptes
+*   **Connexion à Amazon** : la génération du cookie ne déconnecte plus Jeedom ; l'onglet d'authentification affiche un décompte avant de se fermer
+*   **Sécurité et fiabilité** : journaux de déploiement plus légers ; la liste des skills est lue moins souvent, ce qui limite les refus d'Amazon
+
 ### 06/11/2026
 
 *   **Types génériques** : prises et interrupteurs reconnus comme des prises (et non plus des lampes) par les applications et les ponts Matter / Alexa ; thermostats : marche / arrêt du chauffage ; états marche / arrêt et détections (mouvement, fumée, bris de verre, présence) en 0 / 1, température et consigne numériques en °C ; « Définir Couleur » devient un sélecteur de couleur ; « Connecté » et « Réglage Volume » utilisent les types de Jeedom, et les types propres au plugin sont proposés dans la configuration des commandes ; un type choisi à la main n'est plus écrasé à la synchronisation. Migration automatique à la mise à jour

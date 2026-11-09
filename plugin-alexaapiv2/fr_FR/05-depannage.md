@@ -28,6 +28,7 @@ Quelques règles simples pour une installation stable et durable.
 
 - **Utilisez toujours la méthode Auth** pour générer et renouveler le cookie — n'utilisez pas le proxy.
 - **Activez la double authentification (2FA/MFA)** sur votre compte Amazon. Contrairement à ce que l'on pourrait penser, le 2FA améliore la fiabilité de la génération du cookie.
+- **Créez un profil Alexa nommé « Jeedom »** et complétez-le avant de vous authentifier : le plugin l'utilise de préférence (voir [Installation, étape 4](01-installation.md)).
 - **Évitez les VPN** pendant l'utilisation du plugin : ils peuvent invalider le cookie prématurément en changeant l'IP apparente.
 - **Ne partagez jamais votre cookie** — il donne accès à votre compte Amazon.
 
@@ -35,7 +36,7 @@ Quelques règles simples pour une installation stable et durable.
 
 - **Désactivez les équipements inutilisés** plutôt que de les laisser actifs — ils consomment des ressources inutilement.
 - **Faites le ménage** régulièrement dans vos équipements SmartHome, côté Jeedom et côté Amazon.
-- **Nettoyez vos appareils Amazon enregistrés** pour éviter les doublons et les fantômes :  
+- **Nettoyez vos appareils Amazon enregistrés** pour éviter les doublons et les fantômes : bouton **Anciennes connexions Amazon** de l'onglet Réparations de la configuration, ou directement chez Amazon :  
   👉 [amazon.fr — Gestion des appareils Alexa](https://www.amazon.fr/hz/mycd/digital-console/devicedetails?deviceFamily=ALEXA_APP)
 
 ### Scénarios
