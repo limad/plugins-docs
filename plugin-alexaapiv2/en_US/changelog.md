@@ -21,10 +21,22 @@ lang: en_US
 
 ## Version in development
 
+### 09/11/2026
+
+- **Fixes**: Alexa calls and messages automatically use a household profile where Alexa Communication is enabled
+- **Security and reliability**: the iso widget pack is verified before being installed
+
+### 08/11/2026
+
+- **New**: Repairs tab, "Old Amazon connections" window to find the connections left on the account by successive sign-ins, rename them, deregister them and remove the matching equipment
+- **Fixes**: more reliable voice skill test; the list of your skills follows the account's country; the status (online, last communication) of disabled equipment is updated
+- **Security and reliability**: more reliable iso widget installation
+
 ### 07/11/2026
 
 - **Alexa skills**: the deployment window (voice skill, JeeViewer, Frida) no longer reports success before Amazon has actually finished deploying; deploying and managing skills no longer stops on an Amazon authorisation error ("Unauthorized") seen on some accounts
-- **Security and reliability**: lighter deployment logs
+- **Amazon sign-in**: generating the cookie no longer logs you out of Jeedom; the sign-in tab shows a countdown before closing
+- **Security and reliability**: lighter deployment logs; the skills list is read less often, which limits Amazon refusals
 
 ### 06/11/2026
 
