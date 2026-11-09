@@ -17,6 +17,10 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 09/11/2026
+
+*   **Nouveautés et corrections** : messages Alexa : dès la connexion à Amazon, le plugin choisit tout seul un profil du foyer où « Communiquer » est activé (le compte principal ne l'a pas toujours) ; fin de l'erreur sur les identités Alexa répétée toutes les 11 minutes, la vraie cause est maintenant indiquée dans les logs ; une erreur de lecture des informations du compte n'empêche plus le renouvellement de la connexion Amazon
+
 ### 06/11/2026
 
 *   **Types génériques** : prises et interrupteurs reconnus comme des prises (et non plus des lampes) par les applications et les ponts Matter / Alexa ; thermostats : marche / arrêt du chauffage ; états marche / arrêt et détections (mouvement, fumée, bris de verre, présence) en 0 / 1, température et consigne numériques en °C ; « Définir Couleur » devient un sélecteur de couleur ; « Connecté » et « Réglage Volume » utilisent les types de Jeedom, et les types propres au plugin sont proposés dans la configuration des commandes ; un type choisi à la main n'est plus écrasé à la synchronisation. Migration automatique à la mise à jour

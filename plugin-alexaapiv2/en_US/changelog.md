@@ -21,6 +21,10 @@ lang: en_US
 
 ## Version in development
 
+### 09/11/2026
+
+- **New features and fixes**: Alexa messages: as soon as you sign in to Amazon, the plugin automatically picks a household profile where "Communicate" is enabled (the main account does not always have it); no more Alexa identities error repeated every 11 minutes, the actual cause is now shown in the logs; an error reading the account information no longer prevents the Amazon connection from being renewed
+
 ### 06/11/2026
 
 - **Generic types**: plugs and switches are recognised as plugs (no longer as lamps) by apps and Matter / Alexa bridges; thermostats: heating on / off; on / off states and detections (motion, smoke, glass break, presence) as 0 / 1, temperature and setpoint as numbers in °C; "Set colour" becomes a colour picker; "Connected" and "Volume" use Jeedom's types, and the plugin's own types are offered in the command configuration; a type chosen by hand is no longer overwritten by the synchronisation. Automatic migration on update
