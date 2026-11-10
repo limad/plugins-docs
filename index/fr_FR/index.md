@@ -332,4 +332,19 @@ pluginId: limad44
 	</div>
 </div>
 
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}">
+	<img src="{{site.baseurl}}/plugin-wyoming_bridge/images/wyoming_bridge_icon.png" alt="wyoming_bridge">
+	<div>
+		<h2 class="plugin-card__name">Wyoming Bridge</h2>
+		<span class="plugin-card__id">wyoming_bridge</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Commande vocale de Jeedom depuis un pipeline Wyoming (satellites, Whisper, Piper) : service « handle » qui répond par les interactions Jeedom puis par AI Assistant (LLM + outils MCP).</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
 </div><!-- /plugin-grid -->
