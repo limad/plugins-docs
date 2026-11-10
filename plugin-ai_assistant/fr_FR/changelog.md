@@ -19,6 +19,7 @@ lang: fr_FR
 
 ## Sommaire
 
+- [10/11/2026](#10112026)
 - [08/11/2026](#08112026)
 - [07/11/2026](#07112026)
 - [06/11/2026](#06112026)
@@ -43,6 +44,28 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 10/11/2026
+
+### ✨ Nouveautés
+
+- **Lecture des réponses à voix haute activée par défaut** (panel et application) sur les appareils capables de lire. Une question tapée garde une réponse normale ; la réponse courte, sans mise en forme, est réservée aux questions dites à voix haute. L'option se décoche dans le menu Options.
+- **Téléphone en paysage** : la saisie tient sur une ligne et la conversation garde la place. L'application installée peut désormais pivoter.
+- **Plus de place pour la conversation sur téléphone** : la zone de saisie est plus compacte et une marge vide en bas de l'écran a disparu. La conversation gagne environ 55 px en portrait et 25 px en paysage.
+- **L'application suit la taille de texte d'Android** pour les messages.
+- **Nouveau texte d'invite** dans la zone de saisie : « Demander à Ai-Assistant... », dans un gris plus discret.
+
+### 🐛 Corrections
+
+- **Liste des équipements sur téléphone (application)** : le bas de la liste n'est plus caché sous le bord de l'écran.
+- **Micro refusé** : le bouton ne reste plus bloqué en écoute. Les messages d'erreur restent affichés le temps d'être lus et ne s'empilent plus.
+- **Menu Options** plus compact, chaque libellé sur une ligne ; il tient sur un écran de téléphone.
+
+### 🔧 Divers
+
+- Bouton « Terminer » du mode conversation plus visible (rond, icône seule).
+- Option « Vitesse de lecture » retirée : la lecture se fait à vitesse normale.
+- Panel plus léger à charger.
 
 ## 08/11/2026
 
