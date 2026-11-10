@@ -21,9 +21,14 @@ lang: en_US
 
 ## Version in development
 
+### 10/11/2026
+
+- **Fixes**: Amazon cookie generation no longer stops on an invalid redirect from Amazon
+- **Security and reliability**: other devices on the local network can no longer control the plugin or read your Amazon connection without the plugin API key; Amazon credentials and tokens are masked in the logs; dependencies are installed by Jeedom itself, with no download from a third-party repository
+
 ### 09/11/2026
 
-- **Fixes**: Alexa calls and messages automatically use a household profile where Alexa Communication is enabled
+- **Fixes**: Alexa calls and messages automatically use a household profile where Alexa Communication is enabled; info commands linked to an action command keep their value
 - **Security and reliability**: the iso widget pack is verified before being installed
 
 ### 08/11/2026
