@@ -19,6 +19,28 @@ lang: en_US
 
 ---
 
+## 10/11/2026
+
+### New features
+
+- **Answers read aloud by default** (panel and app) on devices able to read. A typed question still gets a normal answer; the short answer without formatting is kept for questions asked out loud. The option can be unticked in the Options menu.
+- **Phone in landscape**: the input fits on one line and the conversation keeps its room. The installed app can now rotate.
+- **More room for the conversation on phones**: the input area is more compact and an empty margin at the bottom of the screen is gone. The conversation gains about 55 px in portrait and 25 px in landscape.
+- **The app follows Android's text size** for messages.
+- **New input prompt**: "Ask Ai-Assistant...", in a more discreet grey.
+
+### Fixes
+
+- **Equipment list on phones (app)**: the bottom of the list is no longer hidden under the edge of the screen.
+- **Microphone denied**: the button no longer stays stuck listening. Error messages stay on screen long enough to be read and no longer pile up.
+- **Options menu** more compact, each label on one line; it fits on a phone screen.
+
+### Miscellaneous
+
+- "End" button of the conversation mode easier to see (round, icon only).
+- "Reading speed" option removed: answers are read at normal speed.
+- Lighter panel to load.
+
 ## 08/11/2026
 
 ### New features
