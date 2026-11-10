@@ -11,7 +11,8 @@ pluginId: wyoming_bridge
 
 - Core heartbeat: a running daemon is now seen as communicating (otherwise, with a heartbeat set, the core would have reported it silent).
 - Tracking commands: last sentence, last reply, handled or not, duration, last satellite (updated after the reply is sent).
-- Documentation and changelog.
+- Documentation and changelog, published on the documentation site.
+- `wyoming` package 1.11.0.
 
 ## 2026-11-09
 

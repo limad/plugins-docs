@@ -11,7 +11,8 @@ pluginId: wyoming_bridge
 
 - Heartbeat du core : un démon actif est désormais vu comme communiquant (sinon, avec un heartbeat réglé, le core l'aurait déclaré muet).
 - Commandes de suivi : dernière phrase, dernière réponse, traitée ou non, durée, dernier satellite (mises à jour après l'envoi de la réponse).
-- Documentation et changelog.
+- Documentation et changelog, publiés sur le site de documentation.
+- Paquet `wyoming` 1.11.0.
 
 ## 2026-11-09
 
