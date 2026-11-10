@@ -17,9 +17,14 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 10/11/2026
+
+*   **Corrections** : la génération du cookie Amazon ne s'interrompt plus sur une redirection invalide d'Amazon
+*   **Sécurité et fiabilité** : les autres appareils du réseau local ne peuvent plus piloter le plugin ni lire votre connexion Amazon sans la clé API du plugin ; identifiants et jetons Amazon masqués dans les journaux ; les dépendances sont installées par Jeedom lui-même, sans téléchargement depuis un dépôt tiers
+
 ### 09/11/2026
 
-*   **Corrections** : les appels et messages Alexa utilisent automatiquement un profil du foyer où Alexa Communication est active
+*   **Corrections** : les appels et messages Alexa utilisent automatiquement un profil du foyer où Alexa Communication est active ; les commandes info liées à une commande action conservent leur valeur
 *   **Sécurité et fiabilité** : le pack de widgets iso est vérifié avant d'être installé
 
 ### 08/11/2026
