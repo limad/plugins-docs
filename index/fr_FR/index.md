@@ -151,6 +151,21 @@ pluginId: limad44
 </div>
 
 <div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-jee2alexa/{{page.lang}}">
+	<img src="{{site.baseurl}}/plugin-jee2alexa/images/jee2alexa_icon.png" alt="jee2alexa">
+	<div>
+		<h2 class="plugin-card__name">Jee2Alexa</h2>
+		<span class="plugin-card__id">jee2alexa</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Skill Alexa Smart Home natif sur votre propre compte AWS : pilotez à la voix lumières, prises, volets, thermostats, capteurs et scènes Jeedom, sans abonnement.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-jee2alexa/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-jee2alexa/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
+<div class="plugin-card">
 	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-sfrBox/{{page.lang}}">
 	<img src="{{site.market}}/filestore/market/plugin/images/sfrBox_icon.png" alt="sfrBox">
 	<div>
