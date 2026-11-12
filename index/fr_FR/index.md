@@ -151,21 +151,6 @@ pluginId: limad44
 </div>
 
 <div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-jee2alexa/{{page.lang}}">
-	<img src="{{site.baseurl}}/plugin-jee2alexa/images/jee2alexa_icon.png" alt="jee2alexa">
-	<div>
-		<h2 class="plugin-card__name">Jee2Alexa</h2>
-		<span class="plugin-card__id">jee2alexa</span>
-	</div>
-	</a>
-	<p class="plugin-card__desc">Skill Alexa Smart Home natif sur votre propre compte AWS : pilotez à la voix lumières, prises, volets, thermostats, capteurs et scènes Jeedom, sans abonnement.</p>
-	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-jee2alexa/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-jee2alexa/{{page.lang}}/changelog">Changelog</a>
-	</div>
-</div>
-
-<div class="plugin-card">
 	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-sfrBox/{{page.lang}}">
 	<img src="{{site.market}}/filestore/market/plugin/images/sfrBox_icon.png" alt="sfrBox">
 	<div>
@@ -243,36 +228,6 @@ pluginId: limad44
 </div>
 
 <div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-proteo/{{page.lang}}">
-	<img src="{{site.market}}/filestore/market/plugin/images/proteo_icon.png" alt="proteo">
-	<div>
-		<h2 class="plugin-card__name">Proteo</h2>
-		<span class="plugin-card__id">proteo</span>
-	</div>
-	</a>
-	<p class="plugin-card__desc">Intégration de la centrale de filtration Comap (Proteo/Komeo).</p>
-	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-proteo/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-proteo/{{page.lang}}/changelog">Changelog</a>
-	</div>
-</div>
-
-<div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-dchmotion/{{page.lang}}">
-	<img src="{{site.market}}/filestore/market/plugin/images/dchmotion_icon.png" alt="dchmotion">
-	<div>
-		<h2 class="plugin-card__name">DCH Motion</h2>
-		<span class="plugin-card__id">dchmotion</span>
-	</div>
-	</a>
-	<p class="plugin-card__desc">Contrôle des détecteurs de mouvement D-Link DCH-S150.</p>
-	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-dchmotion/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-dchmotion/{{page.lang}}/changelog">Changelog</a>
-	</div>
-</div>
-
-<div class="plugin-card">
 	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-jeebusd/{{page.lang}}">
 	<img src="{{site.market}}/filestore/market/plugin/images/jeebusd_icon.png" alt="jeebusd">
 	<div>
@@ -314,36 +269,6 @@ pluginId: limad44
 	<div class="plugin-card__links">
 	<a href="{{site.baseurl}}/plugin-secposture/{{page.lang}}">Documentation</a>
 	<a href="{{site.baseurl}}/plugin-secposture/{{page.lang}}/changelog">Changelog</a>
-	</div>
-</div>
-
-<div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-jee2matter/{{page.lang}}">
-	<img src="{{site.baseurl}}/plugin-jee2matter/images/jee2matter_icon.png" alt="jee2matter">
-	<div>
-		<h2 class="plugin-card__name">Jee2Matter</h2>
-		<span class="plugin-card__id">jee2matter</span>
-	</div>
-	</a>
-	<p class="plugin-card__desc">Pont Matter local : expose les équipements Jeedom (lumières, prises, volets, capteurs, thermostats) à Alexa, Apple Maison et Google Home, sans cloud ni Docker.</p>
-	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-jee2matter/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-jee2matter/{{page.lang}}/changelog">Changelog</a>
-	</div>
-</div>
-
-<div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}">
-	<img src="{{site.baseurl}}/plugin-wyoming_bridge/images/wyoming_bridge_icon.png" alt="wyoming_bridge">
-	<div>
-		<h2 class="plugin-card__name">Wyoming Bridge</h2>
-		<span class="plugin-card__id">wyoming_bridge</span>
-	</div>
-	</a>
-	<p class="plugin-card__desc">Commande vocale de Jeedom depuis un pipeline Wyoming (satellites, Whisper, Piper) : service « handle » qui répond par les interactions Jeedom puis par AI Assistant (LLM + outils MCP).</p>
-	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}/changelog">Changelog</a>
 	</div>
 </div>
 

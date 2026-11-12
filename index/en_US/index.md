@@ -228,36 +228,6 @@ pluginId: limad44
 </div>
 
 <div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-proteo/{{page.lang}}">
-	<img src="{{site.market}}/filestore/market/plugin/images/proteo_icon.png" alt="proteo">
-	<div>
-		<h2 class="plugin-card__name">Proteo</h2>
-		<span class="plugin-card__id">proteo</span>
-	</div>
-	</a>
-	<p class="plugin-card__desc">Integration of the Comap filtration unit (Proteo/Komeo).</p>
-	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-proteo/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-proteo/{{page.lang}}/changelog">Changelog</a>
-	</div>
-</div>
-
-<div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-dchmotion/{{page.lang}}">
-	<img src="{{site.market}}/filestore/market/plugin/images/dchmotion_icon.png" alt="dchmotion">
-	<div>
-		<h2 class="plugin-card__name">DCH Motion</h2>
-		<span class="plugin-card__id">dchmotion</span>
-	</div>
-	</a>
-	<p class="plugin-card__desc">Control D-Link DCH-S150 motion sensors from Jeedom.</p>
-	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-dchmotion/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-dchmotion/{{page.lang}}/changelog">Changelog</a>
-	</div>
-</div>
-
-<div class="plugin-card">
 	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-jeebusd/{{page.lang}}">
 	<img src="{{site.market}}/filestore/market/plugin/images/jeebusd_icon.png" alt="jeebusd">
 	<div>
@@ -284,21 +254,6 @@ pluginId: limad44
 	<div class="plugin-card__links">
 	<a href="{{site.baseurl}}/plugin-secposture/{{page.lang}}">Documentation</a>
 	<a href="{{site.baseurl}}/plugin-secposture/{{page.lang}}/changelog">Changelog</a>
-	</div>
-</div>
-
-<div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}">
-	<img src="{{site.baseurl}}/plugin-wyoming_bridge/images/wyoming_bridge_icon.png" alt="wyoming_bridge">
-	<div>
-		<h2 class="plugin-card__name">Wyoming Bridge</h2>
-		<span class="plugin-card__id">wyoming_bridge</span>
-	</div>
-	</a>
-	<p class="plugin-card__desc">Voice control of Jeedom from a Wyoming pipeline (satellites, Whisper, Piper): a "handle" service answering through Jeedom interactions, then AI Assistant (LLM + MCP tools).</p>
-	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}/changelog">Changelog</a>
 	</div>
 </div>
 
