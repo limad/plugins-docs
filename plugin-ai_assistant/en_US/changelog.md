@@ -19,6 +19,24 @@ lang: en_US
 
 ---
 
+## 12/11/2026
+
+### New features
+
+- **Guided creation** (formerly "Wizard"): clearer for a first install.
+  - A link under the key field leads to the provider's page where you can create it.
+  - A key already entered in the plugin configuration is reused: leave the field empty.
+  - The key is tested right after creation: ✔ it works, ✖ it is rejected, with the provider's message.
+  - The **Try it now** button opens the panel on the new assistant.
+  - For an "Assistant Jeedom", it tells you whether MCP AI Server is installed, and recommends installing it if missing.
+  - Larger text and a slightly wider window.
+- **Vigie**: each alert shows the name of the box that raised it (badge, Jeedom message, notification title). Useful with several boxes.
+- **Documentation**: new [Quick start](quick_start.md) page, in two steps and without jargon.
+
+### Fixes
+
+- **Guided creation**: the "Assistant Jeedom" description promised "full access to home automation". The assistant only sees and controls the devices allowed in the whitelist.
+
 ## 10/11/2026
 
 ### New features
