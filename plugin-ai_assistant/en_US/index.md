@@ -10,6 +10,8 @@ pluginId: ai_assistant
 **ai_assistant** is not a chat interface that sends a question to a model and displays the answer.
 It is an **AI orchestrator embedded in Jeedom**: between your message and the response, a lot more happens.
 
+> 🚀 **First install?** Start with the [Quick start](quick_start.md): two steps, no jargon.
+
 ## What actually happens between your message and the response
 
 When you type *"turn everything off and get the house ready for the night"*, here is what ai_assistant does —
@@ -267,11 +269,11 @@ In the *MCP Client* device:
 
 # Quick setup
 
-1. **Get an API key** (Gemini, OpenAI, Claude, etc.)
-2. **Enter the key** in the plugin configuration
-3. **Create a device** "General assistant"
-4. **Create a device** "Jeedom assistant" linked to the previous one
-5. (Optional) **Install `mcp_jeedom`** to activate the MCP bridge
+The step-by-step guide is on the [Quick start](quick_start.md) page. In short:
+
+1. **Get an API key** (Gemini, Mistral, OpenAI, Claude, etc.) or install Ollama
+2. Click **Guided creation**: it creates the provider and the linked "Assistant Jeedom", then tests the key
+3. (Recommended) **Install MCP AI Server** (`mcp_jeedom`) and tick the allowed devices in its whitelist
 
 The MCP client is created automatically if the MCP server is detected.
 

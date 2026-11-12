@@ -19,6 +19,7 @@ lang: fr_FR
 
 ## Sommaire
 
+- [12/11/2026](#12112026)
 - [10/11/2026](#10112026)
 - [08/11/2026](#08112026)
 - [07/11/2026](#07112026)
@@ -44,6 +45,24 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 12/11/2026
+
+### ✨ Nouveautés
+
+- **Création guidée** (anciennement « Wizard ») : plus claire pour une première installation.
+  - Un lien sous le champ de la clé mène à la page du fournisseur où la créer.
+  - Une clé déjà saisie dans la configuration du plugin est reprise : laissez le champ vide.
+  - La clé est testée dès la création : ✔ elle fonctionne, ✖ elle est refusée, avec le message du fournisseur.
+  - Le bouton **Essayer maintenant** ouvre le panel sur le nouvel assistant.
+  - Pour un « Assistant Jeedom », elle indique si MCP AI Server est installé, et conseille de l'installer s'il manque.
+  - Textes plus grands et fenêtre un peu plus large.
+- **Vigie** : chaque alerte indique le nom de la box qui l'a émise (badge, message Jeedom, titre des notifications). Utile avec plusieurs box.
+- **Documentation** : nouvelle page [Démarrage rapide](demarrage_rapide.md), en deux étapes et sans jargon.
+
+### 🐛 Corrections
+
+- **Création guidée** : la description de l'« Assistant Jeedom » annonçait un « accès complet à la domotique ». L'assistant ne voit et ne commande que les équipements autorisés dans la whitelist.
 
 ## 10/11/2026
 
