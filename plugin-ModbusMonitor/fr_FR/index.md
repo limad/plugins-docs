@@ -1,81 +1,115 @@
 ---
 layout: default
-title: Documentation Modbus Monitor
+title: Modbus Monitor — Documentation
 lang: fr_FR
 pluginId: ModbusMonitor
 ---
 
 # Description
 
-Le plugin **ModbusMonitor** permet à Jeedom de communiquer avec vos équipements compatibles Modbus (TCP-IP ou RTU), tels que des compteurs d'énergie (ex: Socomec, SDM), des onduleurs solaires, des automates industriels ou tout autre appareil utilisant ce protocole de communication standard.
+**Modbus Monitor** lit les registres d'appareils **Modbus TCP-IP** (compteurs d'énergie, onduleurs, automates, passerelles Modbus…) et les transforme en commandes Jeedom. Il intègre aussi un **scanner** et un **testeur** de registres pour trouver les bonnes adresses et le bon décodage avant de créer vos commandes.
 
-Il vous offre la possibilité de :
-- Lire en temps réel les registres de vos appareils (Holding Registers, Input Registers, Coils, etc.).
-- Envoyer des commandes d'écriture pour piloter ou configurer vos équipements.
-- Traiter automatiquement la conversion des formats complexes (Float, Entiers 16/32 bits, Signés ou Non-Signés).
-- Gérer les problèmes d'inversion d'octets (Endianness) très fréquents en Modbus.
+> **Important**
+>
+> Le plugin fait de la **lecture** uniquement. L'écriture de registres n'est pas disponible : une commande d'écriture renvoie une erreur.
+>
+> Seul le mode **TCP** est utilisable. Le choix « Modbus RTU » (liaison série) apparaît dans la liste mais il est désactivé.
 
-# Installation
+Le plugin fonctionne **sans démon et sans dépendance** : l'interrogation des appareils est assurée par une tâche planifiée de Jeedom. Il convient aux installations simples qui n'ont pas besoin de temps réel.
 
-Afin d’utiliser le plugin, vous devez le télécharger depuis le Market Jeedom, l’installer et l’activer comme tout plugin standard. L'installation des dépendances se lancera automatiquement. 
+# Prérequis
 
-Une fois l'installation terminée, vérifiez que le **Démon** (le service d'arrière-plan du plugin chargé de la communication Modbus) est bien au statut "OK".
+| Élément | Détail |
+|---|---|
+| Jeedom | 4.4 ou plus récent conseillé (l'interface utilise les outils de Jeedom 4.4) |
+| Appareil | accessible en Modbus TCP depuis la box (adresse IP, port, Unit ID) |
 
-# Configuration du plugin
+# Installation et configuration
 
-Dans la page principale de configuration du plugin, vous pouvez modifier les options globales suivantes :
+1. Installez le plugin depuis le Market, puis activez-le.
+2. Aucune dépendance ni démon à démarrer.
+3. Ouvrez **Plugins → Protocole domotique → Modbus Monitor**.
 
-- **Le port d'écoute du démon** : Utilisé pour la communication interne de Jeedom. Il est recommandé de ne pas le modifier, sauf si ce port précis est déjà utilisé par un autre service sur votre système.
-- **Niveau de log** : N'hésitez pas à le passer temporairement en mode "Debug" si vous rencontrez des problèmes pour analyser les trames brutes échangées avec votre équipement.
+La page de configuration du plugin contient des réglages hérités (port de socket, temporisations entre requêtes, tentatives) : ils ne servent pas à la lecture actuelle. Laissez-les tels quels.
 
-# Configuration des équipements
+# Équipements
 
-Pour ajouter un nouvel appareil, rendez-vous dans le menu **Plugins → Protocole domotique → ModbusMonitor** et cliquez sur **Ajouter**.
+Cliquez sur **Ajouter**, nommez l'équipement, puis renseignez l'onglet **Équipement**.
 
-## Paramètres de connexion de l'équipement
+| Champ | Rôle |
+|---|---|
+| Nom, Objet parent, Catégorie, Activer, Visible | réglages Jeedom habituels |
+| Type Modbus | `TCP` (seul choix disponible) |
+| Ip Device | adresse IP de l'appareil ou de la passerelle Modbus (obligatoire pour sauvegarder) |
+| Unit ID | identifiant de l'esclave Modbus (indispensable, y compris derrière une passerelle) |
+| Port (optionnel) | port Modbus TCP, **502** par défaut |
+| Cycle de poll | fréquence de lecture : 30 s, 1 min (défaut), 2 min ou 5 min |
+| Testeur | ouvre le testeur pré-rempli avec les paramètres de l'équipement |
 
-Une fois votre équipement virtuel créé dans Jeedom, vous devez renseigner ses paramètres de connexion physiques :
+Seuls les équipements **activés** sont interrogés. En cas d'échec de lecture, l'équipement passe en *timeout* dans Jeedom.
 
-- **Type de connexion (Connect Type)** : `TCP` (via votre réseau IP local) ou `RTU` (via un adaptateur série RS485).
-- **Paramètres TCP** :
-  - *IP du Gateway (Gatway Ip)* : L'adresse réseau IP de votre équipement ou de votre passerelle.
-  - *Port* : Le port standard Modbus TCP est généralement le `502`.
-- **Slave ID (Unit ID)** : L'identifiant de l'esclave sur le bus. Ce paramètre est **indispensable** même en TCP si vous passez par une passerelle Ethernet/RS485.
-- **Offset (Décalage)** : La documentation des fabricants Modbus donne parfois des adresses en base 1 au lieu de la base 0 informatique. Si toutes vos valeurs lues semblent appartenir au registre d'à côté, testez en appliquant un offset de `-1` ou `+1`.
+Barre de l'équipement :
 
-## Création des Commandes (Registres)
+- **Informations brutes** : affiche la configuration complète de l'équipement.
+- **Importer / Exporter** : sauvegarde ou recharge la configuration et les commandes d'un équipement dans un fichier JSON (pratique pour dupliquer un appareil identique).
+- **Mode édition des commandes** : bascule le tableau des commandes entre vue compacte et vue détaillée.
+- **Défaut config** : réapplique le widget par défaut sur toutes les commandes de l'équipement.
+- **Exporter des commandes…** (à droite) : choisir des commandes puis **Télécharger** un fichier JSON.
 
-L'onglet **Commandes** est le cœur du plugin. C'est ici que vous allez définir les adresses Modbus exactes à interroger.
-Pour chaque valeur que vous souhaitez récupérer, ajoutez une commande "Info / Numérique" (ou "Action" pour de l'écriture) avec les paramètres suivants :
+# Commandes
 
-- **Adresse (Start register)** : L'adresse décimale du registre (ex: `50946`).
-- **Fonction (Function Code)** : Le type de requête Modbus. Par exemple, utilisez `fc03` (Read Holding Registers) ou `fc04` (Read Input Registers) pour lire des données de mesure, et `fc06` ou `fc16` pour écrire des valeurs.
-- **Taille (Nb registers)** : Le nombre de mots (Words) de 16 bits à lire pour constituer la valeur. Par exemple, une valeur 32 bits nécessite `2` registres, tandis qu'une valeur 16 bits n'en nécessite qu'`1`.
-- **Format attendu** : Permet d'indiquer au plugin comment interpréter la donnée brute (`longformat` pour les entiers standards, `floatformat` pour les nombres à virgule flottante).
-- **Inversion Mots / Octets (Endianness)** : 
-  - *Word Reverse / Byte Reverse* : Le protocole Modbus ne fixe pas de norme stricte sur l'ordre des octets (Big-Endian vs Little-Endian). Si les valeurs remontées par le plugin semblent totalement fantaisistes (ex: 1.5 milliards au lieu de 230), cochez l'option **Word Reverse**. C'est le correctif le plus courant !
-- **Non signé (Unsigned)** : À cocher si la valeur est toujours positive (ex: une énergie cumulée en kWh).
-- **Opération** : Très utile pour ajuster l'échelle à la volée ! 
-  - Si votre équipement envoie la tension en dixièmes de volts (ex: la valeur brute `2325` pour `232.5 V`), renseignez `/10` dans ce champ.
-  - S'il envoie une puissance de `2500 W` sous la forme de la valeur `25`, renseignez `*100`.
+Une commande action **Rafraichir** est créée automatiquement. Les autres commandes (une par valeur à lire) s'ajoutent dans l'onglet **Commandes** avec **Ajouter une info**, ou directement depuis le testeur.
 
-# Outils intégrés : Scan et Test
+| Paramètre | Rôle |
+|---|---|
+| Registre départ | adresse décimale du premier registre |
+| Nb de registres | nombre de registres de 16 bits à lire (2 pour une valeur 32 bits, 4 pour 64 bits) |
+| Fonction | `01 Coils Status`, `02 Discrete Input`, `03 Holding registers` (défaut), `04 Input Registers` |
+| Format données | `Long / Integer` ou `Float (Real4)` pour obtenir une valeur numérique |
+| wordReverse | inverse l'ordre des mots (coché par défaut) |
+| byteReverse | inverse l'ordre des octets dans chaque mot |
+| unsigned | valeur non signée (toujours positive) |
+| Opération | calcul appliqué à la valeur lue, ex. `/10`, `*0.1`, `/1000+2` (opérateurs `+ - * /`, virgule acceptée) |
+| Afficher / Historiser | une commande **non affichée n'est pas lue** |
 
-Le plugin intègre des outils de diagnostic très puissants, accessibles directement depuis la configuration de votre équipement :
+Un `Float` demande au moins 2 registres. Les formats `Bits`, `String` et `None` sont proposés dans la liste, mais la lecture périodique ne renvoie une valeur exploitable qu'en `Long / Integer` et `Float`.
 
-- **Le Scanner Modbus** : Vous ne connaissez pas l'adresse exacte d'une valeur ou vous cherchez des registres cachés ? Le scanner vous permet de lancer une recherche automatique sur une plage d'adresses (ex: de 50000 à 51000). Il interroge le périphérique et vous affiche sous forme de tableau tous les registres qui répondent, avec leur valeur brute décodée selon plusieurs formats (Int32, Float, etc.). Il vous indique même si une commande existe déjà pour ce registre !
-- **L'outil de Test** : Accessible depuis les résultats du scan ou directement depuis l'équipement, cet outil vous permet de tester une adresse spécifique en temps réel et de jouer avec les cases "Word Reverse" ou "Byte Reverse". C'est la méthode idéale pour trouver la bonne combinaison de décodage *avant* de créer la commande définitive.
+Pour les fonctions `01` et `02`, la sauvegarde remplace la commande par une commande par bit (`ReadCoil_<adresse>` ou `ReadDiscrete_<adresse>`).
 
-# Dépannage fréquent
+Les commandes qui se suivent sont lues ensemble, ce qui réduit le nombre de requêtes envoyées à l'appareil.
 
-- **Le démon crashe ou ne se connecte pas** : Vérifiez scrupuleusement l'adresse IP et surtout le `Slave ID`. Un mauvais Slave ID provoquera l'absence de réponse de l'équipement et une déconnexion.
-- **Les valeurs lues ne veulent rien dire** : Essayez de cocher/décocher `Word Reverse`. Dans de très rares cas, `Byte Reverse` peut également être nécessaire.
-- **La valeur est légèrement fausse** : Vérifiez que l'adresse (Start Register) est bien la bonne et qu'elle n'est pas décalée d'un cran (voir le paramètre `Offset` de l'équipement). 
+![Commandes en mode édition](../images/ModbusMonitor_screenshot4.png)
 
-# Changelog
+![Exemple de widget](../images/ModbusMonitor_screenshot5.png)
 
-[Voir le changelog](./changelog)
+# Scan et testeur
+
+Les tuiles **Scan** et **Testeur** de la page du plugin ouvrent deux outils. Ils reprennent les paramètres de l'équipement ouvert.
+
+- **Scan** : renseignez la passerelle (IP, port), cliquez sur **Connexion**, puis indiquez Slave ID, registre de départ et de fin, longueur, fonction, format, opération et inversions. Le tableau affiche chaque registre lu, sa valeur et indique si une **commande existe déjà**. Un bouton permet de **tester** un registre.
+- **Testeur** : lit une adresse précise et affiche **toutes les interprétations** possibles (entiers, flottants, inversions, texte, hexadécimal). Cochez ou décochez Word / Byte / Unsigned jusqu'à obtenir la bonne valeur, puis **créez la commande** dans l'équipement (nom, unité, historisation).
+
+C'est la méthode conseillée : trouver le bon décodage dans le testeur, puis créer la commande.
+
+# FAQ et dépannage
+
+**Aucune valeur ne remonte.**
+Vérifiez l'IP, le port et surtout l'**Unit ID**. Utilisez **Connexion** dans le scan ou le testeur pour valider l'accès. Passez le log du plugin en *Debug* pour voir les requêtes.
+
+**La valeur est absurde (ex. 1,5 milliard au lieu de 230).**
+Changez `wordReverse`, puis si besoin `byteReverse`, ou essayez `Float` au lieu de `Long / Integer`. Le testeur montre toutes les combinaisons d'un coup.
+
+**La valeur semble venir du registre voisin.**
+Certaines documentations comptent les adresses à partir de 1. Essayez l'adresse moins 1 (ou plus 1) dans le testeur.
+
+**Une commande ne se met jamais à jour.**
+Vérifiez qu'elle est **affichée** et que le registre de départ, le nombre de registres et le format sont renseignés : sinon elle est ignorée (avertissement dans le log).
+
+**Une commande d'écriture renvoie une erreur.**
+C'est normal : l'écriture n'est pas prise en charge.
 
 # Support
 
-Si malgré cette documentation et après voir lu les sujets en rapport avec le plugin sur [community]({{site.forum}}/tags/plugin-{{page.pluginId}}) vous ne trouvez pas de réponse à votre question, n'hésitez pas à créer un nouveau sujet en n'oubliant pas de mettre le tag du plugin ([plugin-{{page.pluginId}}]({{site.forum}}/tags/plugin-{{page.pluginId}})).
+Forum : [community Jeedom, tag modbus](https://community.jeedom.com/tag/modbus/l/latest).
+
+[Voir le changelog](./changelog)
