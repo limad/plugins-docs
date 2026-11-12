@@ -288,21 +288,6 @@ pluginId: limad44
 </div>
 
 <div class="plugin-card">
-	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-f2ban/{{page.lang}}">
-	<img src="{{site.baseurl}}/plugin-f2ban/images/f2ban_icon.png" alt="f2ban">
-	<div>
-		<h2 class="plugin-card__name">fail2ban</h2>
-		<span class="plugin-card__id">f2ban</span>
-	</div>
-	</a>
-	<p class="plugin-card__desc">Monitoring of fail2ban, locally or remotely (SSH): jail status, daily and per-country counters of banned IPs, ban and unban from Jeedom.</p>
-	<div class="plugin-card__links">
-	<a href="{{site.baseurl}}/plugin-f2ban/{{page.lang}}">Documentation</a>
-	<a href="{{site.baseurl}}/plugin-f2ban/{{page.lang}}/changelog">Changelog</a>
-	</div>
-</div>
-
-<div class="plugin-card">
 	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-wyoming_bridge/{{page.lang}}">
 	<img src="{{site.baseurl}}/plugin-wyoming_bridge/images/wyoming_bridge_icon.png" alt="wyoming_bridge">
 	<div>
