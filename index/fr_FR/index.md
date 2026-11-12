@@ -272,4 +272,124 @@ pluginId: limad44
 	</div>
 </div>
 
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-migoControl/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/migoControl_icon.png" alt="migoControl">
+	<div>
+		<h2 class="plugin-card__name">Migo Control</h2>
+		<span class="plugin-card__id">migoControl</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Intégration des équipements Migo Energie (thermostats, vannes, thermostat OpenTherm) : consignes, modes et températures depuis Jeedom.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-migoControl/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-migoControl/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-crowdsec/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/crowdsec_icon.png" alt="crowdsec">
+	<div>
+		<h2 class="plugin-card__name">CrowdSec</h2>
+		<span class="plugin-card__id">crowdsec</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Supervision de CrowdSec via son API locale : décisions actives, dernières IP bloquées, bannissement et débannissement depuis Jeedom.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-crowdsec/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-crowdsec/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-smartctrl/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/smartctrl_icon.png" alt="smartctrl">
+	<div>
+		<h2 class="plugin-card__name">SMART Control</h2>
+		<span class="plugin-card__id">smartctrl</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Surveillance SMART des disques (SATA/NVMe/USB), en local ou par SSH : usure, température, santé, self-tests et alertes.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-smartctrl/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-smartctrl/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-pulseCounter/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/pulseCounter_icon.png" alt="pulseCounter">
+	<div>
+		<h2 class="plugin-card__name">Pulse Counter</h2>
+		<span class="plugin-card__id">pulseCounter</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Comptage d'impulsions (gaz, électricité, eau) transformées en données Énergie.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-pulseCounter/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-pulseCounter/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-google_assistant/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/google_assistant_icon.png" alt="google_assistant">
+	<div>
+		<h2 class="plugin-card__name">Google Assistant</h2>
+		<span class="plugin-card__id">google_assistant</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Envoie des commandes texte au Google Assistant de votre compte Google et récupère sa réponse dans Jeedom.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-google_assistant/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-google_assistant/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-ai_proxy/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/ai_proxy_icon.png" alt="ai_proxy">
+	<div>
+		<h2 class="plugin-card__name">Passerelle OAuth IA</h2>
+		<span class="plugin-card__id">ai_proxy</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Expose vos abonnements IA (Claude, Codex, Gemini…) en API locale compatible OpenAI/Anthropic pour les autres plugins IA.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-ai_proxy/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-ai_proxy/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-alexatodolist/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/alexatodolist_icon.png" alt="alexatodolist">
+	<div>
+		<h2 class="plugin-card__name">Alexa - Todo List</h2>
+		<span class="plugin-card__id">alexatodolist</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Gestion des listes Alexa (courses, tâches) depuis Jeedom, via le plugin Alexa Premium.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-alexatodolist/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-alexatodolist/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-vcoder/{{page.lang}}">
+	<img src="{{site.market}}/filestore/market/plugin/images/vcoder_icon.png" alt="vcoder">
+	<div>
+		<h2 class="plugin-card__name">vCoder</h2>
+		<span class="plugin-card__id">vcoder</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Explorateur et éditeur de fichiers intégré à Jeedom.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-vcoder/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-vcoder/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
 </div><!-- /plugin-grid -->
