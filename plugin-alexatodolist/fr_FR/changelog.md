@@ -9,6 +9,11 @@ pluginId: alexatodolist
 
 ## Version en cours de développement
 
+### 12/11/2026
+
+- **Nouveautés et corrections** : les listes se synchronisent automatiquement avec Alexa toutes les 15 minutes ; **Elément Non accompli** remet bien un élément à faire ; **Elément accompli** propose les éléments encore à faire (et non plus ceux déjà accomplis).
+- **Sécurité et fiabilité** : une erreur d'Amazon pendant la synchronisation ne vide plus la liste dans Jeedom ; aucune erreur si aucun élément n'est choisi.
+
 ### 09/11/2026
 
 - **Sécurité et fiabilité** : le pack de widgets iso est téléchargé dans une version figée et installé seulement s'il est authentique ; aucun téléchargement s'il est déjà à jour ; une version plus récente déjà installée n'est jamais remplacée par une plus ancienne.
