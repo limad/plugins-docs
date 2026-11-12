@@ -17,6 +17,10 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 12/11/2026
+
+*   **Nouveautés et corrections** : les nouveaux appareils Echo sont reconnus avec leur nom et leur photo (Echo Dot Max, Echo Dot, Echo Time, Echo Studio, Echo Studio avec caméra, Echo Show 8, 11, 15 et 21, Echo Hub…) ainsi que de nombreux Fire TV, tablettes Fire, barres de son et téléviseurs compatibles Alexa ; les appareils Alexa affichent une photo réaliste et les appareils maison connectée une icône homogène
+
 ### 10/11/2026
 
 *   **Corrections** : la génération du cookie Amazon ne s'interrompt plus sur une redirection invalide d'Amazon
