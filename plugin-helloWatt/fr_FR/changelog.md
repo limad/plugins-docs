@@ -10,6 +10,9 @@ pluginId: helloWatt
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne probablement la mise à jour de documentation, de bugs mineurs ou alors j'ai pas le temps !!!.
 
+# 16/11/2026
+- Icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 # 06/11/2026
 - Types génériques : consommation et production du jour en « consommation / production journalière », plus de type sur les cumuls mensuels et annuels ; température en °C, de type météo ; plus de famille « Électricité » sur les compteurs gaz
 - Un type ou une unité choisis à la main ne sont plus écrasés. Correction automatique à la mise à jour

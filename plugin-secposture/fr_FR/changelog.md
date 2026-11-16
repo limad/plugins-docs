@@ -9,6 +9,12 @@ pluginId: secposture
 
 # Changelog — secposture
 
+## Version en cours de développement
+
+### 16/11/2026
+
+- **Divers** : icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ## 0.4
 
 - Traductions : anglais, allemand, espagnol, italien, portugais.

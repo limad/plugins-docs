@@ -21,6 +21,10 @@ lang: en_US
 
 ## Version in development
 
+### 16/11/2026
+
+- **Miscellaneous**: lighter plugin icons, so Jeedom's Plugins menu shows up faster (same look).
+
 ### 12/11/2026
 
 - **New features and fixes**: new Echo devices are recognized with their name and picture (Echo Dot Max, Echo Dot, Echo Time, Echo Studio, Echo Studio with Home Camera, Echo Show 8, 11, 15 and 21, Echo Hub…) as well as many Fire TV, Fire tablets, soundbars and Alexa-enabled TVs; Alexa devices show a realistic picture and smart home devices a consistent icon

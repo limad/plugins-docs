@@ -7,6 +7,12 @@ pluginId: alexaamazonmusic
 
 # Changelog
 
+## Version under development
+
+### 16/11/2026
+
+- **Miscellaneous**: lighter plugin icon, so Jeedom's Plugins menu shows up faster (same look).
+
 ## Version 0.0.1 (2026-04-23)
 
 First release of the Alexa Amazon Music plugin.
