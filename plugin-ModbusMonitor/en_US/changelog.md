@@ -9,6 +9,10 @@ pluginId: ModbusMonitor
 
 ## Version under development
 
+### 16/11/2026
+
+- **Miscellaneous**: lighter plugin icon, so Jeedom's Plugins menu shows up faster (same look).
+
 ### 09/11/2026
 
 - **Security and reliability**: widgets installed with the plugin come from a fixed version and are checked before installation.

@@ -19,6 +19,12 @@ lang: en_US
 
 ---
 
+## 16/11/2026
+
+### Miscellaneous
+
+- Lighter plugin icon, so Jeedom's Plugins menu shows up faster (same look).
+
 ## 12/11/2026
 
 ### New features

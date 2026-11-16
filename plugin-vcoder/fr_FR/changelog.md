@@ -9,6 +9,10 @@ pluginId: vcoder
 
 ## Version en cours de développement
 
+### 16/11/2026
+
+- **Divers** : icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ### 23/10/2026
 
 - **Nouveautés et corrections** : traductions mises à jour.

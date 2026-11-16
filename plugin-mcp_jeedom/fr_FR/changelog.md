@@ -19,6 +19,10 @@ lang: fr_FR
 
 ---
 
+## 16/11/2026
+
+- Icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ## 06/11/2026
 
 - **Corrigé** : bilan sécurité des virtuels inversés.

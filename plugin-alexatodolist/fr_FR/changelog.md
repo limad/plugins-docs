@@ -9,6 +9,10 @@ pluginId: alexatodolist
 
 ## Version en cours de développement
 
+### 16/11/2026
+
+- **Divers** : icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ### 12/11/2026
 
 - **Nouveautés et corrections** : les listes se synchronisent automatiquement avec Alexa toutes les 15 minutes ; **Elément Non accompli** remet bien un élément à faire ; **Elément accompli** propose les éléments encore à faire (et non plus ceux déjà accomplis).

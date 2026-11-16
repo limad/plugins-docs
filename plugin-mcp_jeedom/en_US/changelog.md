@@ -19,6 +19,10 @@ lang: en_US
 
 ---
 
+## 16/11/2026
+
+- Lighter plugin icon, so Jeedom's Plugins menu shows up faster (same look).
+
 ## 06/11/2026
 
 - **Fixed**: security report for inverted virtual devices.
