@@ -12,7 +12,7 @@ favoris, pièces, lumières, prises, volets, thermostats, lecteurs, caméras et 
 en temps réel. L'application est servie par Jeedom : aucun port à ouvrir, aucun réglage Apache,
 aucun service extérieur.
 
-## Accès
+# Accès
 
 - Réseau local : `http://IP_JEEDOM/plugins/homeDash/app/`
 - Extérieur : `https://xxxx.eu.jeedom.link/plugins/homeDash/app/`
@@ -20,21 +20,21 @@ aucun service extérieur.
 La page du plugin (Plugins → Organisation → Home Dash) affiche les deux adresses avec un QR code
 à scanner depuis le téléphone.
 
-## Connexion
+# Connexion
 
 On se connecte avec un compte Jeedom (double authentification prise en charge).
 « Rester connecté sur cet appareil » enregistre l'appareil comme dans Jeedom.
 Un compte au profil restreint ne voit et ne commande que les équipements et scénarios autorisés.
 Les équipements sans objet (pièce) Jeedom ne sont jamais affichés.
 
-## Installer sur le téléphone
+# Installer sur le téléphone
 
 Ouvrir l'adresse extérieure (HTTPS), puis :
 
 - Android (Chrome) : menu ⋮ → « Installer l'application » ;
 - iPhone (Safari) : Partager → « Sur l'écran d'accueil ».
 
-## Naviguer
+# Naviguer
 
 - **Téléphone** : barre du bas à quatre boutons : **Favoris**, **Chat IA** (ou **Scénarios** si aucun
   assistant n'est partagé), **Équipements** et **Plus**, qui ouvre les autres vues (Scénarios, Alertes,
@@ -50,7 +50,7 @@ Ouvrir l'adresse extérieure (HTTPS), puis :
   dans Toute la maison.
 - **Actualiser** (⟳) relit la maison ; le bouton tourne pendant la lecture.
 
-## Cartes
+# Cartes
 
 - Trois dispositions (Réglages > Cartes) : **complètes**, **compactes** (sans curseur, le reste dans
   les Contrôles) et **Mini** (petites tuiles, deux par ligne sur téléphone).
@@ -64,32 +64,32 @@ Ouvrir l'adresse extérieure (HTTPS), puis :
 - Une commande qui attend la réponse de Jeedom affiche un anneau qui tourne ; en cas d'échec, un
   message s'affiche et seul l'appareil touché revient à son état d'avant.
 
-## Caméras
+# Caméras
 
 L'image de la caméra (ou son instantané) s'affiche sur la carte. Un toucher ouvre la fenêtre caméra :
 image en grand, passage d'une caméra à l'autre, surveillance en interrupteur, et vidéo **en direct**
 pour les caméras qui fournissent un flux. Images et vidéo passent par la box : l'adresse de la caméra
 n'est jamais envoyée au téléphone.
 
-## Scénarios
+# Scénarios
 
 Liste des scénarios actifs : un toucher lance ou arrête. Le menu ⋯ donne les détails (mode,
 déclencheurs, prochain lancement, description), l'ajout aux favoris et « Masquer ».
 
-## Chat
+# Chat
 
 Avec le plugin **Ai Assistant**, l'application propose un chat avec les assistants choisis dans la
 configuration du plugin (assistants **MCP** et **Assist** seulement). Sans assistant coché, le chat
 n'apparaît pas.
 
-## Alertes et Analyse
+# Alertes et Analyse
 
 - **Alertes** : appareils en défaut et messages Jeedom triés ; pour un administrateur, aussi les erreurs
   des logs des dernières 24 h et les mises à jour disponibles, et la suppression des messages.
 - **Analyse** : piles faibles, et pour un administrateur la santé de Jeedom et l'état des démons
   des plugins, avec Démarrer / Relancer.
 
-## Agendas
+# Agendas
 
 Si le plugin **Agenda** est actif, l'onglet *Agendas* (à choisir dans Réglages > Général) liste ses
 agendas et leurs plages : heures, jours de la semaine, jours fériés, plage en cours et prochaine.
@@ -98,13 +98,13 @@ chaque jour, et activer ou désactiver un agenda ; les autres comptes voient les
 Les actions des plages se règlent toujours dans le plugin Agenda.
 Si une plage modifiée couvre l'heure actuelle, ses actions sont lancées tout de suite.
 
-## Favoris, ordre et éléments masqués
+# Favoris, ordre et éléments masqués
 
 Les favoris, l'ordre des pièces et des appareils, la page d'accueil et les éléments masqués sont
 enregistrés par compte Jeedom : on les retrouve sur tous ses appareils. Ils ne modifient pas Jeedom.
 Les éléments masqués se réaffichent dans Réglages > Éléments masqués.
 
-## Thèmes
+# Thèmes
 
 Dans **Réglages > Thèmes** :
 
@@ -120,13 +120,13 @@ Dans **Réglages > Thèmes** :
 - Le thème choisi et ses propres thèmes (20 au plus) suivent le compte Jeedom sur tous ses appareils.
 - **Partager** (administrateurs) : rend un de ses thèmes visible par tous les utilisateurs.
 
-## Réglages de l'appareil
+# Réglages de l'appareil
 
 Taille de l'interface, police, horloge, disposition des cartes, interrupteurs à la place des boutons,
 arrondi des cartes et délai d'actualisation des mesures se règlent par appareil (Réglages > Écran,
 Cartes, Général). Réglages > Diagnostic mesure l'écran et la vitesse de l'appareil.
 
-## Configuration du plugin
+# Configuration du plugin
 
 - **Actualisation** : délai maximal de regroupement des mesures (1 s par défaut).
 - **Plugins exclus de l'application** : leurs équipements n'apparaissent pas, pour aucun utilisateur.
@@ -136,6 +136,10 @@ Cartes, Général). Réglages > Diagnostic mesure l'écran et la vitesse de l'ap
 
 Jeedom n'est jamais modifié par ces choix.
 
-## Crédits
+# Changelog
+
+Disponible [ici](./changelog.html).
+
+# Crédits
 
 Style et quelques concepts inspirés du projet « Maison » de Julien Delprat (gitlab.com/jdelprat/domotique).
