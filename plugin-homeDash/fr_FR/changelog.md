@@ -11,6 +11,27 @@ pluginId: homeDash
 
 ## Version bêta
 
+### 18/11/2026
+
+- **Ordinateur** : jusqu'à 6 colonnes de tuiles sur un grand écran (4 dès 1024 px), contenu centré ; Réglages, Alertes, Analyse, Diagnostic et Agendas dans une colonne de lecture ; boutons de l'en-tête toujours à la même place, même sur une page courte
+- Scénarios sur deux colonnes dès 980 px ; tuiles à leur propre hauteur (plus étirées par une caméra voisine)
+- Chat en pleine hauteur sur ordinateur ; survol à la souris sur les boutons, pastilles et tuiles
+- Menu latéral replié : info-bulle à droite de l'icône ; liste des pièces estompée en bas quand il en reste à faire défiler
+- **« / » ou Ctrl + K** (⌘ + K) place le curseur dans la recherche
+- Info-bulles qu'on peut survoler pour les lire
+- Un double clic sur un interrupteur ou un scénario n'envoie qu'une commande
+- Messages en bas de l'écran selon leur niveau (info, avertissement, erreur), avec icône ; ils restent affichés sous la souris, se ferment d'un toucher
+- Petits boutons d'icône (repli d'une pièce, caméra, suppression d'une alerte) de nouveau carrés
+- Une lampe éteinte puis rallumée par On / Off garde son niveau (jamais 100 % deviné) ; une valeur arrivée pendant l'envoi n'est plus perdue
+- Relais à plusieurs voies : allumé tant qu'une voie l'est, suivi en direct
+- Filtre « lumières allumées » (et les autres résumés) suivi en direct ; température suivie même quand ce n'est pas une mesure de la carte
+- Alertes : blocs dépliés et textes développés gardés à la relecture
+- Session expirée : les préférences du compte ne passent plus au compte suivant ; la saisie de l'écran de connexion est gardée
+- Fiche équipement : texte d'un message gardé pendant le repeint ; Diagnostic : pièce, type et recherche remis après la mesure
+- Caméras : vidéo en direct d'un flux placé à la racine de la caméra ; identifiants du flux gardés par la box ; image ou segment incomplet refusé
+- Agendas : une plage de nuit modifiée garde la bonne durée (une plage de 08:00 à 10:00 était enregistrée sur 26 h)
+- La maison est relue quand un autre appareil du même compte l'a relue après un changement de la configuration (plugin ou pièce exclus)
+
 ### 17/11/2026
 
 - Nouveau mode de cartes **Mini** (Réglages > Affichage > Cartes) : tuiles dans le style des réglages rapides d'Android, deux par ligne sur un téléphone en portrait
@@ -36,6 +57,17 @@ pluginId: homeDash
 - Boutons qui attendent la box (Actualiser, Enregistrer, Se connecter, Envoyer à la box…) : l'icône ou un petit anneau tourne pendant l'attente, un second appui est ignoré
 - Après la fermeture d'une fiche ouverte par ⋯ › Contrôles, le focus revient sur le ⋯ de la carte
 - Icône « Afficher le mot de passe » de nouveau dans son champ sur l'écran de connexion
+- Téléphone en paysage : les tuiles occupent toute la largeur
+- Une nouvelle vue s'ouvre en haut ; le retour à Équipements retrouve sa position ; toucher la vue en cours remonte en haut
+- **Alertes** : messages semblables réunis sur une ligne (« ×8 depuis… ») et supprimés ensemble ; messages des logs sans erreur récente réunis par log (« Venant des logs ») ; le badge compte les mêmes lignes ; mises à jour comptées comme le core, Alertes et Analyse d'accord
+- Commandes « message » qui attendent une valeur (durée, adresse…) : champ simple à côté d'Envoyer, Entrée envoie
+- En-tête fixe dans les panneaux (fiche, caméra, chat, agenda) ; Agendas : toute la carte ouvre la plage
+- Fiche : commandes de maintenance (firmware, redémarrage, réinitialisation, calibrage) sorties des Contrôles, dans Toutes les commandes > **Maintenance** (replié) ; la mise à jour du firmware demande confirmation
+- Fenêtre caméra : âge de l'image (« Image d'il y a 4 s », signalée au-delà de 30 s) ou « En direct »
+- Chat : trois exemples de questions qui remplissent le champ sans l'envoyer
+- Thèmes : accent plus lisible pour Delprat et Halexa sombre ; l'éditeur prévient quand l'accent est peu lisible sur les cartes, aperçu en direct (lampe allumée / éteinte)
+- Téléphone en paysage : les pastilles des pièces se rangent en descendant et reviennent en remontant
+- Lien « Aller au contenu » au premier Tab ; noms lisibles par les lecteurs d'écran (repli des pièces, groupes des Réglages)
 
 ### 16/11/2026
 
