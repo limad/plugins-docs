@@ -45,7 +45,8 @@ Ouvrir l'adresse extérieure (HTTPS), puis :
   filtre par type d'appareil (lumières, prises, chauffage…) ; avec Lumières ou Prises, « Tout allumer /
   Tout éteindre » demande confirmation.
 - **Recherche** dans le nom des appareils ; bouton ⓘ pour afficher les résumés (lumières allumées,
-  ouvertures, température…), qui filtrent d'un toucher.
+  ouvertures, température…), qui filtrent d'un toucher. Au clavier, **/** ou **Ctrl + K** (⌘ + K)
+  place le curseur dans la recherche.
 - **Réorganiser** (⇅) : pièces et appareils se déplacent par glisser-déposer, dans les Favoris comme
   dans Toute la maison.
 - **Actualiser** (⟳) relit la maison ; le bouton tourne pendant la lecture.
@@ -56,20 +57,22 @@ Ouvrir l'adresse extérieure (HTTPS), puis :
   les Contrôles) et **Mini** (petites tuiles, deux par ligne sur téléphone).
 - Toucher une tuile allume ou éteint ; le menu **⋯** donne les **Contrôles** (panneau complet de
   l'appareil), l'ajout aux favoris, « Masquer », « Personnaliser la carte » (commandes affichées,
-  taille) et, pour une caméra, sa fenêtre. Un appui long ouvre aussi les Contrôles.
+  taille) et, pour une caméra, sa fenêtre. Un appui long ouvre aussi les Contrôles. Les commandes de
+  maintenance (firmware, redémarrage, calibrage…) sont rangées dans Toutes les commandes > Maintenance.
 - **Thermostat** : température mesurée et consigne côte à côte, + / − pour la consigne, mode forcé
   dans une liste, pastille Chauffe / Arrêt.
 - **Lumière colorée** : rond de couleur avec couleurs, blancs (chaud, neutre, froid) et « Autre couleur ».
 - **Appareil injoignable** : bordure teintée, dernier état connu en grisé.
 - Une commande qui attend la réponse de Jeedom affiche un anneau qui tourne ; en cas d'échec, un
-  message s'affiche et seul l'appareil touché revient à son état d'avant.
+  message s'affiche et seul l'appareil touché revient à son état d'avant. Un double clic sur un
+  interrupteur ou un scénario n'envoie qu'une commande.
 
 # Caméras
 
 L'image de la caméra (ou son instantané) s'affiche sur la carte. Un toucher ouvre la fenêtre caméra :
 image en grand, passage d'une caméra à l'autre, surveillance en interrupteur, et vidéo **en direct**
-pour les caméras qui fournissent un flux. Images et vidéo passent par la box : l'adresse de la caméra
-n'est jamais envoyée au téléphone.
+pour les caméras qui fournissent un flux ; l'âge de l'image affichée est indiqué. Images et vidéo
+passent par la box : l'adresse de la caméra n'est jamais envoyée au téléphone.
 
 # Scénarios
 
@@ -80,12 +83,14 @@ déclencheurs, prochain lancement, description), l'ajout aux favoris et « Masqu
 
 Avec le plugin **Ai Assistant**, l'application propose un chat avec les assistants choisis dans la
 configuration du plugin (assistants **MCP** et **Assist** seulement). Sans assistant coché, le chat
-n'apparaît pas.
+n'apparaît pas. Des exemples de questions remplissent le champ sans l'envoyer.
 
 # Alertes et Analyse
 
 - **Alertes** : appareils en défaut et messages Jeedom triés ; pour un administrateur, aussi les erreurs
-  des logs des dernières 24 h et les mises à jour disponibles, et la suppression des messages.
+  des logs des dernières 24 h et les mises à jour disponibles, et la suppression des messages. Les
+  messages semblables sont réunis sur une ligne (« ×8 depuis… ») et supprimés ensemble ; le nombre
+  d'alertes compte ces lignes.
 - **Analyse** : piles faibles, et pour un administrateur la santé de Jeedom et l'état des démons
   des plugins, avec Démarrer / Relancer.
 
