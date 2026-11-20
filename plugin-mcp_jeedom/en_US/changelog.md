@@ -19,6 +19,17 @@ lang: en_US
 
 ---
 
+## 21/11/2026
+
+- **"Configure an AI client" window**: configurations checked client by client against their official documentation.
+  - Claude Desktop: custom connector with OAuth over the Internet, `uvx` bridge on the local network (its config file does not handle remote servers).
+  - Codex: TOML configuration (instead of YAML, which Codex ignores).
+  - Gemini CLI, Continue, Cline, Windsurf: syntax fixed (Cline tried SSE without `type`).
+  - Antigravity: direct HTTP connection, no bridge.
+  - ChatGPT: OAuth, or token in the URL (ChatGPT sends no custom header).
+  - Le Chat, Open WebUI, Raycast: steps updated.
+  - Local-network steps now show in the LAN tab.
+
 ## 20/11/2026
 
 - **Logs filtered by level**: log search accepts a level alone ("errors from the last 24 hours") and only returns that level and more severe ones. Continuation lines of an error (a PHP trace, for instance) stay with it. One call instead of reading logs one by one: about half the tokens on this question with Claude Haiku 5.5.

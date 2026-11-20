@@ -19,6 +19,17 @@ lang: fr_FR
 
 ---
 
+## 21/11/2026
+
+- **Fenêtre « Configurer un client IA »** : configurations revues client par client sur leur documentation officielle.
+  - Claude Desktop : connecteur personnalisé avec OAuth sur Internet, pont `uvx` en local (le fichier de configuration ne gère pas les serveurs distants).
+  - Codex : configuration au format TOML (au lieu de YAML, ignoré par Codex).
+  - Gemini CLI, Continue, Cline, Windsurf : syntaxe corrigée (Cline tentait du SSE faute de `type`).
+  - Antigravity : connexion HTTP directe, sans pont.
+  - ChatGPT : OAuth, ou token dans l'URL (ChatGPT n'envoie pas d'en-tête).
+  - Le Chat, Open WebUI, Raycast : étapes à jour.
+  - Les étapes propres au réseau local s'affichent enfin dans l'onglet LAN.
+
 ## 20/11/2026
 
 - **Logs filtrés par niveau** : la recherche dans les logs accepte un niveau seul (« les erreurs des dernières 24 heures ») et ne renvoie que ce niveau et les plus graves. Les lignes de suite d'une erreur (trace PHP, par exemple) restent avec elle. En un seul appel au lieu de lire les logs un par un : environ deux fois moins de tokens sur cette question avec Claude Haiku 5.5.
