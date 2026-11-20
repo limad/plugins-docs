@@ -117,7 +117,3 @@ Le plugin n'écrit que dans son propre dossier (`plugins/secposture/data/`). **A
 - **Exclusions de l'intégrité des fichiers** : un motif par ligne, comparé au chemin depuis la racine Jeedom (ex. `plugins/camera/captures/`).
 
 L'équipement « Posture sécurité » est créé à l'installation. L'audit s'exécute via le cron quotidien de Jeedom.
-
----
-
-*secposture — Documentation | Plugin open-source pour Jeedom*
