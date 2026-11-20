@@ -19,6 +19,13 @@ lang: fr_FR
 
 ---
 
+## 20/11/2026
+
+- **Logs filtrés par niveau** : la recherche dans les logs accepte un niveau seul (« les erreurs des dernières 24 heures ») et ne renvoie que ce niveau et les plus graves. Les lignes de suite d'une erreur (trace PHP, par exemple) restent avec elle. En un seul appel au lieu de lire les logs un par un : environ deux fois moins de tokens sur cette question avec Claude Haiku 5.5.
+- Mode d'outils « legacy » : nouvel outil `search_logs` (même recherche).
+- Avec AI Assistant : la liste d'outils qu'il garde en mémoire est rafraîchie au redémarrage du démon et au changement de rôle d'un token (avant : jusqu'à 6 heures avant de voir un nouvel outil).
+- Optimisations générales.
+
 ## 16/11/2026
 
 - Icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
