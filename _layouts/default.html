@@ -187,7 +187,8 @@
 				}
 			});
 
-			/* ── Number headings ── */
+			/* ── Number headings (pas sur les changelogs : une date n'est pas un chapitre) ── */
+			{% unless page.url contains 'changelog' %}
 			var i = 1, j = 1;
 			$('h1, h2', '#div_content').each(function () {
 				var tag = this.tagName.toLowerCase();
@@ -199,6 +200,7 @@
 					j++;
 				}
 			});
+			{% endunless %}
 		});
 
 		/* ── Active TOC highlight ── */
