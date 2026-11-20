@@ -19,6 +19,13 @@ lang: en_US
 
 ---
 
+## 20/11/2026
+
+- **Logs filtered by level**: log search accepts a level alone ("errors from the last 24 hours") and only returns that level and more severe ones. Continuation lines of an error (a PHP trace, for instance) stay with it. One call instead of reading logs one by one: about half the tokens on this question with Claude Haiku 5.5.
+- "legacy" tools mode: new `search_logs` tool (same search).
+- With AI Assistant: the tool list it keeps in memory is refreshed when the daemon restarts and when a token's role changes (before: up to 6 hours before a new tool showed up).
+- General optimizations.
+
 ## 16/11/2026
 
 - Lighter plugin icon, so Jeedom's Plugins menu shows up faster (same look).
