@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <rect width="256" height="256" fill="none"/>
+  <!-- Mistral mark : grille 5 colonnes, bandes chaudes jaune -> rouge, encoches noires -->
+  <g shape-rendering="crispEdges">
+    <!-- Bande 1 -->
+    <rect x="0"   y="40"  width="256" height="40" fill="#FFD800"/>
+    <rect x="40"  y="40"  width="40"  height="40" fill="#000000"/>
+    <rect x="176" y="40"  width="40"  height="40" fill="#000000"/>
+    <!-- Bande 2 -->
+    <rect x="0"   y="80"  width="256" height="40" fill="#FFAF00"/>
+    <rect x="40"  y="80"  width="40"  height="40" fill="#000000"/>
+    <rect x="176" y="80"  width="40"  height="40" fill="#000000"/>
+    <!-- Bande 3 -->
+    <rect x="0"   y="120" width="256" height="40" fill="#FF8205"/>
+    <rect x="40"  y="120" width="176" height="40" fill="#000000"/>
+    <!-- Bande 4 -->
+    <rect x="0"   y="160" width="256" height="40" fill="#FA500F"/>
+    <rect x="40"  y="160" width="40"  height="40" fill="#000000"/>
+    <rect x="136" y="160" width="40"  height="40" fill="#000000"/>
+    <!-- Bande 5 -->
+    <rect x="0"   y="200" width="256" height="40" fill="#E10500"/>
+    <rect x="40"  y="200" width="40"  height="40" fill="#000000"/>
+    <rect x="136" y="200" width="40"  height="40" fill="#000000"/>
+  </g>
+</svg>
