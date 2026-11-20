@@ -19,7 +19,35 @@ lang: en_US
 
 ---
 
+## 20/11/2026
+
+### New features
+
+- **MCP client with MCP Jeedom**: the assistant now offers the AI the right tools to:
+  - rename a device or move it to another room;
+  - change the house mode (away, night, holidays…) and create, rename or delete a room;
+  - ask the cameras about unknown people;
+  - delete a file, only when you ask for it explicitly ("delete the file …").
+
+### Fixes
+
+- **Recent Claude models (Haiku 5.5, Sonnet 5, Opus 4.7 and later) through ai_proxy or OpenRouter**: no more wasted request on the first message. The `temperature` parameter, refused by these models, is no longer sent (about 5 seconds saved).
+- **"MCP tools limit" help**: it is a ceiling; only the tools useful for the sentence are sent. Empty or 0 uses the cost profile (8, 20 or 40), not "no limit".
+
 ## 16/11/2026
+
+### New features
+
+- **Faster panel and mobile app**, especially away from home:
+  - on each opening, about 4 times less data downloaded and a noticeably faster full display;
+  - picking devices for the Dashboard downloads 14 times less data;
+  - code highlighting only loads when the first code block is displayed.
+- **Panel side bar**: it now only shows tool calls. Follow your device values in the Dashboard.
+
+### Fixes
+
+- **Gemini 4**: the reasoning level set on the device is respected again. The model always reasoned at the maximum, slower and more expensive.
+- **"Ask AI" command run by a scenario or another plugin**: when the assistant used a tool, the answer could be taken for an error.
 
 ### Miscellaneous
 

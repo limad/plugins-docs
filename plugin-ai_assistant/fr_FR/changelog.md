@@ -19,6 +19,7 @@ lang: fr_FR
 
 ## Sommaire
 
+- [20/11/2026](#20112026)
 - [16/11/2026](#16112026)
 - [12/11/2026](#12112026)
 - [10/11/2026](#10112026)
@@ -47,7 +48,35 @@ lang: fr_FR
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
 
+## 20/11/2026
+
+### ✨ Nouveautés
+
+- **Client MCP avec MCP Jeedom** : l'assistant propose maintenant à l'IA les bons outils pour :
+  - renommer un équipement ou le changer de pièce ;
+  - changer le mode de la maison (absent, nuit, vacances…) et créer, renommer ou supprimer une pièce ;
+  - interroger les caméras sur les personnes inconnues ;
+  - supprimer un fichier, seulement si vous le demandez explicitement (« supprime le fichier … »).
+
+### 🐛 Corrections
+
+- **Claude récents (Haiku 5.5, Sonnet 5, Opus 4.7 et suivants) via ai_proxy ou OpenRouter** : plus de requête perdue au premier message. Le paramètre `temperature`, refusé par ces modèles, n'est plus envoyé (environ 5 secondes gagnées).
+- **Aide de « Limite outils MCP »** : c'est un plafond ; seuls les outils utiles à la phrase sont envoyés. Vide ou 0 reprend le profil de coût (8, 20 ou 40), et non « pas de limite ».
+
 ## 16/11/2026
+
+### ✨ Nouveautés
+
+- **Panel et application mobile plus rapides**, surtout à distance :
+  - à chaque ouverture, environ 4 fois moins de données téléchargées et un affichage complet nettement plus rapide ;
+  - le choix des équipements du Tableau de bord télécharge 14 fois moins de données ;
+  - la coloration du code ne se charge qu'à l'affichage du premier bloc de code.
+- **Barre latérale du panel** : elle n'affiche plus que les appels d'outils. Les valeurs de vos équipements se suivent dans le Tableau de bord.
+
+### 🐛 Corrections
+
+- **Gemini 4** : le niveau de raisonnement réglé sur l'équipement est de nouveau respecté. Le modèle raisonnait toujours au maximum, plus lentement et plus cher.
+- **Commande « Ask AI » lancée par un scénario ou un autre plugin** : quand l'assistant utilisait un outil, la réponse pouvait être prise pour une erreur.
 
 ### 🔧 Divers
 
