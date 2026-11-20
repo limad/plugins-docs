@@ -88,7 +88,3 @@ Deux éléments de la même liste ont le même nom : le second reçoit ce suffix
 
 **Une action renvoie une erreur Amazon (code et message).**
 Vérifier dans Alexa Premium que la connexion au compte Amazon est active, puis relancer **Scan**. Le détail est dans le log `alexatodolist`.
-
----
-
-*Alexa - Todo List — Documentation | Plugin open-source pour Jeedom*

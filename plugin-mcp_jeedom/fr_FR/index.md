@@ -505,25 +505,6 @@ Une fois le tunnel configuré, utilisez la Méthode 3 avec l'URL Cloudflare Tunn
 
 ---
 
-### Méthode 5 — Accès externe via reverse proxy nginx/Apache
-
-Si vous gérez déjà un serveur web devant Jeedom, faites-le pointer vers le **proxy du plugin** (le daemon refuse toute connexion qui ne vient pas de ce proxy). Le client IA envoie toujours son token dans l'en-tête `Authorization` :
-
-```nginx
-# Streamable HTTP
-location /jeedom-mcp {
-    proxy_pass http://IP_JEEDOM/plugins/mcp_jeedom/core/php/jeemcp_proxy.php;
-    proxy_http_version 1.1;
-    proxy_set_header Host $host;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_buffering off;
-    proxy_cache off;
-    proxy_read_timeout 300s;
-}
-```
-
----
-
 ### Récapitulatif des méthodes
 
 | Méthode | Réseau requis | Auth | Complexité | Recommandé |
@@ -531,7 +512,6 @@ location /jeedom-mcp {
 | 1 — LAN Streamable HTTP (proxy) | Local uniquement | Token Bearer | ⭐ | ✅ Usage quotidien local |
 | 3 — Proxy PHP + token | Internet | Token Bearer ou OAuth | ⭐⭐ | ✅ Accès externe simple |
 | 4 — Cloudflare Tunnel | Internet | Token Bearer ou OAuth | ⭐⭐ | ✅ Sans ouverture de port |
-| 5 — Reverse proxy nginx | Internet | Token Bearer ou OAuth | ⭐⭐⭐ | Infra existante |
 
 ## Tokens et rôles
 
@@ -827,28 +807,3 @@ Le serveur MCP s'exécute en local sur votre serveur Jeedom avec les droits de l
 > - Consultez régulièrement l'**audit log** pour détecter des usages anormaux.
 > - Utilisez HTTPS pour tout accès externe (Cloudflare Tunnel, reverse proxy, DNS avec TLS).
 > - En cas de doute, désactivez ou régénérez le token concerné : l'effet est immédiat.
-
-## Accès externe sécurisé (nginx)
-
-Pour exposer le serveur MCP via nginx, pointez vers le proxy du plugin (jamais vers le port du daemon, qui refuse les connexions directes). L'authentification reste celle du token :
-
-```nginx
-# /etc/nginx/sites-available/jeedom-mcp
-# Streamable HTTP
-location /jeedom-mcp/mcp {
-    proxy_pass http://IP_JEEDOM/plugins/mcp_jeedom/core/php/jeemcp_proxy.php;
-    proxy_http_version 1.1;
-    proxy_set_header Host $host;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_set_header X-Forwarded-For $remote_addr;
-    proxy_buffering off;
-    proxy_cache off;
-    proxy_read_timeout 300s;
-}
-```
-
-> Pour une solution sans ouverture de port, voir → [Accès externe via Cloudflare Tunnel](cloudflare.md).
-
----
-
-*mcp_jeedom — Documentation | Plugin open-source pour Jeedom*

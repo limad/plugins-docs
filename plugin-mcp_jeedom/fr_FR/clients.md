@@ -501,7 +501,3 @@ Ajouter `--allow-insecure` à `mcp-remote`, ou utiliser Cloudflare Tunnel qui g�
 Demander à Claude : **« Liste tes outils disponibles »** — si `jeedom_mcp` est connecté, Claude listera `get_full_state`, `find_command`, etc.
 
 Dans Claude Desktop : **Paramètres → Développeur → Serveurs MCP locaux** pour voir les erreurs éventuelles.
-
----
-
-*mcp_jeedom — Documentation | Plugin open-source pour Jeedom*
