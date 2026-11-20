@@ -9,6 +9,10 @@ pluginId: migoControl
 
 ## Version en cours de développement
 
+### 16/11/2026
+
+- **Divers** : icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ### 09/11/2026
 
 - **Sécurité et fiabilité** : le pack de widgets n'est installé que s'il correspond exactement à la version attendue ; plus aucun téléchargement s'il est déjà à jour.

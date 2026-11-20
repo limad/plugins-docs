@@ -158,7 +158,3 @@ La taille maximale d'un envoi est fixée par la configuration PHP du serveur web
 
 **Les vues « Contrôle de version », « Extensions » et le terminal sont vides.**
 Ces éléments de l'interface ne sont pas encore fonctionnels.
-
----
-
-*vCoder — Documentation | Plugin open-source pour Jeedom*

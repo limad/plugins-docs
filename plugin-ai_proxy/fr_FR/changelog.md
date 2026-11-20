@@ -9,6 +9,10 @@ pluginId: ai_proxy
 
 ## Version en cours de développement
 
+### 16/11/2026
+
+- **Divers** : icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ### 09/11/2026
 
 - **Nouveautés et corrections** : choix de la stratégie quand un fournisseur a plusieurs comptes (rotation collante ou premier compte d'abord), avec des exceptions par fournisseur ; le cache Claude de 5 minutes et d'une heure est pris en charge et compté à son tarif dans la fenêtre Capacité ; arguments des outils Codex corrigés.

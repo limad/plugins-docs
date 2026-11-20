@@ -9,6 +9,10 @@ pluginId: pulseCounter
 
 ## Version en cours de développement
 
+### 16/11/2026
+
+- **Divers** : icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ### 09/11/2026
 
 - **Sécurité et fiabilité** : les widgets installés avec le plugin proviennent d'une version figée et sont vérifiés avant installation.

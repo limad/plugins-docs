@@ -392,4 +392,19 @@ pluginId: limad44
 	</div>
 </div>
 
+<div class="plugin-card">
+	<a class="plugin-card__header" href="{{site.baseurl}}/plugin-homeDash/{{page.lang}}">
+	<img src="{{site.baseurl}}/plugin-homeDash/images/homeDash_icon.png" alt="homeDash">
+	<div>
+		<h2 class="plugin-card__name">Home Dash</h2>
+		<span class="plugin-card__id">homeDash</span>
+	</div>
+	</a>
+	<p class="plugin-card__desc">Interface mobile épurée servie par Jeedom (à installer sur le téléphone) : favoris, pièces, lumières, volets, thermostats, caméras, scénarios et chat avec les assistants, en temps réel.</p>
+	<div class="plugin-card__links">
+	<a href="{{site.baseurl}}/plugin-homeDash/{{page.lang}}">Documentation</a>
+	<a href="{{site.baseurl}}/plugin-homeDash/{{page.lang}}/changelog">Changelog</a>
+	</div>
+</div>
+
 </div><!-- /plugin-grid -->

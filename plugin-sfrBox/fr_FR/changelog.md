@@ -12,6 +12,9 @@ description: Monitoring des équipement connéctés à aux boxs sfr compatibles.
 ## Changelog
 >*Liste non-exhaustive. Les changements mineurs et/ou correction de bugs ne figurent pas forcément ici.*
 
+### 16/11/2026
+* Icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ### 23/02/2020
 Importante mise à jour
 * révision optimisations de la class sfrBoxApi

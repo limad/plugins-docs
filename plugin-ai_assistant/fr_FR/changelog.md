@@ -78,6 +78,10 @@ lang: fr_FR
 - **Gemini 4** : le niveau de raisonnement réglé sur l'équipement est de nouveau respecté. Le modèle raisonnait toujours au maximum, plus lentement et plus cher.
 - **Commande « Ask AI » lancée par un scénario ou un autre plugin** : quand l'assistant utilisait un outil, la réponse pouvait être prise pour une erreur.
 
+### 🔧 Divers
+
+- Icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ## 12/11/2026
 
 ### ✨ Nouveautés

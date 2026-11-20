@@ -49,6 +49,10 @@ lang: en_US
 - **Gemini 4**: the reasoning level set on the device is respected again. The model always reasoned at the maximum, slower and more expensive.
 - **"Ask AI" command run by a scenario or another plugin**: when the assistant used a tool, the answer could be taken for an error.
 
+### Miscellaneous
+
+- Lighter plugin icon, so Jeedom's Plugins menu shows up faster (same look).
+
 ## 12/11/2026
 
 ### New features

@@ -9,6 +9,10 @@ pluginId: crowdsec
 
 ## Version under development
 
+### 16/11/2026
+
+- **Miscellaneous**: lighter plugin icon, so Jeedom's Plugins menu shows up faster (same look).
+
 ### 09/11/2026
 
 - **New features and fixes**: new "CA certificate (PEM file)" option for an https LAPI with a self-signed certificate; the community blocklist is no longer downloaded at every read (once per hour), which lightens the load on the box and the LAPI; "Local detections (24 h)" is no longer capped; "Locally blocked IPs" now only holds addresses (no more ranges or countries); entering `off` in Auto-refresh disables automatic reading; clearer error messages (bouncer key or machine account at fault, explanation given by CrowdSec); an error is shown if resetting the widgets fails; translations updated.

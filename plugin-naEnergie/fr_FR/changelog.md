@@ -22,6 +22,10 @@ pluginId: naEnergie
 >*Liste non exhaustive. Les changements mineurs et/ou corrections de bugs ne figurent pas forcément ici.*
 >
 
+### Version 16/11/2026
+
+* Icône du plugin allégée, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
+
 ### Version 06/11/2026
 
 #### Types génériques
