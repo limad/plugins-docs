@@ -17,6 +17,24 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 23/11/2026
+
+*   **Alexa+** : dans « Discuter avec Alexa », envoi de documents PDF et Word et de fichiers texte en plus des images ; après l'envoi d'un fichier, les questions suivantes en tiennent compte ; nouvelle fenêtre « Fichiers Alexa+ » pour revoir et supprimer les fichiers envoyés à Alexa+ ; nouvelle fenêtre « Historique Alexa+ » pour relire en entier les conversations des 30 derniers jours (app, site web, plugin)
+*   **Divers** : nouvelles fenêtres traduites dans toutes les langues du plugin
+
+### 22/11/2026
+
+*   **Alexa+** : détection automatique d'Alexa+ sur le compte ; modes du domicile (Présence, Absence, Nuit) consultables et réglables depuis Jeedom, une fois créés dans l’app Alexa ; nouvelle fenêtre « Discuter avec Alexa » pour poser des questions écrites et lire ou écouter les réponses ; envoi d'une image à Alexa+ pour la faire décrire ; nouvelle commande « Analyser une image » (caméra, adresse web ou fichier) dont la réponse arrive dans une commande info
+*   **Corrections** : la commande « Réponse Chat » reçoit la réponse complète d'Alexa+ (et plus seulement la première phrase) ; les widgets iso se mettent à jour selon la date du pack installé
+
+### 21/11/2026
+
+*   **JeeViewer** : l'application homeDash peut s'ouvrir sur les écrans Echo (maison entière, écran de veille ou une pièce) ; la fenêtre de déploiement affiche l'adresse réellement envoyée
+
+### 18/11/2026
+
+*   **Corrections** : les réponses uniquement audio des skills tierces apparaissent dans le chat Alexa ; le service du plugin démarre sur toutes les installations récentes de Jeedom et redémarre sans perdre la connexion Amazon ; messages d'erreur plus clairs quand Amazon refuse l'authentification ; traductions mises à jour
+
 ### 16/11/2026
 
 *   **Divers** : icônes du plugin allégées, le menu Plugins de Jeedom s'affiche plus vite (rendu identique).
