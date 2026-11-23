@@ -21,6 +21,24 @@ lang: en_US
 
 ## Version in development
 
+### 23/11/2026
+
+- **Alexa+**: in "Chat with Alexa", PDF and Word documents and text files can be sent in addition to images; after a file is sent, the following questions take it into account; new "Alexa+ files" window to review and delete the files sent to Alexa+; new "Alexa+ history" window to read the full conversations of the last 30 days (app, website, plugin)
+- **Miscellaneous**: the new windows are translated into all the plugin languages
+
+### 22/11/2026
+
+- **Alexa+**: automatic detection of Alexa+ on the account; home modes (Home, Away, Night) can be viewed and set from Jeedom, once created in the Alexa app; new "Chat with Alexa" window to ask written questions and read or listen to the answers; send an image to Alexa+ to have it described; new "Analyze an image" command (camera, web address or file) whose answer goes to an info command
+- **Fixes**: the "Chat answer" command now gets Alexa+'s full answer (not only the first sentence); iso widgets are updated according to the installed pack date
+
+### 21/11/2026
+
+- **JeeViewer**: the homeDash app can be opened on Echo screens (whole home, idle screen or a room); the deployment window shows the address actually sent
+
+### 18/11/2026
+
+- **Fixes**: audio-only answers from third-party skills now show up in the Alexa chat; the daemon starts with any Node 22 version and restarts without losing the Amazon connection; clearer error messages when Amazon rejects the authentication; translations updated
+
 ### 16/11/2026
 
 - **Miscellaneous**: lighter plugin icons, so Jeedom's Plugins menu shows up faster (same look).
