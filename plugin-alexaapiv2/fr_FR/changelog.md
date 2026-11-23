@@ -33,7 +33,7 @@ Changelog Alexa-Premium
 
 ### 18/11/2026
 
-*   **Corrections** : les réponses uniquement audio des skills tierces apparaissent dans le chat Alexa ; le service du plugin démarre sur toutes les installations récentes de Jeedom et redémarre sans perdre la connexion Amazon ; messages d'erreur plus clairs quand Amazon refuse l'authentification ; traductions mises à jour
+*   **Corrections** : les réponses uniquement audio des skills tierces apparaissent dans le chat Alexa ; le daemon démarre avec toutes les versions de Node 22 et redémarre sans perdre la connexion Amazon ; messages d'erreur plus clairs quand Amazon refuse l'authentification ; traductions mises à jour
 
 ### 16/11/2026
 

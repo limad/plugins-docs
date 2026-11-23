@@ -37,7 +37,7 @@ lang: en_US
 
 ### 18/11/2026
 
-- **Fixes**: audio-only answers from third-party skills now show up in the Alexa chat; the plugin service starts on all recent Jeedom installations and restarts without losing the Amazon connection; clearer error messages when Amazon rejects the authentication; translations updated
+- **Fixes**: audio-only answers from third-party skills now show up in the Alexa chat; the daemon starts with any Node 22 version and restarts without losing the Amazon connection; clearer error messages when Amazon rejects the authentication; translations updated
 
 ### 16/11/2026
 
