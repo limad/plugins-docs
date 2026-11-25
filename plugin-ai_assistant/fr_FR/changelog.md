@@ -59,6 +59,7 @@ lang: fr_FR
 ### 🐛 Corrections
 
 - **Réinitialiser l'historique d'un client MCP** : l'historique est maintenant vraiment effacé (il était annoncé comme réinitialisé mais restait en place).
+- **Questions posées depuis un autre plugin (assistant vocal Alexa, Wyoming Bridge…)** : l'IA connaît maintenant la date et l'heure (« Quelle heure est-il ? » répondait qu'aucune horloge n'était disponible).
 
 ## 20/11/2026
 
