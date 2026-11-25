@@ -28,6 +28,7 @@ lang: en_US
 ### Fixes
 
 - **Resetting the history of an MCP client**: the history is now really erased (it was reported as reset but stayed in place).
+- **Questions asked from another plugin (Alexa voice assistant, Wyoming Bridge…)**: the AI now knows the date and time ("What time is it?" used to answer that no clock was available).
 
 ## 20/11/2026
 
