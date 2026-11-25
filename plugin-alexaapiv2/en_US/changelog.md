@@ -23,7 +23,7 @@ lang: en_US
 
 ### 25/11/2026
 
-- **New**: new "Transcrire" (transcribe) command on Alexa System: a short audio file (under 8 seconds) is turned into text by Alexa, without triggering anything in the house; the text arrives in the "Transcription" command (requires the Frida skill)
+- **New**: new "Transcrire" (transcribe) command on Alexa System: a short audio file (under 8 seconds) is turned into text by Alexa, without triggering anything in the house; the text arrives in the "Transcription" command (requires the Frida skill); a microphone button on the widget also lets you dictate directly (browser microphone over HTTPS, otherwise pick an audio file)
 - **Frida skill**: Frida is now invoked as "nova assistant" ("Alexa, open nova assistant", "Alexa, ask nova assistant …"), a name Alexa recognises better; redeploy Frida from the plugin page to get it
 
 ### 23/11/2026
