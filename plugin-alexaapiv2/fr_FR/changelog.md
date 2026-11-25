@@ -17,6 +17,11 @@ Changelog Alexa-Premium
 
 ## Version en cours de développement
 
+### 25/11/2026
+
+*   **Nouveautés** : nouvelle commande « Transcrire » sur Alexa System : un court fichier audio (moins de 8 secondes) est converti en texte par Alexa, sans rien déclencher dans la maison ; le texte arrive dans la commande « Transcription » (nécessite le skill Frida)
+*   **Skill Frida** : Frida s'appelle désormais « assistant nova » (« Alexa, ouvre assistant nova », « Alexa, demande à assistant nova … »), un nom mieux reconnu par Alexa ; redéployer Frida depuis la page du plugin pour en profiter
+
 ### 23/11/2026
 
 *   **Alexa+** : dans « Discuter avec Alexa », envoi de documents PDF et Word et de fichiers texte en plus des images ; après l'envoi d'un fichier, les questions suivantes en tiennent compte ; nouvelle fenêtre « Fichiers Alexa+ » pour revoir et supprimer les fichiers envoyés à Alexa+ ; nouvelle fenêtre « Historique Alexa+ » pour relire en entier les conversations des 30 derniers jours (app, site web, plugin)
