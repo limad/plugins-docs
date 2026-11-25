@@ -24,6 +24,7 @@ lang: en_US
 ### New features
 
 - **MCP client called by another plugin**: an instruction can be added to the request (used by Wyoming Bridge for short spoken replies and the language of the request).
+- **Try Jeedom interactions first**: a sentence recognized by an interaction is no longer subject to the one-request-every-2-seconds limit for other plugins (quick voice commands are never refused); only AI calls remain limited.
 
 ### Fixes
 

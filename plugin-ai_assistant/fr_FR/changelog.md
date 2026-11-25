@@ -54,6 +54,7 @@ lang: fr_FR
 ### ✨ Nouveautés
 
 - **Client MCP appelé par un autre plugin** : une consigne peut être ajoutée à la demande (utilisé par Wyoming Bridge pour des réponses orales courtes et la langue de la demande).
+- **Interactions Jeedom d'abord** : quand une phrase est reconnue par une interaction, elle n'est plus soumise à la limite d'une requête toutes les 2 secondes des autres plugins (commandes vocales rapides jamais refusées) ; seuls les appels à l'IA restent limités.
 
 ### 🐛 Corrections
 
