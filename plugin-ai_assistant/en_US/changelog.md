@@ -19,6 +19,16 @@ lang: en_US
 
 ---
 
+## 25/11/2026
+
+### New features
+
+- **MCP client called by another plugin**: an instruction can be added to the request (used by Wyoming Bridge for short spoken replies and the language of the request).
+
+### Fixes
+
+- **Resetting the history of an MCP client**: the history is now really erased (it was reported as reset but stayed in place).
+
 ## 20/11/2026
 
 ### New features

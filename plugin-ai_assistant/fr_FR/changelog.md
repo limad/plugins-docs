@@ -19,6 +19,7 @@ lang: fr_FR
 
 ## Sommaire
 
+- [25/11/2026](#25112026)
 - [20/11/2026](#20112026)
 - [16/11/2026](#16112026)
 - [12/11/2026](#12112026)
@@ -47,6 +48,16 @@ lang: fr_FR
 - [20/03/2026](#20032026)
 - [31/12/2025](#31122025)
 - [21/12/2025](#21122025)
+
+## 25/11/2026
+
+### ✨ Nouveautés
+
+- **Client MCP appelé par un autre plugin** : une consigne peut être ajoutée à la demande (utilisé par Wyoming Bridge pour des réponses orales courtes et la langue de la demande).
+
+### 🐛 Corrections
+
+- **Réinitialiser l'historique d'un client MCP** : l'historique est maintenant vraiment effacé (il était annoncé comme réinitialisé mais restait en place).
 
 ## 20/11/2026
 
