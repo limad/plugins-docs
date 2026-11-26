@@ -21,6 +21,7 @@ Changelog Alexa-Premium
 
 *   **Nouveautés** : nouvelle commande « Transcrire » sur Alexa System : un court fichier audio (moins de 8 secondes) est converti en texte par Alexa, sans rien déclencher dans la maison ; le texte arrive dans la commande « Transcription » (nécessite le skill Frida) ; un bouton micro sur le widget permet aussi de dicter directement (micro du navigateur en HTTPS, sinon choix d'un fichier audio)
 *   **Skill Frida** : Frida s'appelle désormais « assistant nova » (« Alexa, ouvre assistant nova », « Alexa, demande à assistant nova … »), un nom mieux reconnu par Alexa ; redéployer Frida depuis la page du plugin pour en profiter
+*   **Corrections** : un Echo relié à un client ai_assistant (MCP) connaît maintenant la date et l'heure (« Quelle heure est-il ? » répondait qu'aucune horloge n'était disponible)
 
 ### 23/11/2026
 
